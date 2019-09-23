@@ -32,14 +32,40 @@ final class ItemViewController: UIViewController {
         }
     }
 
+    private lazy var indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
+        indicator.center = self.view.center
+        indicator.hidesWhenStopped = true
+        indicator.color = UIColor.black
+        indicator.isHidden = true
+        return indicator
+    }()
+
+    private var isLoading: Bool = false {
+        didSet {
+            DispatchQueue.main.async {
+                self.isLoading ? self.indicator.startAnimating() : self.indicator.stopAnimating()
+                self.indicator.isHidden = !self.isLoading
+            }
+        }
+    }
+
     private let disposeBag = DisposeBag()
     private let viewModel: ItemViewModetable = ItemViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(indicator)
         bind()
+        viewModel.fetchItems().subscribe().disposed(by: disposeBag)
     }
 
     private func bind() {
+        viewModel.isLoading
+            .subscribe(onNext: { [weak self] in
+                self?.isLoading = $0
+            })
+            .disposed(by: disposeBag)
     }
 }
