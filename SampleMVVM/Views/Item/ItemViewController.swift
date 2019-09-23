@@ -16,6 +16,10 @@ final class ItemViewController: UIViewController {
         didSet {
             tableView.register(R.nib.itemTableCell)
 
+            tableView.rx
+                .setDelegate(self)
+                .disposed(by: disposeBag)
+
             viewModel.items
                 .drive(tableView.rx.items) { tableView, index, element in
                     let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.itemTableCell,
@@ -67,5 +71,11 @@ final class ItemViewController: UIViewController {
                 self?.isLoading = $0
             })
             .disposed(by: disposeBag)
+    }
+}
+
+extension ItemViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44.0
     }
 }
