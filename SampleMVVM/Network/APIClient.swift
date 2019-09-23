@@ -25,7 +25,6 @@ struct APIClient {
                           parameters: parameters,
                           encoding: encoding,
                           headers: headers)
-            .validate(statusCode: 200..<300)
             .responseJSON { response in
                 switch response.result {
                 case .success:
