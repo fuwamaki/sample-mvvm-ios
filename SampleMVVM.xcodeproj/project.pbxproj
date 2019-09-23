@@ -120,6 +120,7 @@
 				209A60C22338908000D6338C /* Views */,
 				209A60C12338907600D6338C /* Network */,
 				209A60C02338906C00D6338C /* Resources */,
+				209A60E22338CC4800D6338C /* Extension */,
 			);
 			path = SampleMVVM;
 			sourceTree = "<group>";
@@ -185,6 +186,13 @@
 				209A60CC2338A92800D6338C /* MypageViewController.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		209A60E22338CC4800D6338C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		2492E0FED5D0CE6582579961 /* Pods */ = {
