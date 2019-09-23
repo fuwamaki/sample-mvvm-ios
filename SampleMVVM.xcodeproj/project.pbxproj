@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		209A60A723388F1600D6338C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A623388F1600D6338C /* Assets.xcassets */; };
 		209A60AA23388F1600D6338C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A823388F1600D6338C /* LaunchScreen.storyboard */; };
 		209A60B523388F1600D6338C /* SampleMVVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A60B423388F1600D6338C /* SampleMVVMTests.swift */; };
+		209A60C7233897BF00D6338C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A60C6233897BF00D6338C /* R.generated.swift */; };
 		365A2AF9368DE22F2743AF52 /* Pods_SampleMVVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C082C48E91D7CA66D6E947B5 /* Pods_SampleMVVM.framework */; };
 		3C37184E1CB370737B39B13B /* Pods_SampleMVVMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEDDE76F03021DD49949B78 /* Pods_SampleMVVMTests.framework */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		209A60B023388F1600D6338C /* SampleMVVMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleMVVMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A60B423388F1600D6338C /* SampleMVVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleMVVMTests.swift; sourceTree = "<group>"; };
 		209A60B623388F1600D6338C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		209A60C6233897BF00D6338C /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		96580C8C35205193E213614D /* Pods-SampleMVVMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMVVMTests.release.xcconfig"; path = "Target Support Files/Pods-SampleMVVMTests/Pods-SampleMVVMTests.release.xcconfig"; sourceTree = "<group>"; };
 		C082C48E91D7CA66D6E947B5 /* Pods_SampleMVVM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleMVVM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1FC5020DF9A652963250345 /* Pods-SampleMVVM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMVVM.release.xcconfig"; path = "Target Support Files/Pods-SampleMVVM/Pods-SampleMVVM.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		209A60C02338906C00D6338C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				209A60C6233897BF00D6338C /* R.generated.swift */,
 				209A60A623388F1600D6338C /* Assets.xcassets */,
 				209A60C3233890B800D6338C /* Storyboard */,
 			);
@@ -162,7 +165,6 @@
 				FDCB62E926A8D938BB7FBC15 /* Pods-SampleMVVMTests.debug.xcconfig */,
 				96580C8C35205193E213614D /* Pods-SampleMVVMTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -183,6 +185,8 @@
 			buildConfigurationList = 209A60B923388F1600D6338C /* Build configuration list for PBXNativeTarget "SampleMVVM" */;
 			buildPhases = (
 				818C23464395A3CBF7B3BB05 /* [CP] Check Pods Manifest.lock */,
+				209A60C4233896A600D6338C /* Run Script - R.swift */,
+				209A60C5233896B200D6338C /* Run Script - SwiftLint */,
 				209A609423388F1400D6338C /* Sources */,
 				209A609523388F1400D6338C /* Frameworks */,
 				209A609623388F1400D6338C /* Resources */,
@@ -275,6 +279,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		209A60C4233896A600D6338C /* Run Script - R.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = "Run Script - R.swift";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
+		209A60C5233896B200D6338C /* Run Script - SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script - SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n${PODS_ROOT}/SwiftLint/swiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		818C23464395A3CBF7B3BB05 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -345,6 +387,7 @@
 			files = (
 				209A60A223388F1500D6338C /* SecondViewController.swift in Sources */,
 				209A60A023388F1500D6338C /* FirstViewController.swift in Sources */,
+				209A60C7233897BF00D6338C /* R.generated.swift in Sources */,
 				209A609C23388F1500D6338C /* AppDelegate.swift in Sources */,
 				209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */,
 			);
