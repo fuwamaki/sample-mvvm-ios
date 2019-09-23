@@ -16,6 +16,9 @@
 		209A60AA23388F1600D6338C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A823388F1600D6338C /* LaunchScreen.storyboard */; };
 		209A60B523388F1600D6338C /* SampleMVVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A60B423388F1600D6338C /* SampleMVVMTests.swift */; };
 		209A60C7233897BF00D6338C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A60C6233897BF00D6338C /* R.generated.swift */; };
+		209A60C92338A90300D6338C /* ListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 209A60C82338A90300D6338C /* ListViewController.storyboard */; };
+		209A60CB2338A91800D6338C /* ItemViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 209A60CA2338A91800D6338C /* ItemViewController.storyboard */; };
+		209A60CD2338A92800D6338C /* MypageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 209A60CC2338A92800D6338C /* MypageViewController.storyboard */; };
 		365A2AF9368DE22F2743AF52 /* Pods_SampleMVVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C082C48E91D7CA66D6E947B5 /* Pods_SampleMVVM.framework */; };
 		3C37184E1CB370737B39B13B /* Pods_SampleMVVMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEDDE76F03021DD49949B78 /* Pods_SampleMVVMTests.framework */; };
 /* End PBXBuildFile section */
@@ -46,6 +49,9 @@
 		209A60B423388F1600D6338C /* SampleMVVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleMVVMTests.swift; sourceTree = "<group>"; };
 		209A60B623388F1600D6338C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		209A60C6233897BF00D6338C /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		209A60C82338A90300D6338C /* ListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListViewController.storyboard; sourceTree = "<group>"; };
+		209A60CA2338A91800D6338C /* ItemViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ItemViewController.storyboard; sourceTree = "<group>"; };
+		209A60CC2338A92800D6338C /* MypageViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypageViewController.storyboard; sourceTree = "<group>"; };
 		96580C8C35205193E213614D /* Pods-SampleMVVMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMVVMTests.release.xcconfig"; path = "Target Support Files/Pods-SampleMVVMTests/Pods-SampleMVVMTests.release.xcconfig"; sourceTree = "<group>"; };
 		C082C48E91D7CA66D6E947B5 /* Pods_SampleMVVM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleMVVM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1FC5020DF9A652963250345 /* Pods-SampleMVVM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMVVM.release.xcconfig"; path = "Target Support Files/Pods-SampleMVVM/Pods-SampleMVVM.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +159,9 @@
 			children = (
 				209A60A823388F1600D6338C /* LaunchScreen.storyboard */,
 				209A60A323388F1500D6338C /* Main.storyboard */,
+				209A60CA2338A91800D6338C /* ItemViewController.storyboard */,
+				209A60C82338A90300D6338C /* ListViewController.storyboard */,
+				209A60CC2338A92800D6338C /* MypageViewController.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -265,7 +274,10 @@
 			files = (
 				209A60AA23388F1600D6338C /* LaunchScreen.storyboard in Resources */,
 				209A60A723388F1600D6338C /* Assets.xcassets in Resources */,
+				209A60CB2338A91800D6338C /* ItemViewController.storyboard in Resources */,
 				209A60A523388F1500D6338C /* Main.storyboard in Resources */,
+				209A60CD2338A92800D6338C /* MypageViewController.storyboard in Resources */,
+				209A60C92338A90300D6338C /* ListViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
