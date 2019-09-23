@@ -60,9 +60,17 @@ final class ItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(indicator)
+        setupViews()
         bind()
         viewModel.fetchItems().subscribe().disposed(by: disposeBag)
+    }
+
+    private func setupViews() {
+        view.addSubview(indicator)
+        // Hide blank border of tableview
+        tableView.tableFooterView = UIView()
+        // setup backgroundColor of tableview
+        tableView.backgroundColor = UIColor.lightGray
     }
 
     private func bind() {
