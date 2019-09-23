@@ -8,10 +8,6 @@
 
 import UIKit
 
-private struct Text {
-    static let yen = "円"
-}
-
 final class ItemTableCell: UITableViewCell {
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -25,6 +21,6 @@ final class ItemTableCell: UITableViewCell {
     func render(item: Item) {
         titleLabel.text = item.name
         subtitleLabel.text = item.category
-        priceLabel.text = String(item.price) + Text.yen
+        priceLabel.text = String(item.price) + R.string.localizable.yen()
     }
 }
