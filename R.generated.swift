@@ -36,7 +36,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
   struct storyboard {
     /// Storyboard `ItemViewController`.
     static let itemViewController = _R.storyboard.itemViewController()
@@ -46,8 +46,6 @@ struct R: Rswift.Validatable {
     static let listViewController = _R.storyboard.listViewController()
     /// Storyboard `MainTabBarViewController`.
     static let mainTabBarViewController = _R.storyboard.mainTabBarViewController()
-    /// Storyboard `Main`.
-    static let main = _R.storyboard.main()
     /// Storyboard `MypageViewController`.
     static let mypageViewController = _R.storyboard.mypageViewController()
     
@@ -64,11 +62,6 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "ListViewController", bundle: ...)`
     static func listViewController(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.listViewController)
-    }
-    
-    /// `UIStoryboard(name: "Main", bundle: ...)`
-    static func main(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.main)
     }
     
     /// `UIStoryboard(name: "MainTabBarViewController", bundle: ...)`
@@ -107,7 +100,6 @@ struct _R: Rswift.Validatable {
       try itemViewController.validate()
       try launchScreen.validate()
       try listViewController.validate()
-      try main.validate()
       try mainTabBarViewController.validate()
       try mypageViewController.validate()
     }
@@ -163,22 +155,6 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.listViewController().listViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'listViewController' could not be loaded from storyboard 'ListViewController' as 'ListViewController'.") }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = UIKit.UITabBarController
-      
-      let bundle = R.hostingBundle
-      let name = "Main"
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "first", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'first' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "second", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'second' is used in storyboard 'Main', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-        }
       }
       
       fileprivate init() {}

@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
-		209A60A023388F1500D6338C /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609F23388F1500D6338C /* FirstViewController.swift */; };
-		209A60A223388F1500D6338C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A60A123388F1500D6338C /* SecondViewController.swift */; };
-		209A60A523388F1500D6338C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A323388F1500D6338C /* Main.storyboard */; };
 		209A60A723388F1600D6338C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A623388F1600D6338C /* Assets.xcassets */; };
 		209A60AA23388F1600D6338C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A823388F1600D6338C /* LaunchScreen.storyboard */; };
 		209A60B523388F1600D6338C /* SampleMVVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A60B423388F1600D6338C /* SampleMVVMTests.swift */; };
@@ -47,9 +44,6 @@
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		209A609D23388F1500D6338C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		209A609F23388F1500D6338C /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		209A60A123388F1500D6338C /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		209A60A423388F1500D6338C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		209A60A623388F1600D6338C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		209A60A923388F1600D6338C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		209A60AB23388F1600D6338C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -164,8 +158,6 @@
 		209A60C22338908000D6338C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				209A609F23388F1500D6338C /* FirstViewController.swift */,
-				209A60A123388F1500D6338C /* SecondViewController.swift */,
 				209A60DC2338C88A00D6338C /* MainTabBarViewController.swift */,
 				209A60CE2338C4D900D6338C /* ItemViewController.swift */,
 				209A60D42338C51E00D6338C /* ItemViewModel.swift */,
@@ -181,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				209A60A823388F1600D6338C /* LaunchScreen.storyboard */,
-				209A60A323388F1500D6338C /* Main.storyboard */,
 				209A60DA2338C75100D6338C /* MainTabBarViewController.storyboard */,
 				209A60CA2338A91800D6338C /* ItemViewController.storyboard */,
 				209A60C82338A90300D6338C /* ListViewController.storyboard */,
@@ -299,7 +290,6 @@
 				209A60AA23388F1600D6338C /* LaunchScreen.storyboard in Resources */,
 				209A60A723388F1600D6338C /* Assets.xcassets in Resources */,
 				209A60CB2338A91800D6338C /* ItemViewController.storyboard in Resources */,
-				209A60A523388F1500D6338C /* Main.storyboard in Resources */,
 				209A60CD2338A92800D6338C /* MypageViewController.storyboard in Resources */,
 				209A60C92338A90300D6338C /* ListViewController.storyboard in Resources */,
 				209A60DB2338C75100D6338C /* MainTabBarViewController.storyboard in Resources */,
@@ -423,8 +413,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				209A60D72338C52700D6338C /* ListViewModel.swift in Sources */,
-				209A60A223388F1500D6338C /* SecondViewController.swift in Sources */,
-				209A60A023388F1500D6338C /* FirstViewController.swift in Sources */,
 				209A60C7233897BF00D6338C /* R.generated.swift in Sources */,
 				209A60D92338C52F00D6338C /* MypageViewModel.swift in Sources */,
 				209A609C23388F1500D6338C /* AppDelegate.swift in Sources */,
@@ -456,14 +444,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		209A60A323388F1500D6338C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				209A60A423388F1500D6338C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		209A60A823388F1600D6338C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
