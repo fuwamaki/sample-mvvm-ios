@@ -1,39 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JAk-lh-d4o">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
-        <scene sceneID="dyf-Ae-5fH">
+        <!--List画面-->
+        <scene sceneID="Yd3-Qb-yR6">
             <objects>
-                <tableViewController id="NjV-z5-2KO" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2od-qH-Rck">
+                <viewController storyboardIdentifier="ListViewController" id="vHG-tA-rsm" customClass="ListViewController" customModule="SampleMVVM" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ju9-SH-wkU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jwx-dy-j8C">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jwx-dy-j8C" id="4K3-c4-GKb">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="NjV-z5-2KO" id="r6S-Yb-q3d"/>
-                            <outlet property="delegate" destination="NjV-z5-2KO" id="l8N-71-h2D"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="aHt-5B-R2I"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WuQ-sd-jKd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <viewLayoutGuide key="safeArea" id="zJW-uN-Er9"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="List" image="b.circle" catalog="system" id="Hc7-YP-wVd"/>
+                    <navigationItem key="navigationItem" title="List画面" id="5X2-NW-Jtx"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g72-mT-Dv6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="443" y="162"/>
+            <point key="canvasLocation" x="351" y="161"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="t2d-w0-0ZL">
@@ -44,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="NjV-z5-2KO" kind="relationship" relationship="rootViewController" id="iwn-P7-Tch"/>
+                        <segue destination="vHG-tA-rsm" kind="relationship" relationship="rootViewController" id="cs6-Kh-8NH"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GVG-s0-nNe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -52,4 +42,7 @@
             <point key="canvasLocation" x="-475" y="162"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="b.circle" catalog="system" width="64" height="62"/>
+    </resources>
 </document>

@@ -1,39 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jWU-jq-9MQ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
-        <scene sceneID="5KM-LF-OCq">
+        <!--Item画面-->
+        <scene sceneID="qXU-yv-SkG">
             <objects>
-                <tableViewController id="15j-q5-iH1" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jNs-5e-DAI">
+                <viewController storyboardIdentifier="ItemViewController" id="Ijy-8C-ciZ" customClass="ItemViewController" customModule="SampleMVVM" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R6J-7L-Mnn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="vJT-OT-HeK">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vJT-OT-HeK" id="GuV-yz-ceD">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="15j-q5-iH1" id="18K-eB-WWD"/>
-                            <outlet property="delegate" destination="15j-q5-iH1" id="d4p-8n-XRG"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="lOg-tY-Lm3"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PtY-ow-JJU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <viewLayoutGuide key="safeArea" id="LGG-7g-Y5f"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" image="a.circle" catalog="system" id="fgJ-WH-ltc"/>
+                    <navigationItem key="navigationItem" title="Item画面" id="x4C-y7-QAs"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fH1-aB-gl6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="14" y="144"/>
+            <point key="canvasLocation" x="-96" y="144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PXi-Uk-DiD">
@@ -44,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="15j-q5-iH1" kind="relationship" relationship="rootViewController" id="kyA-Vf-KER"/>
+                        <segue destination="Ijy-8C-ciZ" kind="relationship" relationship="rootViewController" id="mAj-Ku-Qim"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5PX-uf-Tlk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -52,4 +42,7 @@
             <point key="canvasLocation" x="-903" y="144"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="a.circle" catalog="system" width="64" height="62"/>
+    </resources>
 </document>
