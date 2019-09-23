@@ -12,7 +12,6 @@ target 'SampleMVVM' do
   pod 'SwiftLint', '~> 0.35.0'
   pod 'PINRemoteImage', '~> 2.1.4'
   pod 'SwiftDate', '~> 6.1.0'
-  pod 'SVProgressHUD', '~> 2.2.5'
   pod 'RealmSwift', '~> 3.18.0'
   pod 'Alamofire', '~> 4.9.0'
 
