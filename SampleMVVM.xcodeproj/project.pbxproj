@@ -11,6 +11,9 @@
 		201BF0362338F8CD0020F7B4 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF0352338F8CD0020F7B4 /* APIError.swift */; };
 		201BF0382338FAE60020F7B4 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF0372338FAE60020F7B4 /* RequestProtocol.swift */; };
 		201BF03A2338FB180020F7B4 /* ResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF0392338FB180020F7B4 /* ResponseProtocol.swift */; };
+		201BF03D2338FDBD0020F7B4 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF03C2338FDBD0020F7B4 /* Url.swift */; };
+		201BF03F2339014C0020F7B4 /* ItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF03E2339014C0020F7B4 /* ItemResponse.swift */; };
+		201BF041233902770020F7B4 /* ItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF040233902770020F7B4 /* ItemRequest.swift */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
 		209A60A723388F1600D6338C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A623388F1600D6338C /* Assets.xcassets */; };
@@ -53,6 +56,9 @@
 		201BF0352338F8CD0020F7B4 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		201BF0372338FAE60020F7B4 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		201BF0392338FB180020F7B4 /* ResponseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseProtocol.swift; sourceTree = "<group>"; };
+		201BF03C2338FDBD0020F7B4 /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
+		201BF03E2339014C0020F7B4 /* ItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemResponse.swift; sourceTree = "<group>"; };
+		201BF040233902770020F7B4 /* ItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRequest.swift; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		209A609D23388F1500D6338C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +118,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		201BF03B2338FDA70020F7B4 /* Struct */ = {
+			isa = PBXGroup;
+			children = (
+				201BF03C2338FDBD0020F7B4 /* Url.swift */,
+			);
+			path = Struct;
+			sourceTree = "<group>";
+		};
 		209A608F23388F1400D6338C = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +154,7 @@
 				209A60C22338908000D6338C /* Views */,
 				201BF0322338EFEB0020F7B4 /* Model */,
 				209A60C12338907600D6338C /* Network */,
+				201BF03B2338FDA70020F7B4 /* Struct */,
 				209A60C02338906C00D6338C /* Resources */,
 				209A60E22338CC4800D6338C /* Extension */,
 			);
@@ -179,7 +194,9 @@
 			isa = PBXGroup;
 			children = (
 				201BF0392338FB180020F7B4 /* ResponseProtocol.swift */,
+				201BF03E2339014C0020F7B4 /* ItemResponse.swift */,
 				201BF0372338FAE60020F7B4 /* RequestProtocol.swift */,
+				201BF040233902770020F7B4 /* ItemRequest.swift */,
 				209A60DE2338CBEC00D6338C /* OriginalResult.swift */,
 				209A60E02338CBF400D6338C /* APIClient.swift */,
 				201BF0352338F8CD0020F7B4 /* APIError.swift */,
@@ -498,8 +515,11 @@
 				209A60D52338C51E00D6338C /* ItemViewModel.swift in Sources */,
 				209A60CF2338C4D900D6338C /* ItemViewController.swift in Sources */,
 				201BF0382338FAE60020F7B4 /* RequestProtocol.swift in Sources */,
+				201BF03D2338FDBD0020F7B4 /* Url.swift in Sources */,
 				209A60DD2338C88A00D6338C /* MainTabBarViewController.swift in Sources */,
 				209A60D12338C4E600D6338C /* ListViewController.swift in Sources */,
+				201BF041233902770020F7B4 /* ItemRequest.swift in Sources */,
+				201BF03F2339014C0020F7B4 /* ItemResponse.swift in Sources */,
 				209A60D32338C4F100D6338C /* MypageViewController.swift in Sources */,
 				209A60E12338CBF400D6338C /* APIClient.swift in Sources */,
 			);
