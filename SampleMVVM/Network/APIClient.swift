@@ -11,65 +11,27 @@ import Alamofire
 
 struct APIClient {
 
-    func call<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response, NSError>) -> Void) {
-        let baseUrl = request.baseUrl
-        let path = request.path
-        let requestUrl = baseUrl + path
-        let method = request.method
-        let encoding = request.encoding
-        let parameters = request.parameters
-        let headers = request.headers
-
-        Alamofire.request(requestUrl,
-                          method: method,
-                          parameters: parameters,
-                          encoding: encoding,
-                          headers: headers)
+    func call<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response, Error>) -> Void) {
+        Alamofire.request(request.url,
+                          method: request.method,
+                          parameters: request.parameters,
+                          encoding: request.encoding,
+                          headers: request.headers)
             .responseJSON { response in
                 switch response.result {
                 case .success:
                     do {
-                        guard let data = response.data else { return }
-                        let decoder = JSONDecoder()
-                        decoder.keyDecodingStrategy = .convertFromSnakeCase
-                        let result = try decoder.decode(T.Response.self, from: data)
+                        guard let data = response.data else {
+                            completion(.failure(APIError.jsonParseError))
+                            return
+                        }
+                        let result = try JSONDecoder().decode(T.Response.self, from: data)
                         completion(.success(result))
                     } catch {
-                        let error = NSError(domain: "", code: 400, userInfo: nil)
-                        completion(.failure(error))
+                        completion(.failure(APIError.jsonParseError))
                     }
                 case .failure(let error):
-                    completion(.failure(error as NSError))
+                    completion(.failure(error))
                 }}
-    }
-}
-
-protocol ResponseProtocol: Decodable {}
-
-protocol RequestProtocol {
-    associatedtype Response: ResponseProtocol
-    var baseUrl: String { get }
-    var path: String { get }
-    var method: Alamofire.HTTPMethod { get }
-    var encoding: Alamofire.ParameterEncoding { get }
-    var parameters: Alamofire.Parameters? { get }
-    var headers: Alamofire.HTTPHeaders? { get }
-}
-
-extension RequestProtocol {
-    var baseUrl: String {
-        return "https://google.com"
-    }
-
-    var encoding: Alamofire.ParameterEncoding {
-        return JSONEncoding.default
-    }
-
-    var parameters: Alamofire.Parameters? {
-        return nil
-    }
-
-    var headers: Alamofire.HTTPHeaders? {
-        return nil
     }
 }
