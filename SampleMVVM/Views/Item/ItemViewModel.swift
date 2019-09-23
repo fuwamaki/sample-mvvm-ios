@@ -10,9 +10,18 @@ import RxSwift
 import RxCocoa
 
 protocol ItemViewModetable {
+    var items: Driver<[Item]> { get }
 }
 
 final class ItemViewModel {
+
+    private let disposeBag = DisposeBag()
+
+    private let itemsSubject = BehaviorRelay<[Item]>(value: [])
+    var items: Driver<[Item]> {
+        return itemsSubject.asDriver(onErrorJustReturn: [])
+    }
+
 }
 
 extension ItemViewModel: ItemViewModetable {
