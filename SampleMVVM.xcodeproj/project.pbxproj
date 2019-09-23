@@ -126,6 +126,24 @@
 			path = Struct;
 			sourceTree = "<group>";
 		};
+		201BF042233904570020F7B4 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				201BF0392338FB180020F7B4 /* ResponseProtocol.swift */,
+				201BF03E2339014C0020F7B4 /* ItemResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		201BF0432339045D0020F7B4 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				201BF0372338FAE60020F7B4 /* RequestProtocol.swift */,
+				201BF040233902770020F7B4 /* ItemRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		209A608F23388F1400D6338C = {
 			isa = PBXGroup;
 			children = (
@@ -193,10 +211,8 @@
 		209A60C12338907600D6338C /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				201BF0392338FB180020F7B4 /* ResponseProtocol.swift */,
-				201BF03E2339014C0020F7B4 /* ItemResponse.swift */,
-				201BF0372338FAE60020F7B4 /* RequestProtocol.swift */,
-				201BF040233902770020F7B4 /* ItemRequest.swift */,
+				201BF0432339045D0020F7B4 /* Request */,
+				201BF042233904570020F7B4 /* Response */,
 				209A60DE2338CBEC00D6338C /* OriginalResult.swift */,
 				209A60E02338CBF400D6338C /* APIClient.swift */,
 				201BF0352338F8CD0020F7B4 /* APIError.swift */,
