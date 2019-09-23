@@ -12,6 +12,8 @@ import RxCocoa
 
 final class ItemViewController: UIViewController {
 
+    @IBOutlet private weak var tableView: UITableView!
+
     private let disposeBag = DisposeBag()
     private let viewModel: ItemViewModetable = ItemViewModel()
 

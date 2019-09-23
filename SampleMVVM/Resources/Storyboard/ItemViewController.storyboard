@@ -14,12 +14,27 @@
                     <view key="view" contentMode="scaleToFill" id="R6J-7L-Mnn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GaA-Sa-DY1">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="GaA-Sa-DY1" firstAttribute="top" secondItem="LGG-7g-Y5f" secondAttribute="top" id="1Kb-Em-7y1"/>
+                            <constraint firstItem="LGG-7g-Y5f" firstAttribute="bottom" secondItem="GaA-Sa-DY1" secondAttribute="bottom" id="Jgk-Je-cdT"/>
+                            <constraint firstItem="GaA-Sa-DY1" firstAttribute="leading" secondItem="LGG-7g-Y5f" secondAttribute="leading" id="Oj4-c1-KTf"/>
+                            <constraint firstItem="LGG-7g-Y5f" firstAttribute="trailing" secondItem="GaA-Sa-DY1" secondAttribute="trailing" id="PY5-lj-ikR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LGG-7g-Y5f"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" image="a.circle" catalog="system" id="fgJ-WH-ltc"/>
                     <navigationItem key="navigationItem" title="Item画面" id="x4C-y7-QAs"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="GaA-Sa-DY1" id="Iv0-c7-yAx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fH1-aB-gl6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
