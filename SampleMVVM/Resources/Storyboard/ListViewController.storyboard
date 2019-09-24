@@ -14,12 +14,34 @@
                     <view key="view" contentMode="scaleToFill" id="Ju9-SH-wkU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Bu3-aK-VoR">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pxF-Ue-53k">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Bu3-aK-VoR" firstAttribute="leading" secondItem="zJW-uN-Er9" secondAttribute="leading" id="bfJ-1g-znK"/>
+                            <constraint firstItem="Bu3-aK-VoR" firstAttribute="top" secondItem="zJW-uN-Er9" secondAttribute="top" id="nQG-tp-kgg"/>
+                            <constraint firstItem="zJW-uN-Er9" firstAttribute="trailing" secondItem="Bu3-aK-VoR" secondAttribute="trailing" id="vGZ-q9-Y8g"/>
+                            <constraint firstItem="zJW-uN-Er9" firstAttribute="bottom" secondItem="Bu3-aK-VoR" secondAttribute="bottom" id="xvq-br-3ZD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zJW-uN-Er9"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="b.circle" catalog="system" id="Hc7-YP-wVd"/>
                     <navigationItem key="navigationItem" title="List画面" id="5X2-NW-Jtx"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Bu3-aK-VoR" id="mfb-7a-xDc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g72-mT-Dv6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

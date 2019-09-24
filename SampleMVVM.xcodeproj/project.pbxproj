@@ -14,6 +14,8 @@
 		201BF03D2338FDBD0020F7B4 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF03C2338FDBD0020F7B4 /* Url.swift */; };
 		201BF03F2339014C0020F7B4 /* ItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF03E2339014C0020F7B4 /* ItemResponse.swift */; };
 		201BF041233902770020F7B4 /* ItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF040233902770020F7B4 /* ItemRequest.swift */; };
+		20382BDB2339F05000CF77A1 /* CollectionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20382BDA2339F05000CF77A1 /* CollectionListCell.swift */; };
+		20382BDD2339F06E00CF77A1 /* CollectionListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BDC2339F06E00CF77A1 /* CollectionListCell.xib */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
 		209A60A723388F1600D6338C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A623388F1600D6338C /* Assets.xcassets */; };
@@ -63,6 +65,8 @@
 		201BF03C2338FDBD0020F7B4 /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
 		201BF03E2339014C0020F7B4 /* ItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemResponse.swift; sourceTree = "<group>"; };
 		201BF040233902770020F7B4 /* ItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRequest.swift; sourceTree = "<group>"; };
+		20382BDA2339F05000CF77A1 /* CollectionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListCell.swift; sourceTree = "<group>"; };
+		20382BDC2339F06E00CF77A1 /* CollectionListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionListCell.xib; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		209A609D23388F1500D6338C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				209A60E92338CE2500D6338C /* ItemTableCell.xib */,
+				20382BDC2339F06E00CF77A1 /* CollectionListCell.xib */,
 			);
 			path = xib;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 		209A60E72338CDEB00D6338C /* List */ = {
 			isa = PBXGroup;
 			children = (
+				20382BDA2339F05000CF77A1 /* CollectionListCell.swift */,
 				209A60D02338C4E600D6338C /* ListViewController.swift */,
 				209A60D62338C52700D6338C /* ListViewModel.swift */,
 			);
@@ -417,6 +423,7 @@
 			files = (
 				209A60EA2338CE2500D6338C /* ItemTableCell.xib in Resources */,
 				209A60AA23388F1600D6338C /* LaunchScreen.storyboard in Resources */,
+				20382BDD2339F06E00CF77A1 /* CollectionListCell.xib in Resources */,
 				209A60A723388F1600D6338C /* Assets.xcassets in Resources */,
 				209A60CB2338A91800D6338C /* ItemViewController.storyboard in Resources */,
 				209A60CD2338A92800D6338C /* MypageViewController.storyboard in Resources */,
@@ -561,6 +568,7 @@
 				209A60DD2338C88A00D6338C /* MainTabBarViewController.swift in Sources */,
 				209A60D12338C4E600D6338C /* ListViewController.swift in Sources */,
 				201BF041233902770020F7B4 /* ItemRequest.swift in Sources */,
+				20382BDB2339F05000CF77A1 /* CollectionListCell.swift in Sources */,
 				201BF03F2339014C0020F7B4 /* ItemResponse.swift in Sources */,
 				209A60D32338C4F100D6338C /* MypageViewController.swift in Sources */,
 				20C0A4EE23390ED800B12264 /* UIViewController+Rx.swift in Sources */,
