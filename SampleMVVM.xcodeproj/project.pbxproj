@@ -18,8 +18,6 @@
 		20382BDD2339F06E00CF77A1 /* CollectionListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BDC2339F06E00CF77A1 /* CollectionListCell.xib */; };
 		20382BDF2339F69700CF77A1 /* GithubTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20382BDE2339F69700CF77A1 /* GithubTableCell.swift */; };
 		20382BE12339F6A200CF77A1 /* QiitaTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20382BE02339F6A200CF77A1 /* QiitaTableCell.swift */; };
-		20382BE32339F72F00CF77A1 /* QiitaTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BE22339F72F00CF77A1 /* QiitaTableCell.xib */; };
-		20382BE52339F73A00CF77A1 /* GithubTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BE42339F73A00CF77A1 /* GithubTableCell.xib */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
 		209A60A723388F1600D6338C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A623388F1600D6338C /* Assets.xcassets */; };
@@ -73,8 +71,6 @@
 		20382BDC2339F06E00CF77A1 /* CollectionListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionListCell.xib; sourceTree = "<group>"; };
 		20382BDE2339F69700CF77A1 /* GithubTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubTableCell.swift; sourceTree = "<group>"; };
 		20382BE02339F6A200CF77A1 /* QiitaTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaTableCell.swift; sourceTree = "<group>"; };
-		20382BE22339F72F00CF77A1 /* QiitaTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QiitaTableCell.xib; sourceTree = "<group>"; };
-		20382BE42339F73A00CF77A1 /* GithubTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GithubTableCell.xib; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		209A609D23388F1500D6338C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -280,8 +276,6 @@
 			children = (
 				209A60E92338CE2500D6338C /* ItemTableCell.xib */,
 				20382BDC2339F06E00CF77A1 /* CollectionListCell.xib */,
-				20382BE22339F72F00CF77A1 /* QiitaTableCell.xib */,
-				20382BE42339F73A00CF77A1 /* GithubTableCell.xib */,
 			);
 			path = xib;
 			sourceTree = "<group>";
@@ -438,10 +432,8 @@
 				20382BDD2339F06E00CF77A1 /* CollectionListCell.xib in Resources */,
 				209A60A723388F1600D6338C /* Assets.xcassets in Resources */,
 				209A60CB2338A91800D6338C /* ItemViewController.storyboard in Resources */,
-				20382BE52339F73A00CF77A1 /* GithubTableCell.xib in Resources */,
 				209A60CD2338A92800D6338C /* MypageViewController.storyboard in Resources */,
 				20C0A4F42339226B00B12264 /* Localizable.strings in Resources */,
-				20382BE32339F72F00CF77A1 /* QiitaTableCell.xib in Resources */,
 				209A60C92338A90300D6338C /* ListViewController.storyboard in Resources */,
 				209A60DB2338C75100D6338C /* MainTabBarViewController.storyboard in Resources */,
 			);
