@@ -10,21 +10,29 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class ListViewController: UIViewController {
+final class ListViewController: UITableViewController {
 
-    @IBOutlet private weak var collectionView: UICollectionView! {
+    @IBOutlet private weak var githubCollectionView: UICollectionView! {
         didSet {
-            collectionView.register(R.nib.collectionListCell)
+            githubCollectionView.register(R.nib.collectionListCell)
 
-            items.drive(collectionView.rx.items) { collectionView, index, element in
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.collectionListCell, for: IndexPath(row: index, section: 0))!
-                cell.render(element)
-                return cell
-            }.disposed(by: disposeBag)
+            githubCollectionView.rx
+                .setDelegate(self)
+                .disposed(by: disposeBag)
+
+            items
+                .drive(githubCollectionView.rx.items) { collectionView, index, element in
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.collectionListCell,
+                                                                  for: IndexPath(row: index, section: 0))!
+                    cell.render(element)
+                    return cell }
+                .disposed(by: disposeBag)
         }
     }
 
-    private let itemsSubject = BehaviorRelay<[String]>(value: ["a", "b"])
+    @IBOutlet private weak var qiitaCollectionView: UICollectionView!
+
+    private let itemsSubject = BehaviorRelay<[String]>(value: ["a", "b", "c", "d", "e", "f", "g", "h"])
     var items: Driver<[String]> {
         return itemsSubject.asDriver(onErrorJustReturn: [])
     }
@@ -37,6 +45,15 @@ final class ListViewController: UIViewController {
         bind()
     }
 
+    private func setupTableView() {
+    }
+
     private func bind() {
+    }
+}
+
+extension ListViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 120, height: 120)
     }
 }
