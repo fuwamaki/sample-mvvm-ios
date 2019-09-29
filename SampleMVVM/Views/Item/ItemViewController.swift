@@ -69,8 +69,6 @@ final class ItemViewController: UIViewController {
         view.addSubview(indicator)
         // Hide blank border of tableview
         tableView.tableFooterView = UIView()
-        // setup backgroundColor of tableview
-        tableView.backgroundColor = UIColor.lightGray
     }
 
     private func bind() {
