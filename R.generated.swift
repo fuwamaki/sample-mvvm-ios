@@ -36,17 +36,27 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
   struct nib {
     /// Nib `CollectionListCell`.
     static let collectionListCell = _R.nib._CollectionListCell()
+    /// Nib `GithubCollectionCell`.
+    static let githubCollectionCell = _R.nib._GithubCollectionCell()
     /// Nib `ItemTableCell`.
     static let itemTableCell = _R.nib._ItemTableCell()
+    /// Nib `QiitaCollectionCell`.
+    static let qiitaCollectionCell = _R.nib._QiitaCollectionCell()
     
     /// `UINib(name: "CollectionListCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.collectionListCell) instead")
     static func collectionListCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.collectionListCell)
+    }
+    
+    /// `UINib(name: "GithubCollectionCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.githubCollectionCell) instead")
+    static func githubCollectionCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.githubCollectionCell)
     }
     
     /// `UINib(name: "ItemTableCell", in: bundle)`
@@ -55,25 +65,43 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.itemTableCell)
     }
     
+    /// `UINib(name: "QiitaCollectionCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.qiitaCollectionCell) instead")
+    static func qiitaCollectionCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.qiitaCollectionCell)
+    }
+    
     static func collectionListCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CollectionListCell? {
       return R.nib.collectionListCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CollectionListCell
+    }
+    
+    static func githubCollectionCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> GithubCollectionCell? {
+      return R.nib.githubCollectionCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? GithubCollectionCell
     }
     
     static func itemTableCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ItemTableCell? {
       return R.nib.itemTableCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ItemTableCell
     }
     
+    static func qiitaCollectionCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> QiitaCollectionCell? {
+      return R.nib.qiitaCollectionCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? QiitaCollectionCell
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 4 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 6 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `CollectionListCell`.
     static let collectionListCell: Rswift.ReuseIdentifier<CollectionListCell> = Rswift.ReuseIdentifier(identifier: "CollectionListCell")
+    /// Reuse identifier `GithubCollectionCell`.
+    static let githubCollectionCell: Rswift.ReuseIdentifier<GithubCollectionCell> = Rswift.ReuseIdentifier(identifier: "GithubCollectionCell")
     /// Reuse identifier `GithubTableCell`.
     static let githubTableCell: Rswift.ReuseIdentifier<GithubTableCell> = Rswift.ReuseIdentifier(identifier: "GithubTableCell")
     /// Reuse identifier `ItemTableCell`.
     static let itemTableCell: Rswift.ReuseIdentifier<ItemTableCell> = Rswift.ReuseIdentifier(identifier: "ItemTableCell")
+    /// Reuse identifier `QiitaCollectionCell`.
+    static let qiitaCollectionCell: Rswift.ReuseIdentifier<QiitaCollectionCell> = Rswift.ReuseIdentifier(identifier: "QiitaCollectionCell")
     /// Reuse identifier `QiitaTableCell`.
     static let qiitaTableCell: Rswift.ReuseIdentifier<QiitaTableCell> = Rswift.ReuseIdentifier(identifier: "QiitaTableCell")
     
@@ -181,6 +209,21 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
+    struct _GithubCollectionCell: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "GithubCollectionCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> GithubCollectionCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? GithubCollectionCell
+      }
+      
+      func secondView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[1] as? UIKit.UIView
+      }
+      
+      fileprivate init() {}
+    }
+    
     struct _ItemTableCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
       typealias ReusableType = ItemTableCell
       
@@ -190,6 +233,20 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ItemTableCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ItemTableCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _QiitaCollectionCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = QiitaCollectionCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "QiitaCollectionCell"
+      let name = "QiitaCollectionCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> QiitaCollectionCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? QiitaCollectionCell
       }
       
       fileprivate init() {}
