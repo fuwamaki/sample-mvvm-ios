@@ -13,7 +13,7 @@ struct ItemsFetchResponse: ResponseProtocol {
 }
 
 struct ItemPostResponse: ResponseProtocol {
-    let item: Item
+    let id: Int?
 }
 
 struct ItemDeleteResponse: ResponseProtocol {
