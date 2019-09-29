@@ -26,5 +26,51 @@ final class ItemRegisterViewController: UIViewController {
     }
 
     private func bind() {
+        viewModel.dismissSubject
+            .subscribe(onNext: { [weak self] isDismiss in
+                if isDismiss {
+                    self?.dismiss(animated: true, completion: nil)
+                }
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.nameText
+            .asDriver(onErrorJustReturn: "")
+            .drive(nameTextField.rx.text)
+            .disposed(by: disposeBag)
+
+        nameTextField.rx.text.orEmpty
+            .bind(to: viewModel.nameText)
+            .disposed(by: disposeBag)
+
+        viewModel.categoryText
+            .asDriver(onErrorJustReturn: "")
+            .drive(categoryTextField.rx.text)
+            .disposed(by: disposeBag)
+
+        categoryTextField.rx.text.orEmpty
+            .bind(to: viewModel.categoryText)
+            .disposed(by: disposeBag)
+
+        viewModel.priceText
+            .asDriver(onErrorJustReturn: "")
+            .drive(priceTextField.rx.text)
+            .disposed(by: disposeBag)
+
+        priceTextField.rx.text.orEmpty
+            .bind(to: viewModel.priceText)
+            .disposed(by: disposeBag)
+
+        viewModel.allFieldsValid
+            .bind(to: registerButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        registerButton.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                self.viewModel.postItem()
+                    .subscribe()
+                    .disposed(by: self.disposeBag)
+            })
+            .disposed(by: disposeBag)
     }
 }
