@@ -11,3 +11,7 @@ enum APIError: Error {
     case invalidRequest
     case serverError
 }
+
+enum MVVMError: Error {
+    case jsonParseError
+}
