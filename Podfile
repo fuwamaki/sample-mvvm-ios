@@ -5,6 +5,9 @@ target 'SampleMVVM' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
+  # Hide library warnings in Xcode
+  inhibit_all_warnings!
+
   # Pods for SampleMVVM
   pod 'RxSwift', '~> 5.0.0'
   pod 'RxOptional', '~> 4.0.0'
