@@ -108,8 +108,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
   struct storyboard {
+    /// Storyboard `ItemRegisterViewController`.
+    static let itemRegisterViewController = _R.storyboard.itemRegisterViewController()
     /// Storyboard `ItemViewController`.
     static let itemViewController = _R.storyboard.itemViewController()
     /// Storyboard `LaunchScreen`.
@@ -120,6 +122,11 @@ struct R: Rswift.Validatable {
     static let mainTabBarViewController = _R.storyboard.mainTabBarViewController()
     /// Storyboard `MypageViewController`.
     static let mypageViewController = _R.storyboard.mypageViewController()
+    
+    /// `UIStoryboard(name: "ItemRegisterViewController", bundle: ...)`
+    static func itemRegisterViewController(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.itemRegisterViewController)
+    }
     
     /// `UIStoryboard(name: "ItemViewController", bundle: ...)`
     static func itemViewController(_: Void = ()) -> UIKit.UIStoryboard {
@@ -257,11 +264,26 @@ struct _R: Rswift.Validatable {
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
+      try itemRegisterViewController.validate()
       try itemViewController.validate()
       try launchScreen.validate()
       try listViewController.validate()
       try mainTabBarViewController.validate()
       try mypageViewController.validate()
+    }
+    
+    struct itemRegisterViewController: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = ItemRegisterViewController
+      
+      let bundle = R.hostingBundle
+      let name = "ItemRegisterViewController"
+      
+      static func validate() throws {
+        if #available(iOS 11.0, *) {
+        }
+      }
+      
+      fileprivate init() {}
     }
     
     struct itemViewController: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {

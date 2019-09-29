@@ -18,6 +18,10 @@ final class ItemTableCell: UITableViewCell {
         super.awakeFromNib()
     }
 
+    class func defaultHeight(_ tableView: UITableView) -> CGFloat {
+        return 56.0
+    }
+
     func render(item: Item) {
         titleLabel.text = item.name
         subtitleLabel.text = item.category

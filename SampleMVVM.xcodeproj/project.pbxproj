@@ -43,6 +43,9 @@
 		209A60E12338CBF400D6338C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A60E02338CBF400D6338C /* APIClient.swift */; };
 		209A60E52338CDDF00D6338C /* ItemTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A60E42338CDDF00D6338C /* ItemTableCell.swift */; };
 		209A60EA2338CE2500D6338C /* ItemTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209A60E92338CE2500D6338C /* ItemTableCell.xib */; };
+		20A122852340F3C100FA1EAB /* ItemRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A122842340F3C100FA1EAB /* ItemRegisterViewController.swift */; };
+		20A122872340F3CD00FA1EAB /* ItemRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A122862340F3CD00FA1EAB /* ItemRegisterViewModel.swift */; };
+		20A122892340F52600FA1EAB /* ItemRegisterViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A122882340F52600FA1EAB /* ItemRegisterViewController.storyboard */; };
 		20C0A4EC23390DBE00B12264 /* UIAlertController+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0A4EB23390DBE00B12264 /* UIAlertController+Addition.swift */; };
 		20C0A4EE23390ED800B12264 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0A4ED23390ED800B12264 /* UIViewController+Rx.swift */; };
 		20C0A4F123391F3900B12264 /* APIClient+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0A4F023391F3900B12264 /* APIClient+Item.swift */; };
@@ -104,6 +107,9 @@
 		209A60E02338CBF400D6338C /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		209A60E42338CDDF00D6338C /* ItemTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableCell.swift; sourceTree = "<group>"; };
 		209A60E92338CE2500D6338C /* ItemTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableCell.xib; sourceTree = "<group>"; };
+		20A122842340F3C100FA1EAB /* ItemRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRegisterViewController.swift; sourceTree = "<group>"; };
+		20A122862340F3CD00FA1EAB /* ItemRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRegisterViewModel.swift; sourceTree = "<group>"; };
+		20A122882340F52600FA1EAB /* ItemRegisterViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ItemRegisterViewController.storyboard; sourceTree = "<group>"; };
 		20C0A4EB23390DBE00B12264 /* UIAlertController+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Addition.swift"; sourceTree = "<group>"; };
 		20C0A4ED23390ED800B12264 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		20C0A4F023391F3900B12264 /* APIClient+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Item.swift"; sourceTree = "<group>"; };
@@ -264,6 +270,7 @@
 				209A60A823388F1600D6338C /* LaunchScreen.storyboard */,
 				209A60DA2338C75100D6338C /* MainTabBarViewController.storyboard */,
 				209A60CA2338A91800D6338C /* ItemViewController.storyboard */,
+				20A122882340F52600FA1EAB /* ItemRegisterViewController.storyboard */,
 				209A60C82338A90300D6338C /* ListViewController.storyboard */,
 				209A60CC2338A92800D6338C /* MypageViewController.storyboard */,
 			);
@@ -296,6 +303,8 @@
 				209A60E42338CDDF00D6338C /* ItemTableCell.swift */,
 				209A60CE2338C4D900D6338C /* ItemViewController.swift */,
 				209A60D42338C51E00D6338C /* ItemViewModel.swift */,
+				20A122842340F3C100FA1EAB /* ItemRegisterViewController.swift */,
+				20A122862340F3CD00FA1EAB /* ItemRegisterViewModel.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -450,6 +459,7 @@
 				20C0A4F42339226B00B12264 /* Localizable.strings in Resources */,
 				209A60C92338A90300D6338C /* ListViewController.storyboard in Resources */,
 				209A60DB2338C75100D6338C /* MainTabBarViewController.storyboard in Resources */,
+				20A122892340F52600FA1EAB /* ItemRegisterViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,11 +589,13 @@
 				201BF03A2338FB180020F7B4 /* ResponseProtocol.swift in Sources */,
 				201BF0342338EFF90020F7B4 /* Item.swift in Sources */,
 				209A609C23388F1500D6338C /* AppDelegate.swift in Sources */,
+				20A122852340F3C100FA1EAB /* ItemRegisterViewController.swift in Sources */,
 				209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */,
 				209A60DF2338CBEC00D6338C /* OriginalResult.swift in Sources */,
 				201BF0362338F8CD0020F7B4 /* APIError.swift in Sources */,
 				209A60D52338C51E00D6338C /* ItemViewModel.swift in Sources */,
 				209A60CF2338C4D900D6338C /* ItemViewController.swift in Sources */,
+				20A122872340F3CD00FA1EAB /* ItemRegisterViewModel.swift in Sources */,
 				201BF0382338FAE60020F7B4 /* RequestProtocol.swift in Sources */,
 				20C0A4F123391F3900B12264 /* APIClient+Item.swift in Sources */,
 				201BF03D2338FDBD0020F7B4 /* Url.swift in Sources */,

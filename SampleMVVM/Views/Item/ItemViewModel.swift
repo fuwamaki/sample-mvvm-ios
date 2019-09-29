@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-protocol ItemViewModetable {
+protocol ItemViewModelable {
     var items: Driver<[Item]> { get }
     var isLoading: BehaviorRelay<Bool> { get }
     var presentViewController: Driver<UIViewController> { get }
@@ -32,7 +32,9 @@ final class ItemViewModel {
     var presentViewController: Driver<UIViewController> {
         return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
     }
+}
 
+extension ItemViewModel: ItemViewModelable {
     func fetchItems() -> Completable {
         isLoading.accept(true)
         return apiClient.fetchItems()
@@ -49,7 +51,4 @@ final class ItemViewModel {
         .map { _ in } // Single<Void>に変換
         .asCompletable() // Completableに変換
     }
-}
-
-extension ItemViewModel: ItemViewModetable {
 }

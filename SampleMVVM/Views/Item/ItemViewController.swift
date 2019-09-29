@@ -12,6 +12,8 @@ import RxCocoa
 
 final class ItemViewController: UIViewController {
 
+    @IBOutlet private weak var registerBarButtonItem: UIBarButtonItem!
+
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.register(R.nib.itemTableCell)
@@ -56,7 +58,7 @@ final class ItemViewController: UIViewController {
     }
 
     private let disposeBag = DisposeBag()
-    private let viewModel: ItemViewModetable = ItemViewModel()
+    private let viewModel: ItemViewModelable = ItemViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,11 +79,18 @@ final class ItemViewController: UIViewController {
                 self?.isLoading = $0
             })
             .disposed(by: disposeBag)
+
+        registerBarButtonItem.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let viewController = R.storyboard.itemRegisterViewController.instantiateInitialViewController()!
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
 extension ItemViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44.0
+        return ItemTableCell.defaultHeight(tableView)
     }
 }

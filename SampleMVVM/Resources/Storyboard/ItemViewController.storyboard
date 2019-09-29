@@ -30,9 +30,12 @@
                         <viewLayoutGuide key="safeArea" id="LGG-7g-Y5f"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" image="a.circle" catalog="system" id="fgJ-WH-ltc"/>
-                    <navigationItem key="navigationItem" title="Item画面" id="x4C-y7-QAs"/>
+                    <navigationItem key="navigationItem" title="Item画面" id="x4C-y7-QAs">
+                        <barButtonItem key="rightBarButtonItem" title="Register" id="jd2-kr-d4t"/>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="registerBarButtonItem" destination="jd2-kr-d4t" id="Hjx-rM-LhC"/>
                         <outlet property="tableView" destination="GaA-Sa-DY1" id="Iv0-c7-yAx"/>
                     </connections>
                 </viewController>
