@@ -13,4 +13,33 @@ struct Item: Codable {
     let name: String
     let category: String
     let price: Int
+
+    // [String: Any]のDictionary型Model
+    var dictionary: [String: Any] {
+        guard let data = try? JSONEncoder().encode(self) else {
+            fatalError(MVVMError.jsonParseError.localizedDescription)
+        }
+        do {
+            let json = try JSONSerialization.jsonObject(with: data) as! [String: Any]
+            return json
+        } catch {
+            fatalError("json parse error")
+        }
+    }
+
+    var postRequestDictionary: [String: Any] {
+        struct PostRequest: Codable {
+            let item: Item
+        }
+        let request = PostRequest(item: self)
+        guard let data = try? JSONEncoder().encode(request) else {
+            fatalError(MVVMError.jsonParseError.localizedDescription)
+        }
+        do {
+            let json = try JSONSerialization.jsonObject(with: data) as! [String: Any]
+            return json
+        } catch {
+            fatalError("json parse error")
+        }
+    }
 }

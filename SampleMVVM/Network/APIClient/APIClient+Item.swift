@@ -25,4 +25,17 @@ extension APIClient {
         })
     }
 
+    func postItemAPI(item: Item) -> Completable {
+        return Completable.create(subscribe: { completable in
+            self.call(request: ItemPostRequest(parameters: item.postRequestDictionary)) { result in
+                switch result {
+                case .success:
+                    completable(.completed)
+                case .failure(let error):
+                    completable(.error(error))
+                }
+            }
+            return Disposables.create()
+        })
+    }
 }
