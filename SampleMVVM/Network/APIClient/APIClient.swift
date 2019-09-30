@@ -33,4 +33,29 @@ struct APIClient {
                     completion(.failure(error))
                 }}
     }
+
+    // TODO: responseで失敗する
+    func postCall<T: RequestProtocol>(body: Data, request: T, completion: @escaping (OriginalResult<T.Response, Error>) -> Void) {
+        var urlRequest = URLRequest(url: URL(string: request.url)!)
+        urlRequest.httpMethod = request.method.rawValue
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = body
+        Alamofire.request(urlRequest)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    do {
+                        guard let data = response.data else {
+                            completion(.failure(APIError.jsonParseError))
+                            return
+                        }
+                        let result = try JSONDecoder().decode(T.Response.self, from: data)
+                        completion(.success(result))
+                    } catch {
+                        completion(.failure(APIError.jsonParseError))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }}
+    }
 }

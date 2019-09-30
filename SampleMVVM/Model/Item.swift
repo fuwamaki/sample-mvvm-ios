@@ -14,6 +14,13 @@ struct Item: Codable {
     let category: String
     let price: Int
 
+    var data: Data {
+        guard let data = try? JSONEncoder().encode(self) else {
+            fatalError(MVVMError.jsonParseError.localizedDescription)
+        }
+        return data
+    }
+
     // [String: Any]のDictionary型Model
     var dictionary: [String: Any] {
         guard let data = try? JSONEncoder().encode(self) else {
