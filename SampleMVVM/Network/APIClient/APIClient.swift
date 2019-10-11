@@ -34,7 +34,6 @@ struct APIClient {
                 }}
     }
 
-    // TODO: responseで失敗する
     func postCall<T: RequestProtocol>(body: Data, request: T, completion: @escaping (OriginalResult<T.Response, Error>) -> Void) {
         var urlRequest = URLRequest(url: URL(string: request.url)!)
         urlRequest.httpMethod = request.method.rawValue
