@@ -12,12 +12,8 @@ struct ItemsFetchResponse: ResponseProtocol {
     let data: [Item]
 }
 
-struct ItemPostResponse: ResponseProtocol {
-    let id: Int?
-}
+struct ItemPostResponse: ResponseProtocol {}
 
-struct ItemDeleteResponse: ResponseProtocol {
-}
+struct ItemDeleteResponse: ResponseProtocol {}
 
-struct ItemPutResponse: ResponseProtocol {
-}
+struct ItemPutResponse: ResponseProtocol {}
