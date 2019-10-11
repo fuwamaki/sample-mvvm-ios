@@ -19,8 +19,6 @@ struct ItemPostRequest: RequestProtocol {
     var url: String = Url.postItemURL
     var method: HTTPMethod = .post
     var encoding: ParameterEncoding = JSONEncoding.default
-    var parameters: Parameters
-    var headers: HTTPHeaders = ["Content-Type": "application/json"]
 }
 
 struct ItemDeleteRequest: RequestProtocol {
