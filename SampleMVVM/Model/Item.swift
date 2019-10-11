@@ -8,14 +8,19 @@
 
 import Foundation
 
+struct RequestItem: Codable {
+    let item: Item
+}
+
 struct Item: Codable {
     let id: Int?
     let name: String
     let category: String
     let price: Int
 
-    var data: Data {
-        guard let data = try? JSONEncoder().encode(self) else {
+    var requestData: Data {
+        let requestItem = RequestItem(item: self)
+        guard let data = try? JSONEncoder().encode(requestItem) else {
             fatalError(MVVMError.jsonParseError.localizedDescription)
         }
         return data
