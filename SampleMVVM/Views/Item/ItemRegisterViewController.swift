@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import PKHUD
 
 final class ItemRegisterViewController: UIViewController {
 
@@ -17,21 +18,10 @@ final class ItemRegisterViewController: UIViewController {
     @IBOutlet private weak var priceTextField: UITextField!
     @IBOutlet private weak var registerButton: UIButton!
 
-    private lazy var indicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
-        indicator.center = self.view.center
-        indicator.hidesWhenStopped = true
-        indicator.color = UIColor.black
-        indicator.isHidden = true
-        return indicator
-    }()
-
     private var isLoading: Bool = false {
         didSet {
             DispatchQueue.main.async {
-                self.isLoading ? self.indicator.startAnimating() : self.indicator.stopAnimating()
-                self.indicator.isHidden = !self.isLoading
+                self.isLoading ? PKHUD.sharedHUD.show() : PKHUD.sharedHUD.hide()
             }
         }
     }
@@ -41,12 +31,7 @@ final class ItemRegisterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
         bind()
-    }
-
-    private func setupViews() {
-        view.addSubview(indicator)
     }
 
     private func bind() {
