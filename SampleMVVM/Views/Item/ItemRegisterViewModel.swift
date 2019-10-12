@@ -59,10 +59,8 @@ final class ItemRegisterViewModel {
 
 extension ItemRegisterViewModel: ItemRegisterViewModelable {
     func postItem() -> Completable {
-        guard let name = nameText.value,
-            let category = categoryText.value,
-            let priceStr = priceText.value,
-            let price = Int(priceStr) else {
+        guard let name = nameText.value, let category = categoryText.value,
+            let priceStr = priceText.value, let price = Int(priceStr) else {
                 return Completable.empty()
         }
         isLoading.accept(true)
@@ -70,7 +68,7 @@ extension ItemRegisterViewModel: ItemRegisterViewModelable {
         return apiClient.postItemAPI(item: item)
             .do(
                 onError: { error in
-                    print("Error: \(error)") },
+                    debugPrint("Error: \(error)")},
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
                     self?.dismissSubject.accept(true)
