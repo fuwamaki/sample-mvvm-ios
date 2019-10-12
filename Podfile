@@ -17,6 +17,7 @@ target 'SampleMVVM' do
   pod 'SwiftDate', '~> 6.1.0'
   pod 'RealmSwift', '~> 3.18.0'
   pod 'Alamofire', '~> 4.9.0'
+  pod 'PKHUD', '~> 5.3.0'
 
   target 'SampleMVVMTests' do
     inherit! :search_paths
