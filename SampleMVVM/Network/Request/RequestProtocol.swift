@@ -12,21 +12,4 @@ protocol RequestProtocol {
     associatedtype Response: ResponseProtocol
     var url: String { get }
     var method: Alamofire.HTTPMethod { get }
-    var encoding: Alamofire.ParameterEncoding { get }
-    var parameters: Alamofire.Parameters? { get }
-    var headers: Alamofire.HTTPHeaders? { get }
-}
-
-extension RequestProtocol {
-    var encoding: Alamofire.ParameterEncoding {
-        return JSONEncoding.default
-    }
-
-    var parameters: Alamofire.Parameters? {
-        return nil
-    }
-
-    var headers: Alamofire.HTTPHeaders? {
-        return nil
-    }
 }

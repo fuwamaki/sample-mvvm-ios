@@ -31,10 +31,18 @@ final class ItemViewController: UIViewController {
                 .disposed(by: disposeBag)
 
             tableView.rx.itemSelected
-                .subscribe(onNext: { [weak self] indexPath in
-                    self?.tableView.deselectRow(at: indexPath, animated: false)
+                .subscribe(onNext: { [unowned self] indexPath in
+                    self.tableView.deselectRow(at: indexPath, animated: false)
                 })
                 .disposed(by: disposeBag)
+
+            tableView.rx.itemDeleted
+                .subscribe(onNext: { [unowned self] indexPath in
+                    self.viewModel.deleteItem(indexPath: indexPath)
+                        .subscribe()
+                        .disposed(by: self.disposeBag)
+                })
+            .disposed(by: disposeBag)
         }
     }
 

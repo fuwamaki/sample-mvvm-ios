@@ -11,11 +11,7 @@ import Alamofire
 
 struct APIClient {
     func call<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response, Error>) -> Void) {
-        Alamofire.request(request.url,
-                          method: request.method,
-                          parameters: request.parameters,
-                          encoding: request.encoding,
-                          headers: request.headers)
+        Alamofire.request(request.url, method: request.method)
             .responseJSON { response in
                 switch response.result {
                 case .success:

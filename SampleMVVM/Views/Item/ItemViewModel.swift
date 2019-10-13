@@ -14,6 +14,7 @@ protocol ItemViewModelable {
     var isLoading: BehaviorRelay<Bool> { get }
     var presentViewController: Driver<UIViewController> { get }
     func fetchItems() -> Completable
+    func deleteItem(indexPath: IndexPath) -> Completable
 }
 
 final class ItemViewModel {
@@ -45,10 +46,29 @@ extension ItemViewModel: ItemViewModelable {
                 self?.itemsSubject.accept(response)
             },
             onError: { [weak self] error in
-                self?.presentViewControllerSubject.accept(UIAlertController.singleErrorAlert(message: error.localizedDescription))
+                self?.presentViewControllerSubject
+                    .accept(UIAlertController.singleErrorAlert(message: error.localizedDescription))
             }
         )
         .map { _ in } // Single<Void>に変換
         .asCompletable() // Completableに変換
+    }
+
+    func deleteItem(indexPath: IndexPath) -> Completable {
+        isLoading.accept(true)
+        guard let id = itemsSubject.value[indexPath.row].id else {
+            fatalError("the item don't have id.")
+        }
+        return apiClient.deleteItem(id: id)
+            .do(
+                onError: { [weak self] error in
+                    self?.isLoading.accept(false)
+                    self?.presentViewControllerSubject
+                        .accept(UIAlertController.singleErrorAlert(message: error.localizedDescription))},
+                onCompleted: { [weak self] in
+                    self?.isLoading.accept(false)
+                    var items = self?.itemsSubject.value
+                    items?.remove(at: indexPath.row)
+                    self?.itemsSubject.accept(items ?? [])})
     }
 }

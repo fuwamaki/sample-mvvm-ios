@@ -65,14 +65,13 @@ extension ItemRegisterViewModel: ItemRegisterViewModelable {
         }
         isLoading.accept(true)
         let item = Item(id: nil, name: name, category: category, price: price)
-        return apiClient.postItemAPI(item: item)
+        return apiClient.postItem(item: item)
             .do(
                 onError: { error in
                     debugPrint("Error: \(error)")},
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
                     self?.dismissSubject.accept(true)
-                }
-        )
+                })
     }
 }
