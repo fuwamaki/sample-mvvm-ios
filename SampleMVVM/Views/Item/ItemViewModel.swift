@@ -12,7 +12,10 @@ import RxCocoa
 protocol ItemViewModelable {
     var items: Driver<[Item]> { get }
     var isLoading: BehaviorRelay<Bool> { get }
+    var viewWillAppear: PublishRelay<Void> { get }
     var presentViewController: Driver<UIViewController> { get }
+    var pushRegister: Driver<ItemRegisterViewController> { get }
+    func showRegister(indexPath: IndexPath?)
     func fetchItems() -> Completable
     func deleteItem(indexPath: IndexPath) -> Completable
 }
@@ -23,6 +26,7 @@ final class ItemViewModel {
     private let disposeBag = DisposeBag()
 
     var isLoading = BehaviorRelay<Bool>(value: false)
+    var viewWillAppear = PublishRelay<Void>()
 
     private let itemsSubject = BehaviorRelay<[Item]>(value: [])
     var items: Driver<[Item]> {
@@ -33,9 +37,34 @@ final class ItemViewModel {
     var presentViewController: Driver<UIViewController> {
         return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
     }
+
+    private var pushRegisterSubject = PublishRelay<ItemRegisterViewController>()
+    var pushRegister: Driver<ItemRegisterViewController> {
+        return pushRegisterSubject.asDriver(onErrorJustReturn: ItemRegisterViewController())
+    }
+
+    required init() {
+        subscribe()
+    }
+
+    private func subscribe() {
+        viewWillAppear
+        .subscribe(onNext: { [unowned self] in
+            self.fetchItems().subscribe().disposed(by: self.disposeBag)
+        })
+        .disposed(by: disposeBag)
+    }
 }
 
 extension ItemViewModel: ItemViewModelable {
+    func showRegister(indexPath: IndexPath?) {
+        let viewController = R.storyboard.itemRegisterViewController.instantiateInitialViewController()!
+        if let indexPath = indexPath {
+            viewController.item = itemsSubject.value[indexPath.row]
+        }
+        pushRegisterSubject.accept(viewController)
+    }
+
     func fetchItems() -> Completable {
         isLoading.accept(true)
         return apiClient.fetchItems()

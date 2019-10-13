@@ -33,6 +33,7 @@ final class ItemViewController: UIViewController {
             tableView.rx.itemSelected
                 .subscribe(onNext: { [unowned self] indexPath in
                     self.tableView.deselectRow(at: indexPath, animated: false)
+                    self.viewModel.showRegister(indexPath: indexPath)
                 })
                 .disposed(by: disposeBag)
 
@@ -72,7 +73,6 @@ final class ItemViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         bind()
-        viewModel.fetchItems().subscribe().disposed(by: disposeBag)
     }
 
     private func setupViews() {
@@ -82,16 +82,24 @@ final class ItemViewController: UIViewController {
     }
 
     private func bind() {
+        rx.viewWillAppear
+        .bind(to: viewModel.viewWillAppear)
+        .disposed(by: disposeBag)
+
         viewModel.isLoading
             .subscribe(onNext: { [weak self] in
                 self?.isLoading = $0
             })
             .disposed(by: disposeBag)
 
+        viewModel.pushRegister
+            .drive(onNext: { [unowned self] viewController in
+                self.navigationController?.pushViewController(viewController, animated: true)})
+            .disposed(by: disposeBag)
+
         registerBarButtonItem.rx.tap
             .subscribe(onNext: { [weak self] in
-                let viewController = R.storyboard.itemRegisterViewController.instantiateInitialViewController()!
-                self?.navigationController?.pushViewController(viewController, animated: true)
+                self?.viewModel.showRegister(indexPath: nil)
             })
             .disposed(by: disposeBag)
     }
