@@ -8,6 +8,7 @@
 
 import Alamofire
 
+// memo: Alamofireでbody,queryの設定をしようとすると必ずバグるので、使わないことに。
 protocol RequestProtocol {
     associatedtype Response: ResponseProtocol
     var url: String { get }
