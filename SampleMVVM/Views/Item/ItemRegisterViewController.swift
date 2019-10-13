@@ -11,6 +11,11 @@ import RxSwift
 import RxCocoa
 import PKHUD
 
+enum ItemRegisterMode {
+    case register
+    case update
+}
+
 final class ItemRegisterViewController: UIViewController {
 
     @IBOutlet private weak var nameTextField: UITextField!
@@ -27,11 +32,19 @@ final class ItemRegisterViewController: UIViewController {
     }
 
     private let disposeBag = DisposeBag()
-    private let viewModel: ItemRegisterViewModelable = ItemRegisterViewModel()
+    private var viewModel: ItemRegisterViewModelable = ItemRegisterViewModel()
+
+    public var item: Item?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupItem()
         bind()
+    }
+
+    private func setupItem() {
+        viewModel.editItem = item
+        viewModel.setupItem()
     }
 
     private func bind() {
@@ -44,7 +57,8 @@ final class ItemRegisterViewController: UIViewController {
         viewModel.dismissSubject
             .subscribe(onNext: { [weak self] isDismiss in
                 if isDismiss {
-                    self?.navigationController?.popViewController(animated: true)
+                    self?.navigationController?
+                        .popViewController(animated: true)
                 }
             })
             .disposed(by: disposeBag)
@@ -82,7 +96,7 @@ final class ItemRegisterViewController: UIViewController {
 
         registerButton.rx.tap
             .subscribe(onNext: { [unowned self] in
-                self.viewModel.postItem()
+                self.viewModel.handleRegisterButton()
                     .subscribe()
                     .disposed(by: self.disposeBag)
             })
