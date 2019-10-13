@@ -34,8 +34,11 @@ struct ItemDeleteRequest: RequestProtocol {
 
 struct ItemPutRequest: RequestProtocol {
     typealias Response = ItemPutResponse
-    var url: String = Url.putItemURL
+    var id: Int
+    var url: String {
+        var urlComponents = URLComponents(string: Url.putItemURL)!
+        urlComponents.queryItems = [URLQueryItem(name: "id", value: String(id))]
+        return (urlComponents.url?.absoluteString)!
+    }
     var method: HTTPMethod = .put
-    var encoding: ParameterEncoding = URLEncoding.default
-    var parameters: Parameters?
 }
