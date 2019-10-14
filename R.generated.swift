@@ -108,8 +108,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 8 storyboards.
   struct storyboard {
+    /// Storyboard `GithubViewController`.
+    static let githubViewController = _R.storyboard.githubViewController()
     /// Storyboard `ItemRegisterViewController`.
     static let itemRegisterViewController = _R.storyboard.itemRegisterViewController()
     /// Storyboard `ItemViewController`.
@@ -122,6 +124,13 @@ struct R: Rswift.Validatable {
     static let mainTabBarViewController = _R.storyboard.mainTabBarViewController()
     /// Storyboard `MypageViewController`.
     static let mypageViewController = _R.storyboard.mypageViewController()
+    /// Storyboard `QiitaViewController`.
+    static let qiitaViewController = _R.storyboard.qiitaViewController()
+    
+    /// `UIStoryboard(name: "GithubViewController", bundle: ...)`
+    static func githubViewController(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.githubViewController)
+    }
     
     /// `UIStoryboard(name: "ItemRegisterViewController", bundle: ...)`
     static func itemRegisterViewController(_: Void = ()) -> UIKit.UIStoryboard {
@@ -151,6 +160,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "MypageViewController", bundle: ...)`
     static func mypageViewController(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.mypageViewController)
+    }
+    
+    /// `UIStoryboard(name: "QiitaViewController", bundle: ...)`
+    static func qiitaViewController(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.qiitaViewController)
     }
     
     fileprivate init() {}
@@ -264,12 +278,35 @@ struct _R: Rswift.Validatable {
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
+      try githubViewController.validate()
       try itemRegisterViewController.validate()
       try itemViewController.validate()
       try launchScreen.validate()
       try listViewController.validate()
       try mainTabBarViewController.validate()
       try mypageViewController.validate()
+      try qiitaViewController.validate()
+    }
+    
+    struct githubViewController: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = GithubViewController
+      
+      let bundle = R.hostingBundle
+      let githubViewController = StoryboardViewControllerResource<GithubViewController>(identifier: "GithubViewController")
+      let name = "GithubViewController"
+      
+      func githubViewController(_: Void = ()) -> GithubViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: githubViewController)
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "heart.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'heart.fill' is used in storyboard 'GithubViewController', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
+        if _R.storyboard.githubViewController().githubViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'githubViewController' could not be loaded from storyboard 'GithubViewController' as 'GithubViewController'.") }
+      }
+      
+      fileprivate init() {}
     }
     
     struct itemRegisterViewController: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
@@ -378,6 +415,19 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.mypageViewController().mypageViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'mypageViewController' could not be loaded from storyboard 'MypageViewController' as 'MypageViewController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct qiitaViewController: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "QiitaViewController"
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "heart.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'heart.fill' is used in storyboard 'QiitaViewController', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
       }
       
       fileprivate init() {}
