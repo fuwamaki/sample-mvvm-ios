@@ -75,10 +75,9 @@ extension ItemViewModel: ItemViewModelable {
                 self?.itemsSubject.accept(response)
             },
             onError: { [weak self] error in
+                self?.isLoading.accept(false)
                 self?.presentViewControllerSubject
-                    .accept(UIAlertController.singleErrorAlert(message: error.localizedDescription))
-            }
-        )
+                    .accept(UIAlertController.singleErrorAlert(message: error.localizedDescription))})
         .map { _ in } // Single<Void>に変換
         .asCompletable() // Completableに変換
     }
