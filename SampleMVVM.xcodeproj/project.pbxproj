@@ -34,6 +34,8 @@
 		205BE0C823542697009EF0F2 /* APIClient+Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0C723542697009EF0F2 /* APIClient+Github.swift */; };
 		205BE0CA235426DA009EF0F2 /* GithubRepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0C9235426DA009EF0F2 /* GithubRepositoryResponse.swift */; };
 		205BE0CC235426E8009EF0F2 /* GithubRepositoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0CB235426E8009EF0F2 /* GithubRepositoryRequest.swift */; };
+		205BE0CE23544C2E009EF0F2 /* GithubTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 205BE0CD23544C2E009EF0F2 /* GithubTableCell.xib */; };
+		205BE0D023544C3E009EF0F2 /* QiitaTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 205BE0CF23544C3E009EF0F2 /* QiitaTableCell.xib */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
 		209A60A723388F1600D6338C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A623388F1600D6338C /* Assets.xcassets */; };
@@ -106,6 +108,8 @@
 		205BE0C723542697009EF0F2 /* APIClient+Github.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Github.swift"; sourceTree = "<group>"; };
 		205BE0C9235426DA009EF0F2 /* GithubRepositoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepositoryResponse.swift; sourceTree = "<group>"; };
 		205BE0CB235426E8009EF0F2 /* GithubRepositoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepositoryRequest.swift; sourceTree = "<group>"; };
+		205BE0CD23544C2E009EF0F2 /* GithubTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GithubTableCell.xib; sourceTree = "<group>"; };
+		205BE0CF23544C3E009EF0F2 /* QiitaTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QiitaTableCell.xib; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		209A609D23388F1500D6338C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -323,6 +327,8 @@
 				20382BDC2339F06E00CF77A1 /* CollectionListCell.xib */,
 				20382BEA233A0CA100CF77A1 /* GithubCollectionCell.xib */,
 				20382BEC233A0CB100CF77A1 /* QiitaCollectionCell.xib */,
+				205BE0CD23544C2E009EF0F2 /* GithubTableCell.xib */,
+				205BE0CF23544C3E009EF0F2 /* QiitaTableCell.xib */,
 			);
 			path = xib;
 			sourceTree = "<group>";
@@ -487,9 +493,11 @@
 				20382BED233A0CB100CF77A1 /* QiitaCollectionCell.xib in Resources */,
 				209A60EA2338CE2500D6338C /* ItemTableCell.xib in Resources */,
 				205BE0C223541B70009EF0F2 /* QiitaViewController.storyboard in Resources */,
+				205BE0D023544C3E009EF0F2 /* QiitaTableCell.xib in Resources */,
 				209A60AA23388F1600D6338C /* LaunchScreen.storyboard in Resources */,
 				20382BDD2339F06E00CF77A1 /* CollectionListCell.xib in Resources */,
 				209A60A723388F1600D6338C /* Assets.xcassets in Resources */,
+				205BE0CE23544C2E009EF0F2 /* GithubTableCell.xib in Resources */,
 				205BE0C023541B62009EF0F2 /* GithubViewController.storyboard in Resources */,
 				20382BEB233A0CA100CF77A1 /* GithubCollectionCell.xib in Resources */,
 				209A60CB2338A91800D6338C /* ItemViewController.storyboard in Resources */,
