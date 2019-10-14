@@ -49,10 +49,10 @@ final class ItemViewModel {
 
     private func subscribe() {
         viewWillAppear
-        .subscribe(onNext: { [unowned self] in
-            self.fetchItems().subscribe().disposed(by: self.disposeBag)
-        })
-        .disposed(by: disposeBag)
+            .subscribe(onNext: { [unowned self] in
+                self.fetchItems().subscribe().disposed(by: self.disposeBag)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
