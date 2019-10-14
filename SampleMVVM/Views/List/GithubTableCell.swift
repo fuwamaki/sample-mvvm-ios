@@ -13,4 +13,8 @@ final class GithubTableCell: UITableViewCell {
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
+
+    class func defaultHeight(_ tableView: UITableView) -> CGFloat {
+        return 56.0
+    }
 }
