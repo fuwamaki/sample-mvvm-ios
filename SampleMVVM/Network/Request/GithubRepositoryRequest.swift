@@ -13,7 +13,7 @@ struct GithubRepositoriesFetchRequest: RequestProtocol {
     var query: String
     var url: String {
         var urlComponents = URLComponents(string: Url.githubRepositoriesURL)!
-        urlComponents.queryItems = [URLQueryItem(name: "q", value: String(query))]
+        urlComponents.queryItems = [URLQueryItem(name: "q", value: query)]
         return (urlComponents.url?.absoluteString)!
     }
     var method: HTTPMethod = .get
