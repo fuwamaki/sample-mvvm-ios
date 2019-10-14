@@ -14,6 +14,6 @@ struct Url {
     static let postItemURL = Url.baseItemURL + "/create"
     static let putItemURL = Url.baseItemURL + "/update"
     static let deleteItemURL = Url.baseItemURL + "/delete"
-    static let githubBaseURL = "https://api.github.com/search/repositories"
-    static let githubRepositoriesURL = Url.githubBaseURL + "search/repositories"
+    static let githubBaseURL = "https://api.github.com"
+    static let githubRepositoriesURL = Url.githubBaseURL + "/search/repositories"
 }
