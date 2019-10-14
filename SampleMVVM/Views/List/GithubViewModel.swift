@@ -6,4 +6,14 @@
 //  Copyright © 2019 yusaku maki. All rights reserved.
 //
 
-import Foundation
+import RxSwift
+import RxCocoa
+
+protocol GithubViewModelable {
+}
+
+final class GithubViewModel {
+}
+
+extension GithubViewModel: GithubViewModelable {
+}
