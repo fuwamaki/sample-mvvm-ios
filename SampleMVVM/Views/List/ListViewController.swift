@@ -12,6 +12,9 @@ import RxCocoa
 
 final class ListViewController: UITableViewController {
 
+    @IBOutlet private weak var githubBarButtonItem: UIBarButtonItem!
+    @IBOutlet private weak var qiitaBarButtonItem: UIBarButtonItem!
+
     @IBOutlet private weak var githubCollectionView: UICollectionView! {
         didSet {
             githubCollectionView.register(R.nib.collectionListCell)
@@ -32,6 +35,25 @@ final class ListViewController: UITableViewController {
 
     @IBOutlet private weak var qiitaCollectionView: UICollectionView!
 
+    private lazy var indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
+        indicator.center = self.view.center
+        indicator.hidesWhenStopped = true
+        indicator.color = UIColor.black
+        indicator.isHidden = true
+        return indicator
+    }()
+
+    private var isLoading: Bool = false {
+        didSet {
+            DispatchQueue.main.async {
+                self.isLoading ? self.indicator.startAnimating() : self.indicator.stopAnimating()
+                self.indicator.isHidden = !self.isLoading
+            }
+        }
+    }
+
     private let itemsSubject = BehaviorRelay<[String]>(value: ["a", "b", "c", "d", "e", "f", "g", "h"])
     var items: Driver<[String]> {
         return itemsSubject.asDriver(onErrorJustReturn: [])
@@ -45,10 +67,31 @@ final class ListViewController: UITableViewController {
         bind()
     }
 
-    private func setupTableView() {
-    }
-
     private func bind() {
+        rx.viewWillAppear
+        .bind(to: viewModel.viewWillAppear)
+        .disposed(by: disposeBag)
+
+        viewModel.isLoading
+            .subscribe(onNext: { [weak self] in
+                self?.isLoading = $0
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.pushViewController
+        .drive(onNext: { [unowned self] viewController in
+            self.navigationController?.pushViewController(viewController, animated: true)})
+        .disposed(by: disposeBag)
+
+        githubBarButtonItem.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                self.viewModel.showGithubView()})
+            .disposed(by: disposeBag)
+
+        qiitaBarButtonItem.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                self.viewModel.showGithubView()})
+            .disposed(by: disposeBag)
     }
 }
 
