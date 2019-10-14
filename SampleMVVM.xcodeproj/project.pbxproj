@@ -337,7 +337,6 @@
 		209A60E62338CDE700D6338C /* Item */ = {
 			isa = PBXGroup;
 			children = (
-				209A60E42338CDDF00D6338C /* ItemTableCell.swift */,
 				20AC3E5B23546294007F67ED /* ItemView */,
 				20AC3E5C2354629B007F67ED /* ItemRegisterView */,
 			);
@@ -382,6 +381,7 @@
 		20AC3E5B23546294007F67ED /* ItemView */ = {
 			isa = PBXGroup;
 			children = (
+				209A60E42338CDDF00D6338C /* ItemTableCell.swift */,
 				209A60CE2338C4D900D6338C /* ItemViewController.swift */,
 				209A60D42338C51E00D6338C /* ItemViewModel.swift */,
 			);
