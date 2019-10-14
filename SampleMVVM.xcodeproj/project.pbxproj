@@ -347,16 +347,9 @@
 			isa = PBXGroup;
 			children = (
 				20382BDA2339F05000CF77A1 /* CollectionListCell.swift */,
-				20382BDE2339F69700CF77A1 /* GithubTableCell.swift */,
-				20382BE6233A04DD00CF77A1 /* GithubCollectionCell.swift */,
-				20382BE02339F6A200CF77A1 /* QiitaTableCell.swift */,
-				20382BE8233A04E800CF77A1 /* QiitaCollectionCell.swift */,
-				209A60D02338C4E600D6338C /* ListViewController.swift */,
-				209A60D62338C52700D6338C /* ListViewModel.swift */,
-				205BE0B7235417DF009EF0F2 /* QiitaViewController.swift */,
-				205BE0B9235417EB009EF0F2 /* QiitaViewModel.swift */,
-				205BE0BB23541800009EF0F2 /* GithubViewController.swift */,
-				205BE0BD2354180D009EF0F2 /* GithubViewModel.swift */,
+				20AC3E5D235462D7007F67ED /* ListView */,
+				20AC3E5E235462F5007F67ED /* GithubView */,
+				20AC3E5F235462FF007F67ED /* QiitaView */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -395,6 +388,37 @@
 				20A122862340F3CD00FA1EAB /* ItemRegisterViewModel.swift */,
 			);
 			path = ItemRegisterView;
+			sourceTree = "<group>";
+		};
+		20AC3E5D235462D7007F67ED /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				20382BE6233A04DD00CF77A1 /* GithubCollectionCell.swift */,
+				20382BE8233A04E800CF77A1 /* QiitaCollectionCell.swift */,
+				209A60D02338C4E600D6338C /* ListViewController.swift */,
+				209A60D62338C52700D6338C /* ListViewModel.swift */,
+			);
+			path = ListView;
+			sourceTree = "<group>";
+		};
+		20AC3E5E235462F5007F67ED /* GithubView */ = {
+			isa = PBXGroup;
+			children = (
+				20382BDE2339F69700CF77A1 /* GithubTableCell.swift */,
+				205BE0BB23541800009EF0F2 /* GithubViewController.swift */,
+				205BE0BD2354180D009EF0F2 /* GithubViewModel.swift */,
+			);
+			path = GithubView;
+			sourceTree = "<group>";
+		};
+		20AC3E5F235462FF007F67ED /* QiitaView */ = {
+			isa = PBXGroup;
+			children = (
+				20382BE02339F6A200CF77A1 /* QiitaTableCell.swift */,
+				205BE0B7235417DF009EF0F2 /* QiitaViewController.swift */,
+				205BE0B9235417EB009EF0F2 /* QiitaViewModel.swift */,
+			);
+			path = QiitaView;
 			sourceTree = "<group>";
 		};
 		20C0A4EF23391F2200B12264 /* APIClient */ = {
