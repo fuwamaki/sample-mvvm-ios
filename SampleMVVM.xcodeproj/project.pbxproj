@@ -338,10 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				209A60E42338CDDF00D6338C /* ItemTableCell.swift */,
-				209A60CE2338C4D900D6338C /* ItemViewController.swift */,
-				209A60D42338C51E00D6338C /* ItemViewModel.swift */,
-				20A122842340F3C100FA1EAB /* ItemRegisterViewController.swift */,
-				20A122862340F3CD00FA1EAB /* ItemRegisterViewModel.swift */,
+				20AC3E5B23546294007F67ED /* ItemView */,
+				20AC3E5C2354629B007F67ED /* ItemRegisterView */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -379,6 +377,24 @@
 				205BE0B523541706009EF0F2 /* ItemRegisterMode.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		20AC3E5B23546294007F67ED /* ItemView */ = {
+			isa = PBXGroup;
+			children = (
+				209A60CE2338C4D900D6338C /* ItemViewController.swift */,
+				209A60D42338C51E00D6338C /* ItemViewModel.swift */,
+			);
+			path = ItemView;
+			sourceTree = "<group>";
+		};
+		20AC3E5C2354629B007F67ED /* ItemRegisterView */ = {
+			isa = PBXGroup;
+			children = (
+				20A122842340F3C100FA1EAB /* ItemRegisterViewController.swift */,
+				20A122862340F3CD00FA1EAB /* ItemRegisterViewModel.swift */,
+			);
+			path = ItemRegisterView;
 			sourceTree = "<group>";
 		};
 		20C0A4EF23391F2200B12264 /* APIClient */ = {
