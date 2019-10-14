@@ -11,7 +11,9 @@ import Foundation
 struct Url {
     static let baseItemURL = "https://item-server.herokuapp.com"
     static let getItemsURL = Url.baseItemURL + "/items"
-    static var postItemURL = Url.baseItemURL + "/create"
-    static var putItemURL = Url.baseItemURL + "/update"
-    static var deleteItemURL = Url.baseItemURL + "/delete"
+    static let postItemURL = Url.baseItemURL + "/create"
+    static let putItemURL = Url.baseItemURL + "/update"
+    static let deleteItemURL = Url.baseItemURL + "/delete"
+    static let githubBaseURL = "https://api.github.com/search/repositories"
+    static let githubRepositoriesURL = Url.githubBaseURL + "search/repositories"
 }
