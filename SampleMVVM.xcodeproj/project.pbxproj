@@ -22,6 +22,7 @@
 		20382BE9233A04E800CF77A1 /* QiitaCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20382BE8233A04E800CF77A1 /* QiitaCollectionCell.swift */; };
 		20382BEB233A0CA100CF77A1 /* GithubCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BEA233A0CA100CF77A1 /* GithubCollectionCell.xib */; };
 		20382BED233A0CB100CF77A1 /* QiitaCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BEC233A0CB100CF77A1 /* QiitaCollectionCell.xib */; };
+		205BE0B623541706009EF0F2 /* ItemRegisterMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0B523541706009EF0F2 /* ItemRegisterMode.swift */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
 		209A60A723388F1600D6338C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A623388F1600D6338C /* Assets.xcassets */; };
@@ -82,6 +83,7 @@
 		20382BE8233A04E800CF77A1 /* QiitaCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaCollectionCell.swift; sourceTree = "<group>"; };
 		20382BEA233A0CA100CF77A1 /* GithubCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GithubCollectionCell.xib; sourceTree = "<group>"; };
 		20382BEC233A0CB100CF77A1 /* QiitaCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QiitaCollectionCell.xib; sourceTree = "<group>"; };
+		205BE0B523541706009EF0F2 /* ItemRegisterMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRegisterMode.swift; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		209A609D23388F1500D6338C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				209A60E42338CDDF00D6338C /* ItemTableCell.swift */,
 				209A60CE2338C4D900D6338C /* ItemViewController.swift */,
 				209A60D42338C51E00D6338C /* ItemViewModel.swift */,
+				205BE0B523541706009EF0F2 /* ItemRegisterMode.swift */,
 				20A122842340F3C100FA1EAB /* ItemRegisterViewController.swift */,
 				20A122862340F3CD00FA1EAB /* ItemRegisterViewModel.swift */,
 			);
@@ -579,6 +582,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				205BE0B623541706009EF0F2 /* ItemRegisterMode.swift in Sources */,
 				20382BE9233A04E800CF77A1 /* QiitaCollectionCell.swift in Sources */,
 				20C0A4EC23390DBE00B12264 /* UIAlertController+Addition.swift in Sources */,
 				209A60D72338C52700D6338C /* ListViewModel.swift in Sources */,

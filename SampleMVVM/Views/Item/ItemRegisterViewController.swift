@@ -11,11 +11,6 @@ import RxSwift
 import RxCocoa
 import PKHUD
 
-enum ItemRegisterMode {
-    case register
-    case update
-}
-
 final class ItemRegisterViewController: UIViewController {
 
     @IBOutlet private weak var nameTextField: UITextField!
