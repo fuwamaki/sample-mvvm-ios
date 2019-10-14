@@ -237,6 +237,7 @@
 				201BF0322338EFEB0020F7B4 /* Model */,
 				209A60C12338907600D6338C /* Network */,
 				201BF03B2338FDA70020F7B4 /* Struct */,
+				20AC3E5A23546266007F67ED /* Enum */,
 				209A60C02338906C00D6338C /* Resources */,
 				209A60E22338CC4800D6338C /* Extension */,
 			);
@@ -339,7 +340,6 @@
 				209A60E42338CDDF00D6338C /* ItemTableCell.swift */,
 				209A60CE2338C4D900D6338C /* ItemViewController.swift */,
 				209A60D42338C51E00D6338C /* ItemViewModel.swift */,
-				205BE0B523541706009EF0F2 /* ItemRegisterMode.swift */,
 				20A122842340F3C100FA1EAB /* ItemRegisterViewController.swift */,
 				20A122862340F3CD00FA1EAB /* ItemRegisterViewModel.swift */,
 			);
@@ -371,6 +371,14 @@
 				209A60D82338C52F00D6338C /* MypageViewModel.swift */,
 			);
 			path = Mypage;
+			sourceTree = "<group>";
+		};
+		20AC3E5A23546266007F67ED /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				205BE0B523541706009EF0F2 /* ItemRegisterMode.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		20C0A4EF23391F2200B12264 /* APIClient */ = {
