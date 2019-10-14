@@ -54,6 +54,11 @@
                     <constraint firstAttribute="trailing" secondItem="YqT-2o-bab" secondAttribute="trailing" constant="16" id="pT6-wT-PAj"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="iconImageView" destination="JZb-0C-DtE" id="Yq9-fb-LYa"/>
+                <outlet property="stargazersCountLabel" destination="uUh-sJ-Zj6" id="xtW-Rk-9pG"/>
+                <outlet property="titleLabel" destination="N9r-Km-Gvj" id="4es-gq-BOI"/>
+            </connections>
             <point key="canvasLocation" x="20.289855072463769" y="126.5625"/>
         </tableViewCell>
     </objects>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JAk-lh-d4o">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JAk-lh-d4o">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -84,10 +84,17 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="List" image="b.circle" catalog="system" id="bYQ-gd-r4c"/>
-                    <navigationItem key="navigationItem" title="List画面" id="45x-Lg-FlU"/>
+                    <navigationItem key="navigationItem" title="List画面" id="45x-Lg-FlU">
+                        <rightBarButtonItems>
+                            <barButtonItem image="qiita_icon" id="HqE-eR-X8r"/>
+                            <barButtonItem title="Item" image="github_icon" id="2b8-yE-Ojp"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
+                        <outlet property="githubBarButtonItem" destination="2b8-yE-Ojp" id="s2k-tz-Ocs"/>
                         <outlet property="githubCollectionView" destination="QrT-sG-Fyx" id="9rk-xp-e7S"/>
+                        <outlet property="qiitaBarButtonItem" destination="HqE-eR-X8r" id="r0I-cB-VUI"/>
                         <outlet property="qiitaCollectionView" destination="0G3-Zb-KVI" id="yP7-9B-HGU"/>
                     </connections>
                 </tableViewController>
@@ -113,6 +120,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="b.circle" catalog="system" width="64" height="62"/>
+        <image name="b.circle" catalog="system" width="64" height="60"/>
+        <image name="github_icon" width="30" height="30"/>
+        <image name="qiita_icon" width="30" height="30"/>
     </resources>
 </document>
