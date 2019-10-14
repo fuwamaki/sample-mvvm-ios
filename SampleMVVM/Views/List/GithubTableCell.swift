@@ -10,11 +10,20 @@ import UIKit
 
 final class GithubTableCell: UITableViewCell {
 
+    @IBOutlet private weak var iconImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var stargazersCountLabel: UILabel!
+
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
 
     class func defaultHeight(_ tableView: UITableView) -> CGFloat {
         return 56.0
+    }
+
+    func render(repository: GithubRepository) {
+        titleLabel.text = repository.fullName
+        stargazersCountLabel.text = String(repository.stargazersCount)
     }
 }
