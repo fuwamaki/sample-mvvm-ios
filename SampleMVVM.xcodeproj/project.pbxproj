@@ -258,7 +258,7 @@
 				209A60B623388F1600D6338C /* Info.plist */,
 				20AC3E6A23558D4F007F67ED /* TestResultType.swift */,
 				20AC3E6C23558DF0007F67ED /* TestResponse.swift */,
-				20AC3E6023555ADE007F67ED /* ItemAPIGatewayTest.swift */,
+				20AC3E6E23558E49007F67ED /* API */,
 			);
 			path = SampleMVVMTests;
 			sourceTree = "<group>";
@@ -429,6 +429,14 @@
 				205BE0B9235417EB009EF0F2 /* QiitaViewModel.swift */,
 			);
 			path = QiitaView;
+			sourceTree = "<group>";
+		};
+		20AC3E6E23558E49007F67ED /* API */ = {
+			isa = PBXGroup;
+			children = (
+				20AC3E6023555ADE007F67ED /* ItemAPIGatewayTest.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		20C0A4EF23391F2200B12264 /* API */ = {

@@ -29,6 +29,19 @@ class ItemAPIGatewayTest: XCTestCase {
             .subscribe()
             .disposed(by: disposeBag)
     }
+
+    func testFetchItemsWithFailure() {
+        let apiClient: APIClientable = MockAPIClient(result: .failure)
+        let apiGateway: APIGatewayProtocol = APIGateway(apiClient: apiClient)
+        apiGateway.fetchItems()
+            .do(
+                onSuccess: nil,
+                onError: { error in
+                    XCTAssertNotNil(error)
+            })
+            .subscribe()
+            .disposed(by: disposeBag)
+    }
 }
 
 extension ItemAPIGatewayTest {
