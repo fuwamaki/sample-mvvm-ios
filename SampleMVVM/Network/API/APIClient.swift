@@ -9,8 +9,13 @@
 import Foundation
 import Alamofire
 
-struct APIClient {
-    func call<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response, Error>) -> Void) {
+protocol APIClientable {
+    func call<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void)
+    func postCall<T: RequestProtocol>(body: Data, request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void)
+}
+
+struct APIClient: APIClientable {
+    func call<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
         Alamofire.request(request.url, method: request.method)
             .responseJSON { response in
                 switch response.result {
@@ -30,7 +35,7 @@ struct APIClient {
                 }}
     }
 
-    func postCall<T: RequestProtocol>(body: Data, request: T, completion: @escaping (OriginalResult<T.Response, Error>) -> Void) {
+    func postCall<T: RequestProtocol>(body: Data, request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
         var urlRequest = URLRequest(url: URL(string: request.url)!)
         urlRequest.httpMethod = request.method.rawValue
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")

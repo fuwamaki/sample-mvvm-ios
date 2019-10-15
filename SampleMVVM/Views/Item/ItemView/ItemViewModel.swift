@@ -22,7 +22,7 @@ protocol ItemViewModelable {
 
 final class ItemViewModel {
 
-    private let apiClient = APIClient()
+    private let apiGateway: APIGatewayProtocol = APIGateway()
     private let disposeBag = DisposeBag()
 
     var isLoading = BehaviorRelay<Bool>(value: false)
@@ -50,7 +50,9 @@ final class ItemViewModel {
     private func subscribe() {
         viewWillAppear
             .subscribe(onNext: { [unowned self] in
-                self.fetchItems().subscribe().disposed(by: self.disposeBag)
+                self.fetchItems()
+                    .subscribe()
+                    .disposed(by: self.disposeBag)
             })
             .disposed(by: disposeBag)
     }
@@ -67,19 +69,19 @@ extension ItemViewModel: ItemViewModelable {
 
     func fetchItems() -> Completable {
         isLoading.accept(true)
-        return apiClient.fetchItems()
-        .do(
-            onSuccess: { [weak self] response in
-                self?.isLoading.accept(false)
-                self?.itemsSubject.accept([])
-                self?.itemsSubject.accept(response)
-            },
-            onError: { [weak self] error in
-                self?.isLoading.accept(false)
-                self?.presentViewControllerSubject
-                    .accept(UIAlertController.singleErrorAlert(message: error.localizedDescription))})
-        .map { _ in } // Single<Void>に変換
-        .asCompletable() // Completableに変換
+        return apiGateway.fetchItems()
+            .do(
+                onSuccess: { [weak self] response in
+                    self?.isLoading.accept(false)
+                    self?.itemsSubject.accept([])
+                    self?.itemsSubject.accept(response)
+                },
+                onError: { [weak self] error in
+                    self?.isLoading.accept(false)
+                    self?.presentViewControllerSubject
+                        .accept(UIAlertController.singleErrorAlert(message: error.localizedDescription))})
+            .map { _ in } // Single<Void>に変換
+            .asCompletable() // Completableに変換
     }
 
     func deleteItem(indexPath: IndexPath) -> Completable {
@@ -87,7 +89,7 @@ extension ItemViewModel: ItemViewModelable {
         guard let id = itemsSubject.value[indexPath.row].id else {
             fatalError("the item don't have id.")
         }
-        return apiClient.deleteItem(id: id)
+        return apiGateway.deleteItem(id: id)
             .do(
                 onError: { [weak self] error in
                     self?.isLoading.accept(false)

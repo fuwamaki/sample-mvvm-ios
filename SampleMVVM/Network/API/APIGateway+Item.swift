@@ -1,22 +1,21 @@
 //
-//  APIClient+Item.swift
+//  APIGateway+Item.swift
 //  SampleMVVM
 //
-//  Created by yusaku maki on 2019/09/24.
+//  Created by yusaku maki on 2019/10/15.
 //  Copyright © 2019 yusaku maki. All rights reserved.
 //
 
-import Foundation
 import RxSwift
 import RxCocoa
 
-extension APIClient {
+extension APIGateway {
     func fetchItems() -> Single<[Item]> {
-        return Single<[Item]>.create(subscribe: { single in
-            self.call(request: ItemsFetchRequest()) { result in
+        return Single<[Item]>.create(subscribe: { [weak self] single in
+            self?.apiClient.call(request: ItemsFetchRequest()) { result in
                 switch result {
                 case .success(let response):
-                    single(.success(response.data))
+                    single(.success(response?.data ?? []))
                 case .failure(let error):
                     single(.error(error))
                 }
@@ -26,8 +25,8 @@ extension APIClient {
     }
 
     func postItem(item: Item) -> Completable {
-        return Completable.create(subscribe: { completable in
-            self.postCall(body: item.postRequestData, request: ItemPostRequest()) { result in
+        return Completable.create(subscribe: { [weak self] completable in
+            self?.apiClient.postCall(body: item.postRequestData, request: ItemPostRequest()) { result in
                 switch result {
                 case .success:
                     completable(.completed)
@@ -40,8 +39,8 @@ extension APIClient {
     }
 
     func deleteItem(id: Int) -> Completable {
-        return Completable.create(subscribe: { completable in
-            self.call(request: ItemDeleteRequest(id: id)) { result in
+        return Completable.create(subscribe: { [weak self] completable in
+            self?.apiClient.call(request: ItemDeleteRequest(id: id)) { result in
                 switch result {
                 case .success:
                     completable(.completed)
@@ -54,8 +53,8 @@ extension APIClient {
     }
 
     func putItem(id: Int, item: Item) -> Completable {
-        return Completable.create(subscribe: { completable in
-            self.postCall(body: item.postRequestData, request: ItemPutRequest(id: id)) { result in
+        return Completable.create(subscribe: { [weak self] completable in
+            self?.apiClient.postCall(body: item.postRequestData, request: ItemPutRequest(id: id)) { result in
                 switch result {
                 case .success:
                     completable(.completed)
