@@ -64,6 +64,7 @@
 		20AC3E6723555EE7007F67ED /* APIGatewayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6623555EE7007F67ED /* APIGatewayProtocol.swift */; };
 		20AC3E6923555F11007F67ED /* APIGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6823555F11007F67ED /* APIGateway.swift */; };
 		20AC3E6B23558D4F007F67ED /* TestResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6A23558D4F007F67ED /* TestResultType.swift */; };
+		20AC3E6D23558DF0007F67ED /* TestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6C23558DF0007F67ED /* TestResponse.swift */; };
 		20C0A4EC23390DBE00B12264 /* UIAlertController+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0A4EB23390DBE00B12264 /* UIAlertController+Addition.swift */; };
 		20C0A4EE23390ED800B12264 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0A4ED23390ED800B12264 /* UIViewController+Rx.swift */; };
 		20C0A4F42339226B00B12264 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20C0A4F62339226B00B12264 /* Localizable.strings */; };
@@ -145,6 +146,7 @@
 		20AC3E6623555EE7007F67ED /* APIGatewayProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGatewayProtocol.swift; sourceTree = "<group>"; };
 		20AC3E6823555F11007F67ED /* APIGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGateway.swift; sourceTree = "<group>"; };
 		20AC3E6A23558D4F007F67ED /* TestResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultType.swift; sourceTree = "<group>"; };
+		20AC3E6C23558DF0007F67ED /* TestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResponse.swift; sourceTree = "<group>"; };
 		20C0A4EB23390DBE00B12264 /* UIAlertController+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Addition.swift"; sourceTree = "<group>"; };
 		20C0A4ED23390ED800B12264 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		20C0A4F52339226B00B12264 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			children = (
 				209A60B623388F1600D6338C /* Info.plist */,
 				20AC3E6A23558D4F007F67ED /* TestResultType.swift */,
+				20AC3E6C23558DF0007F67ED /* TestResponse.swift */,
 				20AC3E6023555ADE007F67ED /* ItemAPIGatewayTest.swift */,
 			);
 			path = SampleMVVMTests;
@@ -732,6 +735,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20AC3E6B23558D4F007F67ED /* TestResultType.swift in Sources */,
+				20AC3E6D23558DF0007F67ED /* TestResponse.swift in Sources */,
 				20AC3E6123555ADE007F67ED /* ItemAPIGatewayTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

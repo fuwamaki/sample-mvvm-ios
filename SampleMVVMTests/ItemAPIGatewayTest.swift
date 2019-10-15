@@ -31,8 +31,6 @@ class ItemAPIGatewayTest: XCTestCase {
     }
 }
 
-struct TestResponse: ResponseProtocol {}
-
 extension ItemAPIGatewayTest {
     class MockAPIClient: APIClientable {
 
