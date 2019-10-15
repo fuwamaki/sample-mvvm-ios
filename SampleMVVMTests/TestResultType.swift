@@ -1,5 +1,5 @@
 //
-//  ResultType.swift
+//  TestResultType.swift
 //  SampleMVVMTests
 //
 //  Created by yusaku maki on 2019/10/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ResultType {
+enum TestResultType {
     case success
     case failure
 }

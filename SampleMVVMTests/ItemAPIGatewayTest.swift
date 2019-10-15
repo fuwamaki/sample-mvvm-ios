@@ -36,10 +36,10 @@ struct TestResponse: ResponseProtocol {}
 extension ItemAPIGatewayTest {
     class MockAPIClient: APIClientable {
 
-        var result: ResultType
+        var result: TestResultType
         var mockResponse: ResponseProtocol
 
-        required init(result: ResultType, mockResponse: ResponseProtocol = TestResponse()) {
+        required init(result: TestResultType, mockResponse: ResponseProtocol = TestResponse()) {
             self.result = result
             self.mockResponse = mockResponse
         }
