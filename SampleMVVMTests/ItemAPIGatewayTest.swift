@@ -1,5 +1,5 @@
 //
-//  APIClientTest+Item.swift
+//  ItemAPIGatewayTest.swift
 //  SampleMVVMTests
 //
 //  Created by yusaku maki on 2019/10/15.
@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 @testable import SampleMVVM
 
-class APIClientTestItem: XCTestCase {
+class ItemAPIGatewayTest: XCTestCase {
 
     private let disposeBag = DisposeBag()
 
@@ -38,7 +38,7 @@ enum ResultType {
 
 struct TestResponse: ResponseProtocol {}
 
-extension APIClientTestItem {
+extension ItemAPIGatewayTest {
     class MockAPIClient: APIClientable {
 
         var result: ResultType
