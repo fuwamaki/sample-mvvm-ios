@@ -31,11 +31,6 @@ class ItemAPIGatewayTest: XCTestCase {
     }
 }
 
-enum ResultType {
-    case success
-    case failure
-}
-
 struct TestResponse: ResponseProtocol {}
 
 extension ItemAPIGatewayTest {
