@@ -7,27 +7,98 @@
 //
 
 import XCTest
+import RxSwift
+import RxCocoa
+@testable import SampleMVVM
 
 class ItemViewModelTest: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    private let disposeBag = DisposeBag()
 
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let apiClient = MockAPIClient(result: .success)
+        let viewModel = ItemViewModel(apiClient: apiClient)
+        viewModel.pushRegister
+            .drive(onNext: { viewController in
+                XCTAssertNotNil(viewController)})
+            .disposed(by: disposeBag)
+        viewModel.showRegister(indexPath: IndexPath(row: 0, section: 0))
     }
+}
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+extension ItemViewModelTest {
+    class MockAPIClient: APIClientable {
+
+        var result: TestResultType
+        var items: [Item] = [
+            Item(id: 0, name: "test1", category: "fruit", price: 100),
+            Item(id: 1, name: "test2", category: "goods", price: 200),
+            Item(id: 2, name: "test3", category: "machine", price: 300)
+        ]
+        var githubRepositories: [GithubRepository]?
+
+        required init(result: TestResultType) {
+            self.result = result
+        }
+
+        func fetchItems() -> Single<[Item]> {
+            return Single<[Item]>.create(subscribe: { single in
+                switch self.result {
+                case .success:
+                    single(.success(self.items))
+                case .failure:
+                    single(.error(NSError(domain: "test", code: 0, userInfo: nil)))
+                }
+                return Disposables.create()
+            })
+        }
+
+        func postItem(item: Item) -> Completable {
+            return Completable.create(subscribe: { completable in
+                switch self.result {
+                case .success:
+                    completable(.completed)
+                case .failure:
+                    completable(.error(NSError(domain: "test", code: 0, userInfo: nil)))
+                }
+                return Disposables.create()
+            })
+        }
+
+        func deleteItem(id: Int) -> Completable {
+            return Completable.create(subscribe: { completable in
+                switch self.result {
+                case .success:
+                    completable(.completed)
+                case .failure:
+                    completable(.error(NSError(domain: "test", code: 0, userInfo: nil)))
+                }
+                return Disposables.create()
+            })
+        }
+
+        func putItem(id: Int, item: Item) -> Completable {
+            return Completable.create(subscribe: { completable in
+                switch self.result {
+                case .success:
+                    completable(.completed)
+                case .failure:
+                    completable(.error(NSError(domain: "test", code: 0, userInfo: nil)))
+                }
+                return Disposables.create()
+            })
+        }
+
+        func fetchGithubRepositories(query: String) -> Single<[GithubRepository]> {
+            return Single<[GithubRepository]>.create(subscribe: { single in
+                switch self.result {
+                case .success:
+                    single(.success(self.githubRepositories ?? []))
+                case .failure:
+                    single(.error(NSError(domain: "test", code: 0, userInfo: nil)))
+                }
+                return Disposables.create()
+            })
         }
     }
-
 }
