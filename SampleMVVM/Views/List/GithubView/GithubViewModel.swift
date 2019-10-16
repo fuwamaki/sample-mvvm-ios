@@ -20,7 +20,7 @@ protocol GithubViewModelable {
 }
 
 final class GithubViewModel {
-    private let apiGateway: APIGatewayProtocol = APIGateway()
+    private let apiClient: APIClientable = APIClient()
     private let disposeBag = DisposeBag()
 
     var isLoading = BehaviorRelay<Bool>(value: false)
@@ -47,7 +47,7 @@ extension GithubViewModel: GithubViewModelable {
             return Completable.empty()
         }
         isLoading.accept(true)
-        return apiGateway.fetchGithubRepositories(query: query)
+        return apiClient.fetchGithubRepositories(query: query)
             .do(
                 onSuccess: { [weak self] repositories in
                     self?.isLoading.accept(false)

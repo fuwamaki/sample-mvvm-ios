@@ -24,7 +24,7 @@ protocol ItemRegisterViewModelable {
 
 final class ItemRegisterViewModel {
 
-    private let apiGateway: APIGatewayProtocol = APIGateway()
+    private let apiClient: APIClientable = APIClient()
     private let disposeBag = DisposeBag()
 
     var isLoading = BehaviorRelay<Bool>(value: false)
@@ -70,7 +70,7 @@ final class ItemRegisterViewModel {
         }
         isLoading.accept(true)
         let item = Item(id: nil, name: name, category: category, price: price)
-        return apiGateway.postItem(item: item)
+        return apiClient.postItem(item: item)
             .do(
                 onError: { error in
                     debugPrint("Error: \(error)")},
@@ -86,7 +86,7 @@ final class ItemRegisterViewModel {
         }
         isLoading.accept(true)
         let item = Item(id: nil, name: name, category: category, price: price)
-        return apiGateway.putItem(id: (editItem?.id)!, item: item)
+        return apiClient.putItem(id: (editItem?.id)!, item: item)
             .do(
                 onError: { error in
                     debugPrint("Error: \(error)")},
