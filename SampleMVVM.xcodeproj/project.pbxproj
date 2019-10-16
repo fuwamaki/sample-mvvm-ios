@@ -59,10 +59,6 @@
 		20A122872340F3CD00FA1EAB /* ItemRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A122862340F3CD00FA1EAB /* ItemRegisterViewModel.swift */; };
 		20A122892340F52600FA1EAB /* ItemRegisterViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A122882340F52600FA1EAB /* ItemRegisterViewController.storyboard */; };
 		20AC3E6123555ADE007F67ED /* ItemAPIGatewayTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6023555ADE007F67ED /* ItemAPIGatewayTest.swift */; };
-		20AC3E6323555EA2007F67ED /* APIGateway+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6223555EA2007F67ED /* APIGateway+Item.swift */; };
-		20AC3E6523555EB1007F67ED /* APIGateway+Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6423555EB1007F67ED /* APIGateway+Github.swift */; };
-		20AC3E6723555EE7007F67ED /* APIGatewayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6623555EE7007F67ED /* APIGatewayProtocol.swift */; };
-		20AC3E6923555F11007F67ED /* APIGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6823555F11007F67ED /* APIGateway.swift */; };
 		20AC3E6B23558D4F007F67ED /* TestResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6A23558D4F007F67ED /* TestResultType.swift */; };
 		20AC3E6D23558DF0007F67ED /* TestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6C23558DF0007F67ED /* TestResponse.swift */; };
 		20AC3E702356BB3B007F67ED /* APIClientable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6F2356BB3B007F67ED /* APIClientable.swift */; };
@@ -144,10 +140,6 @@
 		20A122862340F3CD00FA1EAB /* ItemRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRegisterViewModel.swift; sourceTree = "<group>"; };
 		20A122882340F52600FA1EAB /* ItemRegisterViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ItemRegisterViewController.storyboard; sourceTree = "<group>"; };
 		20AC3E6023555ADE007F67ED /* ItemAPIGatewayTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAPIGatewayTest.swift; sourceTree = "<group>"; };
-		20AC3E6223555EA2007F67ED /* APIGateway+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIGateway+Item.swift"; sourceTree = "<group>"; };
-		20AC3E6423555EB1007F67ED /* APIGateway+Github.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIGateway+Github.swift"; sourceTree = "<group>"; };
-		20AC3E6623555EE7007F67ED /* APIGatewayProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGatewayProtocol.swift; sourceTree = "<group>"; };
-		20AC3E6823555F11007F67ED /* APIGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGateway.swift; sourceTree = "<group>"; };
 		20AC3E6A23558D4F007F67ED /* TestResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultType.swift; sourceTree = "<group>"; };
 		20AC3E6C23558DF0007F67ED /* TestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResponse.swift; sourceTree = "<group>"; };
 		20AC3E6F2356BB3B007F67ED /* APIClientable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientable.swift; sourceTree = "<group>"; };
@@ -452,10 +444,6 @@
 				209A60E02338CBF400D6338C /* APIClient.swift */,
 				20AC3E712356BB48007F67ED /* APIClient+Item.swift */,
 				20AC3E732356BB52007F67ED /* APIClient+Github.swift */,
-				20AC3E6623555EE7007F67ED /* APIGatewayProtocol.swift */,
-				20AC3E6823555F11007F67ED /* APIGateway.swift */,
-				20AC3E6223555EA2007F67ED /* APIGateway+Item.swift */,
-				20AC3E6423555EB1007F67ED /* APIGateway+Github.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -707,10 +695,8 @@
 				20382BE9233A04E800CF77A1 /* QiitaCollectionCell.swift in Sources */,
 				20C0A4EC23390DBE00B12264 /* UIAlertController+Addition.swift in Sources */,
 				205BE0CC235426E8009EF0F2 /* GithubRepositoryRequest.swift in Sources */,
-				20AC3E6323555EA2007F67ED /* APIGateway+Item.swift in Sources */,
 				209A60D72338C52700D6338C /* ListViewModel.swift in Sources */,
 				209A60C7233897BF00D6338C /* R.generated.swift in Sources */,
-				20AC3E6523555EB1007F67ED /* APIGateway+Github.swift in Sources */,
 				209A60E52338CDDF00D6338C /* ItemTableCell.swift in Sources */,
 				20AC3E722356BB48007F67ED /* APIClient+Item.swift in Sources */,
 				209A60D92338C52F00D6338C /* MypageViewModel.swift in Sources */,
@@ -731,7 +717,6 @@
 				209A60CF2338C4D900D6338C /* ItemViewController.swift in Sources */,
 				20A122872340F3CD00FA1EAB /* ItemRegisterViewModel.swift in Sources */,
 				201BF0382338FAE60020F7B4 /* RequestProtocol.swift in Sources */,
-				20AC3E6723555EE7007F67ED /* APIGatewayProtocol.swift in Sources */,
 				201BF03D2338FDBD0020F7B4 /* Url.swift in Sources */,
 				205BE0BE2354180D009EF0F2 /* GithubViewModel.swift in Sources */,
 				209A60DD2338C88A00D6338C /* MainTabBarViewController.swift in Sources */,
@@ -746,7 +731,6 @@
 				20C0A4EE23390ED800B12264 /* UIViewController+Rx.swift in Sources */,
 				209A60E12338CBF400D6338C /* APIClient.swift in Sources */,
 				20382BDF2339F69700CF77A1 /* GithubTableCell.swift in Sources */,
-				20AC3E6923555F11007F67ED /* APIGateway.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
