@@ -22,9 +22,6 @@ protocol ItemViewModelable {
 
 final class ItemViewModel {
 
-    private let apiClient: APIClientable = APIClient()
-    private let disposeBag = DisposeBag()
-
     var isLoading = BehaviorRelay<Bool>(value: false)
     var viewWillAppear = PublishRelay<Void>()
 
@@ -43,7 +40,15 @@ final class ItemViewModel {
         return pushRegisterSubject.asDriver(onErrorJustReturn: ItemRegisterViewController())
     }
 
-    required init() {
+    private let disposeBag = DisposeBag()
+    private let apiClient: APIClientable
+
+    convenience init() {
+        self.init(apiClient: APIClient())
+    }
+
+    init(apiClient: APIClientable) {
+        self.apiClient = apiClient
         subscribe()
     }
 

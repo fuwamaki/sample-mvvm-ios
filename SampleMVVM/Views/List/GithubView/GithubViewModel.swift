@@ -20,8 +20,6 @@ protocol GithubViewModelable {
 }
 
 final class GithubViewModel {
-    private let apiClient: APIClientable = APIClient()
-    private let disposeBag = DisposeBag()
 
     var isLoading = BehaviorRelay<Bool>(value: false)
 
@@ -38,6 +36,21 @@ final class GithubViewModel {
     private var pushViewControllerSubject = PublishRelay<UIViewController>()
     var pushViewController: Driver<UIViewController> {
         return pushViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
+    }
+
+    private let disposeBag = DisposeBag()
+    private let apiClient: APIClientable
+
+    convenience init() {
+        self.init(apiClient: APIClient())
+    }
+
+    init(apiClient: APIClientable) {
+        self.apiClient = apiClient
+        subscribe()
+    }
+
+    private func subscribe() {
     }
 }
 

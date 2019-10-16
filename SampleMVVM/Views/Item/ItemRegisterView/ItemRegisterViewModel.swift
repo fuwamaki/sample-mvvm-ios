@@ -24,9 +24,6 @@ protocol ItemRegisterViewModelable {
 
 final class ItemRegisterViewModel {
 
-    private let apiClient: APIClientable = APIClient()
-    private let disposeBag = DisposeBag()
-
     var isLoading = BehaviorRelay<Bool>(value: false)
     var dismissSubject = BehaviorRelay<Bool>(value: false)
     var itemId = BehaviorRelay<Int?>(value: nil)
@@ -62,6 +59,21 @@ final class ItemRegisterViewModel {
             .combineLatest(nameValid, categoryValid, priceValid) { $0 && $1 && $2 }
             .share(replay: 1)
     }()
+
+    private let disposeBag = DisposeBag()
+    private let apiClient: APIClientable
+
+    convenience init() {
+        self.init(apiClient: APIClient())
+    }
+
+    init(apiClient: APIClientable) {
+        self.apiClient = apiClient
+        subscribe()
+    }
+
+    private func subscribe() {
+    }
 
     private func postItem() -> Completable {
         guard let name = nameText.value, let category = categoryText.value,
