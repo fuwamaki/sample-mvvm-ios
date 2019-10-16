@@ -500,6 +500,7 @@
 				209A60AC23388F1600D6338C /* Sources */,
 				209A60AD23388F1600D6338C /* Frameworks */,
 				209A60AE23388F1600D6338C /* Resources */,
+				0EA4C4403EE134E82E64EEBF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -584,6 +585,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0EA4C4403EE134E82E64EEBF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SampleMVVMTests/Pods-SampleMVVMTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SampleMVVMTests/Pods-SampleMVVMTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SampleMVVMTests/Pods-SampleMVVMTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		209A60C4233896A600D6338C /* Run Script - R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -598,7 +616,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -934,7 +952,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FDCB62E926A8D938BB7FBC15 /* Pods-SampleMVVMTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F98YCT898Q;
@@ -957,7 +975,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 96580C8C35205193E213614D /* Pods-SampleMVVMTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F98YCT898Q;
