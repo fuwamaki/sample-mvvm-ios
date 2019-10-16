@@ -19,9 +19,6 @@ protocol ListViewModelable {
 
 final class ListViewModel {
 
-    private let apiClient = APIClient()
-    private let disposeBag = DisposeBag()
-
     var isLoading = BehaviorRelay<Bool>(value: false)
     var viewWillAppear = PublishRelay<Void>()
 
@@ -30,15 +27,22 @@ final class ListViewModel {
         return pushViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
     }
 
-    required init() {
+    private let disposeBag = DisposeBag()
+    private let apiClient: APIClientable
+
+    convenience init() {
+        self.init(apiClient: APIClient())
+    }
+
+    init(apiClient: APIClientable) {
+        self.apiClient = apiClient
         subscribe()
     }
 
     private func subscribe() {
         viewWillAppear
             .subscribe(onNext: { [unowned self] in
-                // TODO
-                print("TODO")
+                print("TODO") // TODO
             })
             .disposed(by: disposeBag)
     }

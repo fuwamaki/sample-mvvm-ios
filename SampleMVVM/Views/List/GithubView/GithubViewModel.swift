@@ -20,8 +20,6 @@ protocol GithubViewModelable {
 }
 
 final class GithubViewModel {
-    private let apiGateway: APIGatewayProtocol = APIGateway()
-    private let disposeBag = DisposeBag()
 
     var isLoading = BehaviorRelay<Bool>(value: false)
 
@@ -39,6 +37,21 @@ final class GithubViewModel {
     var pushViewController: Driver<UIViewController> {
         return pushViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
     }
+
+    private let disposeBag = DisposeBag()
+    private let apiClient: APIClientable
+
+    convenience init() {
+        self.init(apiClient: APIClient())
+    }
+
+    init(apiClient: APIClientable) {
+        self.apiClient = apiClient
+        subscribe()
+    }
+
+    private func subscribe() {
+    }
 }
 
 extension GithubViewModel: GithubViewModelable {
@@ -47,7 +60,7 @@ extension GithubViewModel: GithubViewModelable {
             return Completable.empty()
         }
         isLoading.accept(true)
-        return apiGateway.fetchGithubRepositories(query: query)
+        return apiClient.fetchGithubRepositories(query: query)
             .do(
                 onSuccess: { [weak self] repositories in
                     self?.isLoading.accept(false)

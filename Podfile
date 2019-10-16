@@ -21,7 +21,8 @@ target 'SampleMVVM' do
 
   target 'SampleMVVMTests' do
     inherit! :search_paths
-    # Pods for testing
+    pod 'RxTest', '~> 5.0.0'
+    pod 'RxBlocking', '~> 5.0.0'
   end
 
 end

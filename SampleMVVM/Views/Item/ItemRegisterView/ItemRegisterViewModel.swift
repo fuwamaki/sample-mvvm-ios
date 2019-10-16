@@ -24,9 +24,6 @@ protocol ItemRegisterViewModelable {
 
 final class ItemRegisterViewModel {
 
-    private let apiGateway: APIGatewayProtocol = APIGateway()
-    private let disposeBag = DisposeBag()
-
     var isLoading = BehaviorRelay<Bool>(value: false)
     var dismissSubject = BehaviorRelay<Bool>(value: false)
     var itemId = BehaviorRelay<Int?>(value: nil)
@@ -63,6 +60,21 @@ final class ItemRegisterViewModel {
             .share(replay: 1)
     }()
 
+    private let disposeBag = DisposeBag()
+    private let apiClient: APIClientable
+
+    convenience init() {
+        self.init(apiClient: APIClient())
+    }
+
+    init(apiClient: APIClientable) {
+        self.apiClient = apiClient
+        subscribe()
+    }
+
+    private func subscribe() {
+    }
+
     private func postItem() -> Completable {
         guard let name = nameText.value, let category = categoryText.value,
             let priceStr = priceText.value, let price = Int(priceStr) else {
@@ -70,7 +82,7 @@ final class ItemRegisterViewModel {
         }
         isLoading.accept(true)
         let item = Item(id: nil, name: name, category: category, price: price)
-        return apiGateway.postItem(item: item)
+        return apiClient.postItem(item: item)
             .do(
                 onError: { error in
                     debugPrint("Error: \(error)")},
@@ -86,7 +98,7 @@ final class ItemRegisterViewModel {
         }
         isLoading.accept(true)
         let item = Item(id: nil, name: name, category: category, price: price)
-        return apiGateway.putItem(id: (editItem?.id)!, item: item)
+        return apiClient.putItem(id: (editItem?.id)!, item: item)
             .do(
                 onError: { error in
                     debugPrint("Error: \(error)")},

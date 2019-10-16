@@ -22,9 +22,6 @@ protocol ItemViewModelable {
 
 final class ItemViewModel {
 
-    private let apiGateway: APIGatewayProtocol = APIGateway()
-    private let disposeBag = DisposeBag()
-
     var isLoading = BehaviorRelay<Bool>(value: false)
     var viewWillAppear = PublishRelay<Void>()
 
@@ -43,7 +40,15 @@ final class ItemViewModel {
         return pushRegisterSubject.asDriver(onErrorJustReturn: ItemRegisterViewController())
     }
 
-    required init() {
+    private let disposeBag = DisposeBag()
+    private let apiClient: APIClientable
+
+    convenience init() {
+        self.init(apiClient: APIClient())
+    }
+
+    init(apiClient: APIClientable) {
+        self.apiClient = apiClient
         subscribe()
     }
 
@@ -69,7 +74,7 @@ extension ItemViewModel: ItemViewModelable {
 
     func fetchItems() -> Completable {
         isLoading.accept(true)
-        return apiGateway.fetchItems()
+        return apiClient.fetchItems()
             .do(
                 onSuccess: { [weak self] response in
                     self?.isLoading.accept(false)
@@ -89,7 +94,7 @@ extension ItemViewModel: ItemViewModelable {
         guard let id = itemsSubject.value[indexPath.row].id else {
             fatalError("the item don't have id.")
         }
-        return apiGateway.deleteItem(id: id)
+        return apiClient.deleteItem(id: id)
             .do(
                 onError: { [weak self] error in
                     self?.isLoading.accept(false)

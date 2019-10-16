@@ -1,15 +1,15 @@
 //
-//  APIGatewayProtocol.swift
+//  APIClientable.swift
 //  SampleMVVM
 //
-//  Created by yusaku maki on 2019/10/15.
+//  Created by yusaku maki on 2019/10/16.
 //  Copyright © 2019 yusaku maki. All rights reserved.
 //
 
 import RxSwift
 import RxCocoa
 
-protocol APIGatewayProtocol {
+protocol APIClientable {
     // MARK: - Item
     func fetchItems() -> Single<[Item]>
     func postItem(item: Item) -> Completable

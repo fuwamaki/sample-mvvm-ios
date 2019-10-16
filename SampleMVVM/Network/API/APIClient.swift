@@ -9,11 +9,6 @@
 import Foundation
 import Alamofire
 
-protocol APIClientable {
-    func call<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void)
-    func postCall<T: RequestProtocol>(body: Data, request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void)
-}
-
 struct APIClient: APIClientable {
     func call<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
         Alamofire.request(request.url, method: request.method)
