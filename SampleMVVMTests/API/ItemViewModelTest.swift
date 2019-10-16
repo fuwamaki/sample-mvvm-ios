@@ -9,20 +9,29 @@
 import XCTest
 import RxSwift
 import RxCocoa
+import RxTest
 @testable import SampleMVVM
 
 class ItemViewModelTest: XCTestCase {
 
-    private let disposeBag = DisposeBag()
-
-    func testExample() {
+    func testShowRegister() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
         let apiClient = MockAPIClient(result: .success)
         let viewModel = ItemViewModel(apiClient: apiClient)
-        viewModel.pushRegister
+        viewModel.fetchItems()
+            .subscribe()
+            .disposed(by: disposeBag)
+        scheduler.scheduleAt(100) {
+            viewModel.pushRegister
             .drive(onNext: { viewController in
                 XCTAssertNotNil(viewController)})
-            .disposed(by: disposeBag)
-        viewModel.showRegister(indexPath: IndexPath(row: 0, section: 0))
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(200) {
+            viewModel.showRegister(indexPath: IndexPath(row: 0, section: 0))
+        }
+        scheduler.start()
     }
 }
 
