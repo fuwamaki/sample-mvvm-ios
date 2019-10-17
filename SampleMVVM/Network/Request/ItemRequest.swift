@@ -20,7 +20,7 @@ struct ItemPostRequest: RequestProtocol {
     var method: HTTPMethod = .post
     var encoding: ParameterEncoding = URLEncoding.default
     var parameters: [String: Any]?
-    var headers: [String: String]? = ["Content-Type": "application/json"]
+    var headers: [String: String]? = ["Content-Type": "application/json", "Hoge-Type": "hogation/json"]
 }
 
 struct ItemDeleteRequest: RequestProtocol {
