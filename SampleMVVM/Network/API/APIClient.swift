@@ -10,6 +10,17 @@ import Foundation
 import Alamofire
 
 struct APIClient: APIClientable {
+
+    private var client: Alamofire.SessionManager = {
+        var defaultHeaders = Alamofire.SessionManager.defaultHTTPHeaders
+        // memo: headerはこうやって指定する
+        defaultHeaders["Content-Type"] = "application/json"
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 30.0
+        configuration.httpAdditionalHeaders = defaultHeaders
+        return Alamofire.SessionManager(configuration: configuration)
+    }()
+
     func call<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
         Alamofire.request(request.url, method: request.method)
             .responseJSON { response in
@@ -31,9 +42,9 @@ struct APIClient: APIClientable {
     }
 
     func testCall<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
-        BaseClient.sharedManager.request(request.url,
-                               method: request.method,
-                               parameters: request.parameters)
+        client.request(request.url,
+                       method: request.method,
+                       parameters: request.parameters)
             .response { response in // memo: post時はresponseDataがない場合に.responseJSONを使えないらしい
                 if let error = response.error {
                     completion(.failure(error))
@@ -69,18 +80,5 @@ struct APIClient: APIClientable {
                 case .failure(let error):
                     completion(.failure(error))
                 }}
-    }
-}
-
-class BaseClient {
-    static var sharedManager = BaseClient.makeManager()
-    class func makeManager(_ authToken: String? = nil, timeout: TimeInterval = 30.0) -> Alamofire.SessionManager {
-        // memo: headerはこうやって指定する
-        var defaultHeaders = Alamofire.SessionManager.defaultHTTPHeaders
-        defaultHeaders["Content-Type"] = "application/json"
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 30.0
-        configuration.httpAdditionalHeaders = defaultHeaders
-        return Alamofire.SessionManager(configuration: configuration)
     }
 }
