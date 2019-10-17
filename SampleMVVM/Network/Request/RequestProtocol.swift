@@ -13,10 +13,11 @@ protocol RequestProtocol {
     associatedtype Response: ResponseProtocol
     var url: String { get }
     var method: Alamofire.HTTPMethod { get }
-    // TODO: ここでAlamofire.parametersを定義していると、うまくbody変換してくれない
+    // memo: ここでAlamofire.parametersを定義していると、うまくbody変換してくれない
     var parameters: [String: Any]? { get }
     var encoding: Alamofire.ParameterEncoding { get }
-    var headers: Alamofire.HTTPHeaders? { get }
+    // memo: ここもAlamofire.HTTPHeadersを使わないでみる
+    var headers: [String: String]? { get }
 }
 
 extension RequestProtocol {

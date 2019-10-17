@@ -9,17 +9,30 @@
 import Foundation
 import Alamofire
 
-struct APIClient: APIClientable {
+final class APIClient: APIClientable {
 
-    private var client: Alamofire.SessionManager = {
+    private var client: Alamofire.SessionManager? = {
         var defaultHeaders = Alamofire.SessionManager.defaultHTTPHeaders
         // memo: headerはこうやって指定する
-        defaultHeaders["Content-Type"] = "application/json"
+        defaultHeaders["hoge"] = "hoge"
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 30.0
         configuration.httpAdditionalHeaders = defaultHeaders
         return Alamofire.SessionManager(configuration: configuration)
     }()
+
+    private func setHeader(header: [String: String]?) {
+        guard let header = header else { return }
+        var defaultHeaders = Alamofire.SessionManager.defaultHTTPHeaders
+        // memo: headerはこうやって指定する
+        header.forEach { key, value in
+            defaultHeaders[key] = value
+        }
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 30.0
+        configuration.httpAdditionalHeaders = defaultHeaders
+        client = Alamofire.SessionManager(configuration: configuration)
+    }
 
     func call<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
         Alamofire.request(request.url, method: request.method)
@@ -42,9 +55,10 @@ struct APIClient: APIClientable {
     }
 
     func testCall<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
-        client.request(request.url,
-                       method: request.method,
-                       parameters: request.parameters)
+        setHeader(header: request.headers)
+        client?.request(request.url,
+                        method: request.method,
+                        parameters: request.parameters)
             .response { response in // memo: post時はresponseDataがない場合に.responseJSONを使えないらしい
                 if let error = response.error {
                     completion(.failure(error))
