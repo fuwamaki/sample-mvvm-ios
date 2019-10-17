@@ -13,4 +13,21 @@ protocol RequestProtocol {
     associatedtype Response: ResponseProtocol
     var url: String { get }
     var method: Alamofire.HTTPMethod { get }
+    var parameters: [String: Any]? { get }
+    var encoding: Alamofire.ParameterEncoding { get }
+    var headers: Alamofire.HTTPHeaders? { get }
+}
+
+extension RequestProtocol {
+    var parameters: Alamofire.Parameters? {
+        return nil
+    }
+
+    var encoding: Alamofire.ParameterEncoding {
+        return URLEncoding.default
+    }
+
+    var headers: Alamofire.HTTPHeaders? {
+        return nil
+    }
 }

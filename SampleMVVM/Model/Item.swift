@@ -25,4 +25,17 @@ struct Item: Codable {
         }
         return data
     }
+
+    // [String: Any]のDictionary型Model
+    var dictionary: [String: Any] {
+        guard let data = try? JSONEncoder().encode(self) else {
+            fatalError(MVVMError.jsonParseError.localizedDescription)
+        }
+        do {
+            let json = try JSONSerialization.jsonObject(with: data) as! [String: Any]
+            return json
+        } catch {
+            fatalError("json parse error")
+        }
+    }
 }

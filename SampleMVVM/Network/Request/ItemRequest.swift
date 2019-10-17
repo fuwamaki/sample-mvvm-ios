@@ -18,7 +18,8 @@ struct ItemPostRequest: RequestProtocol {
     typealias Response = ItemPostResponse
     var url: String = Url.postItemURL
     var method: HTTPMethod = .post
-    var encoding: ParameterEncoding = JSONEncoding.default
+    var encoding: ParameterEncoding = URLEncoding.default
+    var parameters: [String: Any]?
 }
 
 struct ItemDeleteRequest: RequestProtocol {
