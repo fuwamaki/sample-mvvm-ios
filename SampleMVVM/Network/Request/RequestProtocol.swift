@@ -8,11 +8,12 @@
 
 import Alamofire
 
-// memo: Alamofireでbody,queryの設定をしようとすると必ずバグるので、使わないことに。
+// memo: Alamofireでbody,queryの設定をしようとすると必ずバグるので、使わないことに。 -> できた！！！
 protocol RequestProtocol {
     associatedtype Response: ResponseProtocol
     var url: String { get }
     var method: Alamofire.HTTPMethod { get }
+    // TODO: ここでAlamofire.parametersを定義していると、うまくbody変換してくれない
     var parameters: [String: Any]? { get }
     var encoding: Alamofire.ParameterEncoding { get }
     var headers: Alamofire.HTTPHeaders? { get }

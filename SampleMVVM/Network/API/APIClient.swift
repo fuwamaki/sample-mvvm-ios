@@ -34,7 +34,7 @@ struct APIClient: APIClientable {
         BaseClient.sharedManager.request(request.url,
                                method: request.method,
                                parameters: request.parameters)
-            .response { response in
+            .response { response in // memo: post時はresponseDataがない場合に.responseJSONを使えないらしい
                 if let error = response.error {
                     completion(.failure(error))
                 } else {
@@ -75,6 +75,7 @@ struct APIClient: APIClientable {
 class BaseClient {
     static var sharedManager = BaseClient.makeManager()
     class func makeManager(_ authToken: String? = nil, timeout: TimeInterval = 30.0) -> Alamofire.SessionManager {
+        // memo: headerはこうやって指定する
         var defaultHeaders = Alamofire.SessionManager.defaultHTTPHeaders
         defaultHeaders["Content-Type"] = "application/json"
         let configuration = URLSessionConfiguration.default
