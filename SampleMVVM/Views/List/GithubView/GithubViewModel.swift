@@ -67,9 +67,9 @@ extension GithubViewModel: GithubViewModelable {
                     self?.repositoriesSubject.accept(repositories)
                 },
                 onError: { [weak self] error in
+                    guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    self?.presentViewControllerSubject
-                        .accept(UIAlertController.singleErrorAlert(message: error.localizedDescription))})
+                    self?.presentViewControllerSubject.accept(UIAlertController.singleErrorAlert(message: error.message))})
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
     }
