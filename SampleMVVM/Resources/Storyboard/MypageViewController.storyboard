@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Z3U-Wr-jYp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Z3U-Wr-jYp">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,16 +14,34 @@
                     <view key="view" contentMode="scaleToFill" id="Lrc-vx-mme">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ibk-Z9-Xne">
+                                <rect key="frame" x="87" y="168" width="240" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="1S9-ha-5iV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ES1-0C-cMB" firstAttribute="bottom" secondItem="ibk-Z9-Xne" secondAttribute="bottom" constant="596" id="Hjz-C2-Rbb"/>
+                            <constraint firstItem="ibk-Z9-Xne" firstAttribute="centerX" secondItem="Lrc-vx-mme" secondAttribute="centerX" id="PqX-Qa-Baj"/>
+                            <constraint firstItem="ibk-Z9-Xne" firstAttribute="top" secondItem="ES1-0C-cMB" secondAttribute="top" constant="80" id="Yrg-VW-Jqo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ES1-0C-cMB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Mypage" image="c.circle" catalog="system" id="ZYA-9V-y5D"/>
                     <navigationItem key="navigationItem" title="マイページ" id="yn4-B1-vbq"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="textTextField" destination="ibk-Z9-Xne" id="ZsU-QU-Mma"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9F7-fd-K4f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="354" y="157"/>
+            <point key="canvasLocation" x="353.62318840579712" y="156.69642857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="49E-Bo-1Eo">
@@ -43,6 +61,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="c.circle" catalog="system" width="64" height="62"/>
+        <image name="c.circle" catalog="system" width="64" height="60"/>
     </resources>
 </document>
