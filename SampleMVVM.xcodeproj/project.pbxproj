@@ -15,6 +15,7 @@
 		201BF03F2339014C0020F7B4 /* ItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF03E2339014C0020F7B4 /* ItemResponse.swift */; };
 		201BF041233902770020F7B4 /* ItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF040233902770020F7B4 /* ItemRequest.swift */; };
 		202ADB71236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202ADB70236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift */; };
+		202ADB73236B060200E65BB8 /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202ADB72236B060200E65BB8 /* CustomPicker.swift */; };
 		20382BDB2339F05000CF77A1 /* CollectionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20382BDA2339F05000CF77A1 /* CollectionListCell.swift */; };
 		20382BDD2339F06E00CF77A1 /* CollectionListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BDC2339F06E00CF77A1 /* CollectionListCell.xib */; };
 		20382BDF2339F69700CF77A1 /* GithubTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20382BDE2339F69700CF77A1 /* GithubTableCell.swift */; };
@@ -93,6 +94,7 @@
 		201BF03E2339014C0020F7B4 /* ItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemResponse.swift; sourceTree = "<group>"; };
 		201BF040233902770020F7B4 /* ItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRequest.swift; sourceTree = "<group>"; };
 		202ADB70236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputAccessoryView.swift; sourceTree = "<group>"; };
+		202ADB72236B060200E65BB8 /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
 		20382BDA2339F05000CF77A1 /* CollectionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListCell.swift; sourceTree = "<group>"; };
 		20382BDC2339F06E00CF77A1 /* CollectionListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionListCell.xib; sourceTree = "<group>"; };
 		20382BDE2339F69700CF77A1 /* GithubTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubTableCell.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				202ADB70236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift */,
+				202ADB72236B060200E65BB8 /* CustomPicker.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -753,6 +756,7 @@
 				209A60D12338C4E600D6338C /* ListViewController.swift in Sources */,
 				202ADB71236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift in Sources */,
 				201BF041233902770020F7B4 /* ItemRequest.swift in Sources */,
+				202ADB73236B060200E65BB8 /* CustomPicker.swift in Sources */,
 				20382BDB2339F05000CF77A1 /* CollectionListCell.swift in Sources */,
 				205BE0BA235417EB009EF0F2 /* QiitaViewModel.swift in Sources */,
 				201BF03F2339014C0020F7B4 /* ItemResponse.swift in Sources */,
