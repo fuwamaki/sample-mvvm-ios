@@ -18,6 +18,10 @@ final class ItemRegisterViewController: UIViewController {
     @IBOutlet private weak var priceTextField: UITextField!
     @IBOutlet private weak var registerButton: UIButton!
 
+    private var textFields: [UITextField] {
+        return [nameTextField, categoryTextField, priceTextField]
+    }
+
     private var isLoading: Bool = false {
         didSet {
             DispatchQueue.main.async {
@@ -34,12 +38,21 @@ final class ItemRegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupItem()
+        setupViews()
         bind()
     }
 
     private func setupItem() {
         viewModel.editItem = item
         viewModel.setupItem()
+    }
+
+    private func setupViews() {
+        textFields.forEach {
+            let inputAccessoryView = TextFieldInputAccessoryView(textField: $0)
+            inputAccessoryView.delegate = self
+            $0.inputAccessoryView = inputAccessoryView
+        }
     }
 
     private func bind() {
@@ -97,4 +110,7 @@ final class ItemRegisterViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
+}
+
+extension ItemRegisterViewController: TextFieldInputAccessoryViewDelegate {
 }
