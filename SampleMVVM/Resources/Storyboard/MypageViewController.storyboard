@@ -16,9 +16,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ibk-Z9-Xne">
-                                <rect key="frame" x="87" y="168" width="240" height="49"/>
+                                <rect key="frame" x="87" y="168" width="240" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="1S9-ha-5iV"/>
+                                    <constraint firstAttribute="height" constant="44" id="OFE-4n-LZd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gTy-eo-aAc">
+                                <rect key="frame" x="87" y="252" width="240" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="rkm-IG-eVJ"/>
+                                    <constraint firstAttribute="height" constant="44" id="zgY-HT-PaQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -26,9 +36,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="ES1-0C-cMB" firstAttribute="bottom" secondItem="ibk-Z9-Xne" secondAttribute="bottom" constant="596" id="Hjz-C2-Rbb"/>
                             <constraint firstItem="ibk-Z9-Xne" firstAttribute="centerX" secondItem="Lrc-vx-mme" secondAttribute="centerX" id="PqX-Qa-Baj"/>
                             <constraint firstItem="ibk-Z9-Xne" firstAttribute="top" secondItem="ES1-0C-cMB" secondAttribute="top" constant="80" id="Yrg-VW-Jqo"/>
+                            <constraint firstItem="gTy-eo-aAc" firstAttribute="centerX" secondItem="Lrc-vx-mme" secondAttribute="centerX" id="a4K-UW-epV"/>
+                            <constraint firstItem="gTy-eo-aAc" firstAttribute="top" secondItem="ibk-Z9-Xne" secondAttribute="bottom" constant="40" id="rxk-oV-tV6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ES1-0C-cMB"/>
                     </view>
@@ -36,7 +47,8 @@
                     <navigationItem key="navigationItem" title="マイページ" id="yn4-B1-vbq"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="textTextField" destination="ibk-Z9-Xne" id="ZsU-QU-Mma"/>
+                        <outlet property="test1TextField" destination="ibk-Z9-Xne" id="ZsU-QU-Mma"/>
+                        <outlet property="test2TextField" destination="gTy-eo-aAc" id="KVi-uA-ibB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9F7-fd-K4f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -19,12 +19,21 @@ final class TextFieldInputAccessoryView: UIView {
 
     private let doneButtonTitle: String
     private let toolBar = UIToolbar()
+    private var previousTextField: UITextField?
+    private var nextTextField: UITextField?
 
     init(textField: UITextField, doneButtonTitle: String = "完了") {
         self.textField = textField
         self.doneButtonTitle = doneButtonTitle
         super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44.0))
         setupToolbar()
+    }
+
+    init(textField: UITextField, previous: UITextField?, next: UITextField?, doneButtonTitle: String = "完了") {
+        self.textField = textField
+        self.doneButtonTitle = doneButtonTitle
+        super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44.0))
+        setupToolbar(previous: previous, next: next)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -49,11 +58,50 @@ final class TextFieldInputAccessoryView: UIView {
         toolBar.sizeToFit()
     }
 
-    @objc func clickDoneButton(_ sender: AnyObject) {
+    private func setupToolbar(previous: UITextField?, next: UITextField?) {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.tintColor = UIColor.white
+        toolBar.backgroundColor = UIColor.black
+        toolBar.alpha = 0.7
+        toolBar.isTranslucent = true
+        previousTextField = previous
+        nextTextField = next
+        let previousIcon = previous != nil ? R.image.upward()! : R.image.upward_disable()!
+        let resizePreviousIcon = previousIcon.resize(width: 30.0, height: 30.0)
+        let previousBarButtonItem = UIBarButtonItem(image: resizePreviousIcon, style: .plain, target: self, action: #selector(clickPreviousButton(_:)))
+        previousBarButtonItem.isEnabled = previous != nil
+        let nextIcon = next != nil ? R.image.downward()! : R.image.downward_disable()!
+        let resizeNextIcon = nextIcon.resize(width: 30.0, height: 30.0)
+        let nextBarButtonItem = UIBarButtonItem(image: resizeNextIcon, style: .plain, target: self, action: #selector(clickNextButton(_:)))
+        nextBarButtonItem.isEnabled = next != nil
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBarButtonItem = UIBarButtonItem(title: doneButtonTitle,
+                                                style: .done,
+                                                target: self,
+                                                action: #selector(TextFieldInputAccessoryView.clickDoneButton(_:)))
+        let barButtonItems = [previousBarButtonItem, nextBarButtonItem, flexibleSpace, doneBarButtonItem]
+        toolBar.items = barButtonItems
+        addSubview(toolBar)
+        toolBar.sizeToFit()
+    }
+}
+
+// MARK: handle button
+extension TextFieldInputAccessoryView {
+    @objc private func clickDoneButton(_ sender: AnyObject) {
         if let delegate = delegate, let doneButtonHandler = delegate.handleDoneButton {
             doneButtonHandler(self)
         } else {
             textField?.resignFirstResponder()
         }
+    }
+
+    @objc private func clickPreviousButton(_ sender: AnyObject) {
+        previousTextField?.becomeFirstResponder()
+    }
+
+    @objc private func clickNextButton(_ sender: AnyObject) {
+        nextTextField?.becomeFirstResponder()
     }
 }

@@ -12,7 +12,11 @@ import RxCocoa
 
 final class MypageViewController: UIViewController {
 
-    @IBOutlet weak var textTextField: UITextField!
+    @IBOutlet weak var test1TextField: UITextField!
+    @IBOutlet weak var test2TextField: UITextField!
+    private var testTextFields: [UITextField] {
+        return [test1TextField, test2TextField]
+    }
 
     private let disposeBag = DisposeBag()
     private let viewModel: MypageViewModelable = MypageViewModel()
@@ -31,16 +35,20 @@ final class MypageViewController: UIViewController {
         picker.array = array
         pickerView.delegate = picker
         pickerView.dataSource = picker
-        textTextField.inputView = pickerView
-        let inputAccessoryView = TextFieldInputAccessoryView(textField: textTextField)
-        inputAccessoryView.delegate = self
-        textTextField.inputAccessoryView = inputAccessoryView
+        testTextFields.enumerated().forEach {
+            let previous: UITextField? = $0 == 0 ? nil : testTextFields[$0-1]
+            let next: UITextField? = $0 == testTextFields.count-1 ? nil : testTextFields[$0+1]
+            $1.inputView = pickerView
+            let inputAccessoryView = TextFieldInputAccessoryView(textField: $1, previous: previous, next: next)
+            inputAccessoryView.delegate = self
+            $1.inputAccessoryView = inputAccessoryView
+        }
     }
 
     private func bind() {
         picker.selectedContent
             .subscribe(onNext: { [unowned self] text in
-                self.textTextField.text = text
+                self.test1TextField.text = text
             })
             .disposed(by: disposeBag)
     }
