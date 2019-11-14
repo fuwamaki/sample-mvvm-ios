@@ -14,16 +14,17 @@ final class APIClient: APIClientable {
 
     private var client: Alamofire.SessionManager?
 
-    private func setHeader(header: [String: String]?) {
-        guard let header = header else { return }
-        var defaultHeaders = Alamofire.SessionManager.defaultHTTPHeaders
-        // memo: headerはこうやって指定する
-        header.forEach { key, value in
-            defaultHeaders[key] = value
-        }
+    private func setupClient(header: [String: String]?) {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 30.0
-        configuration.httpAdditionalHeaders = defaultHeaders
+        if let header = header {
+            var defaultHeaders = Alamofire.SessionManager.defaultHTTPHeaders
+            // memo: headerはこうやって指定する
+            header.forEach { key, value in
+                defaultHeaders[key] = value
+            }
+            configuration.httpAdditionalHeaders = defaultHeaders
+        }
         client = Alamofire.SessionManager(configuration: configuration)
     }
 
@@ -50,7 +51,7 @@ final class APIClient: APIClientable {
             completion(.failure(APIError.networkError))
             return
         }
-        setHeader(header: request.headers)
+        setupClient(header: request.headers)
         client?.request(request.url,
                         method: request.method,
                         parameters: request.parameters,
@@ -88,7 +89,7 @@ final class APIClient: APIClientable {
             completion(.failure(APIError.networkError))
             return
         }
-        setHeader(header: request.headers)
+        setupClient(header: request.headers)
         client?.request(request.url,
                         method: request.method,
                         parameters: request.parameters,
@@ -119,7 +120,7 @@ final class APIClient: APIClientable {
 
     // TODO: 消す
     func testCall<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
-        setHeader(header: request.headers)
+        setupClient(header: request.headers)
         client?.request(request.url,
                         method: request.method,
                         parameters: request.parameters)
