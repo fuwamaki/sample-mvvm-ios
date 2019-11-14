@@ -16,4 +16,6 @@ struct Url {
     static let deleteItemURL = Url.baseItemURL + "/delete"
     static let githubBaseURL = "https://api.github.com"
     static let githubRepositoriesURL = Url.githubBaseURL + "/search/repositories"
+    static let qiitaBaseURL = "https://qiita.com"
+    static let qiitaItemsParTagURL = Url.qiitaBaseURL + "/api/v2/tags"
 }
