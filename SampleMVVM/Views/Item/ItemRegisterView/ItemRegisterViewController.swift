@@ -48,10 +48,13 @@ final class ItemRegisterViewController: UIViewController {
     }
 
     private func setupViews() {
-        textFields.forEach {
-            let inputAccessoryView = TextFieldInputAccessoryView(textField: $0)
+        textFields.enumerated().forEach {
+            let previous: UITextField? = $0 == 0 ? nil : textFields[$0-1]
+            let next: UITextField? = $0 == textFields.count-1 ? nil : textFields[$0+1]
+            let inputAccessoryView = TextFieldInputAccessoryView(textField: $1, previous: previous, next: next)
             inputAccessoryView.delegate = self
-            $0.inputAccessoryView = inputAccessoryView
+            $1.inputAccessoryView = inputAccessoryView
+            $1.delegate = self
         }
     }
 
@@ -112,5 +115,20 @@ final class ItemRegisterViewController: UIViewController {
     }
 }
 
-extension ItemRegisterViewController: TextFieldInputAccessoryViewDelegate {
+extension ItemRegisterViewController: TextFieldInputAccessoryViewDelegate {}
+
+extension ItemRegisterViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let index = textFields.firstIndex(of: textField) else { return true }
+        let nextIndex = index + 1
+        if nextIndex < textFields.endIndex {
+            textFields[nextIndex].becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+            viewModel.handleRegisterButton()
+                .subscribe()
+                .disposed(by: disposeBag)
+        }
+        return true
+    }
 }
