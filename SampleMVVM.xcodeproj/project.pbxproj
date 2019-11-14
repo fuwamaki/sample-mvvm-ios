@@ -182,14 +182,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		201BF0322338EFEB0020F7B4 /* Model */ = {
+		201BF0322338EFEB0020F7B4 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				201BF0332338EFF90020F7B4 /* Item.swift */,
 				205BE0C3235425E9009EF0F2 /* GithubRepository.swift */,
 				205BE0C52354260C009EF0F2 /* GithubRepositoryOwner.swift */,
 			);
-			path = Model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		201BF03B2338FDA70020F7B4 /* Struct */ = {
@@ -255,7 +255,7 @@
 				209A60AB23388F1600D6338C /* Info.plist */,
 				209A60BF2338906300D6338C /* AppDelegate */,
 				209A60C22338908000D6338C /* Views */,
-				201BF0322338EFEB0020F7B4 /* Model */,
+				201BF0322338EFEB0020F7B4 /* Entity */,
 				209A60C12338907600D6338C /* Network */,
 				201BF03B2338FDA70020F7B4 /* Struct */,
 				20AC3E5A23546266007F67ED /* Enum */,
