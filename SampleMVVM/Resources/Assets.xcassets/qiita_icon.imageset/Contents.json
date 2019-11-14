@@ -3,6 +3,26 @@
     {
       "idiom" : "universal",
       "filename" : "s_qiita_icon.png"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "qiita_icon_black.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "light"
+        }
+      ]
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "qiita_icon_white.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {
