@@ -9,7 +9,6 @@ PODS:
   - PINRemoteImage/FLAnimatedImage (2.1.4):
     - FLAnimatedImage (>= 1.0)
     - PINRemoteImage/Core
-  - PKHUD (5.3.0)
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
@@ -37,7 +36,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.9.0)
   - PINRemoteImage (~> 2.1.4)
-  - PKHUD (~> 5.3.0)
   - R.swift (~> 5.0.3)
   - RealmSwift (~> 3.18.0)
   - RxBlocking (~> 5.0.0)
@@ -53,7 +51,6 @@ SPEC REPOS:
     - FLAnimatedImage
     - PINCache
     - PINRemoteImage
-    - PKHUD
     - R.swift
     - R.swift.Library
     - Realm
@@ -72,7 +69,6 @@ SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
   PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
-  PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   Realm: 7b3d04740facf45e958a514b466a32b04f1113d6
@@ -86,6 +82,6 @@ SPEC CHECKSUMS:
   SwiftDate: fa2bb3962056bb44047b4b85a30044e5eae30b03
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: 8ecd37face7c7dc284cd811f998077c4763893a1
+PODFILE CHECKSUM: 57d45f3039b317b54c69774a6ebdbad70c250f6b
 
 COCOAPODS: 1.7.5
