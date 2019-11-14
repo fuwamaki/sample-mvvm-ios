@@ -52,7 +52,7 @@ final class ItemViewController: UIViewController {
         indicator.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
         indicator.center = self.view.center
         indicator.hidesWhenStopped = true
-        indicator.color = UIColor.black
+        indicator.color = UIColor.blue
         indicator.isHidden = true
         return indicator
     }()
