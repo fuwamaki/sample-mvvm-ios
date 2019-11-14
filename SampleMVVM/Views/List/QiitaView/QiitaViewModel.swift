@@ -77,6 +77,7 @@ extension QiitaViewModel: QiitaViewModelable {
     func showQiitaWebView(indexPath: IndexPath) {
         guard let url = URL(string: qiitaItemsSubject.value[indexPath.row].url) else { return }
         let viewController = SFSafariViewController(url: url)
+        viewController.hidesBottomBarWhenPushed = true
         pushViewControllerSubject.accept(viewController)
     }
 }

@@ -77,6 +77,7 @@ extension GithubViewModel: GithubViewModelable {
     func showGithubWebView(indexPath: IndexPath) {
         guard let url = URL(string: repositoriesSubject.value[indexPath.row].htmlUrl) else { return }
         let viewController = SFSafariViewController(url: url)
+        viewController.hidesBottomBarWhenPushed = true
         pushViewControllerSubject.accept(viewController)
     }
 }
