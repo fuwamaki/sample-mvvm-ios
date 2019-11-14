@@ -63,6 +63,9 @@
 		20A122892340F52600FA1EAB /* ItemRegisterViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A122882340F52600FA1EAB /* ItemRegisterViewController.storyboard */; };
 		20AAA782237D897C006F2817 /* QiitaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AAA781237D897C006F2817 /* QiitaItem.swift */; };
 		20AAA784237D8A65006F2817 /* QiitaUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AAA783237D8A65006F2817 /* QiitaUser.swift */; };
+		20AAA786237D8A96006F2817 /* APIClient+Qiita.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AAA785237D8A96006F2817 /* APIClient+Qiita.swift */; };
+		20AAA788237D8E6C006F2817 /* QiitaItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AAA787237D8E6C006F2817 /* QiitaItemRequest.swift */; };
+		20AAA78A237D8E90006F2817 /* QiitaItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AAA789237D8E90006F2817 /* QiitaItemResponse.swift */; };
 		20AC3E6B23558D4F007F67ED /* TestResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6A23558D4F007F67ED /* TestResultType.swift */; };
 		20AC3E6D23558DF0007F67ED /* TestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6C23558DF0007F67ED /* TestResponse.swift */; };
 		20AC3E702356BB3B007F67ED /* APIClientable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E6F2356BB3B007F67ED /* APIClientable.swift */; };
@@ -149,6 +152,9 @@
 		20A122882340F52600FA1EAB /* ItemRegisterViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ItemRegisterViewController.storyboard; sourceTree = "<group>"; };
 		20AAA781237D897C006F2817 /* QiitaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaItem.swift; sourceTree = "<group>"; };
 		20AAA783237D8A65006F2817 /* QiitaUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaUser.swift; sourceTree = "<group>"; };
+		20AAA785237D8A96006F2817 /* APIClient+Qiita.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Qiita.swift"; sourceTree = "<group>"; };
+		20AAA787237D8E6C006F2817 /* QiitaItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaItemRequest.swift; sourceTree = "<group>"; };
+		20AAA789237D8E90006F2817 /* QiitaItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaItemResponse.swift; sourceTree = "<group>"; };
 		20AC3E6A23558D4F007F67ED /* TestResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultType.swift; sourceTree = "<group>"; };
 		20AC3E6C23558DF0007F67ED /* TestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResponse.swift; sourceTree = "<group>"; };
 		20AC3E6F2356BB3B007F67ED /* APIClientable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientable.swift; sourceTree = "<group>"; };
@@ -212,6 +218,7 @@
 				201BF0392338FB180020F7B4 /* ResponseProtocol.swift */,
 				201BF03E2339014C0020F7B4 /* ItemResponse.swift */,
 				205BE0C9235426DA009EF0F2 /* GithubRepositoryResponse.swift */,
+				20AAA789237D8E90006F2817 /* QiitaItemResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -222,6 +229,7 @@
 				201BF0372338FAE60020F7B4 /* RequestProtocol.swift */,
 				201BF040233902770020F7B4 /* ItemRequest.swift */,
 				205BE0CB235426E8009EF0F2 /* GithubRepositoryRequest.swift */,
+				20AAA787237D8E6C006F2817 /* QiitaItemRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -467,6 +475,7 @@
 				209A60E02338CBF400D6338C /* APIClient.swift */,
 				20AC3E712356BB48007F67ED /* APIClient+Item.swift */,
 				20AC3E732356BB52007F67ED /* APIClient+Github.swift */,
+				20AAA785237D8A96006F2817 /* APIClient+Qiita.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -732,6 +741,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				205BE0C4235425E9009EF0F2 /* GithubRepository.swift in Sources */,
+				20AAA788237D8E6C006F2817 /* QiitaItemRequest.swift in Sources */,
 				202ADB75236BEE2700E65BB8 /* UIImage+Addition.swift in Sources */,
 				205BE0B623541706009EF0F2 /* ItemRegisterMode.swift in Sources */,
 				20382BE9233A04E800CF77A1 /* QiitaCollectionCell.swift in Sources */,
@@ -757,6 +767,7 @@
 				201BF0362338F8CD0020F7B4 /* APIError.swift in Sources */,
 				209A60D52338C51E00D6338C /* ItemViewModel.swift in Sources */,
 				20AAA784237D8A65006F2817 /* QiitaUser.swift in Sources */,
+				20AAA78A237D8E90006F2817 /* QiitaItemResponse.swift in Sources */,
 				209A60CF2338C4D900D6338C /* ItemViewController.swift in Sources */,
 				20A122872340F3CD00FA1EAB /* ItemRegisterViewModel.swift in Sources */,
 				201BF0382338FAE60020F7B4 /* RequestProtocol.swift in Sources */,
@@ -770,6 +781,7 @@
 				202ADB73236B060200E65BB8 /* CustomPicker.swift in Sources */,
 				20382BDB2339F05000CF77A1 /* CollectionListCell.swift in Sources */,
 				205BE0BA235417EB009EF0F2 /* QiitaViewModel.swift in Sources */,
+				20AAA786237D8A96006F2817 /* APIClient+Qiita.swift in Sources */,
 				201BF03F2339014C0020F7B4 /* ItemResponse.swift in Sources */,
 				20382BE12339F6A200CF77A1 /* QiitaTableCell.swift in Sources */,
 				209A60D32338C4F100D6338C /* MypageViewController.swift in Sources */,
