@@ -12,15 +12,7 @@ import SystemConfiguration
 
 final class APIClient: APIClientable {
 
-    private var client: Alamofire.SessionManager? = {
-        var defaultHeaders = Alamofire.SessionManager.defaultHTTPHeaders
-        // memo: headerはこうやって指定する
-        defaultHeaders["hoge"] = "hoge"
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 30.0
-        configuration.httpAdditionalHeaders = defaultHeaders
-        return Alamofire.SessionManager(configuration: configuration)
-    }()
+    private var client: Alamofire.SessionManager?
 
     private func setHeader(header: [String: String]?) {
         guard let header = header else { return }
@@ -53,18 +45,23 @@ final class APIClient: APIClientable {
         return isReachable && !needsConnection
     }
 
-    func call<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
+    func call<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, APIError>) -> Void) {
         guard isNetworkConnect else {
             completion(.failure(APIError.networkError))
             return
         }
-        Alamofire.request(request.url, method: request.method)
+        setHeader(header: request.headers)
+        client?.request(request.url,
+                        method: request.method,
+                        parameters: request.parameters,
+                        encoding: request.encoding,
+                        headers: request.headers)
             .responseJSON { response in
                 switch response.result {
                 case .success:
                     do {
                         guard let data = response.data else {
-                            completion(.failure(APIError.jsonParseError))
+                            completion(.failure(APIError.nonDataError))
                             return
                         }
                         let result = try JSONDecoder().decode(T.Response.self, from: data)
@@ -72,11 +69,55 @@ final class APIClient: APIClientable {
                     } catch {
                         completion(.failure(APIError.jsonParseError))
                     }
-                case .failure(let error):
-                    completion(.failure(error))
+                case .failure(let error as NSError):
+                    switch error.code {
+                    case 401:
+                        completion(.failure(.unauthorizedError))
+                    case 404:
+                        completion(.failure(.notFoundError))
+                    case 503:
+                        completion(.failure(.maintenanceError))
+                    default:
+                        completion(.failure(.unknownError))
+                    }
                 }}
     }
 
+    func writeCall<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, APIError>) -> Void) {
+        guard isNetworkConnect else {
+            completion(.failure(APIError.networkError))
+            return
+        }
+        setHeader(header: request.headers)
+        client?.request(request.url,
+                        method: request.method,
+                        parameters: request.parameters,
+                        encoding: request.encoding,
+                        headers: request.headers)
+            .response { response in
+                if let error = response.error as NSError? {
+                    switch error.code {
+                    case 401:
+                        completion(.failure(.unauthorizedError))
+                    case 404:
+                        completion(.failure(.notFoundError))
+                    case 503:
+                        completion(.failure(.maintenanceError))
+                    default:
+                        completion(.failure(.unknownError))
+                    }
+                } else {
+                    switch response.response?.statusCode {
+                    case .some(let code) where 200 <= code && code < 300:
+                        completion(.success(nil))
+                    default:
+                        completion(.failure(APIError.unknownError))
+                    }
+                }
+        }
+    }
+
+    // TODO: 消す
     func testCall<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
         setHeader(header: request.headers)
         client?.request(request.url,
@@ -95,6 +136,7 @@ final class APIClient: APIClientable {
                 }}
     }
 
+    // TODO: 消す
     func postCall<T: RequestProtocol>(body: Data, request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
         var urlRequest = URLRequest(url: URL(string: request.url)!)
         urlRequest.httpMethod = request.method.rawValue
