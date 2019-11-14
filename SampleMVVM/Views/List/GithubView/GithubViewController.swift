@@ -74,7 +74,6 @@ final class GithubViewController: UIViewController {
 
     private func setupTableView() {
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = UIColor.white
     }
 
     private func bind() {
