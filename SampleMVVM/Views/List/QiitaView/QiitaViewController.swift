@@ -15,6 +15,7 @@ final class QiitaViewController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
             searchBar.backgroundImage = UIImage()
+            searchBar.searchTextField.delegate = self
             let view = TextFieldInputAccessoryView(textField: searchBar.searchTextField)
             searchBar.inputAccessoryView = view
         }
@@ -101,6 +102,7 @@ final class QiitaViewController: UIViewController {
 
         searchButton.rx.tap
             .subscribe(onNext: { [unowned self] in
+                self.searchBar.searchTextField.resignFirstResponder()
                 self.viewModel.fetchQiitaItems(tag: self.searchBar.text)
                     .subscribe()
                     .disposed(by: self.disposeBag)
@@ -112,5 +114,15 @@ extension QiitaViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
         return QiitaTableCell.defaultHeight(tableView)
+    }
+}
+
+extension QiitaViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        viewModel.fetchQiitaItems(tag: searchBar.text)
+            .subscribe()
+            .disposed(by: disposeBag)
+        return true
     }
 }
