@@ -93,6 +93,14 @@ final class ItemViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
+        viewModel.errorAlertMessage
+            .drive(onNext: { [unowned self] message in
+                let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+
         viewModel.pushRegister
             .drive(onNext: { [unowned self] viewController in
                 self.navigationController?.pushViewController(viewController, animated: true)})

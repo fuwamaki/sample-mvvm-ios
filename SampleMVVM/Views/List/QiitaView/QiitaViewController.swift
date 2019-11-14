@@ -87,12 +87,12 @@ final class QiitaViewController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.errorAlertMessage
-        .drive(onNext: { [unowned self] message in
-            let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        })
-        .disposed(by: disposeBag)
+            .drive(onNext: { [unowned self] message in
+                let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
 
         viewModel.pushViewController
             .drive(onNext: { [unowned self] viewController in

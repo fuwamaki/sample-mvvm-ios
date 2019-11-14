@@ -88,9 +88,11 @@ final class GithubViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.presentViewController
-            .drive(onNext: { [unowned self] viewController in
-                self.present(viewController, animated: true, completion: nil)
+        viewModel.errorAlertMessage
+            .drive(onNext: { [unowned self] message in
+                let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
 

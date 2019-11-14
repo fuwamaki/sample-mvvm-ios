@@ -13,8 +13,8 @@ protocol ItemViewModelable {
     var items: Driver<[Item]> { get }
     var isLoading: BehaviorRelay<Bool> { get }
     var viewWillAppear: PublishRelay<Void> { get }
-    var presentViewController: Driver<UIViewController> { get }
     var pushRegister: Driver<ItemRegisterViewController> { get }
+    var errorAlertMessage: Driver<String> { get }
     func showRegister(indexPath: IndexPath?)
     func fetchItems() -> Completable
     func deleteItem(indexPath: IndexPath) -> Completable
@@ -30,14 +30,14 @@ final class ItemViewModel {
         return itemsSubject.asDriver(onErrorJustReturn: [])
     }
 
-    private var presentViewControllerSubject = PublishRelay<UIViewController>()
-    var presentViewController: Driver<UIViewController> {
-        return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
-    }
-
     private var pushRegisterSubject = PublishRelay<ItemRegisterViewController>()
     var pushRegister: Driver<ItemRegisterViewController> {
         return pushRegisterSubject.asDriver(onErrorJustReturn: ItemRegisterViewController())
+    }
+
+    private var errorAlertMessageSubject = PublishRelay<String>()
+    var errorAlertMessage: Driver<String> {
+        return errorAlertMessageSubject.asDriver(onErrorJustReturn: "")
     }
 
     private let disposeBag = DisposeBag()
@@ -82,9 +82,9 @@ extension ItemViewModel: ItemViewModelable {
                     self?.itemsSubject.accept(response)
                 },
                 onError: { [weak self] error in
+                    guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    self?.presentViewControllerSubject
-                        .accept(UIAlertController.singleErrorAlert(message: error.localizedDescription))})
+                    self?.errorAlertMessageSubject.accept(error.message)})
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
     }
@@ -97,9 +97,9 @@ extension ItemViewModel: ItemViewModelable {
         return apiClient.deleteItem(id: id)
             .do(
                 onError: { [weak self] error in
+                    guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    self?.presentViewControllerSubject
-                        .accept(UIAlertController.singleErrorAlert(message: error.localizedDescription))},
+                    self?.errorAlertMessageSubject.accept(error.message)},
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
                     var items = self?.itemsSubject.value

@@ -18,6 +18,7 @@ protocol ItemRegisterViewModelable {
     var categoryText: BehaviorRelay<String?> { get }
     var priceText: BehaviorRelay<String?> { get }
     var allFieldsValid: Observable<Bool> { get }
+    var errorAlertMessage: Driver<String> { get }
     func setupItem()
     func handleRegisterButton() -> Completable
 }
@@ -60,6 +61,11 @@ final class ItemRegisterViewModel {
             .share(replay: 1)
     }()
 
+    private var errorAlertMessageSubject = PublishRelay<String>()
+    var errorAlertMessage: Driver<String> {
+        return errorAlertMessageSubject.asDriver(onErrorJustReturn: "")
+    }
+
     private let disposeBag = DisposeBag()
     private let apiClient: APIClientable
 
@@ -84,8 +90,10 @@ final class ItemRegisterViewModel {
         let item = Item(id: nil, name: name, category: category, price: price)
         return apiClient.postItem(item: item)
             .do(
-                onError: { error in
-                    debugPrint("Error: \(error)")},
+                onError: { [weak self] error in
+                    guard let error = error as? APIError else { return }
+                    self?.isLoading.accept(false)
+                    self?.errorAlertMessageSubject.accept(error.message)},
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
                     self?.dismissSubject.accept(true)})
@@ -100,8 +108,10 @@ final class ItemRegisterViewModel {
         let item = Item(id: nil, name: name, category: category, price: price)
         return apiClient.putItem(id: (editItem?.id)!, item: item)
             .do(
-                onError: { error in
-                    debugPrint("Error: \(error)")},
+                onError: { [weak self] error in
+                    guard let error = error as? APIError else { return }
+                    self?.isLoading.accept(false)
+                    self?.errorAlertMessageSubject.accept(error.message)},
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
                     self?.dismissSubject.accept(true)})

@@ -13,8 +13,8 @@ import SafariServices
 protocol GithubViewModelable {
     var isLoading: BehaviorRelay<Bool> { get }
     var repositories: Driver<[GithubRepository]> { get }
-    var presentViewController: Driver<UIViewController> { get }
     var pushViewController: Driver<UIViewController> { get }
+    var errorAlertMessage: Driver<String> { get }
     func fetchRepositories(query: String?) -> Completable
     func showGithubWebView(indexPath: IndexPath)
 }
@@ -28,14 +28,14 @@ final class GithubViewModel {
         return repositoriesSubject.asDriver(onErrorJustReturn: [])
     }
 
-    private var presentViewControllerSubject = PublishRelay<UIViewController>()
-    var presentViewController: Driver<UIViewController> {
-        return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
-    }
-
     private var pushViewControllerSubject = PublishRelay<UIViewController>()
     var pushViewController: Driver<UIViewController> {
         return pushViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
+    }
+
+    private var errorAlertMessageSubject = PublishRelay<String>()
+    var errorAlertMessage: Driver<String> {
+        return errorAlertMessageSubject.asDriver(onErrorJustReturn: "")
     }
 
     private let disposeBag = DisposeBag()
@@ -69,7 +69,7 @@ extension GithubViewModel: GithubViewModelable {
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    self?.presentViewControllerSubject.accept(UIAlertController.singleErrorAlert(message: error.message))})
+                    self?.errorAlertMessageSubject.accept(error.message)})
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
     }

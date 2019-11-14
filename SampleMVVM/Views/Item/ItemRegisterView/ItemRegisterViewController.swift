@@ -70,10 +70,19 @@ final class ItemRegisterViewController: UIViewController {
         }
     }
 
+    // swiftlint:disable function_body_length
     private func bind() {
         viewModel.isLoading
             .subscribe(onNext: { [weak self] in
                 self?.isLoading = $0
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.errorAlertMessage
+            .drive(onNext: { [unowned self] message in
+                let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
 
