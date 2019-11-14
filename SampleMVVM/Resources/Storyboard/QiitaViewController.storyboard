@@ -11,7 +11,7 @@
         <!--Qiita-->
         <scene sceneID="mmA-HH-RF6">
             <objects>
-                <viewController id="dwg-pV-yFM" sceneMemberID="viewController">
+                <viewController id="dwg-pV-yFM" customClass="QiitaViewController" customModule="SampleMVVM" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O85-ze-0g8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,6 +56,11 @@
                         <barButtonItem key="rightBarButtonItem" image="heart.fill" catalog="system" id="xXn-6h-i4m"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="searchBar" destination="LO3-K9-ZXb" id="Srb-SO-szW"/>
+                        <outlet property="searchButton" destination="8pg-aN-2KJ" id="F9o-q3-oOq"/>
+                        <outlet property="tableView" destination="jre-Kp-i1r" id="Z88-Om-uaS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sge-2y-Ge1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

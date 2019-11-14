@@ -10,7 +10,20 @@ import UIKit
 
 final class QiitaTableCell: UITableViewCell {
 
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var likesCountLabel: UILabel!
+
     override class func awakeFromNib() {
         super.awakeFromNib()
+    }
+
+    class func defaultHeight(_ tableView: UITableView) -> CGFloat {
+        return 56.0
+    }
+
+    func render(item: QiitaItem) {
+        titleLabel.text = item.title
+        likesCountLabel.text = String(item.likesCount)
     }
 }

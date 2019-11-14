@@ -90,7 +90,7 @@ final class ListViewController: UITableViewController {
 
         qiitaBarButtonItem.rx.tap
             .subscribe(onNext: { [unowned self] in
-                self.viewModel.showGithubView()})
+                self.viewModel.showQiitaView()})
             .disposed(by: disposeBag)
     }
 }

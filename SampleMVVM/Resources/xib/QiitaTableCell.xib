@@ -54,6 +54,11 @@
                     <constraint firstItem="9lW-qX-zk2" firstAttribute="top" secondItem="3fr-dR-W68" secondAttribute="top" constant="8" id="qhX-H0-Oy6"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="iconImageView" destination="xfY-4d-Hgc" id="ZKh-6z-Z8G"/>
+                <outlet property="likesCountLabel" destination="2ab-R3-9EX" id="8J9-bZ-WJp"/>
+                <outlet property="titleLabel" destination="wMJ-iU-hVJ" id="ZRP-FX-82Z"/>
+            </connections>
             <point key="canvasLocation" x="20.289855072463769" y="126.5625"/>
         </tableViewCell>
     </objects>
