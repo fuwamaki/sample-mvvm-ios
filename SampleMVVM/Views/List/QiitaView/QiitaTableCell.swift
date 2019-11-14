@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PINRemoteImage
 
 final class QiitaTableCell: UITableViewCell {
 
@@ -25,5 +26,9 @@ final class QiitaTableCell: UITableViewCell {
     func render(item: QiitaItem) {
         titleLabel.text = item.title
         likesCountLabel.text = String(item.likesCount)
+        if iconImageView?.image == nil {
+            let profileImageUrl = item.user.profileImageUrl
+            iconImageView?.pin_setImage(from: URL(string: profileImageUrl))
+        }
     }
 }

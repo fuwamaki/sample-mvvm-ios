@@ -25,5 +25,9 @@ final class GithubTableCell: UITableViewCell {
     func render(repository: GithubRepository) {
         titleLabel.text = repository.fullName
         stargazersCountLabel.text = String(repository.stargazersCount)
+        if iconImageView?.image == nil {
+            let avatarUrl = repository.owner.avatarUrl
+            iconImageView?.pin_setImage(from: URL(string: avatarUrl))
+        }
     }
 }
