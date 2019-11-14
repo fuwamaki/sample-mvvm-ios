@@ -15,6 +15,8 @@ final class QiitaViewController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
             searchBar.backgroundImage = UIImage()
+            let view = TextFieldInputAccessoryView(textField: searchBar.searchTextField)
+            searchBar.inputAccessoryView = view
         }
     }
     @IBOutlet private weak var searchButton: UIButton!
