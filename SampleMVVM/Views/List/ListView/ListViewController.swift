@@ -10,30 +10,35 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class ListViewController: UITableViewController {
+final class ListViewController: UIViewController {
 
     @IBOutlet private weak var githubBarButtonItem: UIBarButtonItem!
     @IBOutlet private weak var qiitaBarButtonItem: UIBarButtonItem!
-
-    @IBOutlet private weak var githubCollectionView: UICollectionView! {
+    @IBOutlet private weak var tableView: UITableView! {
         didSet {
-            githubCollectionView.register(R.nib.collectionListCell)
-
-            githubCollectionView.rx
+            tableView.rx
                 .setDelegate(self)
-                .disposed(by: disposeBag)
-
-            items
-                .drive(githubCollectionView.rx.items) { collectionView, index, element in
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.collectionListCell,
-                                                                  for: IndexPath(row: index, section: 0))!
-                    cell.render(element)
-                    return cell }
                 .disposed(by: disposeBag)
         }
     }
 
-    @IBOutlet private weak var qiitaCollectionView: UICollectionView!
+//    var githubCollectionView: UICollectionView! {
+//        didSet {
+//            githubCollectionView.register(R.nib.collectionListCell)
+//
+//            githubCollectionView.rx
+//                .setDelegate(self)
+//                .disposed(by: disposeBag)
+//
+//            items
+//                .drive(githubCollectionView.rx.items) { collectionView, index, element in
+//                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.collectionListCell,
+//                                                                  for: IndexPath(row: index, section: 0))!
+//                    cell.render(element)
+//                    return cell }
+//                .disposed(by: disposeBag)
+//        }
+//    }
 
     private lazy var indicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
@@ -102,4 +107,7 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 120, height: 120)
     }
+}
+
+extension ListViewController: UITableViewDelegate {
 }

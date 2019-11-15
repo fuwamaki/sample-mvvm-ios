@@ -3,104 +3,50 @@
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--List画面-->
-        <scene sceneID="1Qg-qi-1M3">
+        <scene sceneID="IfX-ee-a80">
             <objects>
-                <tableViewController storyboardIdentifier="ListViewController" id="VVg-RH-rPV" customClass="ListViewController" customModule="SampleMVVM" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="37q-Jj-EnM">
+                <viewController storyboardIdentifier="ListViewController" id="tgi-SA-ru6" customClass="ListViewController" customModule="SampleMVVM" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S3O-AU-JmK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zyf-ku-uL4">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <sections>
-                            <tableViewSection headerTitle="Github Repository" id="4dC-xQ-oac">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GithubTableCell" rowHeight="205" id="uas-JC-MSl" customClass="GithubTableCell" customModule="SampleMVVM" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="205"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uas-JC-MSl" id="h3R-Tv-7aK">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="205"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QrT-sG-Fyx">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="205"/>
-                                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bPP-iA-gB6">
-                                                        <size key="itemSize" width="50" height="50"/>
-                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    </collectionViewFlowLayout>
-                                                    <cells/>
-                                                </collectionView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="QrT-sG-Fyx" secondAttribute="trailing" id="5Sk-tW-8CG"/>
-                                                <constraint firstItem="QrT-sG-Fyx" firstAttribute="top" secondItem="h3R-Tv-7aK" secondAttribute="top" id="9VO-Qb-Zuo"/>
-                                                <constraint firstItem="QrT-sG-Fyx" firstAttribute="leading" secondItem="h3R-Tv-7aK" secondAttribute="leading" id="g5F-Xo-UqG"/>
-                                                <constraint firstAttribute="bottom" secondItem="QrT-sG-Fyx" secondAttribute="bottom" id="uHE-i3-TUI"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Qiita" id="Flv-vw-qlH">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="QiitaTableCell" rowHeight="195" id="KSv-eI-iAQ" customClass="QiitaTableCell" customModule="SampleMVVM" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="289" width="414" height="195"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KSv-eI-iAQ" id="0Gg-Ca-mn7">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="195"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0G3-Zb-KVI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="195"/>
-                                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lq2-dY-NPe">
-                                                        <size key="itemSize" width="50" height="50"/>
-                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    </collectionViewFlowLayout>
-                                                    <cells/>
-                                                </collectionView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="0G3-Zb-KVI" firstAttribute="leading" secondItem="0Gg-Ca-mn7" secondAttribute="leading" id="7af-XS-yH4"/>
-                                                <constraint firstItem="0G3-Zb-KVI" firstAttribute="top" secondItem="0Gg-Ca-mn7" secondAttribute="top" id="LUI-8g-LPy"/>
-                                                <constraint firstAttribute="trailing" secondItem="0G3-Zb-KVI" secondAttribute="trailing" id="Oae-YI-VxC"/>
-                                                <constraint firstAttribute="bottom" secondItem="0G3-Zb-KVI" secondAttribute="bottom" id="e8c-H3-lsr"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="VVg-RH-rPV" id="15i-Wv-xmJ"/>
-                            <outlet property="delegate" destination="VVg-RH-rPV" id="3vX-kC-WwO"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="List" image="b.circle" catalog="system" id="bYQ-gd-r4c"/>
-                    <navigationItem key="navigationItem" title="List画面" id="45x-Lg-FlU">
+                        <constraints>
+                            <constraint firstItem="zyf-ku-uL4" firstAttribute="leading" secondItem="F49-Nl-FZw" secondAttribute="leading" id="471-Co-LqL"/>
+                            <constraint firstItem="F49-Nl-FZw" firstAttribute="trailing" secondItem="zyf-ku-uL4" secondAttribute="trailing" id="4UE-Q6-cJb"/>
+                            <constraint firstItem="zyf-ku-uL4" firstAttribute="top" secondItem="F49-Nl-FZw" secondAttribute="top" id="ac0-2H-9GD"/>
+                            <constraint firstItem="F49-Nl-FZw" firstAttribute="bottom" secondItem="zyf-ku-uL4" secondAttribute="bottom" id="fDM-aN-KJC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="F49-Nl-FZw"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="List" image="b.circle" catalog="system" id="RcJ-mo-jU9"/>
+                    <navigationItem key="navigationItem" title="List画面" id="PeJ-Um-qIf">
                         <rightBarButtonItems>
                             <barButtonItem image="qiita_icon" id="HqE-eR-X8r"/>
                             <barButtonItem title="Item" image="github_icon" id="2b8-yE-Ojp"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
-                        <outlet property="githubBarButtonItem" destination="2b8-yE-Ojp" id="s2k-tz-Ocs"/>
-                        <outlet property="githubCollectionView" destination="QrT-sG-Fyx" id="9rk-xp-e7S"/>
-                        <outlet property="qiitaBarButtonItem" destination="HqE-eR-X8r" id="r0I-cB-VUI"/>
-                        <outlet property="qiitaCollectionView" destination="0G3-Zb-KVI" id="yP7-9B-HGU"/>
+                        <outlet property="githubBarButtonItem" destination="2b8-yE-Ojp" id="Is1-lc-JKU"/>
+                        <outlet property="qiitaBarButtonItem" destination="HqE-eR-X8r" id="pdb-B1-JM0"/>
+                        <outlet property="tableView" destination="zyf-ku-uL4" id="9yJ-lo-nT0"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zgw-83-yqG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tDM-Ac-hg0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="381" y="161"/>
+            <point key="canvasLocation" x="458" y="161"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="t2d-w0-0ZL">
@@ -111,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="VVg-RH-rPV" kind="relationship" relationship="rootViewController" id="baX-rt-9ab"/>
+                        <segue destination="tgi-SA-ru6" kind="relationship" relationship="rootViewController" id="ylY-io-2Fl"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GVG-s0-nNe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
