@@ -10,12 +10,24 @@ import Foundation
 import RealmSwift
 
 enum ListRealmType: String {
-    case github = "github"
-    case qiita = "qiita"
+    case github
+    case qiita
+    case other
 }
 
 class ListRealmEntity: Object, RealmModelable {
     @objc dynamic var itemId: Int = 0
     @objc dynamic var keyword: String = ""
-    @objc dynamic var type: String = ""
+    @objc dynamic var typeString: String = ""
+
+    var type: ListRealmType {
+        switch typeString {
+        case ListRealmType.github.rawValue:
+            return .github
+        case ListRealmType.qiita.rawValue:
+            return .qiita
+        default:
+            return .other
+        }
+    }
 }

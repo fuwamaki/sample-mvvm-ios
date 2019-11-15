@@ -22,6 +22,8 @@ final class ListViewModel {
     var isLoading = BehaviorRelay<Bool>(value: false)
     var viewWillAppear = PublishRelay<Void>()
 
+    private let entitiesSubject = BehaviorRelay<[ListRealmEntity]>(value: [])
+
     private var pushViewControllerSubject = PublishRelay<UIViewController>()
     var pushViewController: Driver<UIViewController> {
         return pushViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
@@ -41,13 +43,29 @@ final class ListViewModel {
 
     private func subscribe() {
         viewWillAppear
-            .subscribe(onNext: { _ in
-                RealmRepository<ListRealmEntity>.find { result in
+            .subscribe(onNext: { [weak self] _ in
+                RealmRepository<ListRealmEntity>.find { [weak self] result in
                     switch result {
                     case .success(let entities):
+                        self?.entitiesSubject.accept(entities)
                         print(entities)
                     case .failure:
                         print("Realm取得失敗")
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+
+        entitiesSubject
+            .subscribe(onNext: { [weak self] entities in
+                entities.forEach { entity in
+                    switch entity.type {
+                    case .github:
+                        print("github")
+                    case .other:
+                        print("other")
+                    default:
+                        break
                     }
                 }
             })

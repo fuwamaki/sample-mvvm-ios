@@ -29,11 +29,11 @@ final class RealmRepository<Model: RealmModelable> {
 //        return itemRealmEntity
 //    }
 
-    static func find(completion: @escaping (Result<[RealmModelable], NSError>) -> Void) {
+    static func find(completion: @escaping (Result<[Model], NSError>) -> Void) {
         do {
             let realm = try Realm()
             let objects = realm.objects(Model.self)
-            let models: [RealmModelable] = objects.map { $0 }
+            let models: [Model] = objects.map { $0 }
             completion(.success(models))
         } catch let error as NSError {
             completion(.failure(error))

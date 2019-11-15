@@ -80,7 +80,7 @@ extension GithubViewModel: GithubViewModelable {
         let entity = ListRealmEntity()
         entity.itemId = UserDefaultsRepository.shared.incrementListId ?? 0
         entity.keyword = query
-        entity.type = ListRealmType.github.rawValue
+        entity.typeString = ListRealmType.github.rawValue
         RealmRepository<ListRealmEntity>.save(item: entity) { result in
             switch result {
             case .success:
