@@ -13,6 +13,7 @@
 		200BB352237E471200AFA246 /* UserDefaults+IntegerDefaultSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB351237E471200AFA246 /* UserDefaults+IntegerDefaultSettable.swift */; };
 		200BB354237E473500AFA246 /* UserDefaults+URLDefaultSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB353237E473500AFA246 /* UserDefaults+URLDefaultSettable.swift */; };
 		200BB357237E47BE00AFA246 /* KeyNamespaceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB356237E47BE00AFA246 /* KeyNamespaceable.swift */; };
+		200BB359237E4B2100AFA246 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB358237E4B2100AFA246 /* UserDefaultsRepository.swift */; };
 		201BF0342338EFF90020F7B4 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF0332338EFF90020F7B4 /* Item.swift */; };
 		201BF0362338F8CD0020F7B4 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF0352338F8CD0020F7B4 /* APIError.swift */; };
 		201BF0382338FAE60020F7B4 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF0372338FAE60020F7B4 /* RequestProtocol.swift */; };
@@ -104,6 +105,7 @@
 		200BB351237E471200AFA246 /* UserDefaults+IntegerDefaultSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+IntegerDefaultSettable.swift"; sourceTree = "<group>"; };
 		200BB353237E473500AFA246 /* UserDefaults+URLDefaultSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+URLDefaultSettable.swift"; sourceTree = "<group>"; };
 		200BB356237E47BE00AFA246 /* KeyNamespaceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyNamespaceable.swift; sourceTree = "<group>"; };
+		200BB358237E4B2100AFA246 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
 		201BF0332338EFF90020F7B4 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		201BF0352338F8CD0020F7B4 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		201BF0372338FAE60020F7B4 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				200BB34B237E329A00AFA246 /* RealmRepository.swift */,
+				200BB358237E4B2100AFA246 /* UserDefaultsRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -820,6 +823,7 @@
 				202ADB73236B060200E65BB8 /* CustomPicker.swift in Sources */,
 				20382BDB2339F05000CF77A1 /* CollectionListCell.swift in Sources */,
 				205BE0BA235417EB009EF0F2 /* QiitaViewModel.swift in Sources */,
+				200BB359237E4B2100AFA246 /* UserDefaultsRepository.swift in Sources */,
 				20AAA786237D8A96006F2817 /* APIClient+Qiita.swift in Sources */,
 				201BF03F2339014C0020F7B4 /* ItemResponse.swift in Sources */,
 				20382BE12339F6A200CF77A1 /* QiitaTableCell.swift in Sources */,

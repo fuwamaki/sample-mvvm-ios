@@ -27,9 +27,6 @@ extension StringDefaultSettable where StringKey.RawValue == String {
 
 extension UserDefaults: StringDefaultSettable {
     enum StringKey: String {
-        case mode
-        case userId
-        case userName
-        case userImageUrl
+        case sample
     }
 }

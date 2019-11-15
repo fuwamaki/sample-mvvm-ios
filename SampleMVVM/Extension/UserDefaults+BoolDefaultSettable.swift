@@ -27,8 +27,6 @@ extension BoolDefaultSettable where BoolKey.RawValue == String {
 
 extension UserDefaults: BoolDefaultSettable {
     enum BoolKey: String {
-        case isTutorial
-        case isLogin
-        case canUserNotification
+        case sample
     }
 }
