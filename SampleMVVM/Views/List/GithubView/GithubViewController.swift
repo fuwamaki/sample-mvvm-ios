@@ -12,6 +12,7 @@ import RxCocoa
 
 final class GithubViewController: UIViewController {
 
+    @IBOutlet private weak var favoriteBarButtonItem: UIBarButtonItem!
     @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
             searchBar.backgroundImage = UIImage()
@@ -20,9 +21,7 @@ final class GithubViewController: UIViewController {
             searchBar.inputAccessoryView = view
         }
     }
-
     @IBOutlet private weak var searchButton: UIButton!
-
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.register(R.nib.githubTableCell)
@@ -108,7 +107,14 @@ final class GithubViewController: UIViewController {
                 self.viewModel.fetchRepositories(query: self.searchBar.text)
                     .subscribe()
                     .disposed(by: self.disposeBag)
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
+
+        favoriteBarButtonItem.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                self.viewModel.saveKeyword(query: self.searchBar.text)
+            })
+            .disposed(by: disposeBag)
     }
 }
 

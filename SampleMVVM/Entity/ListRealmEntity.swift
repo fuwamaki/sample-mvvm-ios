@@ -9,6 +9,11 @@
 import Foundation
 import RealmSwift
 
+enum ListRealmType: String {
+    case github = "github"
+    case qiita = "qiita"
+}
+
 class ListRealmEntity: Object, RealmModelable {
     @objc dynamic var itemId: Int = 0
     @objc dynamic var keyword: String = ""

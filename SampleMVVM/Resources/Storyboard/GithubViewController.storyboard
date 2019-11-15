@@ -60,6 +60,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="favoriteBarButtonItem" destination="d6j-Zb-NT0" id="y34-nn-yxr"/>
                         <outlet property="searchBar" destination="ckS-yr-rwa" id="6Ps-hl-C6k"/>
                         <outlet property="searchButton" destination="nch-Zc-tir" id="rlK-cP-XCS"/>
                         <outlet property="tableView" destination="cey-Po-tDm" id="1Nj-uv-Nck"/>

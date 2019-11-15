@@ -17,6 +17,7 @@ protocol GithubViewModelable {
     var errorAlertMessage: Driver<String> { get }
     func fetchRepositories(query: String?) -> Completable
     func showGithubWebView(indexPath: IndexPath)
+    func saveKeyword(query: String?)
 }
 
 final class GithubViewModel {
@@ -72,6 +73,23 @@ extension GithubViewModel: GithubViewModelable {
                     self?.errorAlertMessageSubject.accept(error.message)})
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
+    }
+
+    func saveKeyword(query: String?) {
+        guard let query = query else { return }
+        let entity = ListRealmEntity()
+        entity.itemId = UserDefaultsRepository.shared.incrementListId ?? 0
+        entity.keyword = query
+        entity.type = ListRealmType.github.rawValue
+        RealmRepository<ListRealmEntity>.save(item: entity) { result in
+            switch result {
+            case .success:
+                UserDefaultsRepository.shared.oneUp(type: .incrementListId)
+                print("保存完了")
+            case .failure:
+                print("保存失敗")
+            }
+        }
     }
 
     func showGithubWebView(indexPath: IndexPath) {

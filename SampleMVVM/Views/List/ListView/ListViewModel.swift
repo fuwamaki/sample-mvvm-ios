@@ -41,8 +41,15 @@ final class ListViewModel {
 
     private func subscribe() {
         viewWillAppear
-            .subscribe(onNext: { [unowned self] in
-                print("TODO") // TODO
+            .subscribe(onNext: { _ in
+                RealmRepository<ListRealmEntity>.find { result in
+                    switch result {
+                    case .success(let entities):
+                        print(entities)
+                    case .failure:
+                        print("Realm取得失敗")
+                    }
+                }
             })
             .disposed(by: disposeBag)
     }
