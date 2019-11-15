@@ -22,6 +22,8 @@
 		201BF03D2338FDBD0020F7B4 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF03C2338FDBD0020F7B4 /* Url.swift */; };
 		201BF03F2339014C0020F7B4 /* ItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF03E2339014C0020F7B4 /* ItemResponse.swift */; };
 		201BF041233902770020F7B4 /* ItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF040233902770020F7B4 /* ItemRequest.swift */; };
+		202350D0237E86FC00311C74 /* ListGithubTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 202350CF237E86FC00311C74 /* ListGithubTableCell.xib */; };
+		202350D2237E874F00311C74 /* ListGithubTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202350D1237E874F00311C74 /* ListGithubTableCell.swift */; };
 		202ADB71236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202ADB70236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift */; };
 		202ADB73236B060200E65BB8 /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202ADB72236B060200E65BB8 /* CustomPicker.swift */; };
 		202ADB75236BEE2700E65BB8 /* UIImage+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202ADB74236BEE2700E65BB8 /* UIImage+Addition.swift */; };
@@ -115,6 +117,8 @@
 		201BF03C2338FDBD0020F7B4 /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
 		201BF03E2339014C0020F7B4 /* ItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemResponse.swift; sourceTree = "<group>"; };
 		201BF040233902770020F7B4 /* ItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRequest.swift; sourceTree = "<group>"; };
+		202350CF237E86FC00311C74 /* ListGithubTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListGithubTableCell.xib; sourceTree = "<group>"; };
+		202350D1237E874F00311C74 /* ListGithubTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListGithubTableCell.swift; sourceTree = "<group>"; };
 		202ADB70236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputAccessoryView.swift; sourceTree = "<group>"; };
 		202ADB72236B060200E65BB8 /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
 		202ADB74236BEE2700E65BB8 /* UIImage+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Addition.swift"; sourceTree = "<group>"; };
@@ -281,6 +285,7 @@
 			children = (
 				20382BEA233A0CA100CF77A1 /* GithubCollectionCell.xib */,
 				20382BEC233A0CB100CF77A1 /* QiitaCollectionCell.xib */,
+				202350CF237E86FC00311C74 /* ListGithubTableCell.xib */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -496,6 +501,7 @@
 		20AC3E5D235462D7007F67ED /* ListView */ = {
 			isa = PBXGroup;
 			children = (
+				202350D1237E874F00311C74 /* ListGithubTableCell.swift */,
 				20382BE6233A04DD00CF77A1 /* GithubCollectionCell.swift */,
 				20382BE8233A04E800CF77A1 /* QiitaCollectionCell.swift */,
 				209A60D02338C4E600D6338C /* ListViewController.swift */,
@@ -656,6 +662,7 @@
 				209A60EA2338CE2500D6338C /* ItemTableCell.xib in Resources */,
 				205BE0C223541B70009EF0F2 /* QiitaViewController.storyboard in Resources */,
 				205BE0D023544C3E009EF0F2 /* QiitaTableCell.xib in Resources */,
+				202350D0237E86FC00311C74 /* ListGithubTableCell.xib in Resources */,
 				209A60AA23388F1600D6338C /* LaunchScreen.storyboard in Resources */,
 				20382BDD2339F06E00CF77A1 /* CollectionListCell.xib in Resources */,
 				209A60A723388F1600D6338C /* Assets.xcassets in Resources */,
@@ -829,6 +836,7 @@
 				209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */,
 				209A60DF2338CBEC00D6338C /* OriginalResult.swift in Sources */,
 				20AC3E702356BB3B007F67ED /* APIClientable.swift in Sources */,
+				202350D2237E874F00311C74 /* ListGithubTableCell.swift in Sources */,
 				205BE0CA235426DA009EF0F2 /* GithubRepositoryResponse.swift in Sources */,
 				205BE0BC23541800009EF0F2 /* GithubViewController.swift in Sources */,
 				201BF0362338F8CD0020F7B4 /* APIError.swift in Sources */,

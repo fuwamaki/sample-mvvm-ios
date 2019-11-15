@@ -62,13 +62,5 @@
             <size key="customSize" width="156" height="179"/>
             <point key="canvasLocation" x="163.768115942029" y="164.39732142857142"/>
         </collectionViewCell>
-        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ajp-Zt-3AZ">
-            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-            <nil key="textColor"/>
-            <nil key="highlightedColor"/>
-            <point key="canvasLocation" x="181" y="54"/>
-        </label>
     </objects>
 </document>
