@@ -12,6 +12,7 @@
 		200BB350237E46F100AFA246 /* UserDefaults+BoolDefaultSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB34F237E46F100AFA246 /* UserDefaults+BoolDefaultSettable.swift */; };
 		200BB352237E471200AFA246 /* UserDefaults+IntegerDefaultSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB351237E471200AFA246 /* UserDefaults+IntegerDefaultSettable.swift */; };
 		200BB354237E473500AFA246 /* UserDefaults+URLDefaultSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB353237E473500AFA246 /* UserDefaults+URLDefaultSettable.swift */; };
+		200BB357237E47BE00AFA246 /* KeyNamespaceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB356237E47BE00AFA246 /* KeyNamespaceable.swift */; };
 		201BF0342338EFF90020F7B4 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF0332338EFF90020F7B4 /* Item.swift */; };
 		201BF0362338F8CD0020F7B4 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF0352338F8CD0020F7B4 /* APIError.swift */; };
 		201BF0382338FAE60020F7B4 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF0372338FAE60020F7B4 /* RequestProtocol.swift */; };
@@ -102,6 +103,7 @@
 		200BB34F237E46F100AFA246 /* UserDefaults+BoolDefaultSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+BoolDefaultSettable.swift"; sourceTree = "<group>"; };
 		200BB351237E471200AFA246 /* UserDefaults+IntegerDefaultSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+IntegerDefaultSettable.swift"; sourceTree = "<group>"; };
 		200BB353237E473500AFA246 /* UserDefaults+URLDefaultSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+URLDefaultSettable.swift"; sourceTree = "<group>"; };
+		200BB356237E47BE00AFA246 /* KeyNamespaceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyNamespaceable.swift; sourceTree = "<group>"; };
 		201BF0332338EFF90020F7B4 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		201BF0352338F8CD0020F7B4 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		201BF0372338FAE60020F7B4 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
@@ -210,6 +212,14 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		200BB355237E47AD00AFA246 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				200BB356237E47BE00AFA246 /* KeyNamespaceable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		201BF0322338EFEB0020F7B4 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +302,7 @@
 				200BB34A237E328B00AFA246 /* Repository */,
 				201BF03B2338FDA70020F7B4 /* Struct */,
 				20AC3E5A23546266007F67ED /* Enum */,
+				200BB355237E47AD00AFA246 /* Protocol */,
 				209A60C02338906C00D6338C /* Resources */,
 				209A60E22338CC4800D6338C /* Extension */,
 			);
@@ -775,6 +786,7 @@
 				209A60E52338CDDF00D6338C /* ItemTableCell.swift in Sources */,
 				20AC3E722356BB48007F67ED /* APIClient+Item.swift in Sources */,
 				209A60D92338C52F00D6338C /* MypageViewModel.swift in Sources */,
+				200BB357237E47BE00AFA246 /* KeyNamespaceable.swift in Sources */,
 				200BB354237E473500AFA246 /* UserDefaults+URLDefaultSettable.swift in Sources */,
 				20AC3E742356BB52007F67ED /* APIClient+Github.swift in Sources */,
 				20382BE7233A04DD00CF77A1 /* GithubCollectionCell.swift in Sources */,
