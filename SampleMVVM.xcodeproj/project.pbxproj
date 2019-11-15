@@ -14,6 +14,7 @@
 		200BB354237E473500AFA246 /* UserDefaults+URLDefaultSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB353237E473500AFA246 /* UserDefaults+URLDefaultSettable.swift */; };
 		200BB357237E47BE00AFA246 /* KeyNamespaceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB356237E47BE00AFA246 /* KeyNamespaceable.swift */; };
 		200BB359237E4B2100AFA246 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB358237E4B2100AFA246 /* UserDefaultsRepository.swift */; };
+		200BB35B237E580100AFA246 /* ListRealmEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB35A237E580100AFA246 /* ListRealmEntity.swift */; };
 		201BF0342338EFF90020F7B4 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF0332338EFF90020F7B4 /* Item.swift */; };
 		201BF0362338F8CD0020F7B4 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF0352338F8CD0020F7B4 /* APIError.swift */; };
 		201BF0382338FAE60020F7B4 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BF0372338FAE60020F7B4 /* RequestProtocol.swift */; };
@@ -106,6 +107,7 @@
 		200BB353237E473500AFA246 /* UserDefaults+URLDefaultSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+URLDefaultSettable.swift"; sourceTree = "<group>"; };
 		200BB356237E47BE00AFA246 /* KeyNamespaceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyNamespaceable.swift; sourceTree = "<group>"; };
 		200BB358237E4B2100AFA246 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
+		200BB35A237E580100AFA246 /* ListRealmEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRealmEntity.swift; sourceTree = "<group>"; };
 		201BF0332338EFF90020F7B4 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		201BF0352338F8CD0020F7B4 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		201BF0372338FAE60020F7B4 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				205BE0C52354260C009EF0F2 /* GithubRepositoryOwner.swift */,
 				20AAA781237D897C006F2817 /* QiitaItem.swift */,
 				20AAA783237D8A65006F2817 /* QiitaUser.swift */,
+				200BB35A237E580100AFA246 /* ListRealmEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				209A60CF2338C4D900D6338C /* ItemViewController.swift in Sources */,
 				200BB352237E471200AFA246 /* UserDefaults+IntegerDefaultSettable.swift in Sources */,
 				20A122872340F3CD00FA1EAB /* ItemRegisterViewModel.swift in Sources */,
+				200BB35B237E580100AFA246 /* ListRealmEntity.swift in Sources */,
 				201BF0382338FAE60020F7B4 /* RequestProtocol.swift in Sources */,
 				201BF03D2338FDBD0020F7B4 /* Url.swift in Sources */,
 				205BE0BE2354180D009EF0F2 /* GithubViewModel.swift in Sources */,
