@@ -133,6 +133,7 @@ final class ListViewModel {
                     var contents = self.contentsSubject.value
                     let content = ListContents(offset: offset, type: .github, contents: repositories)
                     contents.append(content)
+                    contents.sort { $0.offset < $1.offset }
                     self.contentsSubject.accept(contents)
                 },
                 onError: { [weak self] error in
@@ -155,6 +156,7 @@ final class ListViewModel {
                     var contents = self.contentsSubject.value
                     let content = ListContents(offset: offset, type: .qiita, contents: qiitaItems)
                     contents.append(content)
+                    contents.sort { $0.offset < $1.offset }
                     self.contentsSubject.accept(contents)
                 },
                 onError: { [weak self] error in
