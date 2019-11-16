@@ -24,6 +24,7 @@ final class ListGithubTableCell: UITableViewCell {
                 .drive(collectionView.rx.items) { collectionView, index, element in
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.githubCollectionCell,
                                                                   for: IndexPath(row: index, section: 0))!
+                    cell.render(repository: element)
                     return cell }
                 .disposed(by: disposeBag)
         }

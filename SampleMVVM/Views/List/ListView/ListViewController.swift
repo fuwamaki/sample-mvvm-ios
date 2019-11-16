@@ -22,24 +22,6 @@ final class ListViewController: UIViewController {
         }
     }
 
-//    var githubCollectionView: UICollectionView! {
-//        didSet {
-//            githubCollectionView.register(R.nib.collectionListCell)
-//
-//            githubCollectionView.rx
-//                .setDelegate(self)
-//                .disposed(by: disposeBag)
-//
-//            items
-//                .drive(githubCollectionView.rx.items) { collectionView, index, element in
-//                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.collectionListCell,
-//                                                                  for: IndexPath(row: index, section: 0))!
-//                    cell.render(element)
-//                    return cell }
-//                .disposed(by: disposeBag)
-//        }
-//    }
-
     private lazy var indicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
         indicator.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
