@@ -32,25 +32,6 @@ final class ListViewController: UIViewController {
                     self?.tableView.reloadData()
                 }})
                 .disposed(by: disposeBag)
-//            viewModel.contents
-//                .drive(tableView.rx.items) { tableView, index, element in
-//                    switch element.type {
-//                    case .github:
-//                        guard let repositories = element.contents as? [GithubRepository] else { return UITableViewCell() }
-//                        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.listGithubTableCell,
-//                                                                 for: IndexPath(item: index, section: 0))!
-//                        cell.render(repositories: repositories)
-//                        return cell
-//                    case .qiita:
-//                        guard let qiitaItems = element.contents as? [QiitaItem] else { return UITableViewCell() }
-//                        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.listQiitaTableCell,
-//                                                                 for: IndexPath(item: index, section: 0))!
-//                        cell.render(qiitaItems: qiitaItems)
-//                        return cell
-//                    case .other:
-//                        return UITableViewCell()
-//                    }}
-//                .disposed(by: disposeBag)
         }
     }
 
@@ -145,14 +126,12 @@ extension ListViewController: UITableViewDataSource {
         let element = viewModel.contentsSubject.value[indexPath.section]
         switch element.type {
         case .github:
-            guard let repositories = element.contents as? [GithubRepository] else { return UITableViewCell() }
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.listGithubTableCell, for: indexPath)!
-            cell.render(repositories: repositories)
+            cell.render(repositories: element.contents as! [GithubRepository])
             return cell
         case .qiita:
-            guard let qiitaItems = element.contents as? [QiitaItem] else { return UITableViewCell() }
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.listQiitaTableCell, for: indexPath)!
-            cell.render(qiitaItems: qiitaItems)
+            cell.render(qiitaItems: element.contents as! [QiitaItem])
             return cell
         case .other:
             return UITableViewCell()

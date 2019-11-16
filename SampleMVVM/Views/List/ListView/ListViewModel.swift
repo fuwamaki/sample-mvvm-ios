@@ -9,12 +9,6 @@
 import RxSwift
 import RxCocoa
 
-struct ListContents {
-    let offset: Int
-    let type: ListRealmType
-    let contents: [Listable]
-}
-
 protocol ListViewModelable {
     var isLoading: BehaviorRelay<Bool> { get }
     var viewWillAppear: PublishRelay<Void> { get }
