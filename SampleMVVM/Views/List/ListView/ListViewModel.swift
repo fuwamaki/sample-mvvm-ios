@@ -9,6 +9,29 @@
 import RxSwift
 import RxCocoa
 
+import Foundation
+final class SwiftScriptRunner {
+    private var count = 0
+    private let runLoop = RunLoop.current
+
+    init() {}
+
+    func lock() {
+        count += 1
+    }
+
+    func unlock() {
+        count -= 1
+    }
+
+    func wait() {
+        while count > 0 &&
+            runLoop.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1)) {
+                // Run, run, run
+        }
+    }
+}
+
 protocol ListViewModelable {
     var isLoading: BehaviorRelay<Bool> { get }
     var viewWillAppear: PublishRelay<Void> { get }
@@ -64,36 +87,49 @@ final class ListViewModel {
                         print("Realm取得失敗")
                     }
                 }
+                self?.subscribeWill()
             })
             .disposed(by: disposeBag)
+    }
 
+    private func subscribeWill() {
         entitiesSubject
             .subscribe(onNext: { [unowned self] entities in
                 entities.enumerated().forEach { offset, entity in
+                    let runner = SwiftScriptRunner()
+                    runner.lock()
                     switch entity.type {
                     case .github:
                         self.fetchGithubRepositories(offset: offset, entity: entity)
+                            .subscribe(onCompleted: {
+                                runner.unlock()
+                            })
+                            .disposed(by: self.disposeBag)
                     case .other:
                         print("other")
                     default:
                         break
                     }
+                    runner.wait()
                 }
             })
             .disposed(by: disposeBag)
     }
 
-    private func fetchGithubRepositories(offset: Int, entity: ListRealmEntity) {
+    private func fetchGithubRepositories(offset: Int, entity: ListRealmEntity) -> Completable {
         apiClient.fetchGithubRepositories(query: entity.keyword)
-            .subscribe(
+            .do(
                 onSuccess: { [weak self] repositories in
-                    self?.contentsSubject.accept([offset: repositories])
+                    guard var contents = self?.contentsSubject.value else { return }
+                    contents.updateValue(repositories, forKey: offset)
+                    self?.contentsSubject.accept(contents)
                 },
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
                     self?.errorAlertMessageSubject.accept(error.message)})
-            .disposed(by: disposeBag)
+            .map { _ in } // Single<Void>に変換
+            .asCompletable() // Completableに変換
     }
 }
 

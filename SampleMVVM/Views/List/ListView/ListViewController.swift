@@ -23,13 +23,13 @@ final class ListViewController: UIViewController {
                 .disposed(by: disposeBag)
 
             viewModel.contents
-            .drive(tableView.rx.items) { tableView, index, element in
-                guard let repositories = element.value as? [GithubRepository] else { return UITableViewCell() }
-                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.listGithubTableCell,
-                                                         for: IndexPath(item: index, section: 0))!
-                cell.render(repositories: repositories)
-                return cell }
-            .disposed(by: disposeBag)
+                .drive(tableView.rx.items) { tableView, index, element in
+                    guard let repositories = element.value as? [GithubRepository] else { return UITableViewCell() }
+                    let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.listGithubTableCell,
+                                                             for: IndexPath(item: index, section: 0))!
+                    cell.render(repositories: repositories)
+                    return cell }
+                .disposed(by: disposeBag)
         }
     }
 
@@ -68,8 +68,8 @@ final class ListViewController: UIViewController {
 
     private func bind() {
         rx.viewWillAppear
-        .bind(to: viewModel.viewWillAppear)
-        .disposed(by: disposeBag)
+            .bind(to: viewModel.viewWillAppear)
+            .disposed(by: disposeBag)
 
         viewModel.isLoading
             .subscribe(onNext: { [weak self] in
