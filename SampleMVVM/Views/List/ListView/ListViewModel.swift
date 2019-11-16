@@ -9,29 +9,6 @@
 import RxSwift
 import RxCocoa
 
-import Foundation
-final class SwiftScriptRunner {
-    private var count = 0
-    private let runLoop = RunLoop.current
-
-    init() {}
-
-    func lock() {
-        count += 1
-    }
-
-    func unlock() {
-        count -= 1
-    }
-
-    func wait() {
-        while count > 0 &&
-            runLoop.run(mode: .default, before: Date(timeIntervalSinceNow: 0.1)) {
-                // Run, run, run
-        }
-    }
-}
-
 struct ListContents {
     let offset: Int
     let type: ListRealmType
