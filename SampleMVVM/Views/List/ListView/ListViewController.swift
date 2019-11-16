@@ -17,6 +17,7 @@ final class ListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.register(R.nib.listGithubTableCell)
+            tableView.register(R.nib.listQiitaTableCell)
 
             tableView.rx
                 .setDelegate(self)
@@ -24,11 +25,22 @@ final class ListViewController: UIViewController {
 
             viewModel.contents
                 .drive(tableView.rx.items) { tableView, index, element in
-                    guard let repositories = element.value as? [GithubRepository] else { return UITableViewCell() }
-                    let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.listGithubTableCell,
-                                                             for: IndexPath(item: index, section: 0))!
-                    cell.render(repositories: repositories)
-                    return cell }
+                    switch element.type {
+                    case .github:
+                        guard let repositories = element.contents as? [GithubRepository] else { return UITableViewCell() }
+                        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.listGithubTableCell,
+                                                                 for: IndexPath(item: index, section: 0))!
+                        cell.render(repositories: repositories)
+                        return cell
+                    case .qiita:
+                        guard let qiitaItems = element.contents as? [QiitaItem] else { return UITableViewCell() }
+                        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.listQiitaTableCell,
+                                                                 for: IndexPath(item: index, section: 0))!
+                        cell.render(qiitaItems: qiitaItems)
+                        return cell
+                    case .other:
+                        return UITableViewCell()
+                    }}
                 .disposed(by: disposeBag)
         }
     }

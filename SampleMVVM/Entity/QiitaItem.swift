@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct QiitaItem: Codable {
+struct QiitaItem: Codable, Listable {
     let id: String
     let title: String
     let likesCount: Int

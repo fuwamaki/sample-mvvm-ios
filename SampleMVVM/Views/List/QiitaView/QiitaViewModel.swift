@@ -16,6 +16,7 @@ protocol QiitaViewModelable {
     var pushViewController: Driver<UIViewController> { get }
     var errorAlertMessage: Driver<String> { get }
     func fetchQiitaItems(tag: String?) -> Completable
+    func saveKeyword(query: String?)
     func showQiitaWebView(indexPath: IndexPath)
 }
 
@@ -72,6 +73,23 @@ extension QiitaViewModel: QiitaViewModelable {
                     self?.errorAlertMessageSubject.accept(error.message)})
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
+    }
+
+    func saveKeyword(query: String?) {
+        guard let query = query else { return }
+        let entity = ListRealmEntity()
+        entity.itemId = UserDefaultsRepository.shared.incrementListId ?? 0
+        entity.keyword = query
+        entity.typeString = ListRealmType.qiita.rawValue
+        RealmRepository<ListRealmEntity>.save(item: entity) { result in
+            switch result {
+            case .success:
+                UserDefaultsRepository.shared.oneUp(type: .incrementListId)
+                print("保存完了")
+            case .failure:
+                print("保存失敗")
+            }
+        }
     }
 
     func showQiitaWebView(indexPath: IndexPath) {

@@ -32,11 +32,17 @@ final class SwiftScriptRunner {
     }
 }
 
+struct ListContents {
+    let offset: Int
+    let type: ListRealmType
+    let contents: [Listable]
+}
+
 protocol ListViewModelable {
     var isLoading: BehaviorRelay<Bool> { get }
     var viewWillAppear: PublishRelay<Void> { get }
     var viewDidAppear: PublishRelay<Void> { get }
-    var contents: Driver<[Int: [Listable]]> { get }
+    var contents: Driver<[ListContents]> { get }
     var pushViewController: Driver<UIViewController> { get }
     func showGithubView()
     func showQiitaView()
@@ -50,9 +56,9 @@ final class ListViewModel {
 
     private var entitiesSubject = BehaviorRelay<[ListRealmEntity]>(value: [])
 
-    private let contentsSubject = BehaviorRelay<[Int: [Listable]]>(value: [:])
-    var contents: Driver<[Int: [Listable]]> {
-        return contentsSubject.asDriver(onErrorJustReturn: [:])
+    private let contentsSubject = BehaviorRelay<[ListContents]>(value: [])
+    var contents: Driver<[ListContents]> {
+        return contentsSubject.asDriver(onErrorJustReturn: [])
     }
 
     private var pushViewControllerSubject = PublishRelay<UIViewController>()
@@ -118,9 +124,11 @@ final class ListViewModel {
                                 runner.unlock()
                             })
                             .disposed(by: self.disposeBag)
+                    case .qiita:
+                        self.fetchQiitaItems(offset: offset, entity: entity)
+                            .subscribe()
+                            .disposed(by: self.disposeBag)
                     case .other:
-                        print("other")
-                    default:
                         break
                     }
                     runner.wait()
@@ -134,7 +142,25 @@ final class ListViewModel {
             .do(
                 onSuccess: { [weak self] repositories in
                     guard var contents = self?.contentsSubject.value else { return }
-                    contents.updateValue(repositories, forKey: offset)
+                    let content = ListContents(offset: offset, type: .github, contents: repositories)
+                    contents.append(content)
+                    self?.contentsSubject.accept(contents)
+                },
+                onError: { [weak self] error in
+                    guard let error = error as? APIError else { return }
+                    self?.isLoading.accept(false)
+                    self?.errorAlertMessageSubject.accept(error.message)})
+            .map { _ in } // Single<Void>に変換
+            .asCompletable() // Completableに変換
+    }
+
+    private func fetchQiitaItems(offset: Int, entity: ListRealmEntity) -> Completable {
+        apiClient.fetchQiitaItems(tag: entity.keyword)
+            .do(
+                onSuccess: { [weak self] qiitaItems in
+                    guard var contents = self?.contentsSubject.value else { return }
+                    let content = ListContents(offset: offset, type: .qiita, contents: qiitaItems)
+                    contents.append(content)
                     self?.contentsSubject.accept(contents)
                 },
                 onError: { [weak self] error in

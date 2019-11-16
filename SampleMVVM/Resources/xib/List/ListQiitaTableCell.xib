@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListQiitaTableCell" rowHeight="68" id="mWs-Re-Lch" customClass="ListQiitaTableCell" customModule="SampleMVVM" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="68"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mWs-Re-Lch" id="c2c-le-K3Z">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="68"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="L9S-s7-fNE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="68"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CWM-zQ-Qp1">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="L9S-s7-fNE" firstAttribute="top" secondItem="c2c-le-K3Z" secondAttribute="top" id="41C-ij-DFI"/>
+                    <constraint firstAttribute="bottom" secondItem="L9S-s7-fNE" secondAttribute="bottom" id="60e-Ed-vJh"/>
+                    <constraint firstItem="L9S-s7-fNE" firstAttribute="leading" secondItem="c2c-le-K3Z" secondAttribute="leading" id="lCv-rQ-Ayx"/>
+                    <constraint firstAttribute="trailing" secondItem="L9S-s7-fNE" secondAttribute="trailing" id="mxk-BI-bcS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="collectionView" destination="L9S-s7-fNE" id="Lpb-vG-S6I"/>
+            </connections>
+            <point key="canvasLocation" x="156.52173913043478" y="189.50892857142856"/>
+        </tableViewCell>
+    </objects>
+</document>

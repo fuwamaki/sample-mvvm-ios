@@ -16,8 +16,8 @@ protocol GithubViewModelable {
     var pushViewController: Driver<UIViewController> { get }
     var errorAlertMessage: Driver<String> { get }
     func fetchRepositories(query: String?) -> Completable
-    func showGithubWebView(indexPath: IndexPath)
     func saveKeyword(query: String?)
+    func showGithubWebView(indexPath: IndexPath)
 }
 
 final class GithubViewModel {

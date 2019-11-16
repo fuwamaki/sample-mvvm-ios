@@ -12,6 +12,7 @@ import RxCocoa
 
 final class QiitaViewController: UIViewController {
 
+    @IBOutlet private weak var favoriteBarButtonItem: UIBarButtonItem!
     @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
             searchBar.backgroundImage = UIImage()
@@ -107,6 +108,12 @@ final class QiitaViewController: UIViewController {
                     .subscribe()
                     .disposed(by: self.disposeBag)
             }).disposed(by: disposeBag)
+
+        favoriteBarButtonItem.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                self.viewModel.saveKeyword(query: self.searchBar.text)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
