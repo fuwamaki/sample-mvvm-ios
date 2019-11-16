@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import LineSDK
 
 final class MypageViewController: UIViewController {
 
@@ -43,6 +44,32 @@ final class MypageViewController: UIViewController {
             inputAccessoryView.delegate = self
             $1.inputAccessoryView = inputAccessoryView
         }
+
+        // Create Login Button.
+        let loginBtn = LoginButton()
+        loginBtn.delegate = self
+
+        // Configuration for permissions and presenting.
+        loginBtn.permissions = [.profile]
+        loginBtn.presentingViewController = self
+
+        // Add button to view and layout it.
+        view.addSubview(loginBtn)
+        loginBtn.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: loginBtn,
+                           attribute: .centerX,
+                           relatedBy: .equal,
+                           toItem: view,
+                           attribute: .centerX,
+                           multiplier: 1,
+                           constant: 0).isActive = true
+        NSLayoutConstraint(item: loginBtn,
+                           attribute: .centerY,
+                           relatedBy: .equal,
+                           toItem: view,
+                           attribute: .centerY,
+                           multiplier: 1,
+                           constant: 0).isActive = true
     }
 
     private func bind() {
@@ -55,3 +82,17 @@ final class MypageViewController: UIViewController {
 }
 
 extension MypageViewController: TextFieldInputAccessoryViewDelegate {}
+
+extension MypageViewController: LoginButtonDelegate {
+    func loginButton(_ button: LoginButton, didSucceedLogin loginResult: LoginResult) {
+        print("Login Succeeded.")
+    }
+
+    func loginButton(_ button: LoginButton, didFailLogin error: Error) {
+        print("Error: \(error)")
+    }
+
+    func loginButtonDidStartLogin(_ button: LoginButton) {
+        print("Login Started.")
+    }
+}
