@@ -35,6 +35,7 @@ final class SwiftScriptRunner {
 protocol ListViewModelable {
     var isLoading: BehaviorRelay<Bool> { get }
     var viewWillAppear: PublishRelay<Void> { get }
+    var viewDidAppear: PublishRelay<Void> { get }
     var contents: Driver<[Int: [Listable]]> { get }
     var pushViewController: Driver<UIViewController> { get }
     func showGithubView()
@@ -45,6 +46,7 @@ final class ListViewModel {
 
     var isLoading = BehaviorRelay<Bool>(value: false)
     var viewWillAppear = PublishRelay<Void>()
+    var viewDidAppear = PublishRelay<Void>()
 
     private var entitiesSubject = BehaviorRelay<[ListRealmEntity]>(value: [])
 
@@ -76,7 +78,21 @@ final class ListViewModel {
     }
 
     private func subscribe() {
-        viewWillAppear
+//        viewWillAppear
+//            .subscribe(onNext: { [weak self] _ in
+//                RealmRepository<ListRealmEntity>.find { [weak self] result in
+//                    switch result {
+//                    case .success(let entities):
+//                        self?.entitiesSubject.accept(entities)
+//                        print(entities)
+//                    case .failure:
+//                        print("Realm取得失敗")
+//                    }
+//                }
+//            })
+//            .disposed(by: disposeBag)
+
+        viewDidAppear
             .subscribe(onNext: { [weak self] _ in
                 RealmRepository<ListRealmEntity>.find { [weak self] result in
                     switch result {
@@ -87,12 +103,9 @@ final class ListViewModel {
                         print("Realm取得失敗")
                     }
                 }
-                self?.subscribeWill()
             })
             .disposed(by: disposeBag)
-    }
 
-    private func subscribeWill() {
         entitiesSubject
             .subscribe(onNext: { [unowned self] entities in
                 entities.enumerated().forEach { offset, entity in

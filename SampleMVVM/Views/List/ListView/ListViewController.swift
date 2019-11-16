@@ -71,6 +71,10 @@ final class ListViewController: UIViewController {
             .bind(to: viewModel.viewWillAppear)
             .disposed(by: disposeBag)
 
+        rx.viewDidAppear
+            .bind(to: viewModel.viewDidAppear)
+            .disposed(by: disposeBag)
+
         viewModel.isLoading
             .subscribe(onNext: { [weak self] in
                 self?.isLoading = $0
