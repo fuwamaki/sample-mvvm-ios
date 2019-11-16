@@ -41,7 +41,6 @@ struct ListContents {
 protocol ListViewModelable {
     var isLoading: BehaviorRelay<Bool> { get }
     var viewWillAppear: PublishRelay<Void> { get }
-    var viewDidAppear: PublishRelay<Void> { get }
     var contents: Driver<[ListContents]> { get }
     var pushViewController: Driver<UIViewController> { get }
     func showGithubView()
@@ -52,8 +51,8 @@ final class ListViewModel {
 
     var isLoading = BehaviorRelay<Bool>(value: false)
     var viewWillAppear = PublishRelay<Void>()
-    var viewDidAppear = PublishRelay<Void>()
 
+    private var apiAccessCount = BehaviorRelay<Int>(value: 0)
     private var entitiesSubject = BehaviorRelay<[ListRealmEntity]>(value: [])
 
     private let contentsSubject = BehaviorRelay<[ListContents]>(value: [])
@@ -84,29 +83,15 @@ final class ListViewModel {
     }
 
     private func subscribe() {
-//        viewWillAppear
-//            .subscribe(onNext: { [weak self] _ in
-//                RealmRepository<ListRealmEntity>.find { [weak self] result in
-//                    switch result {
-//                    case .success(let entities):
-//                        self?.entitiesSubject.accept(entities)
-//                        print(entities)
-//                    case .failure:
-//                        print("Realm取得失敗")
-//                    }
-//                }
-//            })
-//            .disposed(by: disposeBag)
-
-        viewDidAppear
+        viewWillAppear
             .subscribe(onNext: { [weak self] _ in
                 RealmRepository<ListRealmEntity>.find { [weak self] result in
                     switch result {
                     case .success(let entities):
                         self?.entitiesSubject.accept(entities)
                         print(entities)
-                    case .failure:
-                        print("Realm取得失敗")
+                    case .failure(let error):
+                        self?.errorAlertMessageSubject.accept(error.description)
                     }
                 }
             })
@@ -130,38 +115,54 @@ final class ListViewModel {
                 }
             })
             .disposed(by: disposeBag)
+
+        apiAccessCount
+            .subscribe(onNext: { [unowned self] count in
+                self.isLoading.accept(count != 0)
+            })
+            .disposed(by: disposeBag)
     }
 
     private func fetchGithubRepositories(offset: Int, entity: ListRealmEntity) -> Completable {
-        apiClient.fetchGithubRepositories(query: entity.keyword)
+        apiAccessCount.accept(apiAccessCount.value+1)
+        return apiClient.fetchGithubRepositories(query: entity.keyword)
             .do(
                 onSuccess: { [weak self] repositories in
-                    guard var contents = self?.contentsSubject.value else { return }
+                    guard let `self` = self else { return }
+                    self.apiAccessCount.accept(self.apiAccessCount.value-1)
+                    var contents = self.contentsSubject.value
                     let content = ListContents(offset: offset, type: .github, contents: repositories)
                     contents.append(content)
-                    self?.contentsSubject.accept(contents)
+                    self.contentsSubject.accept(contents)
                 },
                 onError: { [weak self] error in
-                    guard let error = error as? APIError else { return }
-                    self?.isLoading.accept(false)
-                    self?.errorAlertMessageSubject.accept(error.message)})
+                    guard let `self` = self, let error = error as? APIError else { return }
+                    self.apiAccessCount.accept(self.apiAccessCount.value-1)
+                    if self.apiAccessCount.value == 0 {
+                        self.errorAlertMessageSubject.accept(error.message)
+                    }})
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
     }
 
     private func fetchQiitaItems(offset: Int, entity: ListRealmEntity) -> Completable {
-        apiClient.fetchQiitaItems(tag: entity.keyword)
+        apiAccessCount.accept(apiAccessCount.value+1)
+        return apiClient.fetchQiitaItems(tag: entity.keyword)
             .do(
                 onSuccess: { [weak self] qiitaItems in
-                    guard var contents = self?.contentsSubject.value else { return }
+                    guard let `self` = self else { return }
+                    self.apiAccessCount.accept(self.apiAccessCount.value-1)
+                    var contents = self.contentsSubject.value
                     let content = ListContents(offset: offset, type: .qiita, contents: qiitaItems)
                     contents.append(content)
-                    self?.contentsSubject.accept(contents)
+                    self.contentsSubject.accept(contents)
                 },
                 onError: { [weak self] error in
-                    guard let error = error as? APIError else { return }
-                    self?.isLoading.accept(false)
-                    self?.errorAlertMessageSubject.accept(error.message)})
+                    guard let `self` = self, let error = error as? APIError else { return }
+                    self.apiAccessCount.accept(self.apiAccessCount.value-1)
+                    if self.apiAccessCount.value == 0 {
+                        self.errorAlertMessageSubject.accept(error.message)
+                    }})
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
     }

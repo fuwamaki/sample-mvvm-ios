@@ -75,16 +75,19 @@ final class ListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
         bind()
+    }
+
+    private func setupViews() {
+        view.addSubview(indicator)
+        // Hide blank border of tableview
+        tableView.tableFooterView = UIView()
     }
 
     private func bind() {
         rx.viewWillAppear
             .bind(to: viewModel.viewWillAppear)
-            .disposed(by: disposeBag)
-
-        rx.viewDidAppear
-            .bind(to: viewModel.viewDidAppear)
             .disposed(by: disposeBag)
 
         viewModel.isLoading
