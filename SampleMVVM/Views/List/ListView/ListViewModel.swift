@@ -18,6 +18,7 @@ struct ListContents {
 protocol ListViewModelable {
     var isLoading: BehaviorRelay<Bool> { get }
     var viewWillAppear: PublishRelay<Void> { get }
+    var contentsSubject: BehaviorRelay<[ListContents]> { get }
     var contents: Driver<[ListContents]> { get }
     var pushViewController: Driver<UIViewController> { get }
     func showGithubView()
@@ -32,7 +33,7 @@ final class ListViewModel {
     private var apiAccessCount = BehaviorRelay<Int>(value: 0)
     private var entitiesSubject = BehaviorRelay<[ListRealmEntity]>(value: [])
 
-    private let contentsSubject = BehaviorRelay<[ListContents]>(value: [])
+    var contentsSubject = BehaviorRelay<[ListContents]>(value: [])
     var contents: Driver<[ListContents]> {
         return contentsSubject.asDriver(onErrorJustReturn: [])
     }
