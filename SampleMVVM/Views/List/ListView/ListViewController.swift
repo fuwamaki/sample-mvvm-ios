@@ -16,9 +16,20 @@ final class ListViewController: UIViewController {
     @IBOutlet private weak var qiitaBarButtonItem: UIBarButtonItem!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
+            tableView.register(R.nib.listGithubTableCell)
+
             tableView.rx
                 .setDelegate(self)
                 .disposed(by: disposeBag)
+
+            viewModel.contents
+            .drive(tableView.rx.items) { tableView, index, element in
+                guard let repositories = element.value as? [GithubRepository] else { return UITableViewCell() }
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.listGithubTableCell,
+                                                         for: IndexPath(item: index, section: 0))!
+                cell.render(repositories: repositories)
+                return cell }
+            .disposed(by: disposeBag)
         }
     }
 
@@ -92,4 +103,7 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension ListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return ListGithubTableCell.defaultHeight(tableView)
+    }
 }

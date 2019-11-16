@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct GithubRepository: Codable {
+protocol Listable {}
+
+struct GithubRepository: Codable, Listable {
     let fullName: String
     let stargazersCount: Int
     let htmlUrl: String

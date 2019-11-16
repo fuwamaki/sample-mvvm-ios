@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import PINRemoteImage
 
 final class GithubCollectionCell: UICollectionViewCell {
 
@@ -21,7 +22,15 @@ final class GithubCollectionCell: UICollectionViewCell {
                 .disposed(by: disposeBag)
         }
     }
-    @IBOutlet private weak var iconImageView: UIImageView!
+    @IBOutlet private weak var iconImageView: UIImageView! {
+        didSet {
+            repositorySubject
+            .subscribe(onNext: { [unowned self] repository in
+                self.iconImageView?.pin_setImage(from: URL(string: repository.owner.avatarUrl))
+            })
+            .disposed(by: disposeBag)
+        }
+    }
 
     private let disposeBag = DisposeBag()
     private let repositorySubject = PublishRelay<GithubRepository>()
