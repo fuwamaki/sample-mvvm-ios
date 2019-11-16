@@ -111,7 +111,7 @@ extension ListViewController: UITableViewDelegate {
 
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        viewModel.contentsSubject.value[section].type.rawValue
+        viewModel.contentsSubject.value[section].sectionTitle
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

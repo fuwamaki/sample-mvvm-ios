@@ -11,5 +11,6 @@ import Foundation
 struct ListContents {
     let offset: Int
     let type: ListRealmType
+    let sectionTitle: String
     let contents: [Listable]
 }

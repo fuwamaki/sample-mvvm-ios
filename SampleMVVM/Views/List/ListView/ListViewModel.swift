@@ -97,13 +97,14 @@ final class ListViewModel {
 
     private func fetchGithubRepositories(offset: Int, entity: ListRealmEntity) -> Completable {
         apiAccessCount.accept(apiAccessCount.value+1)
+        let keyword = entity.keyword
         return apiClient.fetchGithubRepositories(query: entity.keyword)
             .do(
                 onSuccess: { [weak self] repositories in
                     guard let `self` = self else { return }
                     self.apiAccessCount.accept(self.apiAccessCount.value-1)
                     var contents = self.contentsSubject.value
-                    let content = ListContents(offset: offset, type: .github, contents: repositories)
+                    let content = ListContents(offset: offset, type: .github, sectionTitle: keyword + " (github)", contents: repositories)
                     contents.append(content)
                     contents.sort { $0.offset < $1.offset }
                     self.contentsSubject.accept(contents)
@@ -120,13 +121,14 @@ final class ListViewModel {
 
     private func fetchQiitaItems(offset: Int, entity: ListRealmEntity) -> Completable {
         apiAccessCount.accept(apiAccessCount.value+1)
+        let keyword = entity.keyword
         return apiClient.fetchQiitaItems(tag: entity.keyword)
             .do(
                 onSuccess: { [weak self] qiitaItems in
                     guard let `self` = self else { return }
                     self.apiAccessCount.accept(self.apiAccessCount.value-1)
                     var contents = self.contentsSubject.value
-                    let content = ListContents(offset: offset, type: .qiita, contents: qiitaItems)
+                    let content = ListContents(offset: offset, type: .qiita, sectionTitle: keyword + " (qiita)", contents: qiitaItems)
                     contents.append(content)
                     contents.sort { $0.offset < $1.offset }
                     self.contentsSubject.accept(contents)
