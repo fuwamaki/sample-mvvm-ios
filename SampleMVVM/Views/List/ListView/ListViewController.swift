@@ -107,13 +107,18 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return ListGithubTableCell.defaultHeight(tableView)
     }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.backgroundColor = UIColor.secondarySystemBackground
+        label.textColor = UIColor.label
+        label.text = viewModel.contentsSubject.value[section].sectionTitle
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        return label
+    }
 }
 
 extension ListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        viewModel.contentsSubject.value[section].sectionTitle
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
