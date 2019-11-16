@@ -118,6 +118,36 @@ final class APIClient: APIClientable {
         }
     }
 
+    // 試しにAlamofire利用しない
+    func get<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, APIError>) -> Void) {
+        let config: URLSessionConfiguration = URLSessionConfiguration.default
+        let session: URLSession = URLSession(configuration: config)
+        let task: URLSessionDataTask = session.dataTask(with: URL(string: request.url)!) { (data, response, error) -> Void in
+            if let error = error as NSError? {
+                switch error.code {
+                case 401:
+                    completion(.failure(.unauthorizedError))
+                case 404:
+                    completion(.failure(.notFoundError))
+                case 503:
+                    completion(.failure(.maintenanceError))
+                default:
+                    completion(.failure(.unknownError))
+                }
+            } else if let data = data,
+                let response = response as? HTTPURLResponse,
+                response.statusCode >= 200 && response.statusCode < 300 {
+                do {
+                    let result = try JSONDecoder().decode(T.Response.self, from: data)
+                    completion(.success(result))
+                } catch {
+                    completion(.failure(APIError.jsonParseError))
+                }
+            }
+        }
+        task.resume()
+    }
+
     // TODO: 消す
     func testCall<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
         setupClient(header: request.headers)

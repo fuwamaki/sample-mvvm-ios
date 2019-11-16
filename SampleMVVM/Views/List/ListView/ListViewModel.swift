@@ -115,14 +115,10 @@ final class ListViewModel {
         entitiesSubject
             .subscribe(onNext: { [unowned self] entities in
                 entities.enumerated().forEach { offset, entity in
-                    let runner = SwiftScriptRunner()
-                    runner.lock()
                     switch entity.type {
                     case .github:
                         self.fetchGithubRepositories(offset: offset, entity: entity)
-                            .subscribe(onCompleted: {
-                                runner.unlock()
-                            })
+                            .subscribe()
                             .disposed(by: self.disposeBag)
                     case .qiita:
                         self.fetchQiitaItems(offset: offset, entity: entity)
@@ -131,7 +127,6 @@ final class ListViewModel {
                     case .other:
                         break
                     }
-                    runner.wait()
                 }
             })
             .disposed(by: disposeBag)

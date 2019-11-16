@@ -12,7 +12,7 @@ import RxCocoa
 extension APIClient {
     func fetchQiitaItems(tag: String) -> Single<[QiitaItem]> {
         return Single<[QiitaItem]>.create { single in
-            self.call(request: QiitaItemsFetchRequest(tag: tag)) { result in
+            self.get(request: QiitaItemsFetchRequest(tag: tag)) { result in
                 switch result {
                 case .success(let response):
                     single(.success(response?.items ?? []))
