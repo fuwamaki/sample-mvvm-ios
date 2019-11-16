@@ -14,7 +14,7 @@ final class APIClient: APIClientable {
 
     private var client: Alamofire.SessionManager?
 
-    private func setupClient(header: [String: String]?) {
+    private func createAPIClient(header: [String: String]?) -> Alamofire.SessionManager {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 30.0
         if let header = header {
@@ -25,7 +25,7 @@ final class APIClient: APIClientable {
             }
             configuration.httpAdditionalHeaders = defaultHeaders
         }
-        client = Alamofire.SessionManager(configuration: configuration)
+        return Alamofire.SessionManager(configuration: configuration)
     }
 
     private var isNetworkConnect: Bool {
@@ -51,8 +51,9 @@ final class APIClient: APIClientable {
             completion(.failure(APIError.networkError))
             return
         }
-        setupClient(header: request.headers)
-        client?.request(request.url,
+        client = createAPIClient(header: request.headers)
+        let apiClient = client
+        apiClient?.request(request.url,
                         method: request.method,
                         parameters: request.parameters,
                         encoding: request.encoding,
@@ -89,8 +90,8 @@ final class APIClient: APIClientable {
             completion(.failure(APIError.networkError))
             return
         }
-        setupClient(header: request.headers)
-        client?.request(request.url,
+        let client = createAPIClient(header: request.headers)
+        client.request(request.url,
                         method: request.method,
                         parameters: request.parameters,
                         encoding: request.encoding,
@@ -150,8 +151,8 @@ final class APIClient: APIClientable {
 
     // TODO: 消す
     func testCall<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
-        setupClient(header: request.headers)
-        client?.request(request.url,
+        let client = createAPIClient(header: request.headers)
+        client.request(request.url,
                         method: request.method,
                         parameters: request.parameters)
             .response { response in // memo: post時はresponseDataがない場合に.responseJSONを使えないらしい
