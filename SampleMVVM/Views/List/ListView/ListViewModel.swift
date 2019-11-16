@@ -74,10 +74,14 @@ final class ListViewModel {
                 entities.enumerated().forEach { offset, entity in
                     switch entity.type {
                     case .github:
+                        let value = self.contentsSubject.value.filter { $0.offset == offset }.first
+                        guard value?.sectionTitle != entity.keyword + " (github)" else { return }
                         self.fetchGithubRepositories(offset: offset, entity: entity)
                             .subscribe()
                             .disposed(by: self.disposeBag)
                     case .qiita:
+                        let value = self.contentsSubject.value.filter { $0.offset == offset }.first
+                        guard value?.sectionTitle != entity.keyword + " (qiita)" else { return }
                         self.fetchQiitaItems(offset: offset, entity: entity)
                             .subscribe()
                             .disposed(by: self.disposeBag)
@@ -103,8 +107,8 @@ final class ListViewModel {
                 onSuccess: { [weak self] repositories in
                     guard let `self` = self else { return }
                     self.apiAccessCount.accept(self.apiAccessCount.value-1)
-                    var contents = self.contentsSubject.value
                     let content = ListContents(offset: offset, type: .github, sectionTitle: keyword + " (github)", contents: repositories)
+                    var contents = self.contentsSubject.value
                     contents.append(content)
                     contents.sort { $0.offset < $1.offset }
                     self.contentsSubject.accept(contents)
@@ -127,8 +131,8 @@ final class ListViewModel {
                 onSuccess: { [weak self] qiitaItems in
                     guard let `self` = self else { return }
                     self.apiAccessCount.accept(self.apiAccessCount.value-1)
-                    var contents = self.contentsSubject.value
                     let content = ListContents(offset: offset, type: .qiita, sectionTitle: keyword + " (qiita)", contents: qiitaItems)
+                    var contents = self.contentsSubject.value
                     contents.append(content)
                     contents.sort { $0.offset < $1.offset }
                     self.contentsSubject.accept(contents)
