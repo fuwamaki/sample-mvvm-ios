@@ -41,7 +41,7 @@ final class ListViewController: UIViewController {
         indicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         indicator.center = self.view.center
         indicator.hidesWhenStopped = true
-        indicator.color = UIColor.black
+        indicator.color = UIColor.link
         indicator.isHidden = true
         return indicator
     }()
