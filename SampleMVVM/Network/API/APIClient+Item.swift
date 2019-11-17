@@ -27,7 +27,7 @@ extension APIClient {
 
     func postItem(item: Item) -> Completable {
         return Completable.create(subscribe: { completable in
-            self.testCall(request: ItemPostRequest(parameters: ["item": item.dictionary])) { result in
+            self.writeCall(request: ItemPostRequest(parameters: ["item": item.dictionary])) { result in
                 switch result {
                 case .success:
                     completable(.completed)

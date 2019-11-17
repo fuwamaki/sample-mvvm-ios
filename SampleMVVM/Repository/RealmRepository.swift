@@ -19,16 +19,6 @@ protocol RealmModelable: Object {
 
 final class RealmRepository<Model: RealmModelable> {
 
-    // TODO: 後でConvertするコード書く
-//    func convertItemEntity(item: RealmEntityProtocol) -> ItemRealmEntity {
-//        let itemRealmEntity = ItemRealmEntity()
-//        itemRealmEntity.itemId = item.itemId
-//        itemRealmEntity.name = item.name
-//        itemRealmEntity.count = item.count
-//        itemRealmEntity.createTime = item.createTime
-//        return itemRealmEntity
-//    }
-
     static func find(completion: @escaping (Result<[Model], NSError>) -> Void) {
         do {
             let realm = try Realm()

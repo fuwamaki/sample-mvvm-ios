@@ -12,7 +12,7 @@ import RxCocoa
 extension APIClient {
     func fetchGithubRepositories(query: String) -> Single<[GithubRepository]> {
         return Single<[GithubRepository]>.create(subscribe: { single in
-            self.get(request: GithubRepositoriesFetchRequest(query: query)) { result in
+            self.call(request: GithubRepositoriesFetchRequest(query: query)) { result in
                 switch result {
                 case .success(let response):
                     single(.success(response?.items ?? []))

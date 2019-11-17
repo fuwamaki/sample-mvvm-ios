@@ -51,9 +51,8 @@ final class APIClient: APIClientable {
             completion(.failure(APIError.networkError))
             return
         }
-        client = createAPIClient(header: request.headers)
-        let apiClient = client
-        apiClient?.request(request.url,
+        // TODO: clientを利用してないので、やり方要検討
+        Alamofire.request(request.url,
                         method: request.method,
                         parameters: request.parameters,
                         encoding: request.encoding,
@@ -117,55 +116,6 @@ final class APIClient: APIClientable {
                     }
                 }
         }
-    }
-
-    // 試しにAlamofire利用しない
-    func get<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, APIError>) -> Void) {
-        let config: URLSessionConfiguration = URLSessionConfiguration.default
-        let session: URLSession = URLSession(configuration: config)
-        let task: URLSessionDataTask = session.dataTask(with: URL(string: request.url)!) { (data, response, error) -> Void in
-            if let error = error as NSError? {
-                switch error.code {
-                case 401:
-                    completion(.failure(.unauthorizedError))
-                case 404:
-                    completion(.failure(.notFoundError))
-                case 503:
-                    completion(.failure(.maintenanceError))
-                default:
-                    completion(.failure(.unknownError))
-                }
-            } else if let data = data,
-                let response = response as? HTTPURLResponse,
-                response.statusCode >= 200 && response.statusCode < 300 {
-                do {
-                    let result = try JSONDecoder().decode(T.Response.self, from: data)
-                    completion(.success(result))
-                } catch {
-                    completion(.failure(APIError.jsonParseError))
-                }
-            }
-        }
-        task.resume()
-    }
-
-    // TODO: 消す
-    func testCall<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
-        let client = createAPIClient(header: request.headers)
-        client.request(request.url,
-                        method: request.method,
-                        parameters: request.parameters)
-            .response { response in // memo: post時はresponseDataがない場合に.responseJSONを使えないらしい
-                if let error = response.error {
-                    completion(.failure(error))
-                } else {
-                    switch response.response?.statusCode {
-                    case 200, 201, 202, 203, 204:
-                        completion(.success(nil))
-                    default:
-                        completion(.failure(APIError.jsonParseError))
-                    }
-                }}
     }
 
     // TODO: 消す
