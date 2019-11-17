@@ -13,7 +13,7 @@ import LineSDK
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        LoginManager.shared.setup(channelID: "1482770679", universalLinkURL: nil)
+        LoginManager.shared.setup(channelID: Constants.lineChannelID, universalLinkURL: nil)
         return true
     }
 

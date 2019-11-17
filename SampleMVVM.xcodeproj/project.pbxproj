@@ -27,6 +27,7 @@
 		202350D4237FC64400311C74 /* ListQiitaTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202350D3237FC64400311C74 /* ListQiitaTableCell.swift */; };
 		202350D6237FC81B00311C74 /* ListQiitaTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 202350D5237FC81B00311C74 /* ListQiitaTableCell.xib */; };
 		2025535E238050200077BDC5 /* ListContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2025535D238050200077BDC5 /* ListContents.swift */; };
+		20255360238100A10077BDC5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2025535F238100A10077BDC5 /* Constants.swift */; };
 		202ADB71236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202ADB70236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift */; };
 		202ADB73236B060200E65BB8 /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202ADB72236B060200E65BB8 /* CustomPicker.swift */; };
 		202ADB75236BEE2700E65BB8 /* UIImage+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202ADB74236BEE2700E65BB8 /* UIImage+Addition.swift */; };
@@ -125,6 +126,7 @@
 		202350D3237FC64400311C74 /* ListQiitaTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListQiitaTableCell.swift; sourceTree = "<group>"; };
 		202350D5237FC81B00311C74 /* ListQiitaTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListQiitaTableCell.xib; sourceTree = "<group>"; };
 		2025535D238050200077BDC5 /* ListContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContents.swift; sourceTree = "<group>"; };
+		2025535F238100A10077BDC5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		202ADB70236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputAccessoryView.swift; sourceTree = "<group>"; };
 		202ADB72236B060200E65BB8 /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
 		202ADB74236BEE2700E65BB8 /* UIImage+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Addition.swift"; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			children = (
 				201BF03C2338FDBD0020F7B4 /* Url.swift */,
 				2025535D238050200077BDC5 /* ListContents.swift */,
+				2025535F238100A10077BDC5 /* Constants.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -863,6 +866,7 @@
 				205BE0BE2354180D009EF0F2 /* GithubViewModel.swift in Sources */,
 				209A60DD2338C88A00D6338C /* MainTabBarViewController.swift in Sources */,
 				205BE0C62354260C009EF0F2 /* GithubRepositoryOwner.swift in Sources */,
+				20255360238100A10077BDC5 /* Constants.swift in Sources */,
 				200BB350237E46F100AFA246 /* UserDefaults+BoolDefaultSettable.swift in Sources */,
 				209A60D12338C4E600D6338C /* ListViewController.swift in Sources */,
 				202ADB71236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift in Sources */,
