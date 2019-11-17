@@ -26,9 +26,7 @@ final class QiitaTableCell: UITableViewCell {
     func render(item: QiitaItem) {
         titleLabel.text = item.title
         likesCountLabel.text = String(item.likesCount)
-        if iconImageView?.image == nil {
-            let profileImageUrl = item.user.profileImageUrl
-            iconImageView?.pin_setImage(from: URL(string: profileImageUrl))
-        }
+        let profileImageUrl = item.user.profileImageUrl
+        iconImageView?.pin_setImage(from: URL(string: profileImageUrl))
     }
 }
