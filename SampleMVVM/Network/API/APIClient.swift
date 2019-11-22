@@ -51,12 +51,14 @@ final class APIClient: APIClientable {
             completion(.failure(APIError.networkError))
             return
         }
-        // TODO: clientを利用してないので、やり方要検討
-        Alamofire.request(request.url,
-                        method: request.method,
-                        parameters: request.parameters,
-                        encoding: request.encoding,
-                        headers: request.headers)
+        if client == nil {
+            client = createAPIClient(header: ["Content-Type": "Content-Type"])
+        }
+        client?.request(request.url,
+                          method: request.method,
+                          parameters: request.parameters,
+                          encoding: request.encoding,
+                          headers: request.headers)
             .responseJSON { response in
                 switch response.result {
                 case .success:
