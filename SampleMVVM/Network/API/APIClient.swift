@@ -12,19 +12,33 @@ import SystemConfiguration
 
 final class APIClient: APIClientable {
 
-    private var client: Alamofire.SessionManager?
+    // clientがauthTokenを持っているかどうか
+    private var hasAuthToken: Bool = false
+    // authTokenが存在するかどうか
+    private var isAuthToken: Bool {
+        return UserDefaultsRepository.shared.authToken != nil
+    }
 
-    private func createAPIClient(header: [String: String]?) -> Alamofire.SessionManager {
+    private static var client: Alamofire.SessionManager?
+
+    private func apiClient() -> Alamofire.SessionManager? {
+        if APIClient.client == nil || hasAuthToken != isAuthToken {
+            APIClient.client = createAPIClient()
+        }
+        return APIClient.client
+    }
+
+    private func createAPIClient() -> Alamofire.SessionManager {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 30.0
-        if let header = header {
-            var defaultHeaders = Alamofire.SessionManager.defaultHTTPHeaders
-            // memo: headerはこうやって指定する
-            header.forEach { key, value in
-                defaultHeaders[key] = value
-            }
-            configuration.httpAdditionalHeaders = defaultHeaders
+        var defaultHeaders = Alamofire.SessionManager.defaultHTTPHeaders
+        defaultHeaders["X-App-Secret"] = "secret"
+        defaultHeaders["device-type"] = "iOS"
+        if let authToken = UserDefaultsRepository.shared.authToken {
+            defaultHeaders["X-Authentication-Token"] = authToken
         }
+        hasAuthToken = isAuthToken
+        configuration.httpAdditionalHeaders = defaultHeaders
         return Alamofire.SessionManager(configuration: configuration)
     }
 
@@ -51,14 +65,11 @@ final class APIClient: APIClientable {
             completion(.failure(APIError.networkError))
             return
         }
-        if client == nil {
-            client = createAPIClient(header: ["Content-Type": "Content-Type"])
-        }
-        client?.request(request.url,
-                          method: request.method,
-                          parameters: request.parameters,
-                          encoding: request.encoding,
-                          headers: request.headers)
+        apiClient()?.request(request.url,
+                             method: request.method,
+                             parameters: request.parameters,
+                             encoding: request.encoding,
+                             headers: request.headers)
             .responseJSON { response in
                 switch response.result {
                 case .success:
@@ -91,12 +102,11 @@ final class APIClient: APIClientable {
             completion(.failure(APIError.networkError))
             return
         }
-        let client = createAPIClient(header: request.headers)
-        client.request(request.url,
-                        method: request.method,
-                        parameters: request.parameters,
-                        encoding: request.encoding,
-                        headers: request.headers)
+        apiClient()?.request(request.url,
+                             method: request.method,
+                             parameters: request.parameters,
+                             encoding: request.encoding,
+                             headers: request.headers)
             .response { response in
                 if let error = response.error as NSError? {
                     switch error.code {

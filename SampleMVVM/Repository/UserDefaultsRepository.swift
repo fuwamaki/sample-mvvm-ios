@@ -13,9 +13,24 @@ enum UserDefaultsIdType {
 }
 
 final class UserDefaultsRepository {
-
     static let shared = UserDefaultsRepository()
+}
 
+// MARK: auth token
+extension UserDefaultsRepository {
+    var authToken: String? {
+        get {
+            return UserDefaults.standard.string(forKey: .authToken)
+        }
+        set {
+            guard let newValue = newValue else { return }
+            UserDefaults.standard.set(newValue, forKey: .authToken)
+        }
+    }
+}
+
+// MARK: increment List ID
+extension UserDefaultsRepository {
     var incrementListId: Int? {
         get {
             return UserDefaults.standard.integer(forKey: .incrementListId)
