@@ -59,7 +59,8 @@ final class TextFieldInputAccessoryView: UIView {
     }
 
     private func setupToolbar(previous: UITextField?, next: UITextField?) {
-        let toolBar = UIToolbar()
+        // memo: サイズを指定しないと、動作はするが警告が出る
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
         toolBar.barStyle = UIBarStyle.default
         toolBar.tintColor = UIColor.white
         toolBar.backgroundColor = UIColor.black
