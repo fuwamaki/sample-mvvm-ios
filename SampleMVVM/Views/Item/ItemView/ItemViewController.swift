@@ -84,8 +84,8 @@ final class ItemViewController: UIViewController {
 
     private func bind() {
         rx.viewWillAppear
-        .bind(to: viewModel.viewWillAppear)
-        .disposed(by: disposeBag)
+            .bind(to: viewModel.viewWillAppear)
+            .disposed(by: disposeBag)
 
         viewModel.isLoading
             .subscribe(onNext: { [weak self] in
