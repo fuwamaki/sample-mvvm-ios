@@ -288,7 +288,7 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
-		202350CD237E820500311C74 /* List */ = {
+		202350CD237E820500311C74 /* ListView */ = {
 			isa = PBXGroup;
 			children = (
 				20382BEA233A0CA100CF77A1 /* GithubCollectionCell.xib */,
@@ -296,15 +296,15 @@
 				202350CF237E86FC00311C74 /* ListGithubTableCell.xib */,
 				202350D5237FC81B00311C74 /* ListQiitaTableCell.xib */,
 			);
-			path = List;
+			path = ListView;
 			sourceTree = "<group>";
 		};
-		202350CE237E821C00311C74 /* Item */ = {
+		202350CE237E821C00311C74 /* ItemView */ = {
 			isa = PBXGroup;
 			children = (
 				209A60E92338CE2500D6338C /* ItemTableCell.xib */,
 			);
-			path = Item;
+			path = ItemView;
 			sourceTree = "<group>";
 		};
 		202ADB6F236AEF6200E65BB8 /* Common */ = {
@@ -412,8 +412,11 @@
 			isa = PBXGroup;
 			children = (
 				209A60DC2338C88A00D6338C /* MainTabBarViewController.swift */,
-				209A60E62338CDE700D6338C /* Item */,
-				209A60E72338CDEB00D6338C /* List */,
+				20AC3E5B23546294007F67ED /* ItemView */,
+				20AC3E5C2354629B007F67ED /* ItemRegisterView */,
+				20AC3E5D235462D7007F67ED /* ListView */,
+				20AC3E5E235462F5007F67ED /* GithubView */,
+				20AC3E5F235462FF007F67ED /* QiitaView */,
 				209A60E82338CDEF00D6338C /* Mypage */,
 				204D813D23D6CF4E0059F379 /* Debug */,
 			);
@@ -425,13 +428,13 @@
 			children = (
 				209A60A823388F1600D6338C /* LaunchScreen.storyboard */,
 				209A60DA2338C75100D6338C /* MainTabBarViewController.storyboard */,
-				209A60CA2338A91800D6338C /* ItemViewController.storyboard */,
-				20A122882340F52600FA1EAB /* ItemRegisterViewController.storyboard */,
-				209A60C82338A90300D6338C /* ListViewController.storyboard */,
-				205BE0BF23541B62009EF0F2 /* GithubViewController.storyboard */,
-				205BE0C123541B70009EF0F2 /* QiitaViewController.storyboard */,
-				209A60CC2338A92800D6338C /* MypageViewController.storyboard */,
-				204D813B23D6CF250059F379 /* DebugViewController.storyboard */,
+				20E3166223D75D340000A31B /* ItemView */,
+				20E3166823D75D520000A31B /* ItemRegisterView */,
+				20E3166723D75D4D0000A31B /* ListView */,
+				20E3166623D75D490000A31B /* GithubView */,
+				20E3166523D75D450000A31B /* QiitaView */,
+				20E3166423D75D400000A31B /* Mypage */,
+				20E3166323D75D390000A31B /* Debug */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -455,31 +458,12 @@
 		209A60E32338CDC400D6338C /* xib */ = {
 			isa = PBXGroup;
 			children = (
-				202350CE237E821C00311C74 /* Item */,
-				202350CD237E820500311C74 /* List */,
-				205BE0CD23544C2E009EF0F2 /* GithubTableCell.xib */,
-				205BE0CF23544C3E009EF0F2 /* QiitaTableCell.xib */,
+				202350CE237E821C00311C74 /* ItemView */,
+				202350CD237E820500311C74 /* ListView */,
+				20E3166023D75D020000A31B /* GithubView */,
+				20E3166123D75D0C0000A31B /* QiitaView */,
 			);
 			path = xib;
-			sourceTree = "<group>";
-		};
-		209A60E62338CDE700D6338C /* Item */ = {
-			isa = PBXGroup;
-			children = (
-				20AC3E5B23546294007F67ED /* ItemView */,
-				20AC3E5C2354629B007F67ED /* ItemRegisterView */,
-			);
-			path = Item;
-			sourceTree = "<group>";
-		};
-		209A60E72338CDEB00D6338C /* List */ = {
-			isa = PBXGroup;
-			children = (
-				20AC3E5D235462D7007F67ED /* ListView */,
-				20AC3E5E235462F5007F67ED /* GithubView */,
-				20AC3E5F235462FF007F67ED /* QiitaView */,
-			);
-			path = List;
 			sourceTree = "<group>";
 		};
 		209A60E82338CDEF00D6338C /* Mypage */ = {
@@ -609,6 +593,78 @@
 				20382BE02339F6A200CF77A1 /* QiitaTableCell.swift */,
 			);
 			path = QiitaView;
+			sourceTree = "<group>";
+		};
+		20E3166023D75D020000A31B /* GithubView */ = {
+			isa = PBXGroup;
+			children = (
+				205BE0CD23544C2E009EF0F2 /* GithubTableCell.xib */,
+			);
+			path = GithubView;
+			sourceTree = "<group>";
+		};
+		20E3166123D75D0C0000A31B /* QiitaView */ = {
+			isa = PBXGroup;
+			children = (
+				205BE0CF23544C3E009EF0F2 /* QiitaTableCell.xib */,
+			);
+			path = QiitaView;
+			sourceTree = "<group>";
+		};
+		20E3166223D75D340000A31B /* ItemView */ = {
+			isa = PBXGroup;
+			children = (
+				209A60CA2338A91800D6338C /* ItemViewController.storyboard */,
+			);
+			path = ItemView;
+			sourceTree = "<group>";
+		};
+		20E3166323D75D390000A31B /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				204D813B23D6CF250059F379 /* DebugViewController.storyboard */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		20E3166423D75D400000A31B /* Mypage */ = {
+			isa = PBXGroup;
+			children = (
+				209A60CC2338A92800D6338C /* MypageViewController.storyboard */,
+			);
+			path = Mypage;
+			sourceTree = "<group>";
+		};
+		20E3166523D75D450000A31B /* QiitaView */ = {
+			isa = PBXGroup;
+			children = (
+				205BE0C123541B70009EF0F2 /* QiitaViewController.storyboard */,
+			);
+			path = QiitaView;
+			sourceTree = "<group>";
+		};
+		20E3166623D75D490000A31B /* GithubView */ = {
+			isa = PBXGroup;
+			children = (
+				205BE0BF23541B62009EF0F2 /* GithubViewController.storyboard */,
+			);
+			path = GithubView;
+			sourceTree = "<group>";
+		};
+		20E3166723D75D4D0000A31B /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				209A60C82338A90300D6338C /* ListViewController.storyboard */,
+			);
+			path = ListView;
+			sourceTree = "<group>";
+		};
+		20E3166823D75D520000A31B /* ItemRegisterView */ = {
+			isa = PBXGroup;
+			children = (
+				20A122882340F52600FA1EAB /* ItemRegisterViewController.storyboard */,
+			);
+			path = ItemRegisterView;
 			sourceTree = "<group>";
 		};
 		2492E0FED5D0CE6582579961 /* Pods */ = {
