@@ -13,8 +13,10 @@ import LineSDK
 
 final class MypageViewController: UIViewController {
 
-    @IBOutlet weak var test1TextField: UITextField!
-    @IBOutlet weak var test2TextField: UITextField!
+    @IBOutlet private weak var lineLoginButton: UIButton!
+    @IBOutlet private weak var test1TextField: UITextField!
+    @IBOutlet private weak var test2TextField: UITextField!
+
     private var testTextFields: [UITextField] {
         return [test1TextField, test2TextField]
     }
@@ -78,6 +80,23 @@ final class MypageViewController: UIViewController {
                 self.test1TextField.text = text
             })
             .disposed(by: disposeBag)
+
+        lineLoginButton.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                self.handleLineLoginButton()
+            })
+            .disposed(by: disposeBag)
+    }
+
+    private func handleLineLoginButton() {
+        LoginManager.shared.login(permissions: [.profile], in: self) { result in
+            switch result {
+            case .success(let loginResult):
+                print(loginResult.accessToken.value)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 

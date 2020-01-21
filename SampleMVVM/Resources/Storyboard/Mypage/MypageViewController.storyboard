@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Z3U-Wr-jYp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Z3U-Wr-jYp">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,11 +33,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZm-CR-ZPz">
+                                <rect key="frame" x="157.5" y="112" width="99" height="32"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="LINEログイン">
+                                    <color key="titleColor" red="0.0" green="0.76470588235294112" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="ibk-Z9-Xne" firstAttribute="centerX" secondItem="Lrc-vx-mme" secondAttribute="centerX" id="PqX-Qa-Baj"/>
+                            <constraint firstItem="vZm-CR-ZPz" firstAttribute="centerX" secondItem="Lrc-vx-mme" secondAttribute="centerX" id="VOg-HU-vbc"/>
                             <constraint firstItem="ibk-Z9-Xne" firstAttribute="top" secondItem="ES1-0C-cMB" secondAttribute="top" constant="80" id="Yrg-VW-Jqo"/>
+                            <constraint firstItem="vZm-CR-ZPz" firstAttribute="top" secondItem="ES1-0C-cMB" secondAttribute="top" constant="24" id="ZFe-oK-Cd0"/>
                             <constraint firstItem="gTy-eo-aAc" firstAttribute="centerX" secondItem="Lrc-vx-mme" secondAttribute="centerX" id="a4K-UW-epV"/>
                             <constraint firstItem="gTy-eo-aAc" firstAttribute="top" secondItem="ibk-Z9-Xne" secondAttribute="bottom" constant="40" id="rxk-oV-tV6"/>
                         </constraints>
@@ -47,6 +57,7 @@
                     <navigationItem key="navigationItem" title="マイページ" id="yn4-B1-vbq"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="lineLoginButton" destination="vZm-CR-ZPz" id="hfy-mk-NBs"/>
                         <outlet property="test1TextField" destination="ibk-Z9-Xne" id="ZsU-QU-Mma"/>
                         <outlet property="test2TextField" destination="gTy-eo-aAc" id="KVi-uA-ibB"/>
                     </connections>
