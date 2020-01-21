@@ -10,13 +10,22 @@ import UIKit
 import UserNotifications
 
 final class SampleUserNotificationCenter: NSObject {
+
     static var shared = SampleUserNotificationCenter()
+    private var userInfoForLaunch: [AnyHashable: Any]?
 
     func setupPushNotification() {
         let center = UNUserNotificationCenter.current()
         center.delegate = SampleUserNotificationCenter.shared
         center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
             print(granted)
+        }
+    }
+
+    func checkHandleTapPushNotification() {
+        if let userInfo = userInfoForLaunch {
+            handlePushNotificationRoute(userInfo)
+            userInfoForLaunch = nil
         }
     }
 }
@@ -30,7 +39,13 @@ extension SampleUserNotificationCenter: UNUserNotificationCenterDelegate {
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
-        handlePushNotificationRoute(userInfo)
+        // 既にUIViewController表示済みなら、Push通知のハンドリングを実施
+        if UIApplication.topViewController() != nil {
+            handlePushNotificationRoute(userInfo)
+        } else {
+            // まだUIViewControllerが表示されていない（まだLaunchScreen）場合、sceneDidBecomeActiveでハンドリングをする
+            userInfoForLaunch = userInfo
+        }
         completionHandler()
     }
 }

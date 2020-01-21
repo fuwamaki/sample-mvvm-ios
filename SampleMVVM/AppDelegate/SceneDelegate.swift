@@ -28,6 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     /// アプリ起動完了後に呼ばれる。バックグランドからの再起動時にも呼ばれる。
     func sceneDidBecomeActive(_ scene: UIScene) {
+        SampleUserNotificationCenter.shared.checkHandleTapPushNotification()
     }
 
     /// バックグラウンドへのスワイプ開始直後に呼ばれる。
