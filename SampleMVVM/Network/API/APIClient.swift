@@ -130,8 +130,7 @@ final class APIClient: APIClientable {
         }
     }
 
-    // TODO: 消す
-    func postCall<T: RequestProtocol>(body: Data, request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
+    func putCall<T: RequestProtocol>(body: Data, request: T, completion: @escaping (OriginalResult<T.Response?, Error>) -> Void) {
         var urlRequest = URLRequest(url: URL(string: request.url)!)
         urlRequest.httpMethod = request.method.rawValue
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")

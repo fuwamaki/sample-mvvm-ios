@@ -55,7 +55,7 @@ extension APIClient {
 
     func putItem(id: Int, item: Item) -> Completable {
         return Completable.create(subscribe: { completable in
-            self.postCall(body: item.postRequestData, request: ItemPutRequest(id: id)) { result in
+            self.putCall(body: item.postRequestData, request: ItemPutRequest(id: id)) { result in
                 switch result {
                 case .success:
                     completable(.completed)
