@@ -150,12 +150,10 @@ final class ListViewModel {
 
 extension ListViewModel: ListViewModelable {
     func showGithubView() {
-        let viewController = R.storyboard.githubViewController.instantiateInitialViewController()!
-        pushViewControllerSubject.accept(viewController)
+        pushViewControllerSubject.accept(GithubViewController.make())
     }
 
     func showQiitaView() {
-        let viewController = R.storyboard.qiitaViewController.instantiateInitialViewController()!
-        pushViewControllerSubject.accept(viewController)
+        pushViewControllerSubject.accept(QiitaViewController.make())
     }
 }

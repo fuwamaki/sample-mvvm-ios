@@ -69,6 +69,10 @@ final class QiitaViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: QiitaViewModelable = QiitaViewModel()
 
+    static func make() -> QiitaViewController {
+        return R.storyboard.qiitaViewController.instantiateInitialViewController()!
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()

@@ -46,6 +46,10 @@ final class ItemRegisterViewController: UIViewController {
 
     public var item: Item?
 
+    static func make() -> ItemRegisterViewController {
+        return R.storyboard.itemRegisterViewController.instantiateInitialViewController()!
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupItem()

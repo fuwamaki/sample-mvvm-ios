@@ -65,7 +65,7 @@ final class ItemViewModel {
 
 extension ItemViewModel: ItemViewModelable {
     func showRegister(indexPath: IndexPath?) {
-        let viewController = R.storyboard.itemRegisterViewController.instantiateInitialViewController()!
+        let viewController = ItemRegisterViewController.make()
         if let indexPath = indexPath {
             viewController.item = itemsSubject.value[indexPath.row]
         }

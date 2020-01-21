@@ -69,6 +69,10 @@ final class GithubViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: GithubViewModelable = GithubViewModel()
 
+    static func make() -> GithubViewController {
+        return R.storyboard.githubViewController.instantiateInitialViewController()!
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
