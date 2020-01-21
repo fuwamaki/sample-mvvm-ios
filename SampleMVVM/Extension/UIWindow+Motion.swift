@@ -29,7 +29,18 @@ extension UIWindow {
         switch motion {
         case .motionShake:
             #if DEBUG
-            print("シェイクやで")
+            if let navigationController = UIApplication.topViewController() as? UINavigationController {
+                let debugViewController = navigationController.viewControllers
+                    .filter { $0.isKind(of: DebugViewController.self) }
+                    .first
+                if debugViewController != nil {
+                    UIApplication.topViewController()?.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                let viewController = DebugViewController.make()
+                let navigationController = UINavigationController(rootViewController: viewController)
+                UIApplication.topViewController()?.present(navigationController, animated: true, completion: nil)
+            }
             #endif
         default:
             break
