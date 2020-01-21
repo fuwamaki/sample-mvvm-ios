@@ -9,5 +9,5 @@
 import Foundation
 
 struct Constants {
-    static let lineChannelID = "1482770679"
+    static let lineChannelID = "1653566982"
 }
