@@ -361,7 +361,8 @@
 			children = (
 				209A60AB23388F1600D6338C /* Info.plist */,
 				209A60BF2338906300D6338C /* AppDelegate */,
-				209A60C22338908000D6338C /* Views */,
+				209A60C22338908000D6338C /* ViewControllers */,
+				20E3165A23D75B950000A31B /* Views */,
 				201BF0322338EFEB0020F7B4 /* Entity */,
 				209A60C12338907600D6338C /* Network */,
 				200BB34A237E328B00AFA246 /* Repository */,
@@ -419,17 +420,16 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		209A60C22338908000D6338C /* Views */ = {
+		209A60C22338908000D6338C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				209A60DC2338C88A00D6338C /* MainTabBarViewController.swift */,
 				209A60E62338CDE700D6338C /* Item */,
 				209A60E72338CDEB00D6338C /* List */,
 				209A60E82338CDEF00D6338C /* Mypage */,
-				202ADB6F236AEF6200E65BB8 /* Common */,
 				204D813D23D6CF4E0059F379 /* Debug */,
 			);
-			path = Views;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		209A60C3233890B800D6338C /* Storyboard */ = {
@@ -516,7 +516,6 @@
 		20AC3E5B23546294007F67ED /* ItemView */ = {
 			isa = PBXGroup;
 			children = (
-				209A60E42338CDDF00D6338C /* ItemTableCell.swift */,
 				209A60CE2338C4D900D6338C /* ItemViewController.swift */,
 				209A60D42338C51E00D6338C /* ItemViewModel.swift */,
 			);
@@ -535,10 +534,6 @@
 		20AC3E5D235462D7007F67ED /* ListView */ = {
 			isa = PBXGroup;
 			children = (
-				202350D1237E874F00311C74 /* ListGithubTableCell.swift */,
-				202350D3237FC64400311C74 /* ListQiitaTableCell.swift */,
-				20382BE6233A04DD00CF77A1 /* GithubCollectionCell.swift */,
-				20382BE8233A04E800CF77A1 /* QiitaCollectionCell.swift */,
 				209A60D02338C4E600D6338C /* ListViewController.swift */,
 				209A60D62338C52700D6338C /* ListViewModel.swift */,
 			);
@@ -548,7 +543,6 @@
 		20AC3E5E235462F5007F67ED /* GithubView */ = {
 			isa = PBXGroup;
 			children = (
-				20382BDE2339F69700CF77A1 /* GithubTableCell.swift */,
 				205BE0BB23541800009EF0F2 /* GithubViewController.swift */,
 				205BE0BD2354180D009EF0F2 /* GithubViewModel.swift */,
 			);
@@ -558,7 +552,6 @@
 		20AC3E5F235462FF007F67ED /* QiitaView */ = {
 			isa = PBXGroup;
 			children = (
-				20382BE02339F6A200CF77A1 /* QiitaTableCell.swift */,
 				205BE0B7235417DF009EF0F2 /* QiitaViewController.swift */,
 				205BE0B9235417EB009EF0F2 /* QiitaViewModel.swift */,
 			);
@@ -583,6 +576,53 @@
 				20AAA785237D8A96006F2817 /* APIClient+Qiita.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		20E3165A23D75B950000A31B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				20E3165B23D75BA10000A31B /* ItemView */,
+				20E3165D23D75BE50000A31B /* ListView */,
+				20E3165E23D75BEB0000A31B /* GithubView */,
+				20E3165F23D75BF10000A31B /* QiitaView */,
+				202ADB6F236AEF6200E65BB8 /* Common */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		20E3165B23D75BA10000A31B /* ItemView */ = {
+			isa = PBXGroup;
+			children = (
+				209A60E42338CDDF00D6338C /* ItemTableCell.swift */,
+			);
+			path = ItemView;
+			sourceTree = "<group>";
+		};
+		20E3165D23D75BE50000A31B /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				202350D1237E874F00311C74 /* ListGithubTableCell.swift */,
+				202350D3237FC64400311C74 /* ListQiitaTableCell.swift */,
+				20382BE6233A04DD00CF77A1 /* GithubCollectionCell.swift */,
+				20382BE8233A04E800CF77A1 /* QiitaCollectionCell.swift */,
+			);
+			path = ListView;
+			sourceTree = "<group>";
+		};
+		20E3165E23D75BEB0000A31B /* GithubView */ = {
+			isa = PBXGroup;
+			children = (
+				20382BDE2339F69700CF77A1 /* GithubTableCell.swift */,
+			);
+			path = GithubView;
+			sourceTree = "<group>";
+		};
+		20E3165F23D75BF10000A31B /* QiitaView */ = {
+			isa = PBXGroup;
+			children = (
+				20382BE02339F6A200CF77A1 /* QiitaTableCell.swift */,
+			);
+			path = QiitaView;
 			sourceTree = "<group>";
 		};
 		2492E0FED5D0CE6582579961 /* Pods */ = {
