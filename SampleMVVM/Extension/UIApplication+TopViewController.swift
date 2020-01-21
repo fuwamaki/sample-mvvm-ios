@@ -37,7 +37,7 @@ extension UIApplication {
 
     // to display screen as the most front screen
     class func topViewController() -> UIViewController? {
-        guard let rootViewController = UIApplication.shared.delegate?.window??.rootViewController else { return nil }
+        guard let rootViewController = UIApplication.shared.rootViewControllerInKeyWindow else { return nil }
         var presentedViewController = rootViewController.presentedViewController
         if presentedViewController == nil {
             return rootViewController
