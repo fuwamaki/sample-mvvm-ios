@@ -40,6 +40,7 @@
 		20382BEB233A0CA100CF77A1 /* GithubCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BEA233A0CA100CF77A1 /* GithubCollectionCell.xib */; };
 		20382BED233A0CB100CF77A1 /* QiitaCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BEC233A0CB100CF77A1 /* QiitaCollectionCell.xib */; };
 		204D813823D6CE900059F379 /* UIApplication+TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D813723D6CE8F0059F379 /* UIApplication+TopViewController.swift */; };
+		204D813A23D6CECA0059F379 /* UIWindow+Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D813923D6CECA0059F379 /* UIWindow+Motion.swift */; };
 		205BE0B623541706009EF0F2 /* ItemRegisterMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0B523541706009EF0F2 /* ItemRegisterMode.swift */; };
 		205BE0B8235417DF009EF0F2 /* QiitaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0B7235417DF009EF0F2 /* QiitaViewController.swift */; };
 		205BE0BA235417EB009EF0F2 /* QiitaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0B9235417EB009EF0F2 /* QiitaViewModel.swift */; };
@@ -140,6 +141,7 @@
 		20382BEA233A0CA100CF77A1 /* GithubCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GithubCollectionCell.xib; sourceTree = "<group>"; };
 		20382BEC233A0CB100CF77A1 /* QiitaCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QiitaCollectionCell.xib; sourceTree = "<group>"; };
 		204D813723D6CE8F0059F379 /* UIApplication+TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+TopViewController.swift"; sourceTree = "<group>"; };
+		204D813923D6CECA0059F379 /* UIWindow+Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Motion.swift"; sourceTree = "<group>"; };
 		205BE0B523541706009EF0F2 /* ItemRegisterMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRegisterMode.swift; sourceTree = "<group>"; };
 		205BE0B7235417DF009EF0F2 /* QiitaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaViewController.swift; sourceTree = "<group>"; };
 		205BE0B9235417EB009EF0F2 /* QiitaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaViewModel.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 			isa = PBXGroup;
 			children = (
 				204D813723D6CE8F0059F379 /* UIApplication+TopViewController.swift */,
+				204D813923D6CECA0059F379 /* UIWindow+Motion.swift */,
 				20C0A4EB23390DBE00B12264 /* UIAlertController+Addition.swift */,
 				20C0A4ED23390ED800B12264 /* UIViewController+Rx.swift */,
 				202ADB74236BEE2700E65BB8 /* UIImage+Addition.swift */,
@@ -888,6 +891,7 @@
 				20AAA782237D897C006F2817 /* QiitaItem.swift in Sources */,
 				20C0A4EE23390ED800B12264 /* UIViewController+Rx.swift in Sources */,
 				209A60E12338CBF400D6338C /* APIClient.swift in Sources */,
+				204D813A23D6CECA0059F379 /* UIWindow+Motion.swift in Sources */,
 				20382BDF2339F69700CF77A1 /* GithubTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
