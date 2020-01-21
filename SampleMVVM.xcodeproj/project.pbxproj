@@ -41,6 +41,8 @@
 		20382BED233A0CB100CF77A1 /* QiitaCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BEC233A0CB100CF77A1 /* QiitaCollectionCell.xib */; };
 		204D813823D6CE900059F379 /* UIApplication+TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D813723D6CE8F0059F379 /* UIApplication+TopViewController.swift */; };
 		204D813A23D6CECA0059F379 /* UIWindow+Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D813923D6CECA0059F379 /* UIWindow+Motion.swift */; };
+		204D813C23D6CF250059F379 /* DebugViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 204D813B23D6CF250059F379 /* DebugViewController.storyboard */; };
+		204D813F23D6CF690059F379 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D813E23D6CF690059F379 /* DebugViewController.swift */; };
 		205BE0B623541706009EF0F2 /* ItemRegisterMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0B523541706009EF0F2 /* ItemRegisterMode.swift */; };
 		205BE0B8235417DF009EF0F2 /* QiitaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0B7235417DF009EF0F2 /* QiitaViewController.swift */; };
 		205BE0BA235417EB009EF0F2 /* QiitaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0B9235417EB009EF0F2 /* QiitaViewModel.swift */; };
@@ -142,6 +144,8 @@
 		20382BEC233A0CB100CF77A1 /* QiitaCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QiitaCollectionCell.xib; sourceTree = "<group>"; };
 		204D813723D6CE8F0059F379 /* UIApplication+TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+TopViewController.swift"; sourceTree = "<group>"; };
 		204D813923D6CECA0059F379 /* UIWindow+Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Motion.swift"; sourceTree = "<group>"; };
+		204D813B23D6CF250059F379 /* DebugViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DebugViewController.storyboard; sourceTree = "<group>"; };
+		204D813E23D6CF690059F379 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		205BE0B523541706009EF0F2 /* ItemRegisterMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRegisterMode.swift; sourceTree = "<group>"; };
 		205BE0B7235417DF009EF0F2 /* QiitaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaViewController.swift; sourceTree = "<group>"; };
 		205BE0B9235417EB009EF0F2 /* QiitaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaViewModel.swift; sourceTree = "<group>"; };
@@ -322,6 +326,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		204D813D23D6CF4E0059F379 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				204D813E23D6CF690059F379 /* DebugViewController.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
 		209A608F23388F1400D6338C = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +424,7 @@
 				209A60E72338CDEB00D6338C /* List */,
 				209A60E82338CDEF00D6338C /* Mypage */,
 				202ADB6F236AEF6200E65BB8 /* Common */,
+				204D813D23D6CF4E0059F379 /* Debug */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -427,6 +440,7 @@
 				205BE0BF23541B62009EF0F2 /* GithubViewController.storyboard */,
 				205BE0C123541B70009EF0F2 /* QiitaViewController.storyboard */,
 				209A60CC2338A92800D6338C /* MypageViewController.storyboard */,
+				204D813B23D6CF250059F379 /* DebugViewController.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -691,6 +705,7 @@
 				209A60CB2338A91800D6338C /* ItemViewController.storyboard in Resources */,
 				209A60CD2338A92800D6338C /* MypageViewController.storyboard in Resources */,
 				20C0A4F42339226B00B12264 /* Localizable.strings in Resources */,
+				204D813C23D6CF250059F379 /* DebugViewController.storyboard in Resources */,
 				209A60C92338A90300D6338C /* ListViewController.storyboard in Resources */,
 				209A60DB2338C75100D6338C /* MainTabBarViewController.storyboard in Resources */,
 				20A122892340F52600FA1EAB /* ItemRegisterViewController.storyboard in Resources */,
@@ -856,6 +871,7 @@
 				204D813823D6CE900059F379 /* UIApplication+TopViewController.swift in Sources */,
 				209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */,
 				209A60DF2338CBEC00D6338C /* OriginalResult.swift in Sources */,
+				204D813F23D6CF690059F379 /* DebugViewController.swift in Sources */,
 				20AC3E702356BB3B007F67ED /* APIClientable.swift in Sources */,
 				202350D2237E874F00311C74 /* ListGithubTableCell.swift in Sources */,
 				205BE0CA235426DA009EF0F2 /* GithubRepositoryResponse.swift in Sources */,
