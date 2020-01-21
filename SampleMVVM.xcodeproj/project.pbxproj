@@ -31,8 +31,6 @@
 		202ADB71236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202ADB70236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift */; };
 		202ADB73236B060200E65BB8 /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202ADB72236B060200E65BB8 /* CustomPicker.swift */; };
 		202ADB75236BEE2700E65BB8 /* UIImage+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202ADB74236BEE2700E65BB8 /* UIImage+Addition.swift */; };
-		20382BDB2339F05000CF77A1 /* CollectionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20382BDA2339F05000CF77A1 /* CollectionListCell.swift */; };
-		20382BDD2339F06E00CF77A1 /* CollectionListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BDC2339F06E00CF77A1 /* CollectionListCell.xib */; };
 		20382BDF2339F69700CF77A1 /* GithubTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20382BDE2339F69700CF77A1 /* GithubTableCell.swift */; };
 		20382BE12339F6A200CF77A1 /* QiitaTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20382BE02339F6A200CF77A1 /* QiitaTableCell.swift */; };
 		20382BE7233A04DD00CF77A1 /* GithubCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20382BE6233A04DD00CF77A1 /* GithubCollectionCell.swift */; };
@@ -135,8 +133,6 @@
 		202ADB70236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputAccessoryView.swift; sourceTree = "<group>"; };
 		202ADB72236B060200E65BB8 /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
 		202ADB74236BEE2700E65BB8 /* UIImage+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Addition.swift"; sourceTree = "<group>"; };
-		20382BDA2339F05000CF77A1 /* CollectionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListCell.swift; sourceTree = "<group>"; };
-		20382BDC2339F06E00CF77A1 /* CollectionListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionListCell.xib; sourceTree = "<group>"; };
 		20382BDE2339F69700CF77A1 /* GithubTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubTableCell.swift; sourceTree = "<group>"; };
 		20382BE02339F6A200CF77A1 /* QiitaTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaTableCell.swift; sourceTree = "<group>"; };
 		20382BE6233A04DD00CF77A1 /* GithubCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubCollectionCell.swift; sourceTree = "<group>"; };
@@ -290,14 +286,6 @@
 				20AAA787237D8E6C006F2817 /* QiitaItemRequest.swift */,
 			);
 			path = Request;
-			sourceTree = "<group>";
-		};
-		202350CC237E81A300311C74 /* Sample */ = {
-			isa = PBXGroup;
-			children = (
-				20382BDC2339F06E00CF77A1 /* CollectionListCell.xib */,
-			);
-			path = Sample;
 			sourceTree = "<group>";
 		};
 		202350CD237E820500311C74 /* List */ = {
@@ -469,7 +457,6 @@
 			children = (
 				202350CE237E821C00311C74 /* Item */,
 				202350CD237E820500311C74 /* List */,
-				202350CC237E81A300311C74 /* Sample */,
 				205BE0CD23544C2E009EF0F2 /* GithubTableCell.xib */,
 				205BE0CF23544C3E009EF0F2 /* QiitaTableCell.xib */,
 			);
@@ -488,7 +475,6 @@
 		209A60E72338CDEB00D6338C /* List */ = {
 			isa = PBXGroup;
 			children = (
-				20382BDA2339F05000CF77A1 /* CollectionListCell.swift */,
 				20AC3E5D235462D7007F67ED /* ListView */,
 				20AC3E5E235462F5007F67ED /* GithubView */,
 				20AC3E5F235462FF007F67ED /* QiitaView */,
@@ -739,7 +725,6 @@
 				205BE0D023544C3E009EF0F2 /* QiitaTableCell.xib in Resources */,
 				202350D0237E86FC00311C74 /* ListGithubTableCell.xib in Resources */,
 				209A60AA23388F1600D6338C /* LaunchScreen.storyboard in Resources */,
-				20382BDD2339F06E00CF77A1 /* CollectionListCell.xib in Resources */,
 				202350D6237FC81B00311C74 /* ListQiitaTableCell.xib in Resources */,
 				209A60A723388F1600D6338C /* Assets.xcassets in Resources */,
 				205BE0CE23544C2E009EF0F2 /* GithubTableCell.xib in Resources */,
@@ -939,7 +924,6 @@
 				201BF041233902770020F7B4 /* ItemRequest.swift in Sources */,
 				202ADB73236B060200E65BB8 /* CustomPicker.swift in Sources */,
 				2025535E238050200077BDC5 /* ListContents.swift in Sources */,
-				20382BDB2339F05000CF77A1 /* CollectionListCell.swift in Sources */,
 				205BE0BA235417EB009EF0F2 /* QiitaViewModel.swift in Sources */,
 				200BB359237E4B2100AFA246 /* UserDefaultsRepository.swift in Sources */,
 				20AAA786237D8A96006F2817 /* APIClient+Qiita.swift in Sources */,
