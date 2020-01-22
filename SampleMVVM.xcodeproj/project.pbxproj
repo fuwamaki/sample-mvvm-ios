@@ -133,6 +133,8 @@
 		202ADB70236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputAccessoryView.swift; sourceTree = "<group>"; };
 		202ADB72236B060200E65BB8 /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
 		202ADB74236BEE2700E65BB8 /* UIImage+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Addition.swift"; sourceTree = "<group>"; };
+		202E14E823D7ECBE00FB1862 /* SampleMVVMRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleMVVMRelease.entitlements; sourceTree = "<group>"; };
+		202E14E923D80D1500FB1862 /* SampleMVVMDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleMVVMDebug.entitlements; sourceTree = "<group>"; };
 		20382BDE2339F69700CF77A1 /* GithubTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubTableCell.swift; sourceTree = "<group>"; };
 		20382BE02339F6A200CF77A1 /* QiitaTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaTableCell.swift; sourceTree = "<group>"; };
 		20382BE6233A04DD00CF77A1 /* GithubCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubCollectionCell.swift; sourceTree = "<group>"; };
@@ -347,6 +349,8 @@
 		209A609A23388F1400D6338C /* SampleMVVM */ = {
 			isa = PBXGroup;
 			children = (
+				202E14E923D80D1500FB1862 /* SampleMVVMDebug.entitlements */,
+				202E14E823D7ECBE00FB1862 /* SampleMVVMRelease.entitlements */,
 				209A60AB23388F1600D6338C /* Info.plist */,
 				209A60BF2338906300D6338C /* AppDelegate */,
 				209A60C22338908000D6338C /* ViewControllers */,
@@ -1159,14 +1163,15 @@
 			baseConfigurationReference = 0FF5C9FF37FBBE04365980A4 /* Pods-SampleMVVM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SampleMVVM/SampleMVVMDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F98YCT898Q;
+				DEVELOPMENT_TEAM = 98UFL8A7L4;
 				INFOPLIST_FILE = SampleMVVM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fuwamaki.SampleMVVM;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fuwamaki.SampleMVVM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1178,6 +1183,7 @@
 			baseConfigurationReference = F1FC5020DF9A652963250345 /* Pods-SampleMVVM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SampleMVVM/SampleMVVMRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 98UFL8A7L4;
 				INFOPLIST_FILE = SampleMVVM/Info.plist;
