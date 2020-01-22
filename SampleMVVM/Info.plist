@@ -26,6 +26,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>sample.mvvm</string>
+                <string>line3rdp.$com.fuwamaki.SampleMVVM</string>
 			</array>
 		</dict>
 		<dict>
@@ -37,6 +38,10 @@
 			<array/>
 		</dict>
 	</array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>lineauth2</string>
+    </array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -91,5 +96,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>LineSDKConfig</key>
+    <dict>
+        <key>ChannelID</key>
+        <string>1653566982</string>
+    </dict>
 </dict>
 </plist>
