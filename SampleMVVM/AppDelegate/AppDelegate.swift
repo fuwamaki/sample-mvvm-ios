@@ -14,7 +14,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        LoginManager.shared.setup(channelID: Constants.lineChannelID, universalLinkURL: nil)
+        LoginManager.shared.setup(channelID: Constants.lineChannelID, universalLinkURL: URL(string: Url.lineUniversalLinkURL)!)
         SampleUserNotificationCenter.shared.setupPushNotification()
         return true
     }

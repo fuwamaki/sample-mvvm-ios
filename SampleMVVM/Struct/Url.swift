@@ -18,4 +18,5 @@ struct Url {
     static let githubRepositoriesURL = Url.githubBaseURL + "/search/repositories"
     static let qiitaBaseURL = "https://qiita.com"
     static let qiitaItemsParTagURL = Url.qiitaBaseURL + "/api/v2/tags"
+    static let lineUniversalLinkURL = "https://item-server.herokuapp.com/line-auth"
 }
