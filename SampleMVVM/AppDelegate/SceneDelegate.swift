@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard (scene as? UIWindowScene) != nil else { return }
     }
 
+    /// for LINEログイン
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         _ = LoginManager.shared.application(.shared, open: URLContexts.first?.url)
     }

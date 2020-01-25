@@ -19,14 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    /// universal link のURLとして対象かどうかのBool function
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        if LoginManager.shared.application(application, open: userActivity.webpageURL) {
-            return true
-        } else if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
-            return true
-        } else {
-            return false
-        }
+        return LoginManager.shared.application(application, open: userActivity.webpageURL) || userActivity.activityType == NSUserActivityTypeBrowsingWeb
     }
 
     /// SceneDelegateの設定・指定: Info.plist > Application Scene Manifest を参照する
@@ -39,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
     }
 
-    // iOS12以前でLINEログインのUniversalLink設定に必要なもの
+    /// iOS12以前でLINEログインのUniversalLink設定に必要なもの
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         return LoginManager.shared.application(app, open: url)
     }
