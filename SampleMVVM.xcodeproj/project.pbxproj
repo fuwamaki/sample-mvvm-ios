@@ -54,6 +54,9 @@
 		205BE0CC235426E8009EF0F2 /* GithubRepositoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0CB235426E8009EF0F2 /* GithubRepositoryRequest.swift */; };
 		205BE0CE23544C2E009EF0F2 /* GithubTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 205BE0CD23544C2E009EF0F2 /* GithubTableCell.xib */; };
 		205BE0D023544C3E009EF0F2 /* QiitaTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 205BE0CF23544C3E009EF0F2 /* QiitaTableCell.xib */; };
+		2063EF6723DC4BE6000992D1 /* UserRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF6623DC4BE6000992D1 /* UserRegistrationViewController.swift */; };
+		2063EF6923DC4BF4000992D1 /* UserRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF6823DC4BF4000992D1 /* UserRegistrationViewModel.swift */; };
+		2063EF6B23DC4C1D000992D1 /* UserRegistrationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2063EF6A23DC4C1D000992D1 /* UserRegistrationViewController.storyboard */; };
 		2068E9AD23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068E9AC23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
@@ -158,6 +161,9 @@
 		205BE0CB235426E8009EF0F2 /* GithubRepositoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepositoryRequest.swift; sourceTree = "<group>"; };
 		205BE0CD23544C2E009EF0F2 /* GithubTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GithubTableCell.xib; sourceTree = "<group>"; };
 		205BE0CF23544C3E009EF0F2 /* QiitaTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QiitaTableCell.xib; sourceTree = "<group>"; };
+		2063EF6623DC4BE6000992D1 /* UserRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistrationViewController.swift; sourceTree = "<group>"; };
+		2063EF6823DC4BF4000992D1 /* UserRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistrationViewModel.swift; sourceTree = "<group>"; };
+		2063EF6A23DC4C1D000992D1 /* UserRegistrationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserRegistrationViewController.storyboard; sourceTree = "<group>"; };
 		2068E9AC23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUserNotificationCenter.swift; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -475,6 +481,8 @@
 			children = (
 				209A60D22338C4F100D6338C /* MypageViewController.swift */,
 				209A60D82338C52F00D6338C /* MypageViewModel.swift */,
+				2063EF6623DC4BE6000992D1 /* UserRegistrationViewController.swift */,
+				2063EF6823DC4BF4000992D1 /* UserRegistrationViewModel.swift */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -635,6 +643,7 @@
 			isa = PBXGroup;
 			children = (
 				209A60CC2338A92800D6338C /* MypageViewController.storyboard */,
+				2063EF6A23DC4C1D000992D1 /* UserRegistrationViewController.storyboard */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -786,6 +795,7 @@
 				202350D0237E86FC00311C74 /* ListGithubTableCell.xib in Resources */,
 				209A60AA23388F1600D6338C /* LaunchScreen.storyboard in Resources */,
 				202350D6237FC81B00311C74 /* ListQiitaTableCell.xib in Resources */,
+				2063EF6B23DC4C1D000992D1 /* UserRegistrationViewController.storyboard in Resources */,
 				209A60A723388F1600D6338C /* Assets.xcassets in Resources */,
 				205BE0CE23544C2E009EF0F2 /* GithubTableCell.xib in Resources */,
 				205BE0C023541B62009EF0F2 /* GithubViewController.storyboard in Resources */,
@@ -951,6 +961,7 @@
 				20AC3E742356BB52007F67ED /* APIClient+Github.swift in Sources */,
 				20382BE7233A04DD00CF77A1 /* GithubCollectionCell.swift in Sources */,
 				201BF03A2338FB180020F7B4 /* ResponseProtocol.swift in Sources */,
+				2063EF6923DC4BF4000992D1 /* UserRegistrationViewModel.swift in Sources */,
 				201BF0342338EFF90020F7B4 /* Item.swift in Sources */,
 				209A609C23388F1500D6338C /* AppDelegate.swift in Sources */,
 				205BE0B8235417DF009EF0F2 /* QiitaViewController.swift in Sources */,
@@ -973,6 +984,7 @@
 				20A122872340F3CD00FA1EAB /* ItemRegisterViewModel.swift in Sources */,
 				200BB35B237E580100AFA246 /* ListRealmEntity.swift in Sources */,
 				201BF0382338FAE60020F7B4 /* RequestProtocol.swift in Sources */,
+				2063EF6723DC4BE6000992D1 /* UserRegistrationViewController.swift in Sources */,
 				201BF03D2338FDBD0020F7B4 /* Url.swift in Sources */,
 				205BE0BE2354180D009EF0F2 /* GithubViewModel.swift in Sources */,
 				209A60DD2338C88A00D6338C /* MainTabBarViewController.swift in Sources */,
