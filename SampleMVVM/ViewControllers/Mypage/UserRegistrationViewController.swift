@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxOptional
 
 final class UserRegistrationViewController: UIViewController {
 
@@ -24,6 +25,7 @@ final class UserRegistrationViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
     private let viewModel: UserRegistrationViewModelable = UserRegistrationViewModel()
+    private let birthdayPickerView = BirthdayPickerView()
 
     static func make() -> UserRegistrationViewController {
         let viewController = R.storyboard.userRegistrationViewController.instantiateInitialViewController()!
@@ -44,12 +46,21 @@ final class UserRegistrationViewController: UIViewController {
             inputAccessoryView.delegate = self
             $1.inputAccessoryView = inputAccessoryView
         }
+        birthdayTextField.inputView = birthdayPickerView
     }
 
     private func bind() {
         changeImageButton.rx.tap
             .subscribe(onNext: { [unowned self] in
                 self.viewModel.handleChangeImageButton()
+            })
+            .disposed(by: disposeBag)
+
+        birthdayPickerView.selectedDate
+            .filterNil()
+            .subscribe(onNext: { [unowned self] date in
+                self.viewModel.residence.accept(date)
+                self.birthdayTextField.text = DateFormat.yyyyMMdd.string(from: date)
             })
             .disposed(by: disposeBag)
 

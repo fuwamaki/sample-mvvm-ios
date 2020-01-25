@@ -10,19 +10,20 @@ import RxSwift
 import RxCocoa
 
 protocol UserRegistrationViewModelable {
+    var residence: BehaviorRelay<Date> { get }
     func handleChangeImageButton()
     func handleSubmitButton()
 }
 
 final class UserRegistrationViewModel {
+
+    var residence = BehaviorRelay<Date>(value: Date())
 }
 
 extension UserRegistrationViewModel: UserRegistrationViewModelable {
     func handleChangeImageButton() {
-        
     }
 
     func handleSubmitButton() {
-        
     }
 }

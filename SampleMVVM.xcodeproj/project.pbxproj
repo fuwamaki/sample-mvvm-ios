@@ -57,6 +57,9 @@
 		2063EF6723DC4BE6000992D1 /* UserRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF6623DC4BE6000992D1 /* UserRegistrationViewController.swift */; };
 		2063EF6923DC4BF4000992D1 /* UserRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF6823DC4BF4000992D1 /* UserRegistrationViewModel.swift */; };
 		2063EF6B23DC4C1D000992D1 /* UserRegistrationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2063EF6A23DC4C1D000992D1 /* UserRegistrationViewController.storyboard */; };
+		2063EF6D23DC5661000992D1 /* BirthdayPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF6C23DC5661000992D1 /* BirthdayPickerView.swift */; };
+		2063EF7023DC56A4000992D1 /* UIView+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF6F23DC56A4000992D1 /* UIView+Addition.swift */; };
+		2063EF7323DC5E79000992D1 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7223DC5E79000992D1 /* DateFormat.swift */; };
 		2068E9AD23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068E9AC23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
@@ -164,6 +167,9 @@
 		2063EF6623DC4BE6000992D1 /* UserRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistrationViewController.swift; sourceTree = "<group>"; };
 		2063EF6823DC4BF4000992D1 /* UserRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistrationViewModel.swift; sourceTree = "<group>"; };
 		2063EF6A23DC4C1D000992D1 /* UserRegistrationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserRegistrationViewController.storyboard; sourceTree = "<group>"; };
+		2063EF6C23DC5661000992D1 /* BirthdayPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayPickerView.swift; sourceTree = "<group>"; };
+		2063EF6F23DC56A4000992D1 /* UIView+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Addition.swift"; sourceTree = "<group>"; };
+		2063EF7223DC5E79000992D1 /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		2068E9AC23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUserNotificationCenter.swift; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -320,6 +326,7 @@
 			children = (
 				202ADB70236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift */,
 				202ADB72236B060200E65BB8 /* CustomPicker.swift */,
+				2063EF6C23DC5661000992D1 /* BirthdayPickerView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -330,6 +337,14 @@
 				204D813E23D6CF690059F379 /* DebugViewController.swift */,
 			);
 			path = Debug;
+			sourceTree = "<group>";
+		};
+		2063EF7123DC5E64000992D1 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				2063EF7223DC5E79000992D1 /* DateFormat.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		209A608F23388F1400D6338C = {
@@ -367,6 +382,7 @@
 				201BF03B2338FDA70020F7B4 /* Struct */,
 				20AC3E5A23546266007F67ED /* Enum */,
 				200BB355237E47AD00AFA246 /* Protocol */,
+				2063EF7123DC5E64000992D1 /* Util */,
 				209A60C02338906C00D6338C /* Resources */,
 				209A60E22338CC4800D6338C /* Extension */,
 			);
@@ -455,6 +471,7 @@
 				204D813723D6CE8F0059F379 /* UIApplication+TopViewController.swift */,
 				204D813923D6CECA0059F379 /* UIWindow+Motion.swift */,
 				20C0A4EB23390DBE00B12264 /* UIAlertController+Addition.swift */,
+				2063EF6F23DC56A4000992D1 /* UIView+Addition.swift */,
 				20C0A4ED23390ED800B12264 /* UIViewController+Rx.swift */,
 				202ADB74236BEE2700E65BB8 /* UIImage+Addition.swift */,
 				200BB34D237E46C600AFA246 /* UserDefaults+StringDefaultSettable.swift */,
@@ -951,6 +968,7 @@
 				202350D4237FC64400311C74 /* ListQiitaTableCell.swift in Sources */,
 				20C0A4EC23390DBE00B12264 /* UIAlertController+Addition.swift in Sources */,
 				205BE0CC235426E8009EF0F2 /* GithubRepositoryRequest.swift in Sources */,
+				2063EF7323DC5E79000992D1 /* DateFormat.swift in Sources */,
 				209A60D72338C52700D6338C /* ListViewModel.swift in Sources */,
 				209A60C7233897BF00D6338C /* R.generated.swift in Sources */,
 				209A60E52338CDDF00D6338C /* ItemTableCell.swift in Sources */,
@@ -979,6 +997,7 @@
 				209A60D52338C51E00D6338C /* ItemViewModel.swift in Sources */,
 				20AAA784237D8A65006F2817 /* QiitaUser.swift in Sources */,
 				20AAA78A237D8E90006F2817 /* QiitaItemResponse.swift in Sources */,
+				2063EF7023DC56A4000992D1 /* UIView+Addition.swift in Sources */,
 				209A60CF2338C4D900D6338C /* ItemViewController.swift in Sources */,
 				200BB352237E471200AFA246 /* UserDefaults+IntegerDefaultSettable.swift in Sources */,
 				20A122872340F3CD00FA1EAB /* ItemRegisterViewModel.swift in Sources */,
@@ -988,6 +1007,7 @@
 				201BF03D2338FDBD0020F7B4 /* Url.swift in Sources */,
 				205BE0BE2354180D009EF0F2 /* GithubViewModel.swift in Sources */,
 				209A60DD2338C88A00D6338C /* MainTabBarViewController.swift in Sources */,
+				2063EF6D23DC5661000992D1 /* BirthdayPickerView.swift in Sources */,
 				205BE0C62354260C009EF0F2 /* GithubRepositoryOwner.swift in Sources */,
 				20255360238100A10077BDC5 /* Constants.swift in Sources */,
 				200BB350237E46F100AFA246 /* UserDefaults+BoolDefaultSettable.swift in Sources */,
