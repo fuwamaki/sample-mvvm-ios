@@ -21,3 +21,36 @@ iOSのMVVMとは、Model, ViewController, ViewModelの3つの層に分けた、
   - Entity: オブジェクトクラス。UnitTestの対象。
   - Repository: ローカルデータの読込・検索・削除・更新などを行うクラス。UnitTestの対象。
   - APIClient: APIアクセスを行うクラス。
+
+## 実現している機能
+
+MVVMアーキテクチャを採用したシステム、以下の機能を実現している。
+
+### 1. Itemの取得・追加・削除・更新
+
+APIのGET・POST・DELETE・PUTを学ぶために。
+
+- Itemの一覧表示・削除: ItemViewControllerなど
+- Itemの登録・更新: ItemRegisterViewControllerなど
+
+### 2. 並列処理で複数のAPI取得
+
+複数のAPIの扱いを学ぶために。
+Githubのリポジトリ一覧取得APIでお気に入り登録したもの、
+Qiitaの記事一覧取得APIでお気に入り登録したものを、まとめて一覧で表示する。
+
+- GithubリポジトリとQiita記事のお気に入り表示: ListViewControllerなど
+- Githubのリポジトリ一覧取得とお気に入り登録: GithubViewControllerなど
+- Qiitaの記事一覧取得とお気に入り登録: QiitaViewControllerなど
+
+### 3. 新規登録・ログイン
+
+ローカルデータの扱いを学ぶために。
+新規登録・ログインは、UrlSchemeとUniversalLink周りも学べるLINEログインを採用した。
+
+- 新規登録・ログインへの導線、ユーザ情報の表示: MypageViewControllerなど
+
+## 具体的なコードについて
+
+詳しい説明はReadmeには記載しない。
+コードにコメントを書いたりしているので、コードを見て欲しい。
