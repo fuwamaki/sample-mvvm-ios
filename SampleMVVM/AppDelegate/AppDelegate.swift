@@ -14,13 +14,15 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        LoginManager.shared.setup(channelID: Constants.lineChannelID, universalLinkURL: URL(string: Url.lineUniversalLinkURL)!)
+        LoginManager.shared.setup(channelID: Constants.lineChannelID, universalLinkURL: URL(string: Url.lineUniversalLinkURL))
         SampleUserNotificationCenter.shared.setupPushNotification()
         return true
     }
 
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if LoginManager.shared.application(application, open: userActivity.webpageURL) {
+            return true
+        } else if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
             return true
         } else {
             return false
@@ -38,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // iOS12以前でLINEログインのUniversalLink設定に必要なもの
-//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-//        return LoginManager.shared.application(app, open: url)
-//    }
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        return LoginManager.shared.application(app, open: url)
+    }
 }
