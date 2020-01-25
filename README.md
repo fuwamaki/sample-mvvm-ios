@@ -50,7 +50,27 @@ Qiitaの記事一覧取得APIでお気に入り登録したものを、まとめ
 
 - 新規登録・ログインへの導線、ユーザ情報の表示: MypageViewControllerなど
 
-## 具体的なコードについて
+## 使用ライブラリ
+
+- Rx系: ViewModelのbindingを実現するために
+  - https://github.com/ReactiveX/RxSwift
+  - https://github.com/RxSwiftCommunity/RxOptional
+  - https://github.com/ReactiveX/RxSwift/tree/master/RxTest
+  - https://github.com/ReactiveX/RxSwift/tree/master/RxBlocking
+- RealmSwift: ローカルデータを管理しやすくするために
+  - https://github.com/realm/realm-cocoa
+- PINRemoteImage: 画像を取得しやすくするために
+  - https://github.com/pinterest/PINRemoteImage
+- Alamofire: APIアクセスしやすくするために
+  - https://github.com/Alamofire/Alamofire
+- LineSDKSwift: LINEログインのために
+  - https://github.com/line/line-sdk-ios-swift
+- SwiftLint: 静的解析ツール
+  - https://github.com/realm/SwiftLint
+- R.swift: imageやstoryboardなどのtypo防止
+  - https://github.com/mac-cain13/R.swift
+
+## 具体的なコードの説明
 
 詳しい説明はReadmeには記載しない。
 コードにコメントを書いたりしているので、コードを見て欲しい。
