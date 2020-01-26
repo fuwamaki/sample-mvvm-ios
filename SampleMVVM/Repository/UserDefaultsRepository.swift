@@ -80,6 +80,14 @@ extension UserDefaultsRepository {
             UserDefaults.standard.set(newValue, forKey: .pictureUrl)
         }
     }
+
+    func removeUser() {
+        UserDefaults.standard.remove(forKey: .userId)
+        UserDefaults.standard.remove(forKey: .lineAccessToken)
+        UserDefaults.standard.remove(forKey: .name)
+        UserDefaults.standard.remove(forKey: .birthday)
+        UserDefaults.standard.remove(forKey: .pictureUrl)
+    }
 }
 
 // MARK: increment List ID

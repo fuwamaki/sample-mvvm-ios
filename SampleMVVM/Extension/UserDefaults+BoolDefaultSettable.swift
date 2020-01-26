@@ -18,6 +18,11 @@ extension BoolDefaultSettable where BoolKey.RawValue == String {
         UserDefaults.standard.set(value, forKey: key)
     }
 
+    func remove(forKey key: BoolKey) {
+        let key = namespaced(key)
+        UserDefaults.standard.removeObject(forKey: key)
+    }
+
     @discardableResult
     func bool(forKey key: BoolKey) -> Bool? {
         let key = namespaced(key)

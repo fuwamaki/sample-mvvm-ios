@@ -17,6 +17,7 @@ protocol MypageViewModelable {
     var user: BehaviorRelay<User?> { get }
     var pushViewController: Driver<UIViewController> { get }
     var presentViewController: Driver<UIViewController> { get }
+    func handleSettingBarButtonItem()
     func handleLineLoginButton(viewController: UIViewController) -> Completable
     func handleEditButton()
 }
@@ -53,28 +54,42 @@ final class MypageViewModel {
     private func subscribe() {
         viewWillAppear
             .subscribe(onNext: { [unowned self] in
-                if let lineAccessToken = UserDefaultsRepository.shared.lineAccessToken,
-                    let userId = UserDefaultsRepository.shared.userId,
-                    let name = UserDefaultsRepository.shared.name,
-                    let birthday = UserDefaultsRepository.shared.birthday {
-                    let iconImageURL = UserDefaultsRepository.shared.pictureUrl
-                    let user = User(lineAccessToken: lineAccessToken,
-                                    userId: userId,
-                                    name: name,
-                                    birthday: DateFormat.yyyyMMdd.date(from: birthday)!,
-                                    iconImageURL: iconImageURL)
-                    self.user.accept(user)
-                    self.isSignedIn.accept(true)
-                } else {
-                    self.user.accept(nil)
-                    self.isSignedIn.accept(false)
-                }
+                self.checkUser()
             })
             .disposed(by: disposeBag)
+    }
+
+    private func checkUser() {
+        if let lineAccessToken = UserDefaultsRepository.shared.lineAccessToken,
+            let userId = UserDefaultsRepository.shared.userId,
+            let name = UserDefaultsRepository.shared.name,
+            let birthday = UserDefaultsRepository.shared.birthday {
+            let iconImageURL = UserDefaultsRepository.shared.pictureUrl
+            let user = User(lineAccessToken: lineAccessToken,
+                            userId: userId,
+                            name: name,
+                            birthday: DateFormat.yyyyMMdd.date(from: birthday)!,
+                            iconImageURL: iconImageURL)
+            self.user.accept(user)
+            isSignedIn.accept(true)
+        } else {
+            user.accept(nil)
+            isSignedIn.accept(false)
+        }
     }
 }
 
 extension MypageViewModel: MypageViewModelable {
+    func handleSettingBarButtonItem() {
+        let actionSheet = UIAlertController(title: "設定", message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "ログアウト", style: .destructive, handler: { _ in
+            UserDefaultsRepository.shared.removeUser()
+            self.checkUser()
+        }))
+        actionSheet.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        presentViewControllerSubject.accept(actionSheet)
+    }
+
     func handleLineLoginButton(viewController: UIViewController) -> Completable {
         return apiClient.lineLogin(viewController: viewController)
             .do(

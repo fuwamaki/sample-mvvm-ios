@@ -18,6 +18,11 @@ extension URLDefaultSettable where URLKey.RawValue == String {
         UserDefaults.standard.set(value, forKey: key)
     }
 
+    func remove(forKey key: URLKey) {
+        let key = namespaced(key)
+        UserDefaults.standard.removeObject(forKey: key)
+    }
+
     @discardableResult
     func URL(forKey key: URLKey) -> URL? {
         let key = namespaced(key)

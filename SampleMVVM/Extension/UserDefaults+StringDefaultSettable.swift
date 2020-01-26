@@ -18,6 +18,11 @@ extension StringDefaultSettable where StringKey.RawValue == String {
         UserDefaults.standard.set(value, forKey: key)
     }
 
+    func remove(forKey key: StringKey) {
+        let key = namespaced(key)
+        UserDefaults.standard.removeObject(forKey: key)
+    }
+
     @discardableResult
     func string(forKey key: StringKey) -> String? {
         let key = namespaced(key)

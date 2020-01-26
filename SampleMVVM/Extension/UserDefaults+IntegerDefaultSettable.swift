@@ -18,6 +18,11 @@ extension IntegerDefaultSettable where IntegerKey.RawValue == String {
         UserDefaults.standard.set(value, forKey: key)
     }
 
+    func remove(forKey key: IntegerKey) {
+        let key = namespaced(key)
+        UserDefaults.standard.removeObject(forKey: key)
+    }
+
     @discardableResult
     func integer(forKey key: IntegerKey) -> Int? {
         let key = namespaced(key)

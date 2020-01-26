@@ -14,6 +14,7 @@ import PINRemoteImage
 
 final class MypageViewController: UIViewController {
 
+    @IBOutlet private weak var settingBarButtonItem: UIBarButtonItem!
     @IBOutlet private weak var profileCardView: UIView!
     @IBOutlet private weak var iconImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
@@ -91,6 +92,12 @@ final class MypageViewController: UIViewController {
                 self.nameLabel.text = user.name
                 self.birthdayLabel.text = DateFormat.yyyyMMdd.string(from: user.birthday)
                 self.iconImageView.pin_setImage(from: user.iconImageURL)
+            })
+            .disposed(by: disposeBag)
+
+        settingBarButtonItem.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                self.viewModel.handleSettingBarButtonItem()
             })
             .disposed(by: disposeBag)
 

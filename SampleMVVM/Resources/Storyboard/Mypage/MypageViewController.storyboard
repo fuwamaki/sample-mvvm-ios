@@ -113,7 +113,9 @@
                         <viewLayoutGuide key="safeArea" id="ES1-0C-cMB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Mypage" image="c.circle" catalog="system" id="ZYA-9V-y5D"/>
-                    <navigationItem key="navigationItem" title="マイページ" largeTitleDisplayMode="always" id="yn4-B1-vbq"/>
+                    <navigationItem key="navigationItem" title="マイページ" largeTitleDisplayMode="always" id="yn4-B1-vbq">
+                        <barButtonItem key="rightBarButtonItem" image="gear" catalog="system" id="zev-HD-4bx"/>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="birthdayLabel" destination="tYa-Nz-GjM" id="kJR-fv-b3G"/>
@@ -122,6 +124,7 @@
                         <outlet property="lineLoginButton" destination="vZm-CR-ZPz" id="hfy-mk-NBs"/>
                         <outlet property="nameLabel" destination="FUC-E1-V1Y" id="QkF-20-qDh"/>
                         <outlet property="profileCardView" destination="SWS-IN-ulq" id="fKd-jg-diA"/>
+                        <outlet property="settingBarButtonItem" destination="zev-HD-4bx" id="VC8-ly-JLJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9F7-fd-K4f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -148,6 +151,7 @@
     <resources>
         <image name="birthday" width="256" height="256"/>
         <image name="c.circle" catalog="system" width="64" height="60"/>
+        <image name="gear" catalog="system" width="64" height="58"/>
         <image name="person.circle" catalog="system" width="64" height="60"/>
     </resources>
 </document>
