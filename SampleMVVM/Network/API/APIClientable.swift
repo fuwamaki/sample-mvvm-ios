@@ -19,4 +19,6 @@ protocol APIClientable {
     func fetchGithubRepositories(query: String) -> Single<[GithubRepository]>
     // MARK: Qiita
     func fetchQiitaItems(tag: String) -> Single<[QiitaItem]>
+    // MARK: LineLogin
+    func lineLogin(viewController: UIViewController) -> Single<LineUser>
 }
