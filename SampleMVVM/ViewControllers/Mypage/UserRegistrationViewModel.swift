@@ -15,7 +15,7 @@ protocol UserRegistrationViewModelable {
     var birthday: BehaviorRelay<Date?> { get }
     var iconImageURL: BehaviorRelay<URL?> { get }
     var presentViewController: Driver<UIViewController> { get }
-    func handleChangeImageButton()
+    func handleChangeImageButton(_ imagePickerController: UIImagePickerController)
     func handleSubmitButton()
 }
 
@@ -53,7 +53,10 @@ final class UserRegistrationViewModel {
 
 // MARK: UserRegistrationViewModelable
 extension UserRegistrationViewModel: UserRegistrationViewModelable {
-    func handleChangeImageButton() {
+    func handleChangeImageButton(_ imagePickerController: UIImagePickerController) {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+            presentViewControllerSubject.accept(imagePickerController)
+        }
     }
 
     func handleSubmitButton() {

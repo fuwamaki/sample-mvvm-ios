@@ -29,6 +29,13 @@ final class UserRegistrationViewController: UIViewController {
         return [nameTextField, birthdayTextField]
     }
 
+    private lazy var imagePickerController: UIImagePickerController = {
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.delegate = self
+        return picker
+    }()
+
     private let disposeBag = DisposeBag()
     private var viewModel: UserRegistrationViewModelable?
     private let birthdayPickerView = BirthdayPickerView()
@@ -86,8 +93,8 @@ final class UserRegistrationViewController: UIViewController {
             .disposed(by: disposeBag)
 
         changeImageButton.rx.tap
-            .subscribe(onNext: { _ in
-                viewModel.handleChangeImageButton()
+            .subscribe(onNext: { [unowned self] in
+                viewModel.handleChangeImageButton(self.imagePickerController)
             })
             .disposed(by: disposeBag)
 
@@ -123,4 +130,11 @@ final class UserRegistrationViewController: UIViewController {
     }
 }
 
+extension UserRegistrationViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+//        viewModel.imagePicker(picker, info: info, viewController: self)
+    }
+}
+
+extension UserRegistrationViewController: UINavigationControllerDelegate {}
 extension UserRegistrationViewController: TextFieldInputAccessoryViewDelegate {}
