@@ -53,6 +53,9 @@ final class UserRegistrationViewController: UIViewController {
             inputAccessoryView.delegate = self
             $1.inputAccessoryView = inputAccessoryView
         }
+        if let birthday = viewModel?.birthday.value {
+            birthdayPickerView.selectRow(date: birthday)
+        }
         birthdayTextField.inputView = birthdayPickerView
     }
 

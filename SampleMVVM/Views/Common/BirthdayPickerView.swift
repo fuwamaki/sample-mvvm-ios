@@ -52,6 +52,13 @@ final class BirthdayPickerView: UIView {
 }
 
 extension BirthdayPickerView {
+    public func selectRow(date: Date) {
+        birthdayPicker.setDate(date, animated: true)
+    }
+}
+
+// MARK: handling picker action
+extension BirthdayPickerView {
     @objc func birthdayPickerValueDidChange(_ datePicker: UIDatePicker) {
         selectedDate.accept(datePicker.date)
     }
