@@ -15,7 +15,7 @@ enum ListRealmType: String {
     case other
 }
 
-class ListRealmEntity: Object, RealmModelable {
+class ListRealmEntity: Object, ItemRealmModelable {
     @objc dynamic var itemId: Int = 0
     @objc dynamic var keyword: String = ""
     @objc dynamic var typeString: String = ""
