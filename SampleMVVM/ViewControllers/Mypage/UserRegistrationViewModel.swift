@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import CropViewController
 
 protocol UserRegistrationViewModelable {
     var dismissSubject: BehaviorRelay<Bool> { get }
@@ -17,6 +18,8 @@ protocol UserRegistrationViewModelable {
     var presentViewController: Driver<UIViewController> { get }
     func handleChangeImageButton(_ imagePickerController: UIImagePickerController)
     func handleSubmitButton()
+    func imagePicker(_ picker: UIImagePickerController, info: [UIImagePickerController.InfoKey: Any], viewController: UserRegistrationViewController)
+    func cropView(_ cropViewController: CropViewController, image: UIImage)
 }
 
 final class UserRegistrationViewModel {
@@ -25,6 +28,8 @@ final class UserRegistrationViewModel {
     var name = BehaviorRelay<String?>(value: nil)
     var birthday = BehaviorRelay<Date?>(value: nil)
     var iconImageURL = BehaviorRelay<URL?>(value: nil)
+
+    var uploadImage = BehaviorRelay<UIImage?>(value: nil)
 
     private var presentViewControllerSubject = PublishRelay<UIViewController>()
     var presentViewController: Driver<UIViewController> {
@@ -102,5 +107,24 @@ extension UserRegistrationViewModel: UserRegistrationViewModelable {
                 self?.presentViewControllerSubject.accept(errorAlert)
             }
         }
+    }
+}
+
+// MARK: imagePickerController
+extension UserRegistrationViewModel {
+    func imagePicker(_ picker: UIImagePickerController, info: [UIImagePickerController.InfoKey: Any], viewController: UserRegistrationViewController) {
+        if let image = info[.originalImage] as? UIImage {
+            let cropViewController = CropViewController(croppingStyle: .circular, image: image)
+            cropViewController.delegate = viewController
+            picker.pushViewController(cropViewController, animated: true)
+        }
+    }
+}
+
+// MARK: CropViewController
+extension UserRegistrationViewModel {
+    func cropView(_ cropViewController: CropViewController, image: UIImage) {
+        uploadImage.accept(image)
+        cropViewController.dismiss(animated: true, completion: nil)
     }
 }

@@ -56,6 +56,7 @@ final class MypageViewController: UIViewController {
         iconImageView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
     }
 
+    // swiftlint:disable function_body_length
     private func bind() {
         rx.viewWillAppear
             .bind(to: viewModel.viewWillAppear)

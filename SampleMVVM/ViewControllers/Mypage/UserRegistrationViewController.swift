@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxOptional
 import PINRemoteImage
+import CropViewController
 
 enum UserRegistrationType {
     case create(lineUser: LineUser)
@@ -130,9 +131,21 @@ final class UserRegistrationViewController: UIViewController {
     }
 }
 
+// MARK: UIImagePickerControllerDelegate
 extension UserRegistrationViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-//        viewModel.imagePicker(picker, info: info, viewController: self)
+        viewModel?.imagePicker(picker, info: info, viewController: self)
+    }
+}
+
+// MARK: CropViewControllerDelegate
+extension UserRegistrationViewController: CropViewControllerDelegate {
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        viewModel?.cropView(cropViewController, image: image)
+    }
+
+    func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {
+        cropViewController.dismiss(animated: true, completion: nil)
     }
 }
 
