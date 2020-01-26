@@ -47,13 +47,8 @@ final class QiitaViewController: UIViewController {
        }
 
     private lazy var indicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
-        indicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-        indicator.center = self.view.center
-        indicator.hidesWhenStopped = true
-        indicator.color = UIColor.link
-        indicator.isHidden = true
+        let indicator = defaultIndicator
+        indicator.center = view.center
         return indicator
     }()
 
@@ -91,11 +86,9 @@ final class QiitaViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.errorAlertMessage
-            .drive(onNext: { [unowned self] message in
-                let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+        viewModel.presentViewController
+            .drive(onNext: { [unowned self] viewController in
+                self.present(viewController, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
 

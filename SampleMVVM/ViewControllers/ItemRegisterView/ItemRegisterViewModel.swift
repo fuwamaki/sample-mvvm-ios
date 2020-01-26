@@ -12,13 +12,13 @@ import RxCocoa
 protocol ItemRegisterViewModelable {
     var editItem: Item? { get set }
     var isLoading: BehaviorRelay<Bool> { get }
+    var presentViewController: Driver<UIViewController> { get }
     var dismissSubject: BehaviorRelay<Bool> { get }
     var itemId: BehaviorRelay<Int?> { get }
     var nameText: BehaviorRelay<String?> { get }
     var categoryText: BehaviorRelay<String?> { get }
     var priceText: BehaviorRelay<String?> { get }
     var allFieldsValid: Observable<Bool> { get }
-    var errorAlertMessage: Driver<String> { get }
     func setupItem()
     func handleRegisterButton() -> Completable
 }
@@ -61,9 +61,9 @@ final class ItemRegisterViewModel {
             .share(replay: 1)
     }()
 
-    private var errorAlertMessageSubject = PublishRelay<String>()
-    var errorAlertMessage: Driver<String> {
-        return errorAlertMessageSubject.asDriver(onErrorJustReturn: "")
+    private var presentViewControllerSubject = PublishRelay<UIViewController>()
+    var presentViewController: Driver<UIViewController> {
+        return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
     }
 
     private let disposeBag = DisposeBag()
@@ -93,7 +93,8 @@ final class ItemRegisterViewModel {
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    self?.errorAlertMessageSubject.accept(error.message)},
+                    let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
+                    self?.presentViewControllerSubject.accept(errorAlert) },
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
                     self?.dismissSubject.accept(true)})
@@ -111,7 +112,8 @@ final class ItemRegisterViewModel {
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    self?.errorAlertMessageSubject.accept(error.message)},
+                    let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
+                    self?.presentViewControllerSubject.accept(errorAlert) },
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
                     self?.dismissSubject.accept(true)})

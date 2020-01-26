@@ -87,9 +87,15 @@ final class ListViewController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.pushViewController
-        .drive(onNext: { [unowned self] viewController in
-            self.navigationController?.pushViewController(viewController, animated: true)})
-        .disposed(by: disposeBag)
+            .drive(onNext: { [unowned self] viewController in
+                self.navigationController?.pushViewController(viewController, animated: true)})
+            .disposed(by: disposeBag)
+
+        viewModel.presentViewController
+            .drive(onNext: { [unowned self] viewController in
+                self.present(viewController, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
 
         githubBarButtonItem.rx.tap
             .subscribe(onNext: { [unowned self] in

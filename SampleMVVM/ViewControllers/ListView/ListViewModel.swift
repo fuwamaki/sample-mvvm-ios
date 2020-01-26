@@ -15,6 +15,7 @@ protocol ListViewModelable {
     var contentsSubject: BehaviorRelay<[ListContents]> { get }
     var contents: Driver<[ListContents]> { get }
     var pushViewController: Driver<UIViewController> { get }
+    var presentViewController: Driver<UIViewController> { get }
     func showGithubView()
     func showQiitaView()
 }
@@ -37,9 +38,9 @@ final class ListViewModel {
         return pushViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
     }
 
-    private var errorAlertMessageSubject = PublishRelay<String>()
-    var errorAlertMessage: Driver<String> {
-        return errorAlertMessageSubject.asDriver(onErrorJustReturn: "")
+    private var presentViewControllerSubject = PublishRelay<UIViewController>()
+    var presentViewController: Driver<UIViewController> {
+        return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
     }
 
     private let disposeBag = DisposeBag()
@@ -57,13 +58,14 @@ final class ListViewModel {
     private func subscribe() {
         viewWillAppear
             .subscribe(onNext: { [weak self] _ in
-                RealmRepository<ListRealmEntity>.find { [weak self] result in
+                ItemRealmRepository<ListRealmEntity>.find { [weak self] result in
                     switch result {
                     case .success(let entities):
                         self?.entitiesSubject.accept(entities)
                         print(entities)
                     case .failure(let error):
-                        self?.errorAlertMessageSubject.accept(error.description)
+                        let errorAlert = UIAlertController.singleErrorAlert(message: error.description)
+                        self?.presentViewControllerSubject.accept(errorAlert)
                     }
                 }
             })
@@ -117,7 +119,8 @@ final class ListViewModel {
                     guard let `self` = self, let error = error as? APIError else { return }
                     self.apiAccessCount.accept(self.apiAccessCount.value-1)
                     if self.apiAccessCount.value == 0 {
-                        self.errorAlertMessageSubject.accept(error.message)
+                        let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
+                        self.presentViewControllerSubject.accept(errorAlert)
                     }})
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
@@ -141,7 +144,8 @@ final class ListViewModel {
                     guard let `self` = self, let error = error as? APIError else { return }
                     self.apiAccessCount.accept(self.apiAccessCount.value-1)
                     if self.apiAccessCount.value == 0 {
-                        self.errorAlertMessageSubject.accept(error.message)
+                        let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
+                        self.presentViewControllerSubject.accept(errorAlert)
                     }})
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換

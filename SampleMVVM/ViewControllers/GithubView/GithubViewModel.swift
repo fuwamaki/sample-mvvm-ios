@@ -14,7 +14,7 @@ protocol GithubViewModelable {
     var isLoading: BehaviorRelay<Bool> { get }
     var repositories: Driver<[GithubRepository]> { get }
     var pushViewController: Driver<UIViewController> { get }
-    var errorAlertMessage: Driver<String> { get }
+    var presentViewController: Driver<UIViewController> { get }
     func fetchRepositories(query: String?) -> Completable
     func saveKeyword(query: String?)
     func showGithubWebView(indexPath: IndexPath)
@@ -34,9 +34,9 @@ final class GithubViewModel {
         return pushViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
     }
 
-    private var errorAlertMessageSubject = PublishRelay<String>()
-    var errorAlertMessage: Driver<String> {
-        return errorAlertMessageSubject.asDriver(onErrorJustReturn: "")
+    private var presentViewControllerSubject = PublishRelay<UIViewController>()
+    var presentViewController: Driver<UIViewController> {
+        return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
     }
 
     private let disposeBag = DisposeBag()
@@ -70,7 +70,8 @@ extension GithubViewModel: GithubViewModelable {
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    self?.errorAlertMessageSubject.accept(error.message)})
+                    let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
+                    self?.presentViewControllerSubject.accept(errorAlert) })
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
     }
@@ -81,7 +82,7 @@ extension GithubViewModel: GithubViewModelable {
         entity.itemId = UserDefaultsRepository.shared.incrementListId ?? 0
         entity.keyword = query
         entity.typeString = ListRealmType.github.rawValue
-        RealmRepository<ListRealmEntity>.save(item: entity) { result in
+        ItemRealmRepository<ListRealmEntity>.save(item: entity) { result in
             switch result {
             case .success:
                 UserDefaultsRepository.shared.oneUp(type: .incrementListId)
