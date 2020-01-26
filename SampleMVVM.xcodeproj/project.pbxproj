@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		200BB34C237E329A00AFA246 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB34B237E329A00AFA246 /* RealmRepository.swift */; };
+		200BB34C237E329A00AFA246 /* ItemRealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB34B237E329A00AFA246 /* ItemRealmRepository.swift */; };
 		200BB34E237E46C700AFA246 /* UserDefaults+StringDefaultSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB34D237E46C600AFA246 /* UserDefaults+StringDefaultSettable.swift */; };
 		200BB350237E46F100AFA246 /* UserDefaults+BoolDefaultSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB34F237E46F100AFA246 /* UserDefaults+BoolDefaultSettable.swift */; };
 		200BB352237E471200AFA246 /* UserDefaults+IntegerDefaultSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200BB351237E471200AFA246 /* UserDefaults+IntegerDefaultSettable.swift */; };
@@ -60,6 +60,12 @@
 		2063EF6D23DC5661000992D1 /* BirthdayPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF6C23DC5661000992D1 /* BirthdayPickerView.swift */; };
 		2063EF7023DC56A4000992D1 /* UIView+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF6F23DC56A4000992D1 /* UIView+Addition.swift */; };
 		2063EF7323DC5E79000992D1 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7223DC5E79000992D1 /* DateFormat.swift */; };
+		2063EF7523DC5FA2000992D1 /* LineUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7423DC5FA2000992D1 /* LineUser.swift */; };
+		2063EF7723DC928C000992D1 /* APIClient+LineLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7623DC928C000992D1 /* APIClient+LineLogin.swift */; };
+		2063EF7923DC9700000992D1 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7823DC9700000992D1 /* Indicator.swift */; };
+		2063EF7B23DC9EFB000992D1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7A23DC9EFB000992D1 /* User.swift */; };
+		2063EF7D23DD461D000992D1 /* UserRealmEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7C23DD461D000992D1 /* UserRealmEntity.swift */; };
+		2063EF7F23DD47A3000992D1 /* UserRealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7E23DD47A3000992D1 /* UserRealmRepository.swift */; };
 		2068E9AD23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068E9AC23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
@@ -115,7 +121,7 @@
 /* Begin PBXFileReference section */
 		0DEDDE76F03021DD49949B78 /* Pods_SampleMVVMTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleMVVMTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FF5C9FF37FBBE04365980A4 /* Pods-SampleMVVM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMVVM.debug.xcconfig"; path = "Target Support Files/Pods-SampleMVVM/Pods-SampleMVVM.debug.xcconfig"; sourceTree = "<group>"; };
-		200BB34B237E329A00AFA246 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
+		200BB34B237E329A00AFA246 /* ItemRealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRealmRepository.swift; sourceTree = "<group>"; };
 		200BB34D237E46C600AFA246 /* UserDefaults+StringDefaultSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+StringDefaultSettable.swift"; sourceTree = "<group>"; };
 		200BB34F237E46F100AFA246 /* UserDefaults+BoolDefaultSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+BoolDefaultSettable.swift"; sourceTree = "<group>"; };
 		200BB351237E471200AFA246 /* UserDefaults+IntegerDefaultSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+IntegerDefaultSettable.swift"; sourceTree = "<group>"; };
@@ -170,6 +176,12 @@
 		2063EF6C23DC5661000992D1 /* BirthdayPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayPickerView.swift; sourceTree = "<group>"; };
 		2063EF6F23DC56A4000992D1 /* UIView+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Addition.swift"; sourceTree = "<group>"; };
 		2063EF7223DC5E79000992D1 /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
+		2063EF7423DC5FA2000992D1 /* LineUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineUser.swift; sourceTree = "<group>"; };
+		2063EF7623DC928C000992D1 /* APIClient+LineLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+LineLogin.swift"; sourceTree = "<group>"; };
+		2063EF7823DC9700000992D1 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
+		2063EF7A23DC9EFB000992D1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2063EF7C23DD461D000992D1 /* UserRealmEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRealmEntity.swift; sourceTree = "<group>"; };
+		2063EF7E23DD47A3000992D1 /* UserRealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRealmRepository.swift; sourceTree = "<group>"; };
 		2068E9AC23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUserNotificationCenter.swift; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -243,7 +255,8 @@
 		200BB34A237E328B00AFA246 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				200BB34B237E329A00AFA246 /* RealmRepository.swift */,
+				2063EF7E23DD47A3000992D1 /* UserRealmRepository.swift */,
+				200BB34B237E329A00AFA246 /* ItemRealmRepository.swift */,
 				200BB358237E4B2100AFA246 /* UserDefaultsRepository.swift */,
 			);
 			path = Repository;
@@ -265,6 +278,9 @@
 				205BE0C52354260C009EF0F2 /* GithubRepositoryOwner.swift */,
 				20AAA781237D897C006F2817 /* QiitaItem.swift */,
 				20AAA783237D8A65006F2817 /* QiitaUser.swift */,
+				2063EF7423DC5FA2000992D1 /* LineUser.swift */,
+				2063EF7A23DC9EFB000992D1 /* User.swift */,
+				2063EF7C23DD461D000992D1 /* UserRealmEntity.swift */,
 				200BB35A237E580100AFA246 /* ListRealmEntity.swift */,
 			);
 			path = Entity;
@@ -343,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				2063EF7223DC5E79000992D1 /* DateFormat.swift */,
+				2063EF7823DC9700000992D1 /* Indicator.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -573,6 +590,7 @@
 				20AC3E712356BB48007F67ED /* APIClient+Item.swift */,
 				20AC3E732356BB52007F67ED /* APIClient+Github.swift */,
 				20AAA785237D8A96006F2817 /* APIClient+Qiita.swift */,
+				2063EF7623DC928C000992D1 /* APIClient+LineLogin.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -967,11 +985,13 @@
 				20382BE9233A04E800CF77A1 /* QiitaCollectionCell.swift in Sources */,
 				202350D4237FC64400311C74 /* ListQiitaTableCell.swift in Sources */,
 				20C0A4EC23390DBE00B12264 /* UIAlertController+Addition.swift in Sources */,
+				2063EF7923DC9700000992D1 /* Indicator.swift in Sources */,
 				205BE0CC235426E8009EF0F2 /* GithubRepositoryRequest.swift in Sources */,
 				2063EF7323DC5E79000992D1 /* DateFormat.swift in Sources */,
 				209A60D72338C52700D6338C /* ListViewModel.swift in Sources */,
 				209A60C7233897BF00D6338C /* R.generated.swift in Sources */,
 				209A60E52338CDDF00D6338C /* ItemTableCell.swift in Sources */,
+				2063EF7F23DD47A3000992D1 /* UserRealmRepository.swift in Sources */,
 				20AC3E722356BB48007F67ED /* APIClient+Item.swift in Sources */,
 				209A60D92338C52F00D6338C /* MypageViewModel.swift in Sources */,
 				200BB357237E47BE00AFA246 /* KeyNamespaceable.swift in Sources */,
@@ -981,6 +1001,7 @@
 				201BF03A2338FB180020F7B4 /* ResponseProtocol.swift in Sources */,
 				2063EF6923DC4BF4000992D1 /* UserRegistrationViewModel.swift in Sources */,
 				201BF0342338EFF90020F7B4 /* Item.swift in Sources */,
+				2063EF7723DC928C000992D1 /* APIClient+LineLogin.swift in Sources */,
 				209A609C23388F1500D6338C /* AppDelegate.swift in Sources */,
 				205BE0B8235417DF009EF0F2 /* QiitaViewController.swift in Sources */,
 				200BB34E237E46C700AFA246 /* UserDefaults+StringDefaultSettable.swift in Sources */,
@@ -1010,6 +1031,7 @@
 				2063EF6D23DC5661000992D1 /* BirthdayPickerView.swift in Sources */,
 				205BE0C62354260C009EF0F2 /* GithubRepositoryOwner.swift in Sources */,
 				20255360238100A10077BDC5 /* Constants.swift in Sources */,
+				2063EF7523DC5FA2000992D1 /* LineUser.swift in Sources */,
 				200BB350237E46F100AFA246 /* UserDefaults+BoolDefaultSettable.swift in Sources */,
 				209A60D12338C4E600D6338C /* ListViewController.swift in Sources */,
 				202ADB71236AEF8300E65BB8 /* TextFieldInputAccessoryView.swift in Sources */,
@@ -1018,13 +1040,15 @@
 				2025535E238050200077BDC5 /* ListContents.swift in Sources */,
 				205BE0BA235417EB009EF0F2 /* QiitaViewModel.swift in Sources */,
 				200BB359237E4B2100AFA246 /* UserDefaultsRepository.swift in Sources */,
+				2063EF7B23DC9EFB000992D1 /* User.swift in Sources */,
 				20AAA786237D8A96006F2817 /* APIClient+Qiita.swift in Sources */,
 				201BF03F2339014C0020F7B4 /* ItemResponse.swift in Sources */,
 				20382BE12339F6A200CF77A1 /* QiitaTableCell.swift in Sources */,
 				209A60D32338C4F100D6338C /* MypageViewController.swift in Sources */,
-				200BB34C237E329A00AFA246 /* RealmRepository.swift in Sources */,
+				200BB34C237E329A00AFA246 /* ItemRealmRepository.swift in Sources */,
 				20AAA782237D897C006F2817 /* QiitaItem.swift in Sources */,
 				20C0A4EE23390ED800B12264 /* UIViewController+Rx.swift in Sources */,
+				2063EF7D23DD461D000992D1 /* UserRealmEntity.swift in Sources */,
 				209A60E12338CBF400D6338C /* APIClient.swift in Sources */,
 				204D813A23D6CECA0059F379 /* UIWindow+Motion.swift in Sources */,
 				20382BDF2339F69700CF77A1 /* GithubTableCell.swift in Sources */,

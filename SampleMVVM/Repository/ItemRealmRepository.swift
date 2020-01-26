@@ -17,7 +17,7 @@ protocol RealmModelable: Object {
     dynamic var itemId: Int { get }
 }
 
-final class RealmRepository<Model: RealmModelable> {
+final class ItemRealmRepository<Model: RealmModelable> {
 
     static func find(completion: @escaping (Result<[Model], NSError>) -> Void) {
         do {
