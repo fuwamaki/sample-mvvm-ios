@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import RealmSwift
+
+class UserRealmEntity: Object, UserRealmModelable {
+    @objc dynamic var userId: String = ""
+    @objc dynamic var name: String = ""
+    @objc dynamic var birthday: Date = Date()
+    @objc dynamic var iconImageUrl: String = ""
+}
