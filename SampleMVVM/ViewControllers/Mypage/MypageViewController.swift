@@ -9,11 +9,13 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxOptional
+import PINRemoteImage
 
 final class MypageViewController: UIViewController {
 
     @IBOutlet private weak var profileCardView: UIView!
-    @IBOutlet private weak var iconImageView: UIStackView!
+    @IBOutlet private weak var iconImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var birthdayLabel: UILabel!
     @IBOutlet private weak var editButton: UIButton!
@@ -74,6 +76,21 @@ final class MypageViewController: UIViewController {
             .subscribe(onNext: { [unowned self] in
                 self.profileCardView.isHidden = !$0
                 self.lineLoginButton.isHidden = $0
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.user
+            .filterNil()
+            .subscribe(onNext: { [unowned self] user in
+                self.nameLabel.text = user.name
+                self.birthdayLabel.text = DateFormat.yyyyMMdd.string(from: user.birthday)
+                self.iconImageView.pin_setImage(from: user.iconImageURL)
+            })
+            .disposed(by: disposeBag)
+
+        editButton.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                self.viewModel.handleEditButton()
             })
             .disposed(by: disposeBag)
 

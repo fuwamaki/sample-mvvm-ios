@@ -14,6 +14,7 @@ protocol MypageViewModelable {
     var viewWillAppear: PublishRelay<Void> { get }
     var isLoading: BehaviorRelay<Bool> { get }
     var isSignedIn: BehaviorRelay<Bool> { get }
+    var user: BehaviorRelay<User?> { get }
     var pushViewController: Driver<UIViewController> { get }
     var presentViewController: Driver<UIViewController> { get }
     func handleLineLoginButton(viewController: UIViewController) -> Completable
@@ -25,7 +26,7 @@ final class MypageViewModel {
     var viewWillAppear = PublishRelay<Void>()
     var isLoading = BehaviorRelay<Bool>(value: false)
     var isSignedIn = BehaviorRelay<Bool>(value: false)
-    private var user = BehaviorRelay<User?>(value: nil)
+    var user = BehaviorRelay<User?>(value: nil)
 
     private var pushViewControllerSubject = PublishRelay<UIViewController>()
     var pushViewController: Driver<UIViewController> {

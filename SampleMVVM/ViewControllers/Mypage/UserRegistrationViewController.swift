@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxOptional
+import PINRemoteImage
 
 enum UserRegistrationType {
     case create(lineUser: LineUser)
@@ -55,6 +56,7 @@ final class UserRegistrationViewController: UIViewController {
         birthdayTextField.inputView = birthdayPickerView
     }
 
+    // swiftlint:disable function_body_length
     private func bind() {
         guard let viewModel = viewModel else { return }
 
@@ -70,6 +72,13 @@ final class UserRegistrationViewController: UIViewController {
         viewModel.presentViewController
             .drive(onNext: { [unowned self] viewController in
                 self.present(viewController, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.iconImageURL
+            .filterNil()
+            .subscribe(onNext: { [unowned self] url in
+                self.iconImageView.pin_setImage(from: url)
             })
             .disposed(by: disposeBag)
 

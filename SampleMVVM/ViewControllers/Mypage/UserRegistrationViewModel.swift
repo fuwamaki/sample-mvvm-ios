@@ -44,6 +44,9 @@ final class UserRegistrationViewModel {
             iconImageURL.accept(lineUser.pictureURL)
         case .update(let user):
             lineAccessToken = user.lineAccessToken
+            name.accept(user.name)
+            birthday.accept(user.birthday)
+            iconImageURL.accept(user.iconImageURL)
         }
     }
 }

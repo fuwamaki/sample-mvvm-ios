@@ -102,7 +102,7 @@
                     <connections>
                         <outlet property="birthdayLabel" destination="tYa-Nz-GjM" id="kJR-fv-b3G"/>
                         <outlet property="editButton" destination="jnA-hI-dvc" id="6YM-DC-w1H"/>
-                        <outlet property="iconImageView" destination="L35-Ge-QjU" id="bke-9n-HaE"/>
+                        <outlet property="iconImageView" destination="Ohe-4l-U1w" id="iaX-aM-Ok8"/>
                         <outlet property="lineLoginButton" destination="vZm-CR-ZPz" id="hfy-mk-NBs"/>
                         <outlet property="nameLabel" destination="FUC-E1-V1Y" id="QkF-20-qDh"/>
                         <outlet property="profileCardView" destination="SWS-IN-ulq" id="fKd-jg-diA"/>
