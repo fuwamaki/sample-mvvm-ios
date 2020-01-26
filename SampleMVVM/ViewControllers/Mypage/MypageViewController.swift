@@ -9,24 +9,33 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import LineSDK
 
 final class MypageViewController: UIViewController {
 
+    @IBOutlet private weak var profileCardView: UIView!
+    @IBOutlet private weak var iconImageView: UIStackView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var birthdayLabel: UILabel!
+    @IBOutlet private weak var editButton: UIButton!
     @IBOutlet private weak var lineLoginButton: UIButton!
-    @IBOutlet private weak var test1TextField: UITextField!
-    @IBOutlet private weak var test2TextField: UITextField!
 
-    private var testTextFields: [UITextField] {
-        return [test1TextField, test2TextField]
+    private lazy var indicator: UIActivityIndicatorView = {
+        let indicator = defaultIndicator
+        indicator.center = view.center
+        return indicator
+    }()
+
+    private var isLoading: Bool = false {
+        didSet {
+            DispatchQueue.main.async {
+                self.isLoading ? self.indicator.startAnimating() : self.indicator.stopAnimating()
+                self.indicator.isHidden = !self.isLoading
+            }
+        }
     }
 
     private let disposeBag = DisposeBag()
     private let viewModel: MypageViewModelable = MypageViewModel()
-
-    private let pickerView = UIPickerView()
-    private let picker = CustomPicker()
-    private let array = ["1", "2", "3", "4", "5"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,42 +44,46 @@ final class MypageViewController: UIViewController {
     }
 
     private func setupViews() {
-        picker.array = array
-        pickerView.delegate = picker
-        pickerView.dataSource = picker
-        testTextFields.enumerated().forEach {
-            let previous: UITextField? = $0 == 0 ? nil : testTextFields[$0-1]
-            let next: UITextField? = $0 == testTextFields.count-1 ? nil : testTextFields[$0+1]
-            $1.inputView = pickerView
-            let inputAccessoryView = TextFieldInputAccessoryView(textField: $1, previous: previous, next: next)
-            inputAccessoryView.delegate = self
-            $1.inputAccessoryView = inputAccessoryView
-        }
+        view.addSubview(indicator)
     }
 
     private func bind() {
-        picker.selectedContent
-            .subscribe(onNext: { [unowned self] text in
-                self.test1TextField.text = text
+        rx.viewWillAppear
+            .bind(to: viewModel.viewWillAppear)
+            .disposed(by: disposeBag)
+
+        viewModel.isLoading
+            .subscribe(onNext: { [unowned self] in
+                self.isLoading = $0
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.presentViewController
+            .drive(onNext: { [unowned self] viewController in
+                self.present(viewController, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.pushViewController
+            .drive(onNext: { [unowned self] viewController in
+                self.navigationController?
+                    .pushViewController(viewController, animated: true)})
+            .disposed(by: disposeBag)
+
+        viewModel.isSignedIn
+            .subscribe(onNext: { [unowned self] in
+                self.profileCardView.isHidden = !$0
+                self.lineLoginButton.isHidden = $0
             })
             .disposed(by: disposeBag)
 
         lineLoginButton.rx.tap
             .subscribe(onNext: { [unowned self] in
-                self.handleLineLoginButton()
+                self.viewModel.handleLineLoginButton(viewController: self)
+                    .subscribe()
+                    .disposed(by: self.disposeBag)
             })
             .disposed(by: disposeBag)
-    }
-
-    private func handleLineLoginButton() {
-        LoginManager.shared.login(permissions: [.profile, .openID], in: self) { result in
-            switch result {
-            case .success(let loginResult):
-                print(loginResult.accessToken.value)
-            case .failure(let error):
-                print(error)
-            }
-        }
     }
 }
 

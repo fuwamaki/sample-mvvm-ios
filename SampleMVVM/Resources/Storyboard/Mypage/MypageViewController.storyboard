@@ -15,24 +15,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ibk-Z9-Xne">
-                                <rect key="frame" x="87" y="574" width="240" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="1S9-ha-5iV"/>
-                                    <constraint firstAttribute="height" constant="44" id="OFE-4n-LZd"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gTy-eo-aAc">
-                                <rect key="frame" x="87" y="664" width="240" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="rkm-IG-eVJ"/>
-                                    <constraint firstAttribute="height" constant="44" id="zgY-HT-PaQ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZm-CR-ZPz">
                                 <rect key="frame" x="95" y="426" width="224" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.72549019607843135" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -89,10 +71,16 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnA-hI-dvc">
+                                        <rect key="frame" x="344" y="186" width="30" height="30"/>
+                                        <state key="normal" title="Edit"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="L35-Ge-QjU" firstAttribute="centerY" secondItem="SWS-IN-ulq" secondAttribute="centerY" id="HA7-hr-9uH"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="jnA-hI-dvc" secondAttribute="trailing" id="Prv-fD-m0Z"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="jnA-hI-dvc" secondAttribute="bottom" id="h91-q1-cvg"/>
                                     <constraint firstItem="L35-Ge-QjU" firstAttribute="centerX" secondItem="SWS-IN-ulq" secondAttribute="centerX" id="mBF-1x-lho"/>
                                     <constraint firstAttribute="height" constant="224" id="yGB-C8-9aM"/>
                                 </constraints>
@@ -112,9 +100,12 @@
                     <navigationItem key="navigationItem" title="マイページ" largeTitleDisplayMode="always" id="yn4-B1-vbq"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="birthdayLabel" destination="tYa-Nz-GjM" id="kJR-fv-b3G"/>
+                        <outlet property="editButton" destination="jnA-hI-dvc" id="6YM-DC-w1H"/>
+                        <outlet property="iconImageView" destination="L35-Ge-QjU" id="bke-9n-HaE"/>
                         <outlet property="lineLoginButton" destination="vZm-CR-ZPz" id="hfy-mk-NBs"/>
-                        <outlet property="test1TextField" destination="ibk-Z9-Xne" id="ZsU-QU-Mma"/>
-                        <outlet property="test2TextField" destination="gTy-eo-aAc" id="KVi-uA-ibB"/>
+                        <outlet property="nameLabel" destination="FUC-E1-V1Y" id="QkF-20-qDh"/>
+                        <outlet property="profileCardView" destination="SWS-IN-ulq" id="fKd-jg-diA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9F7-fd-K4f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -126,7 +117,7 @@
             <objects>
                 <navigationController id="Z3U-Wr-jYp" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Vdi-Sg-Zcw">
-                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

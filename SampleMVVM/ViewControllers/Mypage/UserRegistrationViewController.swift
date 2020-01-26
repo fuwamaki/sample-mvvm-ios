@@ -11,6 +11,11 @@ import RxSwift
 import RxCocoa
 import RxOptional
 
+enum UserRegistrationType {
+    case create(lineUser: LineUser)
+    case update(user: User)
+}
+
 final class UserRegistrationViewController: UIViewController {
 
     @IBOutlet private weak var iconImageView: UIImageView!
@@ -24,11 +29,12 @@ final class UserRegistrationViewController: UIViewController {
     }
 
     private let disposeBag = DisposeBag()
-    private let viewModel: UserRegistrationViewModelable = UserRegistrationViewModel()
+    private var viewModel: UserRegistrationViewModelable?
     private let birthdayPickerView = BirthdayPickerView()
 
-    static func make() -> UserRegistrationViewController {
+    static func make(type: UserRegistrationType) -> UserRegistrationViewController {
         let viewController = R.storyboard.userRegistrationViewController.instantiateInitialViewController()!
+        viewController.viewModel = UserRegistrationViewModel(type: type)
         return viewController
     }
 
@@ -50,25 +56,58 @@ final class UserRegistrationViewController: UIViewController {
     }
 
     private func bind() {
+        guard let viewModel = viewModel else { return }
+
+        viewModel.dismissSubject
+            .subscribe(onNext: { [weak self] isDismiss in
+                if isDismiss {
+                    self?.navigationController?
+                        .popViewController(animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.presentViewController
+            .drive(onNext: { [unowned self] viewController in
+                self.present(viewController, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+
         changeImageButton.rx.tap
-            .subscribe(onNext: { [unowned self] in
-                self.viewModel.handleChangeImageButton()
+            .subscribe(onNext: { _ in
+                viewModel.handleChangeImageButton()
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.name
+            .asDriver(onErrorJustReturn: "")
+            .drive(nameTextField.rx.text)
+            .disposed(by: disposeBag)
+
+        nameTextField.rx.text.orEmpty
+            .bind(to: viewModel.name)
+            .disposed(by: disposeBag)
+
+        viewModel.birthday
+            .filterNil()
+            .subscribe(onNext: { [unowned self] birthday in
+                self.birthdayTextField.text = DateFormat.yyyyMMdd.string(from: birthday)
             })
             .disposed(by: disposeBag)
 
         birthdayPickerView.selectedDate
             .filterNil()
             .subscribe(onNext: { [unowned self] date in
-                self.viewModel.residence.accept(date)
+                viewModel.birthday.accept(date)
                 self.birthdayTextField.text = DateFormat.yyyyMMdd.string(from: date)
             })
             .disposed(by: disposeBag)
 
         submitButton.rx.tap
-        .subscribe(onNext: { [unowned self] in
-            self.viewModel.handleSubmitButton()
-        })
-        .disposed(by: disposeBag)
+            .subscribe(onNext: { [unowned self] in
+                self.viewModel?.handleSubmitButton()
+            })
+            .disposed(by: disposeBag)
     }
 }
 

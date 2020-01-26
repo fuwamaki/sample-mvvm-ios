@@ -1,5 +1,5 @@
 //
-//  RealmRepository.swift
+//  ItemRealmRepository.swift
 //  SampleMVVM
 //
 //  Created by yusaku maki on 2019/11/15.
@@ -9,15 +9,11 @@
 import Foundation
 import RealmSwift
 
-enum RealmAction {
-    case find, save, delete, update
-}
-
-protocol RealmModelable: Object {
+protocol ItemRealmModelable: Object {
     dynamic var itemId: Int { get }
 }
 
-final class ItemRealmRepository<Model: RealmModelable> {
+final class ItemRealmRepository<Model: ItemRealmModelable> {
 
     static func find(completion: @escaping (Result<[Model], NSError>) -> Void) {
         do {
@@ -30,7 +26,7 @@ final class ItemRealmRepository<Model: RealmModelable> {
         }
     }
 
-    static func save(item: RealmModelable, completion: @escaping (Result<Any?, NSError>) -> Void) {
+    static func save(item: ItemRealmModelable, completion: @escaping (Result<Any?, NSError>) -> Void) {
         do {
             let realm = try Realm()
             try realm.write {
@@ -42,7 +38,7 @@ final class ItemRealmRepository<Model: RealmModelable> {
         }
     }
 
-    static func delete(item: RealmModelable, completion: @escaping (Result<Any?, NSError>) -> Void) {
+    static func delete(item: ItemRealmModelable, completion: @escaping (Result<Any?, NSError>) -> Void) {
         do {
             let realm = try Realm()
             let deleteItem = realm.objects(Model.self).filter { $0.itemId == item.itemId }
@@ -55,7 +51,7 @@ final class ItemRealmRepository<Model: RealmModelable> {
         }
     }
 
-    static func updateItem(item: RealmModelable, completion: @escaping (Result<Any?, NSError>) -> Void) {
+    static func update(item: ItemRealmModelable, completion: @escaping (Result<Any?, NSError>) -> Void) {
         do {
             let realm = try Realm()
             try realm.write {
