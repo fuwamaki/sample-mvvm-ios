@@ -47,6 +47,12 @@ final class MypageViewController: UIViewController {
 
     private func setupViews() {
         view.addSubview(indicator)
+        profileCardView.layer.shadowColor = UIColor.secondaryLabel.cgColor
+        profileCardView.layer.shadowOffset = CGSize(width: 0, height: 3.0)
+        profileCardView.layer.shadowOpacity = 0.8
+        profileCardView.layer.masksToBounds = false
+        iconImageView.layer.shadowColor = UIColor.label.cgColor
+        iconImageView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
     }
 
     private func bind() {

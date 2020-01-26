@@ -26,6 +26,11 @@
                                 <state key="normal" title="LINEログイン">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusView">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWS-IN-ulq">
                                 <rect key="frame" x="16" y="180.5" width="382" height="224"/>
@@ -40,6 +45,11 @@
                                                     <constraint firstAttribute="height" constant="100" id="3K8-Xc-hTc"/>
                                                     <constraint firstAttribute="width" constant="100" id="EmW-Mr-vEh"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusView">
+                                                        <real key="value" value="50"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="37" translatesAutoresizingMaskIntoConstraints="NO" id="r0t-cZ-PgX">
                                                 <rect key="frame" x="132" y="0.0" width="138" height="100"/>
@@ -72,18 +82,24 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnA-hI-dvc">
-                                        <rect key="frame" x="344" y="186" width="30" height="30"/>
+                                        <rect key="frame" x="335" y="184" width="31" height="32"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <state key="normal" title="Edit"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="L35-Ge-QjU" firstAttribute="centerY" secondItem="SWS-IN-ulq" secondAttribute="centerY" id="HA7-hr-9uH"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="jnA-hI-dvc" secondAttribute="trailing" id="Prv-fD-m0Z"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="jnA-hI-dvc" secondAttribute="trailing" constant="8" id="Prv-fD-m0Z"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="jnA-hI-dvc" secondAttribute="bottom" id="h91-q1-cvg"/>
                                     <constraint firstItem="L35-Ge-QjU" firstAttribute="centerX" secondItem="SWS-IN-ulq" secondAttribute="centerX" id="mBF-1x-lho"/>
                                     <constraint firstAttribute="height" constant="224" id="yGB-C8-9aM"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusView">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -117,7 +133,7 @@
             <objects>
                 <navigationController id="Z3U-Wr-jYp" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Vdi-Sg-Zcw">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -130,7 +146,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="birthday" width="32" height="32"/>
+        <image name="birthday" width="256" height="256"/>
         <image name="c.circle" catalog="system" width="64" height="60"/>
         <image name="person.circle" catalog="system" width="64" height="60"/>
     </resources>
