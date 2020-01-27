@@ -64,12 +64,12 @@ final class MypageViewModel {
             let userId = UserDefaultsRepository.shared.userId,
             let name = UserDefaultsRepository.shared.name,
             let birthday = UserDefaultsRepository.shared.birthday {
-            let iconImageURL = UserDefaultsRepository.shared.pictureUrl
             let user = User(lineAccessToken: lineAccessToken,
                             userId: userId,
                             name: name,
                             birthday: DateFormat.yyyyMMdd.date(from: birthday)!,
-                            iconImageURL: iconImageURL)
+                            iconImageURL: UserDefaultsRepository.shared.pictureUrl,
+                            iconImage: UserDefaultsRepository.shared.iconImage)
             self.user.accept(user)
             isSignedIn.accept(true)
         } else {

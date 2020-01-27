@@ -66,6 +66,7 @@
 		2063EF7B23DC9EFB000992D1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7A23DC9EFB000992D1 /* User.swift */; };
 		2063EF7D23DD461D000992D1 /* UserRealmEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7C23DD461D000992D1 /* UserRealmEntity.swift */; };
 		2063EF7F23DD47A3000992D1 /* UserRealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7E23DD47A3000992D1 /* UserRealmRepository.swift */; };
+		2063EF8123DDFB18000992D1 /* UserDefaults+DataDefaultSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF8023DDFB18000992D1 /* UserDefaults+DataDefaultSettable.swift */; };
 		2068E9AD23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068E9AC23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
@@ -182,6 +183,7 @@
 		2063EF7A23DC9EFB000992D1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2063EF7C23DD461D000992D1 /* UserRealmEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRealmEntity.swift; sourceTree = "<group>"; };
 		2063EF7E23DD47A3000992D1 /* UserRealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRealmRepository.swift; sourceTree = "<group>"; };
+		2063EF8023DDFB18000992D1 /* UserDefaults+DataDefaultSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+DataDefaultSettable.swift"; sourceTree = "<group>"; };
 		2068E9AC23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUserNotificationCenter.swift; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 				200BB34F237E46F100AFA246 /* UserDefaults+BoolDefaultSettable.swift */,
 				200BB351237E471200AFA246 /* UserDefaults+IntegerDefaultSettable.swift */,
 				200BB353237E473500AFA246 /* UserDefaults+URLDefaultSettable.swift */,
+				2063EF8023DDFB18000992D1 /* UserDefaults+DataDefaultSettable.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1028,6 +1031,7 @@
 				201BF03D2338FDBD0020F7B4 /* Url.swift in Sources */,
 				205BE0BE2354180D009EF0F2 /* GithubViewModel.swift in Sources */,
 				209A60DD2338C88A00D6338C /* MainTabBarViewController.swift in Sources */,
+				2063EF8123DDFB18000992D1 /* UserDefaults+DataDefaultSettable.swift in Sources */,
 				2063EF6D23DC5661000992D1 /* BirthdayPickerView.swift in Sources */,
 				205BE0C62354260C009EF0F2 /* GithubRepositoryOwner.swift in Sources */,
 				20255360238100A10077BDC5 /* Constants.swift in Sources */,

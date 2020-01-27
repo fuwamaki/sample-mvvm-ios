@@ -92,7 +92,11 @@ final class MypageViewController: UIViewController {
             .subscribe(onNext: { [unowned self] user in
                 self.nameLabel.text = user.name
                 self.birthdayLabel.text = DateFormat.yyyyMMdd.string(from: user.birthday)
-                self.iconImageView.pin_setImage(from: user.iconImageURL)
+                if let imageData = user.iconImage {
+                    self.iconImageView.image = UIImage(data: imageData)
+                } else {
+                    self.iconImageView.pin_setImage(from: user.iconImageURL)
+                }
             })
             .disposed(by: disposeBag)
 

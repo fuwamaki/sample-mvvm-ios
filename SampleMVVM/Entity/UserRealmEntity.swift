@@ -14,4 +14,5 @@ class UserRealmEntity: Object, UserRealmModelable {
     @objc dynamic var name: String = ""
     @objc dynamic var birthday: Date = Date()
     @objc dynamic var iconImageUrl: String = ""
+    @objc dynamic var iconImageData: Data = Data()
 }

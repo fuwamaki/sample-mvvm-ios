@@ -14,4 +14,5 @@ struct User {
     let name: String
     let birthday: Date
     let iconImageURL: URL?
+    let iconImage: Data?
 }

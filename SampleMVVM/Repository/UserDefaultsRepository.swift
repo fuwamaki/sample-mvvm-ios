@@ -81,12 +81,23 @@ extension UserDefaultsRepository {
         }
     }
 
+    var iconImage: Data? {
+        get {
+            return UserDefaults.standard.data(forKey: .iconImage)
+        }
+        set {
+            guard let newValue = newValue else { return }
+            UserDefaults.standard.set(newValue, forKey: .iconImage)
+        }
+    }
+
     func removeUser() {
         UserDefaults.standard.remove(forKey: .userId)
         UserDefaults.standard.remove(forKey: .lineAccessToken)
         UserDefaults.standard.remove(forKey: .name)
         UserDefaults.standard.remove(forKey: .birthday)
         UserDefaults.standard.remove(forKey: .pictureUrl)
+        UserDefaults.standard.remove(forKey: .iconImage)
     }
 }
 

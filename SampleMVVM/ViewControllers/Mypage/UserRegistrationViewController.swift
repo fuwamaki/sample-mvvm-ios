@@ -86,10 +86,13 @@ final class UserRegistrationViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.iconImageURL
-            .filterNil()
-            .subscribe(onNext: { [unowned self] url in
-                self.iconImageView.pin_setImage(from: url)
+        Observable.combineLatest(viewModel.iconImageURL, viewModel.uploadImage)
+            .subscribe(onNext: { url, image in
+                if let image = image {
+                    self.iconImageView.image = image
+                } else {
+                    self.iconImageView.pin_setImage(from: url)
+                }
             })
             .disposed(by: disposeBag)
 

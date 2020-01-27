@@ -15,6 +15,7 @@ protocol UserRegistrationViewModelable {
     var name: BehaviorRelay<String?> { get }
     var birthday: BehaviorRelay<Date?> { get }
     var iconImageURL: BehaviorRelay<URL?> { get }
+    var uploadImage: BehaviorRelay<UIImage?> { get }
     var presentViewController: Driver<UIViewController> { get }
     func handleChangeImageButton(_ imagePickerController: UIImagePickerController)
     func handleSubmitButton()
@@ -52,6 +53,9 @@ final class UserRegistrationViewModel {
             name.accept(user.name)
             birthday.accept(user.birthday)
             iconImageURL.accept(user.iconImageURL)
+            if let data = user.iconImage, let image = UIImage(data: data) {
+                uploadImage.accept(image)
+            }
         }
     }
 }
@@ -84,11 +88,13 @@ extension UserRegistrationViewModel: UserRegistrationViewModelable {
             entity.name = name
             entity.birthday = birthday
             entity.iconImageUrl = iconImageURL.value?.absoluteString ?? ""
+            entity.iconImageData = uploadImage.value?.pngData() ?? Data()
         case .update(let user):
             entity.userId = user.userId
             entity.name = name
             entity.birthday = birthday
             entity.iconImageUrl = iconImageURL.value?.absoluteString ?? ""
+            entity.iconImageData = uploadImage.value?.pngData() ?? Data()
         }
 
         UserRealmRepository<UserRealmEntity>.save(user: entity) { [weak self] result in
@@ -100,6 +106,9 @@ extension UserRegistrationViewModel: UserRegistrationViewModelable {
                 UserDefaultsRepository.shared.birthday = DateFormat.yyyyMMdd.string(from: entity.birthday)
                 if entity.iconImageUrl != "", let imageUrl = URL(string: entity.iconImageUrl) {
                     UserDefaultsRepository.shared.pictureUrl = imageUrl
+                }
+                if let iconImage = self?.uploadImage.value {
+                    UserDefaultsRepository.shared.iconImage = iconImage.pngData()
                 }
                 self?.dismissSubject.accept(true)
             case .failure:
