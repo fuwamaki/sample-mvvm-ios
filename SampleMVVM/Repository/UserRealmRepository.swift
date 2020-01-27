@@ -26,6 +26,16 @@ final class UserRealmRepository<Model: UserRealmModelable> {
         }
     }
 
+    static func find(userId: String, completion: @escaping (Result<Model?, NSError>) -> Void) {
+        do {
+            let realm = try Realm()
+            let object = realm.objects(Model.self).filter { $0.userId == userId }.first
+            completion(.success(object))
+        } catch let error as NSError {
+            completion(.failure(error))
+        }
+    }
+
     static func save(user: UserRealmModelable, completion: @escaping (Result<Any?, NSError>) -> Void) {
         do {
             let realm = try Realm()

@@ -77,6 +77,30 @@ final class MypageViewModel {
             isSignedIn.accept(false)
         }
     }
+
+    private func accountExists(lineUser: LineUser, completion: @escaping (Result<Bool, NSError>) -> Void) {
+        guard let userId = lineUser.userId else { return }
+        UserRealmRepository<UserRealmEntity>.find(userId: userId) { result in
+            switch result {
+            case .success(let userEntity):
+                if let userEntity = userEntity {
+                    UserDefaultsRepository.shared.userId = userEntity.userId
+                    UserDefaultsRepository.shared.lineAccessToken = lineUser.accessToken
+                    UserDefaultsRepository.shared.name = userEntity.name
+                    UserDefaultsRepository.shared.birthday = DateFormat.yyyyMMdd.string(from: userEntity.birthday)
+                    if userEntity.iconImageUrl != "", let imageUrl = URL(string: userEntity.iconImageUrl) {
+                        UserDefaultsRepository.shared.pictureUrl = imageUrl
+                    }
+                    UserDefaultsRepository.shared.iconImage = userEntity.iconImageData
+                    completion(.success(true))
+                } else {
+                    completion(.success(false))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }
 
 extension MypageViewModel: MypageViewModelable {
@@ -94,9 +118,23 @@ extension MypageViewModel: MypageViewModelable {
         return apiClient.lineLogin(viewController: viewController)
             .do(
                 onSuccess: { [weak self] lineUser in
-                    self?.isLoading.accept(false)
-                    let viewController = UserRegistrationViewController.make(type: .create(lineUser: lineUser))
-                    self?.pushViewControllerSubject.accept(viewController)
+                    self?.accountExists(lineUser: lineUser, completion: { [weak self] result in
+                        switch result {
+                        case .success(let isSignedIn):
+                            self?.isLoading.accept(false)
+                            if isSignedIn {
+                                self?.checkUser()
+                            } else {
+                                let viewController = UserRegistrationViewController.make(type: .create(lineUser: lineUser))
+                                self?.pushViewControllerSubject.accept(viewController)
+                            }
+                        case .failure(let error):
+                            guard let error = error as? APIError else { return }
+                            self?.isLoading.accept(false)
+                            let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
+                            self?.presentViewControllerSubject.accept(errorAlert)
+                        }
+                    })
                 },
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
