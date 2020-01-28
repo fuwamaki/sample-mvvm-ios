@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,11 +16,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hVJ-aq-2EL">
-                        <rect key="frame" x="8" y="7.5" width="44" height="34"/>
+                        <rect key="frame" x="16" y="7.5" width="44" height="34"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4P-WK-0wa">
                                 <rect key="frame" x="0.0" y="0.0" width="44" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -33,18 +33,18 @@
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sab-EW-ijy">
-                        <rect key="frame" x="252" y="16" width="33" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="241.5" y="16" width="35.5" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Sab-EW-ijy" secondAttribute="trailing" constant="8" id="2sJ-Z3-JA4"/>
+                    <constraint firstAttribute="trailing" secondItem="Sab-EW-ijy" secondAttribute="trailing" constant="16" id="2sJ-Z3-JA4"/>
                     <constraint firstItem="Sab-EW-ijy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hVJ-aq-2EL" secondAttribute="trailing" id="Y50-sx-BOV"/>
                     <constraint firstItem="hVJ-aq-2EL" firstAttribute="centerY" secondItem="0Fh-fR-Mpj" secondAttribute="centerY" id="esJ-Hi-BtH"/>
                     <constraint firstItem="Sab-EW-ijy" firstAttribute="centerY" secondItem="0Fh-fR-Mpj" secondAttribute="centerY" id="urG-uC-Yyu"/>
-                    <constraint firstItem="hVJ-aq-2EL" firstAttribute="leading" secondItem="0Fh-fR-Mpj" secondAttribute="leading" constant="8" id="yhm-tk-E2O"/>
+                    <constraint firstItem="hVJ-aq-2EL" firstAttribute="leading" secondItem="0Fh-fR-Mpj" secondAttribute="leading" constant="16" id="yhm-tk-E2O"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

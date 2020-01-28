@@ -9,8 +9,14 @@
 import RxSwift
 import RxCocoa
 
+enum ItemRegisterMode {
+    case register
+    case update
+}
+
 protocol ItemRegisterViewModelable {
     var editItem: Item? { get set }
+    var mode: ItemRegisterMode { get }
     var isLoading: BehaviorRelay<Bool> { get }
     var presentViewController: Driver<UIViewController> { get }
     var dismissSubject: BehaviorRelay<Bool> { get }

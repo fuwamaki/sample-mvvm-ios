@@ -6,4 +6,16 @@
   Copyright © 2019 yusaku maki. All rights reserved.
 */
 
-"yen" = "円";
+"items_title" = "商品一覧";
+"items_subtitle_category" = "カテゴリ";
+"items_price_yen" = "円";
+"items_register_button" = "登録";
+
+"item_register_title" = "商品登録";
+"item_register_name" = "名前";
+"item_register_name_placeholder" = "ドラゴンフルーツ";
+"item_register_category" = "カテゴリ";
+"item_register_category_placeholder" = "フルーツ";
+"item_register_price" = "価格";
+"item_register_create_button" = "登録";
+"item_register_update_button" = "更新";

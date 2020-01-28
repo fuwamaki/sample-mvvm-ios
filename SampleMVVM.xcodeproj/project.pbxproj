@@ -41,7 +41,6 @@
 		204D813A23D6CECA0059F379 /* UIWindow+Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D813923D6CECA0059F379 /* UIWindow+Motion.swift */; };
 		204D813C23D6CF250059F379 /* DebugViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 204D813B23D6CF250059F379 /* DebugViewController.storyboard */; };
 		204D813F23D6CF690059F379 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D813E23D6CF690059F379 /* DebugViewController.swift */; };
-		205BE0B623541706009EF0F2 /* ItemRegisterMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0B523541706009EF0F2 /* ItemRegisterMode.swift */; };
 		205BE0B8235417DF009EF0F2 /* QiitaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0B7235417DF009EF0F2 /* QiitaViewController.swift */; };
 		205BE0BA235417EB009EF0F2 /* QiitaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0B9235417EB009EF0F2 /* QiitaViewModel.swift */; };
 		205BE0BC23541800009EF0F2 /* GithubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BE0BB23541800009EF0F2 /* GithubViewController.swift */; };
@@ -158,7 +157,6 @@
 		204D813923D6CECA0059F379 /* UIWindow+Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Motion.swift"; sourceTree = "<group>"; };
 		204D813B23D6CF250059F379 /* DebugViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DebugViewController.storyboard; sourceTree = "<group>"; };
 		204D813E23D6CF690059F379 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
-		205BE0B523541706009EF0F2 /* ItemRegisterMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRegisterMode.swift; sourceTree = "<group>"; };
 		205BE0B7235417DF009EF0F2 /* QiitaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaViewController.swift; sourceTree = "<group>"; };
 		205BE0B9235417EB009EF0F2 /* QiitaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaViewModel.swift; sourceTree = "<group>"; };
 		205BE0BB23541800009EF0F2 /* GithubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubViewController.swift; sourceTree = "<group>"; };
@@ -399,7 +397,6 @@
 				209A60C12338907600D6338C /* Network */,
 				200BB34A237E328B00AFA246 /* Repository */,
 				201BF03B2338FDA70020F7B4 /* Struct */,
-				20AC3E5A23546266007F67ED /* Enum */,
 				200BB355237E47AD00AFA246 /* Protocol */,
 				2063EF7123DC5E64000992D1 /* Util */,
 				209A60C02338906C00D6338C /* Resources */,
@@ -522,14 +519,6 @@
 				2063EF6823DC4BF4000992D1 /* UserRegistrationViewModel.swift */,
 			);
 			path = Mypage;
-			sourceTree = "<group>";
-		};
-		20AC3E5A23546266007F67ED /* Enum */ = {
-			isa = PBXGroup;
-			children = (
-				205BE0B523541706009EF0F2 /* ItemRegisterMode.swift */,
-			);
-			path = Enum;
 			sourceTree = "<group>";
 		};
 		20AC3E5B23546294007F67ED /* ItemView */ = {
@@ -984,7 +973,6 @@
 				205BE0C4235425E9009EF0F2 /* GithubRepository.swift in Sources */,
 				20AAA788237D8E6C006F2817 /* QiitaItemRequest.swift in Sources */,
 				202ADB75236BEE2700E65BB8 /* UIImage+Addition.swift in Sources */,
-				205BE0B623541706009EF0F2 /* ItemRegisterMode.swift in Sources */,
 				20382BE9233A04E800CF77A1 /* QiitaCollectionCell.swift in Sources */,
 				202350D4237FC64400311C74 /* ListQiitaTableCell.swift in Sources */,
 				20C0A4EC23390DBE00B12264 /* UIAlertController+Addition.swift in Sources */,

@@ -12,6 +12,9 @@ import RxCocoa
 
 final class ItemRegisterViewController: UIViewController {
 
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var categoryLabel: UILabel!
+    @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet private weak var categoryTextField: UITextField!
     @IBOutlet private weak var priceTextField: UITextField!
@@ -38,17 +41,24 @@ final class ItemRegisterViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
     private var viewModel: ItemRegisterViewModelable = ItemRegisterViewModel()
-
-    public var item: Item?
+    private var item: Item?
 
     static func make() -> ItemRegisterViewController {
-        return R.storyboard.itemRegisterViewController.instantiateInitialViewController()!
+        let viewController = R.storyboard.itemRegisterViewController.instantiateInitialViewController()!
+        return viewController
+    }
+
+    static func make(item: Item) -> ItemRegisterViewController {
+        let viewController = R.storyboard.itemRegisterViewController.instantiateInitialViewController()!
+        viewController.item = item
+        return viewController
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupItem()
         setupViews()
+        setupTexts()
         bind()
     }
 
@@ -67,6 +77,22 @@ final class ItemRegisterViewController: UIViewController {
             $1.inputAccessoryView = inputAccessoryView
             $1.delegate = self
         }
+        switch viewModel.mode {
+        case .register:
+            registerButton.setTitle(R.string.localizable.item_register_create_button(), for: .normal)
+        case .update:
+            registerButton.setTitle(R.string.localizable.item_register_update_button(), for: .normal)
+        }
+    }
+
+    private func setupTexts() {
+        title = R.string.localizable.item_register_title()
+        nameLabel.text = R.string.localizable.item_register_name()
+        categoryLabel.text = R.string.localizable.item_register_category()
+        priceLabel.text = R.string.localizable.item_register_price()
+        nameTextField.placeholder = R.string.localizable.item_register_name_placeholder()
+        categoryTextField.placeholder = R.string.localizable.item_register_category_placeholder()
+        priceTextField.placeholder = R.string.localizable.item_register_price_placeholder()
     }
 
     // swiftlint:disable function_body_length

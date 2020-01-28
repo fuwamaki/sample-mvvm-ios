@@ -33,7 +33,7 @@ final class ItemViewController: UIViewController {
             tableView.rx.itemSelected
                 .subscribe(onNext: { [unowned self] indexPath in
                     self.tableView.deselectRow(at: indexPath, animated: false)
-                    self.viewModel.showRegister(indexPath: indexPath)
+                    self.viewModel.handleTableItemButton(indexPath: indexPath)
                 })
                 .disposed(by: disposeBag)
 
@@ -68,6 +68,7 @@ final class ItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupTexts()
         bind()
     }
 
@@ -75,6 +76,10 @@ final class ItemViewController: UIViewController {
         view.addSubview(indicator)
         // Hide blank border of tableview
         tableView.tableFooterView = UIView()
+    }
+
+    private func setupTexts() {
+        title = R.string.localizable.items_title()
     }
 
     private func bind() {
@@ -94,14 +99,14 @@ final class ItemViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.pushRegister
+        viewModel.pushViewController
             .drive(onNext: { [unowned self] viewController in
                 self.navigationController?.pushViewController(viewController, animated: true)})
             .disposed(by: disposeBag)
 
         registerBarButtonItem.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.viewModel.showRegister(indexPath: nil)
+                self?.viewModel.handleRegisterBarButtonItem()
             })
             .disposed(by: disposeBag)
     }

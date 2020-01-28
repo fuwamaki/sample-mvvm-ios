@@ -6,4 +6,17 @@
   Copyright © 2019 yusaku maki. All rights reserved.
 */
 
-"yen" = "yen";
+"items_title" = "Items";
+"items_subtitle_category" = "category";
+"items_price_yen" = "yen";
+"items_register_button" = "Register";
+
+"item_register_title" = "Register Item";
+"item_register_name" = "Name";
+"item_register_name_placeholder" = "dragon fruit";
+"item_register_category" = "Category";
+"item_register_category_placeholder" = "fruit";
+"item_register_price" = "Price";
+"item_register_price_placeholder" = "500";
+"item_register_create_button" = "Register";
+"item_register_update_button" = "Update";

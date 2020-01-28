@@ -13,9 +13,10 @@ protocol ItemViewModelable {
     var items: Driver<[Item]> { get }
     var isLoading: BehaviorRelay<Bool> { get }
     var viewWillAppear: PublishRelay<Void> { get }
-    var pushRegister: Driver<ItemRegisterViewController> { get }
+    var pushViewController: Driver<UIViewController> { get }
     var presentViewController: Driver<UIViewController> { get }
-    func showRegister(indexPath: IndexPath?)
+    func handleRegisterBarButtonItem()
+    func handleTableItemButton(indexPath: IndexPath?)
     func fetchItems() -> Completable
     func deleteItem(indexPath: IndexPath) -> Completable
 }
@@ -30,10 +31,9 @@ final class ItemViewModel {
         return itemsSubject.asDriver(onErrorJustReturn: [])
     }
 
-    // TODO: UIViewControllerに変更
-    private var pushRegisterSubject = PublishRelay<ItemRegisterViewController>()
-    var pushRegister: Driver<ItemRegisterViewController> {
-        return pushRegisterSubject.asDriver(onErrorJustReturn: ItemRegisterViewController())
+    private var pushViewControllerSubject = PublishRelay<UIViewController>()
+    var pushViewController: Driver<UIViewController> {
+        return pushViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
     }
 
     private var presentViewControllerSubject = PublishRelay<UIViewController>()
@@ -65,12 +65,15 @@ final class ItemViewModel {
 }
 
 extension ItemViewModel: ItemViewModelable {
-    func showRegister(indexPath: IndexPath?) {
+    func handleRegisterBarButtonItem() {
         let viewController = ItemRegisterViewController.make()
-        if let indexPath = indexPath {
-            viewController.item = itemsSubject.value[indexPath.row]
-        }
-        pushRegisterSubject.accept(viewController)
+        pushViewControllerSubject.accept(viewController)
+    }
+
+    func handleTableItemButton(indexPath: IndexPath?) {
+        guard let indexPath = indexPath else { return }
+        let viewController = ItemRegisterViewController.make(item: itemsSubject.value[indexPath.row])
+        pushViewControllerSubject.accept(viewController)
     }
 
     func fetchItems() -> Completable {
