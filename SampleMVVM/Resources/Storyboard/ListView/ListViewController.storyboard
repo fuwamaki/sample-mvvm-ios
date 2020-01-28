@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JAk-lh-d4o">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JAk-lh-d4o">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--List画面-->
+        <!--List-->
         <scene sceneID="IfX-ee-a80">
             <objects>
                 <viewController storyboardIdentifier="ListViewController" id="tgi-SA-ru6" customClass="ListViewController" customModule="SampleMVVM" customModuleProvider="target" sceneMemberID="viewController">
@@ -30,7 +30,7 @@
                         <viewLayoutGuide key="safeArea" id="F49-Nl-FZw"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="b.circle" catalog="system" id="RcJ-mo-jU9"/>
-                    <navigationItem key="navigationItem" title="List画面" id="PeJ-Um-qIf">
+                    <navigationItem key="navigationItem" title="List" largeTitleDisplayMode="always" id="PeJ-Um-qIf">
                         <rightBarButtonItems>
                             <barButtonItem image="qiita_icon" id="HqE-eR-X8r"/>
                             <barButtonItem title="Item" image="github_icon" id="2b8-yE-Ojp"/>
@@ -52,8 +52,8 @@
         <scene sceneID="t2d-w0-0ZL">
             <objects>
                 <navigationController id="JAk-lh-d4o" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0j6-ii-ipJ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="0j6-ii-ipJ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
