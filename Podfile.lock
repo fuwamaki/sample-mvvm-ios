@@ -13,6 +13,7 @@ PODS:
   - PINRemoteImage/FLAnimatedImage (2.1.4):
     - FLAnimatedImage (>= 1.0)
     - PINRemoteImage/Core
+  - PKHUD (5.3.0)
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
@@ -41,6 +42,7 @@ DEPENDENCIES:
   - CropViewController (~> 2.5.2)
   - LineSDKSwift (~> 5.3.1)
   - PINRemoteImage (~> 2.1.4)
+  - PKHUD (~> 5.3.0)
   - R.swift (~> 5.0.3)
   - RealmSwift (~> 3.18.0)
   - RxBlocking (~> 5.0.0)
@@ -57,6 +59,7 @@ SPEC REPOS:
     - LineSDKSwift
     - PINCache
     - PINRemoteImage
+    - PKHUD
     - R.swift
     - R.swift.Library
     - Realm
@@ -76,6 +79,7 @@ SPEC CHECKSUMS:
   LineSDKSwift: b1ab3145c5a206ef975afc8134a1c087551f3d13
   PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
   PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
+  PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   Realm: 7b3d04740facf45e958a514b466a32b04f1113d6
@@ -88,6 +92,6 @@ SPEC CHECKSUMS:
   RxTest: 4349afe98f564e0a9bc19063368904622d17d49a
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: 1f8e0d3ce00c2e02670139236610d29be41babdf
+PODFILE CHECKSUM: 80d6fc469cfc493cea0dfdd94769d40f1a8ca591
 
 COCOAPODS: 1.7.5

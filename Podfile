@@ -18,6 +18,7 @@ target 'SampleMVVM' do
   pod 'Alamofire', '~> 4.9.0'
   pod 'LineSDKSwift', '~> 5.3.1'
   pod 'CropViewController', '~> 2.5.2'
+  pod 'PKHUD', '~> 5.3.0'
 
   target 'SampleMVVMTests' do
     inherit! :search_paths
