@@ -30,4 +30,12 @@ class ListRealmEntity: Object, ItemRealmModelable {
             return .other
         }
     }
+
+    static func make(keyword: String, type: ListRealmType) -> ListRealmEntity {
+        let entity = ListRealmEntity()
+        entity.itemId = UserDefaultsRepository.shared.incrementListId ?? 0
+        entity.keyword = keyword
+        entity.typeString = type.rawValue
+        return entity
+    }
 }

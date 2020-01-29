@@ -12,22 +12,21 @@ import SafariServices
 
 protocol QiitaViewModelable {
     var isLoading: BehaviorRelay<Bool> { get }
+    var searchQuery: BehaviorRelay<String?> { get }
+    var searchedQuery: BehaviorRelay<String?> { get }
+    var searchQueryValid: Observable<Bool> { get }
+    var searchedQueryValid: Observable<Bool> { get }
     var qiitaItems: Driver<[QiitaItem]> { get }
     var pushViewController: Driver<UIViewController> { get }
     var presentViewController: Driver<UIViewController> { get }
-    func fetchQiitaItems(tag: String?) -> Completable
-    func saveKeyword(query: String?)
+    func fetchQiitaItems() -> Completable
+    func saveKeyword()
     func showQiitaWebView(indexPath: IndexPath)
 }
 
 final class QiitaViewModel {
 
     var isLoading = BehaviorRelay<Bool>(value: false)
-
-    private let qiitaItemsSubject = BehaviorRelay<[QiitaItem]>(value: [])
-    var qiitaItems: Driver<[QiitaItem]> {
-        return qiitaItemsSubject.asDriver(onErrorJustReturn: [])
-    }
 
     private var pushViewControllerSubject = PublishRelay<UIViewController>()
     var pushViewController: Driver<UIViewController> {
@@ -37,6 +36,26 @@ final class QiitaViewModel {
     private var presentViewControllerSubject = PublishRelay<UIViewController>()
     var presentViewController: Driver<UIViewController> {
         return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
+    }
+
+    var searchQuery = BehaviorRelay<String?>(value: nil)
+    var searchedQuery = BehaviorRelay<String?>(value: nil)
+
+    lazy var searchQueryValid: Observable<Bool> = {
+        return searchQuery
+            .map { ($0 ?? "").count > 0 }
+            .share(replay: 1)
+    }()
+
+    lazy var searchedQueryValid: Observable<Bool> = {
+        return searchedQuery
+            .map { ($0 ?? "").count > 0 }
+            .share(replay: 1)
+    }()
+
+    private let qiitaItemsSubject = BehaviorRelay<[QiitaItem]>(value: [])
+    var qiitaItems: Driver<[QiitaItem]> {
+        return qiitaItemsSubject.asDriver(onErrorJustReturn: [])
     }
 
     private let disposeBag = DisposeBag()
@@ -56,8 +75,8 @@ final class QiitaViewModel {
 }
 
 extension QiitaViewModel: QiitaViewModelable {
-    func fetchQiitaItems(tag: String?) -> Completable {
-        guard let tag = tag else {
+    func fetchQiitaItems() -> Completable {
+        guard let tag = searchQuery.value else {
             return Completable.empty()
         }
         isLoading.accept(true)
@@ -66,29 +85,41 @@ extension QiitaViewModel: QiitaViewModelable {
                 onSuccess: { [weak self] items in
                     self?.isLoading.accept(false)
                     self?.qiitaItemsSubject.accept(items)
+                    self?.searchedQuery.accept(tag)
                 },
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
                     let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
-                    self?.presentViewControllerSubject.accept(errorAlert) })
+                    self?.presentViewControllerSubject.accept(errorAlert)
+            })
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
     }
 
-    func saveKeyword(query: String?) {
-        guard let query = query else { return }
-        let entity = ListRealmEntity()
-        entity.itemId = UserDefaultsRepository.shared.incrementListId ?? 0
-        entity.keyword = query
-        entity.typeString = ListRealmType.qiita.rawValue
-        ItemRealmRepository<ListRealmEntity>.save(item: entity) { result in
+    // TODO: ResultじゃなくてRx型にしないと使えない
+    private func itemExists(completion: @escaping (Result<Bool, NSError>) -> Void) {
+        guard let tag = searchQuery.value else { return }
+        ItemRealmRepository<ListRealmEntity>.find(keyword: tag, type: .qiita) { result in
+            switch result {
+            case .success(let entity):
+                completion(.success(entity != nil))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func saveKeyword() {
+        guard let query = searchedQuery.value else { return }
+        let entity = ListRealmEntity.make(keyword: query, type: .qiita)
+        ItemRealmRepository<ListRealmEntity>.save(item: entity) { [weak self] result in
             switch result {
             case .success:
                 UserDefaultsRepository.shared.oneUp(type: .incrementListId)
-                print("保存完了")
-            case .failure:
-                print("保存失敗")
+            case .failure(let error):
+                let errorAlert = UIAlertController.singleErrorAlert(message: error.description)
+                self?.presentViewControllerSubject.accept(errorAlert)
             }
         }
     }

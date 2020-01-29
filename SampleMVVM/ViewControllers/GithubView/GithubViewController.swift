@@ -71,12 +71,17 @@ final class GithubViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupTexts()
         bind()
     }
 
     private func setupViews() {
         view.addSubview(indicator)
         tableView.tableFooterView = UIView()
+    }
+
+    private func setupTexts() {
+        searchButton.setTitle(R.string.localizable.search(), for: .normal)
     }
 
     private func bind() {
@@ -109,7 +114,7 @@ final class GithubViewController: UIViewController {
 
         favoriteBarButtonItem.rx.tap
             .subscribe(onNext: { [unowned self] in
-                self.viewModel.saveKeyword(query: self.searchBar.text)
+                self.viewModel.saveKeyword()
             })
             .disposed(by: disposeBag)
     }

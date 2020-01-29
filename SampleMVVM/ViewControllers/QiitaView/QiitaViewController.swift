@@ -98,18 +98,35 @@ final class QiitaViewController: UIViewController {
                     .pushViewController(viewController, animated: true)})
             .disposed(by: disposeBag)
 
+        viewModel.searchQueryValid
+            .bind(to: searchButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
         searchButton.rx.tap
             .subscribe(onNext: { [unowned self] in
                 self.searchBar.searchTextField.resignFirstResponder()
-                self.viewModel.fetchQiitaItems(tag: self.searchBar.text)
+                self.viewModel.fetchQiitaItems()
                     .subscribe()
                     .disposed(by: self.disposeBag)
             }).disposed(by: disposeBag)
 
+        viewModel.searchedQueryValid
+            .bind(to: favoriteBarButtonItem.rx.isEnabled)
+            .disposed(by: disposeBag)
+
         favoriteBarButtonItem.rx.tap
             .subscribe(onNext: { [unowned self] in
-                self.viewModel.saveKeyword(query: self.searchBar.text)
+                self.viewModel.saveKeyword()
             })
+            .disposed(by: disposeBag)
+
+        viewModel.searchQuery
+            .asDriver(onErrorJustReturn: "")
+            .drive(searchBar.rx.text)
+            .disposed(by: disposeBag)
+
+        searchBar.rx.text.orEmpty
+            .bind(to: viewModel.searchQuery)
             .disposed(by: disposeBag)
     }
 }
@@ -124,7 +141,7 @@ extension QiitaViewController: UITableViewDelegate {
 extension QiitaViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        viewModel.fetchQiitaItems(tag: searchBar.text)
+        viewModel.fetchQiitaItems()
             .subscribe()
             .disposed(by: disposeBag)
         return true

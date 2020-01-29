@@ -11,6 +11,8 @@ import RealmSwift
 
 protocol ItemRealmModelable: Object {
     dynamic var itemId: Int { get }
+    dynamic var keyword: String { get }
+    dynamic var typeString: String { get }
 }
 
 final class ItemRealmRepository<Model: ItemRealmModelable> {
@@ -21,6 +23,18 @@ final class ItemRealmRepository<Model: ItemRealmModelable> {
             let objects = realm.objects(Model.self)
             let models: [Model] = objects.map { $0 }
             completion(.success(models))
+        } catch let error as NSError {
+            completion(.failure(error))
+        }
+    }
+
+    static func find(keyword: String, type: ListRealmType, completion: @escaping (Result<Model?, NSError>) -> Void) {
+        do {
+            let realm = try Realm()
+            let object = realm.objects(Model.self)
+                .filter { $0.keyword == keyword && $0.typeString == type.rawValue }
+                .first
+            completion(.success(object))
         } catch let error as NSError {
             completion(.failure(error))
         }

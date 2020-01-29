@@ -11,18 +11,21 @@ import RxCocoa
 import SafariServices
 
 protocol GithubViewModelable {
+    var searchQuery: BehaviorRelay<String?> { get }
     var isLoading: BehaviorRelay<Bool> { get }
     var repositories: Driver<[GithubRepository]> { get }
     var pushViewController: Driver<UIViewController> { get }
     var presentViewController: Driver<UIViewController> { get }
     func fetchRepositories(query: String?) -> Completable
-    func saveKeyword(query: String?)
+    func saveKeyword()
     func showGithubWebView(indexPath: IndexPath)
 }
 
 final class GithubViewModel {
 
     var isLoading = BehaviorRelay<Bool>(value: false)
+    var searchQuery = BehaviorRelay<String?>(value: nil)
+    var searchedQuery: String?
 
     private let repositoriesSubject = BehaviorRelay<[GithubRepository]>(value: [])
     var repositories: Driver<[GithubRepository]> {
@@ -64,6 +67,7 @@ extension GithubViewModel: GithubViewModelable {
         return apiClient.fetchGithubRepositories(query: query)
             .do(
                 onSuccess: { [weak self] repositories in
+                    self?.searchedQuery = query
                     self?.isLoading.accept(false)
                     self?.repositoriesSubject.accept(repositories)
                 },
@@ -76,8 +80,10 @@ extension GithubViewModel: GithubViewModelable {
             .asCompletable() // Completableに変換
     }
 
-    func saveKeyword(query: String?) {
-        guard let query = query else { return }
+    func saveKeyword() {
+        guard let query = searchedQuery else {
+            return
+        }
         let entity = ListRealmEntity()
         entity.itemId = UserDefaultsRepository.shared.incrementListId ?? 0
         entity.keyword = query
