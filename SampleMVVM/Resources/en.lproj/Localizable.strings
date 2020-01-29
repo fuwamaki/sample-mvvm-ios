@@ -23,6 +23,7 @@
 "item_register_update_button" = "Update";
 
 "list_title" = "Favorite List";
+"list_no_content" = "Add favorite contents from Github or Qiita!";
 
 "mypage_title" = "MyPage";
 "mypage_line_login" = "LINE Login";

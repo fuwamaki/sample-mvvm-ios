@@ -15,17 +15,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buU-Zb-oqo">
+                                <rect key="frame" x="186" y="397" width="42.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zyf-ku-uL4">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="buU-Zb-oqo" firstAttribute="centerY" secondItem="S3O-AU-JmK" secondAttribute="centerY" id="35N-AO-feH"/>
                             <constraint firstItem="zyf-ku-uL4" firstAttribute="leading" secondItem="F49-Nl-FZw" secondAttribute="leading" id="471-Co-LqL"/>
                             <constraint firstItem="F49-Nl-FZw" firstAttribute="trailing" secondItem="zyf-ku-uL4" secondAttribute="trailing" id="4UE-Q6-cJb"/>
                             <constraint firstItem="zyf-ku-uL4" firstAttribute="top" secondItem="F49-Nl-FZw" secondAttribute="top" id="ac0-2H-9GD"/>
                             <constraint firstItem="F49-Nl-FZw" firstAttribute="bottom" secondItem="zyf-ku-uL4" secondAttribute="bottom" id="fDM-aN-KJC"/>
+                            <constraint firstItem="buU-Zb-oqo" firstAttribute="centerX" secondItem="S3O-AU-JmK" secondAttribute="centerX" id="zaO-EH-jco"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="F49-Nl-FZw"/>
                     </view>
@@ -40,6 +48,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="githubBarButtonItem" destination="2b8-yE-Ojp" id="Is1-lc-JKU"/>
+                        <outlet property="noContentLabel" destination="buU-Zb-oqo" id="KjC-Qh-6uw"/>
                         <outlet property="qiitaBarButtonItem" destination="HqE-eR-X8r" id="pdb-B1-JM0"/>
                         <outlet property="tableView" destination="zyf-ku-uL4" id="9yJ-lo-nT0"/>
                     </connections>

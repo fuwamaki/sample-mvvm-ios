@@ -27,13 +27,17 @@ final class ListViewController: UIViewController {
                 .setDataSource(self)
                 .disposed(by: disposeBag)
 
-            viewModel.contentsSubject.subscribe(onNext: { [weak self] _ in
+            viewModel.contentsSubject
+                .subscribe(onNext: { [weak self] contents in
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
+                    self?.noContentLabel.isHidden = contents.count != 0
                 }})
                 .disposed(by: disposeBag)
         }
     }
+
+    @IBOutlet private weak var noContentLabel: UILabel!
 
     private lazy var indicator: UIActivityIndicatorView = {
         let indicator = defaultIndicator
@@ -73,6 +77,7 @@ final class ListViewController: UIViewController {
 
     private func setupTexts() {
         navigationItem.title = R.string.localizable.list_title()
+        noContentLabel.text = R.string.localizable.list_no_content()
     }
 
     private func bind() {

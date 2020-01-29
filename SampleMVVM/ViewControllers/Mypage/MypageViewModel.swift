@@ -127,6 +127,7 @@ extension MypageViewModel: MypageViewModelable {
         presentViewControllerSubject.accept(actionSheet)
     }
 
+    // TODO: 状態管理ベースでリファクタリング
     func handleLineLoginButton(viewController: UIViewController) -> Completable {
         return apiClient.lineLogin(viewController: viewController)
             .do(

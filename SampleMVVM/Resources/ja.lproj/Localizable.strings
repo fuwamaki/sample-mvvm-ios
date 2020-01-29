@@ -23,6 +23,7 @@
 "item_register_update_button" = "更新";
 
 "list_title" = "お気に入り一覧";
+"list_no_content" = "GithubまたはQiitaから、\n\nお気に入りを追加しよう！";
 
 "mypage_title" = "マイページ";
 "mypage_line_login" = "LINE ログイン";
