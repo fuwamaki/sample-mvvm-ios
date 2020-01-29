@@ -41,17 +41,20 @@ final class TextFieldInputAccessoryView: UIView {
     }
 
     private func setupToolbar() {
-        let toolBar = UIToolbar()
+        // memo: サイズを指定しないと、動作はするが警告が出る
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
         toolBar.barStyle = UIBarStyle.default
         toolBar.tintColor = UIColor.white
         toolBar.backgroundColor = UIColor.black
         toolBar.alpha = 0.7
         toolBar.isTranslucent = true
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneBarButtonItem = UIBarButtonItem(title: doneButtonTitle,
-                                                style: .done,
-                                                target: self,
-                                                action: #selector(TextFieldInputAccessoryView.clickDoneButton(_:)))
+        let flexibleSpace = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBarButtonItem = UIBarButtonItem(
+            title: doneButtonTitle,
+            style: .done,
+            target: self,
+            action: #selector(TextFieldInputAccessoryView.clickDoneButton(_:)))
         let barButtonItems = [flexibleSpace, doneBarButtonItem]
         toolBar.items = barButtonItems
         addSubview(toolBar)
