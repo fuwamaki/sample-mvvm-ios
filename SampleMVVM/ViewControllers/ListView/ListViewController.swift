@@ -61,6 +61,7 @@ final class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupTexts()
         bind()
     }
 
@@ -68,6 +69,10 @@ final class ListViewController: UIViewController {
         view.addSubview(indicator)
         // Hide blank border of tableview
         tableView.tableFooterView = UIView()
+    }
+
+    private func setupTexts() {
+        navigationItem.title = R.string.localizable.list_title()
     }
 
     private func bind() {

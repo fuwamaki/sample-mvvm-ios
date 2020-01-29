@@ -112,7 +112,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ES1-0C-cMB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Mypage" image="c.circle" catalog="system" id="ZYA-9V-y5D"/>
+                    <tabBarItem key="tabBarItem" title="" image="person.circle" catalog="system" id="ZYA-9V-y5D"/>
                     <navigationItem key="navigationItem" title="マイページ" largeTitleDisplayMode="always" id="yn4-B1-vbq">
                         <barButtonItem key="rightBarButtonItem" image="gear" catalog="system" id="zev-HD-4bx"/>
                     </navigationItem>
@@ -136,7 +136,7 @@
             <objects>
                 <navigationController id="Z3U-Wr-jYp" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Vdi-Sg-Zcw">
-                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -150,7 +150,6 @@
     </scenes>
     <resources>
         <image name="birthday" width="256" height="256"/>
-        <image name="c.circle" catalog="system" width="64" height="60"/>
         <image name="gear" catalog="system" width="64" height="58"/>
         <image name="person.circle" catalog="system" width="64" height="60"/>
     </resources>

@@ -79,7 +79,8 @@ final class ItemViewController: UIViewController {
     }
 
     private func setupTexts() {
-        title = R.string.localizable.items_title()
+        navigationItem.title = R.string.localizable.items_title()
+        registerBarButtonItem.title = R.string.localizable.items_register_button()
     }
 
     private func bind() {

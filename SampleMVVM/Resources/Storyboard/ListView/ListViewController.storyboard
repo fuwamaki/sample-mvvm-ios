@@ -29,7 +29,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="F49-Nl-FZw"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="List" image="b.circle" catalog="system" id="RcJ-mo-jU9"/>
+                    <tabBarItem key="tabBarItem" title="" image="heart.circle" catalog="system" id="RcJ-mo-jU9"/>
                     <navigationItem key="navigationItem" title="List" largeTitleDisplayMode="always" id="PeJ-Um-qIf">
                         <rightBarButtonItems>
                             <barButtonItem image="qiita_icon" id="HqE-eR-X8r"/>
@@ -53,7 +53,7 @@
             <objects>
                 <navigationController id="JAk-lh-d4o" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="0j6-ii-ipJ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -66,8 +66,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="b.circle" catalog="system" width="64" height="60"/>
         <image name="github_icon" width="30" height="30"/>
+        <image name="heart.circle" catalog="system" width="64" height="60"/>
         <image name="qiita_icon" width="30" height="30"/>
     </resources>
 </document>

@@ -11,6 +11,7 @@ import RxCocoa
 import CropViewController
 
 protocol UserRegistrationViewModelable {
+    var type: UserRegistrationType { get }
     var dismissSubject: BehaviorRelay<Bool> { get }
     var name: BehaviorRelay<String?> { get }
     var birthday: BehaviorRelay<Date?> { get }
@@ -38,7 +39,7 @@ final class UserRegistrationViewModel {
     }
 
     private let disposeBag = DisposeBag()
-    private let type: UserRegistrationType
+    var type: UserRegistrationType
     private let lineAccessToken: String
 
     init(type: UserRegistrationType) {

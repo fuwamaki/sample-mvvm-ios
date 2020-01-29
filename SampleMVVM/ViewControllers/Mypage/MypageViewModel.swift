@@ -105,12 +105,23 @@ final class MypageViewModel {
 
 extension MypageViewModel: MypageViewModelable {
     func handleSettingBarButtonItem() {
-        let actionSheet = UIAlertController(title: "設定", message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "ログアウト", style: .destructive, handler: { _ in
-            UserDefaultsRepository.shared.removeUser()
-            self.checkUser()
-        }))
-        actionSheet.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        let actionSheet = UIAlertController(
+            title: R.string.localizable.mypage_setting_menu_title(),
+            message: nil,
+            preferredStyle: .actionSheet)
+        actionSheet.addAction(
+            UIAlertAction(
+                title: R.string.localizable.mypage_setting_menu_logout(),
+                style: .destructive,
+                handler: { _ in
+                    UserDefaultsRepository.shared.removeUser()
+                    self.checkUser()
+            }))
+        actionSheet.addAction(
+            UIAlertAction(
+                title: R.string.localizable.mypage_setting_menu_cancel(),
+                style: .cancel,
+                handler: nil))
         presentViewControllerSubject.accept(actionSheet)
     }
 

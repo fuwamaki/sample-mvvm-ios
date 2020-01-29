@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GaA-Sa-DY1">
-                                <rect key="frame" x="0.0" y="148.5" width="414" height="664.5"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -29,7 +29,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LGG-7g-Y5f"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="a.circle" catalog="system" id="fgJ-WH-ltc"/>
+                    <tabBarItem key="tabBarItem" title="" image="bag" catalog="system" id="fgJ-WH-ltc"/>
                     <navigationItem key="navigationItem" title="Items" largeTitleDisplayMode="always" id="x4C-y7-QAs">
                         <barButtonItem key="rightBarButtonItem" title="Register" id="jd2-kr-d4t"/>
                     </navigationItem>
@@ -48,7 +48,7 @@
             <objects>
                 <navigationController id="jWU-jq-9MQ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="vy3-74-jeZ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -61,6 +61,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="a.circle" catalog="system" width="64" height="60"/>
+        <image name="bag" catalog="system" width="64" height="64"/>
     </resources>
 </document>

@@ -20,3 +20,21 @@
 "item_register_price_placeholder" = "500";
 "item_register_create_button" = "Register";
 "item_register_update_button" = "Update";
+
+"list_title" = "Favorite List";
+
+"mypage_title" = "MyPage";
+"mypage_line_login" = "LINE Login";
+"mypage_edit" = "Edit";
+"mypage_setting_menu_title" = "Setting";
+"mypage_setting_menu_logout" = "Logout";
+"mypage_setting_menu_cancel" = "Cancel";
+
+"user_registration_title" = "User Information";
+"user_registration_select_image" = "Select Image";
+"user_registration_name" = "Name";
+"user_registration_birthday" = "Birthday";
+"user_registration_name_placeholder" = "suzuki taro";
+"user_registration_birthday_placeholder" = "1990/01/01";
+"user_registration_create_button" = "Register";
+"user_registration_update_button" = "Update";

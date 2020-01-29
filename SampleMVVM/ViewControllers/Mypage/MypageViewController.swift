@@ -43,6 +43,7 @@ final class MypageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupTexts()
         bind()
     }
 
@@ -54,6 +55,13 @@ final class MypageViewController: UIViewController {
         profileCardView.layer.masksToBounds = false
         iconImageView.layer.shadowColor = UIColor.label.cgColor
         iconImageView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        lineLoginButton.setTitle(R.string.localizable.mypage_line_login(), for: .normal)
+    }
+
+    private func setupTexts() {
+        navigationItem.title = R.string.localizable.mypage_title()
+        lineLoginButton.setTitle(R.string.localizable.mypage_line_login(), for: .normal)
+        editButton.setTitle(R.string.localizable.mypage_edit(), for: .normal)
     }
 
     // swiftlint:disable function_body_length

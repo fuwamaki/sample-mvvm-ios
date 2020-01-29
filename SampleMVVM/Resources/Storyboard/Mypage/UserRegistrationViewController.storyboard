@@ -119,9 +119,11 @@
                     <navigationItem key="navigationItem" title="ユーザ情報入力" id="S86-gH-T5L"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="birthdayLabel" destination="gbX-cJ-rds" id="93U-gb-P9E"/>
                         <outlet property="birthdayTextField" destination="cy5-aZ-x3D" id="1Tq-df-RHT"/>
                         <outlet property="changeImageButton" destination="VNS-aF-pNB" id="8A2-8F-D4L"/>
                         <outlet property="iconImageView" destination="MbF-34-LCz" id="pTw-yH-eiV"/>
+                        <outlet property="nameLabel" destination="VFL-yi-4cn" id="s4A-SS-Pze"/>
                         <outlet property="nameTextField" destination="mR9-dW-cb5" id="mzM-S2-Umz"/>
                         <outlet property="submitButton" destination="Ke6-2Q-z9p" id="7Hv-Xz-cV2"/>
                     </connections>

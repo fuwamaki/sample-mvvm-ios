@@ -22,7 +22,9 @@ final class UserRegistrationViewController: UIViewController {
 
     @IBOutlet private weak var iconImageView: UIImageView!
     @IBOutlet private weak var changeImageButton: UIButton!
+    @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var nameTextField: UITextField!
+    @IBOutlet private weak var birthdayLabel: UILabel!
     @IBOutlet private weak var birthdayTextField: UITextField!
     @IBOutlet private weak var submitButton: UIButton!
 
@@ -49,8 +51,9 @@ final class UserRegistrationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        bind()
         setupViews()
+        setupTexts()
+        bind()
     }
 
     private func setupViews() {
@@ -65,6 +68,23 @@ final class UserRegistrationViewController: UIViewController {
             birthdayPickerView.selectRow(date: birthday)
         }
         birthdayTextField.inputView = birthdayPickerView
+    }
+
+    private func setupTexts() {
+        title = R.string.localizable.user_registration_title()
+        changeImageButton.setTitle(R.string.localizable.user_registration_select_image(), for: .normal)
+        nameLabel.text = R.string.localizable.user_registration_name()
+        birthdayLabel.text = R.string.localizable.user_registration_birthday()
+        nameTextField.placeholder = R.string.localizable.user_registration_name_placeholder()
+        birthdayTextField.placeholder = R.string.localizable.user_registration_birthday_placeholder()
+        switch viewModel?.type {
+        case .create:
+            submitButton.setTitle(R.string.localizable.user_registration_create_button(), for: .normal)
+        case .update:
+            submitButton.setTitle(R.string.localizable.user_registration_update_button(), for: .normal)
+        default:
+            break
+        }
     }
 
     // swiftlint:disable function_body_length

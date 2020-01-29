@@ -17,5 +17,24 @@
 "item_register_category" = "カテゴリ";
 "item_register_category_placeholder" = "フルーツ";
 "item_register_price" = "価格";
+"item_register_price_placeholder" = "500";
 "item_register_create_button" = "登録";
 "item_register_update_button" = "更新";
+
+"list_title" = "お気に入り一覧";
+
+"mypage_title" = "マイページ";
+"mypage_line_login" = "LINE ログイン";
+"mypage_edit" = "編集";
+"mypage_setting_menu_title" = "設定";
+"mypage_setting_menu_logout" = "ログアウト";
+"mypage_setting_menu_cancel" = "キャンセル";
+
+"user_registration_title" = "ユーザ情報";
+"user_registration_select_image" = "画像選択";
+"user_registration_name" = "名前";
+"user_registration_birthday" = "誕生日";
+"user_registration_name_placeholder" = "鈴木 太郎";
+"user_registration_birthday_placeholder" = "1990/01/01";
+"user_registration_create_button" = "登録";
+"user_registration_update_button" = "更新";
