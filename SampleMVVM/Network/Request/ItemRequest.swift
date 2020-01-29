@@ -18,9 +18,10 @@ struct ItemPostRequest: RequestProtocol {
     typealias Response = ItemPostResponse
     var url: String = Url.postItemURL
     var method: HTTPMethod = .post
-    var encoding: ParameterEncoding = URLEncoding.default
+    // memo: postのparametersをbody化するのに重要な設定
+    var encoding: ParameterEncoding = JSONEncoding.default
     var parameters: [String: Any]?
-    var headers: [String: String]? = ["Content-Type": "application/json", "Hoge-Type": "hogation/json"]
+    var headers: [String: String]? = ["Content-Type": "application/json"]
 }
 
 struct ItemDeleteRequest: RequestProtocol {
