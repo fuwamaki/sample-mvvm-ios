@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import PKHUD
 
 final class ItemRegisterViewController: UIViewController {
 
@@ -110,11 +111,17 @@ final class ItemRegisterViewController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.dismissSubject
-            .subscribe(onNext: { [weak self] isDismiss in
-                if isDismiss {
-                    self?.navigationController?
-                        .popViewController(animated: true)
-                }
+            .filter { $0 }
+            .subscribe(onNext: { [weak self] _ in
+                self?.navigationController?
+                    .popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.completedSubject
+            .filter { $0 }
+            .subscribe(onNext: { _ in
+                HUD.flash(.success, delay: 1.0)
             })
             .disposed(by: disposeBag)
 

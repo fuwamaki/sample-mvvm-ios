@@ -20,6 +20,7 @@ protocol ItemRegisterViewModelable {
     var isLoading: BehaviorRelay<Bool> { get }
     var presentViewController: Driver<UIViewController> { get }
     var dismissSubject: BehaviorRelay<Bool> { get }
+    var completedSubject: BehaviorRelay<Bool> { get }
     var itemId: BehaviorRelay<Int?> { get }
     var nameText: BehaviorRelay<String?> { get }
     var categoryText: BehaviorRelay<String?> { get }
@@ -33,6 +34,7 @@ final class ItemRegisterViewModel {
 
     var isLoading = BehaviorRelay<Bool>(value: false)
     var dismissSubject = BehaviorRelay<Bool>(value: false)
+    var completedSubject = BehaviorRelay<Bool>(value: false)
     var itemId = BehaviorRelay<Int?>(value: nil)
     var nameText = BehaviorRelay<String?>(value: nil)
     var categoryText = BehaviorRelay<String?>(value: nil)
@@ -103,6 +105,7 @@ final class ItemRegisterViewModel {
                     self?.presentViewControllerSubject.accept(errorAlert) },
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
+                    self?.completedSubject.accept(true)
                     self?.dismissSubject.accept(true)})
     }
 
@@ -122,6 +125,7 @@ final class ItemRegisterViewModel {
                     self?.presentViewControllerSubject.accept(errorAlert) },
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
+                    self?.completedSubject.accept(true)
                     self?.dismissSubject.accept(true)})
     }
 }
