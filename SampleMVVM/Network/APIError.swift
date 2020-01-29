@@ -21,17 +21,17 @@ enum APIError: Error {
         case .customError(let message):
             return message
         case .nonDataError:
-            return "申し訳ありません、データがありませんでした。"
+            return R.string.localizable.error_non_data()
         case .unauthorizedError:
-            return "ユーザーセッションの有効期限が切れたため、再度ログインしてください。"
+            return R.string.localizable.error_unauthorized()
         case .notFoundError:
-            return "申し訳ありません、データが見つかりませんでした。"
+            return R.string.localizable.error_not_found()
         case .maintenanceError:
-            return "メンテナンス中です。終了までしばらくお待ちください。"
+            return R.string.localizable.error_maintenance()
         case .networkError:
-            return "通信エラーが発生しました。電波の良い所で再度お試しください。"
+            return R.string.localizable.error_network()
         default:
-            return "不具合が発生しました。お手数ですが時間をおいてもう一度お試しください。"
+            return R.string.localizable.error_unknown()
         }
     }
 }
@@ -42,7 +42,7 @@ enum MVVMError: Error {
     var message: String {
         switch self {
         case .jsonParseError:
-            return "不具合が発生しました。お手数ですが時間をおいてもう一度お試しください。"
+            return R.string.localizable.error_unknown()
         }
     }
 }

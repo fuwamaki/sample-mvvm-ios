@@ -22,14 +22,14 @@ final class TextFieldInputAccessoryView: UIView {
     private var previousTextField: UITextField?
     private var nextTextField: UITextField?
 
-    init(textField: UITextField, doneButtonTitle: String = "完了") {
+    init(textField: UITextField, doneButtonTitle: String = R.string.localizable.toolbar_done()) {
         self.textField = textField
         self.doneButtonTitle = doneButtonTitle
         super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44.0))
         setupToolbar()
     }
 
-    init(textField: UITextField, previous: UITextField?, next: UITextField?, doneButtonTitle: String = "完了") {
+    init(textField: UITextField, previous: UITextField?, next: UITextField?, doneButtonTitle: String = R.string.localizable.toolbar_done()) {
         self.textField = textField
         self.doneButtonTitle = doneButtonTitle
         super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44.0))

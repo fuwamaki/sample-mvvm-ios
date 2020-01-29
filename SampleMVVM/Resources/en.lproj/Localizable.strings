@@ -6,12 +6,14 @@
   Copyright © 2019 yusaku maki. All rights reserved.
 */
 
+// MARK: Items
 "items_title" = "Items";
 "items_subtitle" = "You can check/add/delete/update the items.";
 "items_subtitle_category" = "category";
 "items_price_yen" = "yen";
 "items_register_button" = "Register";
 
+// MARK: Item Register
 "item_register_title" = "Register Item";
 "item_register_name" = "Name";
 "item_register_name_placeholder" = "dragon fruit";
@@ -22,9 +24,11 @@
 "item_register_create_button" = "Register";
 "item_register_update_button" = "Update";
 
+// MARK: List
 "list_title" = "Favorite List";
 "list_no_content" = "Add favorite contents from Github or Qiita!";
 
+// MARK: Mypage
 "mypage_title" = "MyPage";
 "mypage_line_login" = "LINE Login";
 "mypage_edit" = "Edit";
@@ -32,6 +36,7 @@
 "mypage_setting_menu_logout" = "Logout";
 "mypage_setting_menu_cancel" = "Cancel";
 
+// MARK: User Registration
 "user_registration_title" = "User Information";
 "user_registration_select_image" = "Select Image";
 "user_registration_name" = "Name";
@@ -40,3 +45,14 @@
 "user_registration_birthday_placeholder" = "1990/01/01";
 "user_registration_create_button" = "Register";
 "user_registration_update_button" = "Update";
+
+// MARK: Error
+"error_non_data" = "Sorry, there is not the data.";
+"error_unauthorized" = "Your session has expired, please log in again.";
+"error_not_found" = "Sorry, no data found.";
+"error_maintenance" = "Under maintenance, please wait until the end.";
+"error_network" = "Network error has occurred, please try again in a place with good signal.";
+"error_unknown" = "A malfunction occurred, please try again later";
+
+// MARK: Common
+"toolbar_done" = "done";

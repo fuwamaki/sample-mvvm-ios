@@ -6,12 +6,14 @@
   Copyright © 2019 yusaku maki. All rights reserved.
 */
 
+// MARK: Items
 "items_title" = "商品一覧";
 "items_subtitle" = "商品の一覧確認・追加・削除・更新ができます。";
 "items_subtitle_category" = "カテゴリ";
 "items_price_yen" = "円";
 "items_register_button" = "登録";
 
+// MARK: Item Register
 "item_register_title" = "商品登録";
 "item_register_name" = "名前";
 "item_register_name_placeholder" = "ドラゴンフルーツ";
@@ -22,9 +24,11 @@
 "item_register_create_button" = "登録";
 "item_register_update_button" = "更新";
 
+// MARK: List
 "list_title" = "お気に入り一覧";
 "list_no_content" = "GithubまたはQiitaから、\n\nお気に入りを追加しよう！";
 
+// MARK: Mypage
 "mypage_title" = "マイページ";
 "mypage_line_login" = "LINE ログイン";
 "mypage_edit" = "編集";
@@ -32,6 +36,7 @@
 "mypage_setting_menu_logout" = "ログアウト";
 "mypage_setting_menu_cancel" = "キャンセル";
 
+// MARK: User Registration
 "user_registration_title" = "ユーザ情報";
 "user_registration_select_image" = "画像選択";
 "user_registration_name" = "名前";
@@ -40,3 +45,14 @@
 "user_registration_birthday_placeholder" = "1990/01/01";
 "user_registration_create_button" = "登録";
 "user_registration_update_button" = "更新";
+
+// MARK: Error
+"error_non_data" = "申し訳ありません、データがありませんでした。";
+"error_unauthorized" = "ユーザーセッションの有効期限が切れたため、再度ログインしてください。";
+"error_not_found" = "申し訳ありません、データが見つかりませんでした。";
+"error_maintenance" = "メンテナンス中です。終了までしばらくお待ちください。";
+"error_network" = "通信エラーが発生しました。電波の良い所で再度お試しください。";
+"error_unknown" = "不具合が発生しました。お手数ですが時間をおいてもう一度お試しください。";
+
+// MARK: Common
+"toolbar_done" = "完了";
