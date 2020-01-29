@@ -87,7 +87,7 @@
                                         <state key="normal" title="Edit"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="L35-Ge-QjU" firstAttribute="centerY" secondItem="SWS-IN-ulq" secondAttribute="centerY" id="HA7-hr-9uH"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="jnA-hI-dvc" secondAttribute="trailing" constant="8" id="Prv-fD-m0Z"/>
