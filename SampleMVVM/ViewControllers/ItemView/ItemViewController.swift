@@ -17,6 +17,7 @@ final class ItemViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.register(R.nib.itemTableCell)
+            tableView.registerHeaderFooterView(R.nib.itemTableHeaderView)
 
             tableView.rx
                 .setDelegate(self)
@@ -76,6 +77,8 @@ final class ItemViewController: UIViewController {
         view.addSubview(indicator)
         // Hide blank border of tableview
         tableView.tableFooterView = UIView()
+        let headerView = R.nib.itemTableHeaderView(owner: self)
+        tableView.tableHeaderView = headerView
     }
 
     private func setupTexts() {
