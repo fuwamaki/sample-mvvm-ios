@@ -25,6 +25,8 @@ final class ItemTableCell: UITableViewCell {
     func render(item: Item) {
         titleLabel.text = item.name
         subtitleLabel.text = R.string.localizable.items_subtitle_category() + ": " + item.category
-        priceLabel.text = String(item.price) + " " + R.string.localizable.items_price_yen()
+        if let price = PriceFormat.price(item.price) {
+            priceLabel.text = price + " " + R.string.localizable.items_price_yen()
+        }
     }
 }

@@ -69,6 +69,7 @@
 		2068E9AD23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068E9AC23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift */; };
 		206F688123E139E60025D559 /* ItemTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 206F688023E139E60025D559 /* ItemTableHeaderView.xib */; };
 		206F688323E13A440025D559 /* ItemTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688223E13A440025D559 /* ItemTableHeaderView.swift */; };
+		206F688523E14F040025D559 /* NumberFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688423E14F040025D559 /* NumberFormat.swift */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
 		209A60A723388F1600D6338C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A623388F1600D6338C /* Assets.xcassets */; };
@@ -187,6 +188,7 @@
 		2068E9AC23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUserNotificationCenter.swift; sourceTree = "<group>"; };
 		206F688023E139E60025D559 /* ItemTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableHeaderView.xib; sourceTree = "<group>"; };
 		206F688223E13A440025D559 /* ItemTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableHeaderView.swift; sourceTree = "<group>"; };
+		206F688423E14F040025D559 /* NumberFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormat.swift; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		209A609D23388F1500D6338C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				2063EF7223DC5E79000992D1 /* DateFormat.swift */,
+				206F688423E14F040025D559 /* NumberFormat.swift */,
 				2063EF7823DC9700000992D1 /* Indicator.swift */,
 			);
 			path = Util;
@@ -1015,6 +1018,7 @@
 				205BE0BC23541800009EF0F2 /* GithubViewController.swift in Sources */,
 				201BF0362338F8CD0020F7B4 /* APIError.swift in Sources */,
 				209A60D52338C51E00D6338C /* ItemViewModel.swift in Sources */,
+				206F688523E14F040025D559 /* NumberFormat.swift in Sources */,
 				20AAA784237D8A65006F2817 /* QiitaUser.swift in Sources */,
 				20AAA78A237D8E90006F2817 /* QiitaItemResponse.swift in Sources */,
 				2063EF7023DC56A4000992D1 /* UIView+Addition.swift in Sources */,
