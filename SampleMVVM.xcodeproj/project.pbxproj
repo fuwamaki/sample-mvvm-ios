@@ -71,6 +71,8 @@
 		206F688323E13A440025D559 /* ItemTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688223E13A440025D559 /* ItemTableHeaderView.swift */; };
 		206F688523E14F040025D559 /* NumberFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688423E14F040025D559 /* NumberFormat.swift */; };
 		206F688723E162260025D559 /* Alamofire+DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688623E162260025D559 /* Alamofire+DataRequest.swift */; };
+		206F688923E1AED40025D559 /* UIColor+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688823E1AED40025D559 /* UIColor+Addition.swift */; };
+		206F688B23E1AF930025D559 /* UIButton+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688A23E1AF930025D559 /* UIButton+Addition.swift */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
 		209A60A723388F1600D6338C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A623388F1600D6338C /* Assets.xcassets */; };
@@ -191,6 +193,8 @@
 		206F688223E13A440025D559 /* ItemTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableHeaderView.swift; sourceTree = "<group>"; };
 		206F688423E14F040025D559 /* NumberFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormat.swift; sourceTree = "<group>"; };
 		206F688623E162260025D559 /* Alamofire+DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire+DataRequest.swift"; sourceTree = "<group>"; };
+		206F688823E1AED40025D559 /* UIColor+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Addition.swift"; sourceTree = "<group>"; };
+		206F688A23E1AF930025D559 /* UIButton+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Addition.swift"; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		209A609D23388F1500D6338C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -499,7 +503,9 @@
 				20C0A4EB23390DBE00B12264 /* UIAlertController+Addition.swift */,
 				2063EF6F23DC56A4000992D1 /* UIView+Addition.swift */,
 				20C0A4ED23390ED800B12264 /* UIViewController+Rx.swift */,
+				206F688A23E1AF930025D559 /* UIButton+Addition.swift */,
 				202ADB74236BEE2700E65BB8 /* UIImage+Addition.swift */,
+				206F688823E1AED40025D559 /* UIColor+Addition.swift */,
 				200BB34D237E46C600AFA246 /* UserDefaults+StringDefaultSettable.swift */,
 				200BB34F237E46F100AFA246 /* UserDefaults+BoolDefaultSettable.swift */,
 				200BB351237E471200AFA246 /* UserDefaults+IntegerDefaultSettable.swift */,
@@ -1002,6 +1008,7 @@
 				200BB357237E47BE00AFA246 /* KeyNamespaceable.swift in Sources */,
 				200BB354237E473500AFA246 /* UserDefaults+URLDefaultSettable.swift in Sources */,
 				20AC3E742356BB52007F67ED /* APIClient+Github.swift in Sources */,
+				206F688B23E1AF930025D559 /* UIButton+Addition.swift in Sources */,
 				20382BE7233A04DD00CF77A1 /* GithubCollectionCell.swift in Sources */,
 				206F688323E13A440025D559 /* ItemTableHeaderView.swift in Sources */,
 				201BF03A2338FB180020F7B4 /* ResponseProtocol.swift in Sources */,
@@ -1009,6 +1016,7 @@
 				201BF0342338EFF90020F7B4 /* Item.swift in Sources */,
 				2063EF7723DC928C000992D1 /* APIClient+LineLogin.swift in Sources */,
 				209A609C23388F1500D6338C /* AppDelegate.swift in Sources */,
+				206F688923E1AED40025D559 /* UIColor+Addition.swift in Sources */,
 				205BE0B8235417DF009EF0F2 /* QiitaViewController.swift in Sources */,
 				200BB34E237E46C700AFA246 /* UserDefaults+StringDefaultSettable.swift in Sources */,
 				20A122852340F3C100FA1EAB /* ItemRegisterViewController.swift in Sources */,
