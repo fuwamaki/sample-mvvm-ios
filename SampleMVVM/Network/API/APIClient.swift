@@ -70,6 +70,7 @@ final class APIClient: APIClientable {
                              parameters: request.parameters,
                              encoding: request.encoding,
                              headers: request.headers)
+            .log()
             .responseJSON { response in
                 switch response.result {
                 case .success:
@@ -107,6 +108,7 @@ final class APIClient: APIClientable {
                              parameters: request.parameters,
                              encoding: request.encoding,
                              headers: request.headers)
+            .log()
             .response { response in
                 if let error = response.error as NSError? {
                     switch error.code {
@@ -136,6 +138,7 @@ final class APIClient: APIClientable {
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.httpBody = body
         Alamofire.request(urlRequest)
+            .log()
             .responseJSON { response in
                 switch response.result {
                 case .success:

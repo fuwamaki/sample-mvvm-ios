@@ -70,6 +70,7 @@
 		206F688123E139E60025D559 /* ItemTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 206F688023E139E60025D559 /* ItemTableHeaderView.xib */; };
 		206F688323E13A440025D559 /* ItemTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688223E13A440025D559 /* ItemTableHeaderView.swift */; };
 		206F688523E14F040025D559 /* NumberFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688423E14F040025D559 /* NumberFormat.swift */; };
+		206F688723E162260025D559 /* Alamofire+DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688623E162260025D559 /* Alamofire+DataRequest.swift */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
 		209A60A723388F1600D6338C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A623388F1600D6338C /* Assets.xcassets */; };
@@ -189,6 +190,7 @@
 		206F688023E139E60025D559 /* ItemTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableHeaderView.xib; sourceTree = "<group>"; };
 		206F688223E13A440025D559 /* ItemTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableHeaderView.swift; sourceTree = "<group>"; };
 		206F688423E14F040025D559 /* NumberFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormat.swift; sourceTree = "<group>"; };
+		206F688623E162260025D559 /* Alamofire+DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire+DataRequest.swift"; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		209A609D23388F1500D6338C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 				200BB351237E471200AFA246 /* UserDefaults+IntegerDefaultSettable.swift */,
 				200BB353237E473500AFA246 /* UserDefaults+URLDefaultSettable.swift */,
 				2063EF8023DDFB18000992D1 /* UserDefaults+DataDefaultSettable.swift */,
+				206F688623E162260025D559 /* Alamofire+DataRequest.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -984,6 +987,7 @@
 				20AAA788237D8E6C006F2817 /* QiitaItemRequest.swift in Sources */,
 				202ADB75236BEE2700E65BB8 /* UIImage+Addition.swift in Sources */,
 				20382BE9233A04E800CF77A1 /* QiitaCollectionCell.swift in Sources */,
+				206F688723E162260025D559 /* Alamofire+DataRequest.swift in Sources */,
 				202350D4237FC64400311C74 /* ListQiitaTableCell.swift in Sources */,
 				20C0A4EC23390DBE00B12264 /* UIAlertController+Addition.swift in Sources */,
 				2063EF7923DC9700000992D1 /* Indicator.swift in Sources */,
