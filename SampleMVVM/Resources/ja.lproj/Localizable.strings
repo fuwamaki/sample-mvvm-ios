@@ -7,6 +7,7 @@
 */
 
 "items_title" = "商品一覧";
+"items_subtitle" = "商品の一覧確認・追加・削除・更新ができます。";
 "items_subtitle_category" = "カテゴリ";
 "items_price_yen" = "円";
 "items_register_button" = "登録";

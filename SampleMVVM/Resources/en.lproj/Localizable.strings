@@ -7,6 +7,7 @@
 */
 
 "items_title" = "Items";
+"items_subtitle" = "You can check/add/delete/update the items.";
 "items_subtitle_category" = "category";
 "items_price_yen" = "yen";
 "items_register_button" = "Register";

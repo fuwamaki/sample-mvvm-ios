@@ -67,6 +67,8 @@
 		2063EF7F23DD47A3000992D1 /* UserRealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7E23DD47A3000992D1 /* UserRealmRepository.swift */; };
 		2063EF8123DDFB18000992D1 /* UserDefaults+DataDefaultSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF8023DDFB18000992D1 /* UserDefaults+DataDefaultSettable.swift */; };
 		2068E9AD23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068E9AC23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift */; };
+		206F688123E139E60025D559 /* ItemTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 206F688023E139E60025D559 /* ItemTableHeaderView.xib */; };
+		206F688323E13A440025D559 /* ItemTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688223E13A440025D559 /* ItemTableHeaderView.swift */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
 		209A60A723388F1600D6338C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A623388F1600D6338C /* Assets.xcassets */; };
@@ -183,6 +185,8 @@
 		2063EF7E23DD47A3000992D1 /* UserRealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRealmRepository.swift; sourceTree = "<group>"; };
 		2063EF8023DDFB18000992D1 /* UserDefaults+DataDefaultSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+DataDefaultSettable.swift"; sourceTree = "<group>"; };
 		2068E9AC23D6ED2A00EBF738 /* SampleUserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUserNotificationCenter.swift; sourceTree = "<group>"; };
+		206F688023E139E60025D559 /* ItemTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableHeaderView.xib; sourceTree = "<group>"; };
+		206F688223E13A440025D559 /* ItemTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableHeaderView.swift; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		209A609D23388F1500D6338C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -333,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				209A60E92338CE2500D6338C /* ItemTableCell.xib */,
+				206F688023E139E60025D559 /* ItemTableHeaderView.xib */,
 			);
 			path = ItemView;
 			sourceTree = "<group>";
@@ -603,6 +608,7 @@
 			isa = PBXGroup;
 			children = (
 				209A60E42338CDDF00D6338C /* ItemTableCell.swift */,
+				206F688223E13A440025D559 /* ItemTableHeaderView.swift */,
 			);
 			path = ItemView;
 			sourceTree = "<group>";
@@ -830,6 +836,7 @@
 				209A60CB2338A91800D6338C /* ItemViewController.storyboard in Resources */,
 				209A60CD2338A92800D6338C /* MypageViewController.storyboard in Resources */,
 				20C0A4F42339226B00B12264 /* Localizable.strings in Resources */,
+				206F688123E139E60025D559 /* ItemTableHeaderView.xib in Resources */,
 				204D813C23D6CF250059F379 /* DebugViewController.storyboard in Resources */,
 				209A60C92338A90300D6338C /* ListViewController.storyboard in Resources */,
 				209A60DB2338C75100D6338C /* MainTabBarViewController.storyboard in Resources */,
@@ -989,6 +996,7 @@
 				200BB354237E473500AFA246 /* UserDefaults+URLDefaultSettable.swift in Sources */,
 				20AC3E742356BB52007F67ED /* APIClient+Github.swift in Sources */,
 				20382BE7233A04DD00CF77A1 /* GithubCollectionCell.swift in Sources */,
+				206F688323E13A440025D559 /* ItemTableHeaderView.swift in Sources */,
 				201BF03A2338FB180020F7B4 /* ResponseProtocol.swift in Sources */,
 				2063EF6923DC4BF4000992D1 /* UserRegistrationViewModel.swift in Sources */,
 				201BF0342338EFF90020F7B4 /* Item.swift in Sources */,
