@@ -12,6 +12,7 @@ import RxCocoa
 import RxOptional
 import PINRemoteImage
 import CropViewController
+import PKHUD
 
 enum UserRegistrationType {
     case create(lineUser: LineUser)
@@ -97,6 +98,13 @@ final class UserRegistrationViewController: UIViewController {
                     self?.navigationController?
                         .popViewController(animated: true)
                 }
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.completedSubject
+            .filter { $0 }
+            .subscribe(onNext: { _ in
+                HUD.flash(.success, delay: 1.0)
             })
             .disposed(by: disposeBag)
 

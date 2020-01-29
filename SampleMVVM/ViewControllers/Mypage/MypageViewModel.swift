@@ -17,6 +17,7 @@ protocol MypageViewModelable {
     var user: BehaviorRelay<User?> { get }
     var pushViewController: Driver<UIViewController> { get }
     var presentViewController: Driver<UIViewController> { get }
+    var completedSubject: BehaviorRelay<Bool> { get }
     func handleSettingBarButtonItem()
     func handleLineLoginButton(viewController: UIViewController) -> Completable
     func handleEditButton()
@@ -25,6 +26,7 @@ protocol MypageViewModelable {
 final class MypageViewModel {
 
     var viewWillAppear = PublishRelay<Void>()
+    var completedSubject = BehaviorRelay<Bool>(value: false)
     var isLoading = BehaviorRelay<Bool>(value: false)
     var isSignedIn = BehaviorRelay<Bool>(value: false)
     var user = BehaviorRelay<User?>(value: nil)
@@ -135,6 +137,7 @@ extension MypageViewModel: MypageViewModelable {
                             self?.isLoading.accept(false)
                             if isSignedIn {
                                 self?.checkUser()
+                                self?.completedSubject.accept(true)
                             } else {
                                 let viewController = UserRegistrationViewController.make(type: .create(lineUser: lineUser))
                                 self?.pushViewControllerSubject.accept(viewController)

@@ -13,6 +13,7 @@ import CropViewController
 protocol UserRegistrationViewModelable {
     var type: UserRegistrationType { get }
     var dismissSubject: BehaviorRelay<Bool> { get }
+    var completedSubject: BehaviorRelay<Bool> { get }
     var name: BehaviorRelay<String?> { get }
     var birthday: BehaviorRelay<Date?> { get }
     var iconImageURL: BehaviorRelay<URL?> { get }
@@ -27,6 +28,7 @@ protocol UserRegistrationViewModelable {
 final class UserRegistrationViewModel {
 
     var dismissSubject = BehaviorRelay<Bool>(value: false)
+    var completedSubject = BehaviorRelay<Bool>(value: false)
     var name = BehaviorRelay<String?>(value: nil)
     var birthday = BehaviorRelay<Date?>(value: nil)
     var iconImageURL = BehaviorRelay<URL?>(value: nil)
@@ -112,6 +114,7 @@ extension UserRegistrationViewModel: UserRegistrationViewModelable {
                     UserDefaultsRepository.shared.iconImage = iconImage.pngData()
                 }
                 self?.dismissSubject.accept(true)
+                self?.completedSubject.accept(true)
             case .failure:
                 let errorAlert = UIAlertController.singleErrorAlert(message: "保存に失敗しました")
                 self?.presentViewControllerSubject.accept(errorAlert)

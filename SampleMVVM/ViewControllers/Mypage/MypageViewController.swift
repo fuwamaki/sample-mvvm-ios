@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxOptional
 import PINRemoteImage
+import PKHUD
 
 final class MypageViewController: UIViewController {
 
@@ -86,6 +87,13 @@ final class MypageViewController: UIViewController {
             .drive(onNext: { [unowned self] viewController in
                 self.navigationController?
                     .pushViewController(viewController, animated: true)})
+            .disposed(by: disposeBag)
+
+        viewModel.completedSubject
+            .filter { $0 }
+            .subscribe(onNext: { _ in
+                HUD.flash(.success, delay: 1.0)
+            })
             .disposed(by: disposeBag)
 
         viewModel.isSignedIn
