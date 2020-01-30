@@ -97,21 +97,23 @@ extension QiitaViewModel: QiitaViewModelable {
             .asCompletable() // Completableに変換
     }
 
-    // TODO: ResultじゃなくてRx型にしないと使えない
-    private func itemExists(completion: @escaping (Result<Bool, NSError>) -> Void) {
-        guard let tag = searchQuery.value else { return }
-        ItemRealmRepository<ListRealmEntity>.find(keyword: tag, type: .qiita) { result in
-            switch result {
-            case .success(let entity):
-                completion(.success(entity != nil))
-            case .failure(let error):
-                completion(.failure(error))
-            }
+    // 保存するキーワードが、既に保存済みかどうか
+    private func itemExists(keyword: String) -> Single<Bool> {
+        return Single<Bool>.create { single in
+            ItemRealmRepository<ListRealmEntity>.find(keyword: keyword, type: .qiita)
+                .subscribe(
+                    onNext: { entity in
+                        single(.success(entity != nil))
+                },
+                    onError: { error in
+                        single(.error(error))
+                })
         }
     }
 
     func saveKeyword() {
         guard let query = searchedQuery.value else { return }
+//        itemExists(keyword: query)
         let entity = ListRealmEntity.make(keyword: query, type: .qiita)
         ItemRealmRepository<ListRealmEntity>.save(item: entity) { [weak self] result in
             switch result {

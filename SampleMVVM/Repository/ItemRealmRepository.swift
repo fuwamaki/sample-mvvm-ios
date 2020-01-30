@@ -34,15 +34,19 @@ final class ItemRealmRepository<Model: ItemRealmModelable> {
         }
     }
 
-    static func find(keyword: String, type: ListRealmType, completion: @escaping (Result<Model?, NSError>) -> Void) {
-        do {
-            let realm = try Realm()
-            let object = realm.objects(Model.self)
-                .filter { $0.keyword == keyword && $0.typeString == type.rawValue }
-                .first
-            completion(.success(object))
-        } catch let error as NSError {
-            completion(.failure(error))
+    static func find(keyword: String, type: ListRealmType) -> Observable<Model?> {
+        return Observable.create { observer in
+            do {
+                let realm = try Realm()
+                let object = realm.objects(Model.self)
+                    .filter { $0.keyword == keyword && $0.typeString == type.rawValue }
+                    .first
+                observer.onNext(object)
+                observer.onCompleted()
+            } catch let error {
+                observer.onError(error)
+            }
+            return Disposables.create()
         }
     }
 
