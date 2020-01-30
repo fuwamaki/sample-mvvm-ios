@@ -57,17 +57,10 @@ final class ListViewModel {
 
     private func subscribe() {
         viewWillAppear
-            .subscribe(onNext: { [weak self] _ in
-                ItemRealmRepository<ListRealmEntity>.find { [weak self] result in
-                    switch result {
-                    case .success(let entities):
-                        self?.entitiesSubject.accept(entities)
-                        print(entities)
-                    case .failure(let error):
-                        let errorAlert = UIAlertController.singleErrorAlert(message: error.description)
-                        self?.presentViewControllerSubject.accept(errorAlert)
-                    }
-                }
+            .subscribe(onNext: { [unowned self] _ in
+                self.fetchItems()
+                    .subscribe()
+                    .disposed(by: self.disposeBag)
             })
             .disposed(by: disposeBag)
 
@@ -76,13 +69,17 @@ final class ListViewModel {
                 entities.enumerated().forEach { offset, entity in
                     switch entity.type {
                     case .github:
-                        let value = self.contentsSubject.value.filter { $0.offset == offset }.first
+                        let value = self.contentsSubject.value
+                            .filter { $0.offset == offset }
+                            .first
                         guard value?.sectionTitle != entity.keyword + " (github)" else { return }
                         self.fetchGithubRepositories(offset: offset, entity: entity)
                             .subscribe()
                             .disposed(by: self.disposeBag)
                     case .qiita:
-                        let value = self.contentsSubject.value.filter { $0.offset == offset }.first
+                        let value = self.contentsSubject.value
+                            .filter { $0.offset == offset }
+                            .first
                         guard value?.sectionTitle != entity.keyword + " (qiita)" else { return }
                         self.fetchQiitaItems(offset: offset, entity: entity)
                             .subscribe()
@@ -99,6 +96,20 @@ final class ListViewModel {
                 self.isLoading.accept(count != 0)
             })
             .disposed(by: disposeBag)
+    }
+
+    private func fetchItems() -> Completable {
+        return Completable.create { completable in
+            ItemRealmRepository<ListRealmEntity>.find()
+                .subscribe(
+                    onNext: { [weak self] entities in
+                        self?.entitiesSubject.accept(entities)
+                        completable(.completed)
+                    },
+                    onError: { error in
+                        completable(.error(error))
+                })
+        }
     }
 
     private func fetchGithubRepositories(offset: Int, entity: ListRealmEntity) -> Completable {

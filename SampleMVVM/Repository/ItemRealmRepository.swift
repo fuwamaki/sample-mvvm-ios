@@ -8,6 +8,8 @@
 
 import Foundation
 import RealmSwift
+import RxSwift
+import RxCocoa
 
 protocol ItemRealmModelable: Object {
     dynamic var itemId: Int { get }
@@ -17,14 +19,18 @@ protocol ItemRealmModelable: Object {
 
 final class ItemRealmRepository<Model: ItemRealmModelable> {
 
-    static func find(completion: @escaping (Result<[Model], NSError>) -> Void) {
-        do {
-            let realm = try Realm()
-            let objects = realm.objects(Model.self)
-            let models: [Model] = objects.map { $0 }
-            completion(.success(models))
-        } catch let error as NSError {
-            completion(.failure(error))
+    static func find() -> Observable<[Model]> {
+        return Observable.create { observer in
+            do {
+                let realm = try Realm()
+                let objects = realm.objects(Model.self)
+                let models: [Model] = objects.map { $0 }
+                observer.onNext(models)
+                observer.onCompleted()
+            } catch let error {
+                observer.onError(error)
+            }
+            return Disposables.create()
         }
     }
 
