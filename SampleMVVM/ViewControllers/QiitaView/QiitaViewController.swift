@@ -116,7 +116,9 @@ final class QiitaViewController: UIViewController {
 
         favoriteBarButtonItem.rx.tap
             .subscribe(onNext: { [unowned self] in
-                self.viewModel.saveKeyword()
+                self.viewModel.handleFavoriteBarButton()
+                    .subscribe()
+                    .disposed(by: self.disposeBag)
             })
             .disposed(by: disposeBag)
 

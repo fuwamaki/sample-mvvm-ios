@@ -50,6 +50,22 @@ final class ItemRealmRepository<Model: ItemRealmModelable> {
         }
     }
 
+    static func save(item: ItemRealmModelable) -> Completable {
+        return Completable.create { completable in
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    realm.add(item)
+                    completable(.completed)
+                }
+            } catch let error {
+                completable(.error(error))
+            }
+            return Disposables.create()
+        }
+    }
+
+    // TODO: 置き換えて消す
     static func save(item: ItemRealmModelable, completion: @escaping (Result<Any?, NSError>) -> Void) {
         do {
             let realm = try Realm()

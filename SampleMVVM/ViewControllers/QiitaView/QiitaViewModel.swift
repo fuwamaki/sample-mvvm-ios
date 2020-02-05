@@ -20,7 +20,7 @@ protocol QiitaViewModelable {
     var pushViewController: Driver<UIViewController> { get }
     var presentViewController: Driver<UIViewController> { get }
     func fetchQiitaItems() -> Completable
-    func saveKeyword()
+    func handleFavoriteBarButton() -> Completable
     func showQiitaWebView(indexPath: IndexPath)
 }
 
@@ -97,6 +97,19 @@ extension QiitaViewModel: QiitaViewModelable {
             .asCompletable() // Completableに変換
     }
 
+    func saveQiitaItem(keyword: String) -> Completable {
+        let entity = ListRealmEntity.make(keyword: keyword, type: .qiita)
+        return ItemRealmRepository<ListRealmEntity>.save(item: entity)
+            .do(
+                onError: { [weak self] error in
+                    let errorAlert = UIAlertController.singleErrorAlert(message: error.localizedDescription)
+                    self?.presentViewControllerSubject.accept(errorAlert)
+                },
+                onCompleted: {
+                    UserDefaultsRepository.shared.oneUp(type: .incrementListId)
+            })
+    }
+
     // 保存するキーワードが、既に保存済みかどうか
     private func itemExists(keyword: String) -> Single<Bool> {
         return Single<Bool>.create { single in
@@ -111,19 +124,14 @@ extension QiitaViewModel: QiitaViewModelable {
         }
     }
 
-    func saveKeyword() {
-        guard let query = searchedQuery.value else { return }
-//        itemExists(keyword: query)
-        let entity = ListRealmEntity.make(keyword: query, type: .qiita)
-        ItemRealmRepository<ListRealmEntity>.save(item: entity) { [weak self] result in
-            switch result {
-            case .success:
-                UserDefaultsRepository.shared.oneUp(type: .incrementListId)
-            case .failure(let error):
-                let errorAlert = UIAlertController.singleErrorAlert(message: error.description)
-                self?.presentViewControllerSubject.accept(errorAlert)
-            }
-        }
+    func handleFavoriteBarButton() -> Completable {
+        guard let keyword = searchedQuery.value else { return Completable.empty() }
+        // TODO: これで一旦実現OKだが、他に良いRxの定義方法があるか調べる
+        return itemExists(keyword: keyword)
+            .flatMapCompletable({ [weak self] _ in
+                guard let `self` = self else { return Completable.empty() }
+                return self.saveQiitaItem(keyword: keyword)
+            })
     }
 
     func showQiitaWebView(indexPath: IndexPath) {
