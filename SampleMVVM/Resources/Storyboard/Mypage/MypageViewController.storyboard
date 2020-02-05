@@ -15,23 +15,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZm-CR-ZPz">
-                                <rect key="frame" x="95" y="426" width="224" height="44"/>
-                                <color key="backgroundColor" red="0.0" green="0.72549019607843135" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Jea-BY-U1a"/>
-                                    <constraint firstAttribute="width" constant="224" id="WKk-Ym-MhF"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="LINEログイン">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusView">
-                                        <real key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWS-IN-ulq">
                                 <rect key="frame" x="16" y="180.5" width="382" height="224"/>
                                 <subviews>
@@ -101,14 +84,82 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="koA-JZ-DLX">
+                                <rect key="frame" x="95" y="433" width="224" height="230"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZm-CR-ZPz">
+                                        <rect key="frame" x="0.0" y="0.0" width="224" height="44"/>
+                                        <color key="backgroundColor" red="0.0" green="0.72549019607843135" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="Jea-BY-U1a"/>
+                                            <constraint firstAttribute="width" constant="224" id="WKk-Ym-MhF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="LINEログイン">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusView">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gnv-to-7u8">
+                                        <rect key="frame" x="0.0" y="68" width="224" height="69"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom Apple Sign in Button" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OV-Se-Fmx">
+                                                <rect key="frame" x="0.0" y="0.0" width="185.5" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsa-8N-Ucq">
+                                                <rect key="frame" x="0.0" y="25" width="224" height="44"/>
+                                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="Gte-D6-wsy"/>
+                                                    <constraint firstAttribute="width" constant="224" id="SQn-jf-5Pu"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="Appleログイン">
+                                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusView">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sIZ-xp-aXx">
+                                        <rect key="frame" x="0.0" y="161" width="224" height="69"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Apple Sign in Button" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhn-zV-dLQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="182" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NS4-9o-9nN">
+                                                <rect key="frame" x="0.0" y="25" width="224" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="A7Q-a9-SRH"/>
+                                                    <constraint firstAttribute="width" constant="224" id="wnt-3u-AXM"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="vZm-CR-ZPz" firstAttribute="centerX" secondItem="Lrc-vx-mme" secondAttribute="centerX" id="VOg-HU-vbc"/>
+                            <constraint firstItem="koA-JZ-DLX" firstAttribute="centerX" secondItem="Lrc-vx-mme" secondAttribute="centerX" id="E8V-bB-R8S"/>
+                            <constraint firstItem="koA-JZ-DLX" firstAttribute="centerY" secondItem="Lrc-vx-mme" secondAttribute="centerY" constant="100" id="JIn-6b-5Gw"/>
                             <constraint firstItem="ES1-0C-cMB" firstAttribute="trailing" secondItem="SWS-IN-ulq" secondAttribute="trailing" constant="16" id="k5C-d0-44Z"/>
                             <constraint firstItem="SWS-IN-ulq" firstAttribute="top" secondItem="ES1-0C-cMB" secondAttribute="top" constant="32" id="m5N-oh-kZL"/>
                             <constraint firstItem="SWS-IN-ulq" firstAttribute="leading" secondItem="ES1-0C-cMB" secondAttribute="leading" constant="16" id="pZW-HE-elc"/>
-                            <constraint firstItem="vZm-CR-ZPz" firstAttribute="centerY" secondItem="Lrc-vx-mme" secondAttribute="centerY" id="vKg-RN-7EN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ES1-0C-cMB"/>
                     </view>
@@ -118,10 +169,15 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="appleLoginButton" destination="rsa-8N-Ucq" id="d1M-a5-SBA"/>
+                        <outlet property="appleLoginDescriptionLabel" destination="6OV-Se-Fmx" id="eoP-rC-EoG"/>
+                        <outlet property="appleSigninDescriptionLabel" destination="vhn-zV-dLQ" id="oy5-Kn-aCb"/>
+                        <outlet property="appleSigninStackView" destination="NS4-9o-9nN" id="fw6-2h-8px"/>
                         <outlet property="birthdayLabel" destination="tYa-Nz-GjM" id="kJR-fv-b3G"/>
                         <outlet property="editButton" destination="jnA-hI-dvc" id="6YM-DC-w1H"/>
                         <outlet property="iconImageView" destination="Ohe-4l-U1w" id="iaX-aM-Ok8"/>
                         <outlet property="lineLoginButton" destination="vZm-CR-ZPz" id="hfy-mk-NBs"/>
+                        <outlet property="loginStackView" destination="koA-JZ-DLX" id="hck-hz-hG7"/>
                         <outlet property="nameLabel" destination="FUC-E1-V1Y" id="QkF-20-qDh"/>
                         <outlet property="profileCardView" destination="SWS-IN-ulq" id="fKd-jg-diA"/>
                         <outlet property="settingBarButtonItem" destination="zev-HD-4bx" id="VC8-ly-JLJ"/>

@@ -31,6 +31,9 @@
 // MARK: Mypage
 "mypage_title" = "マイページ";
 "mypage_line_login" = "LINE ログイン";
+"mypage_apple_login" = "Appleでサインイン";
+"mypage_apple_login_description" = "カスタムAppleサインインボタン";
+"mypage_apple_Signin_description" = "デフォルトAppleサインインボタン";
 "mypage_edit" = "編集";
 "mypage_setting_menu_title" = "設定";
 "mypage_setting_menu_logout" = "ログアウト";

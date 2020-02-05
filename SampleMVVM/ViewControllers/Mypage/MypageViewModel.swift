@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import LineSDK
+import AuthenticationServices
 
 protocol MypageViewModelable {
     var viewWillAppear: PublishRelay<Void> { get }
@@ -20,6 +21,9 @@ protocol MypageViewModelable {
     var completedSubject: BehaviorRelay<Bool> { get }
     func handleSettingBarButtonItem()
     func handleLineLoginButton(viewController: UIViewController) -> Completable
+    func handleAppleSigninButton(viewController: MypageViewController)
+    func handleCompletedAppleSignin(_ authorization: ASAuthorization)
+    func handleFailureAppleSignin(_ error: Error)
     func handleEditButton()
 }
 
@@ -158,6 +162,40 @@ extension MypageViewModel: MypageViewModelable {
                     self?.presentViewControllerSubject.accept(errorAlert) })
             .map { _ in }
             .asCompletable()
+    }
+
+    func handleAppleSigninButton(viewController: MypageViewController) {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = viewController
+        authorizationController.presentationContextProvider = viewController
+        authorizationController.performRequests()
+    }
+
+    func handleCompletedAppleSignin(_ authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            guard let authCodeData = appleIDCredential.authorizationCode,
+                let authCode = String(data: authCodeData, encoding: .utf8),
+                let idTokenData = appleIDCredential.identityToken,
+                let idToken = String(data: idTokenData, encoding: .utf8),
+                let email = appleIDCredential.email,
+                let fullName = appleIDCredential.fullName else {
+                    print("Problem with the authorizationCode")
+                    return
+            }
+            // TODO: 以下処理
+            print("authorization code : \(authCode)")
+            print("identity token : \(idToken)")
+            print("email: \(email)")
+            print("full name : \(fullName)")
+        }
+    }
+
+    func handleFailureAppleSignin(_ error: Error) {
+        let errorAlert = UIAlertController.singleErrorAlert(message: error.localizedDescription)
+        presentViewControllerSubject.accept(errorAlert)
     }
 
     func handleEditButton() {
