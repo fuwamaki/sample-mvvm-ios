@@ -35,8 +35,7 @@ APIのGET・POST・DELETE・PUTを学ぶために。
 
 | アイテム一覧 | アイテム登録 | アイテム削除 | アイテム更新 |
 | --- | --- | --- | --- |
-| <img src="https://user-images.githubusercontent.com/30719264/74211635-1e19b380-4cd4-11ea-99ca-f555a76138f7.png"> | <img src="https://user-images.githubusercontent.com/30719264/74211632-1ce88680-4cd4-11ea-8a02-23601be50489.png"> | <img src="https://user-images.githubusercontent.com/30719264/74211633-1d811d00-4cd4-11ea-9c55-a8ae2f054ebb.png">
-<img src="https://user-images.githubusercontent.com/30719264/74211631-1ce88680-4cd4-11ea-8566-408482dc932c.png"> |
+| <img src="https://user-images.githubusercontent.com/30719264/74211635-1e19b380-4cd4-11ea-99ca-f555a76138f7.png"> | <img src="https://user-images.githubusercontent.com/30719264/74211632-1ce88680-4cd4-11ea-8a02-23601be50489.png"> | <img src="https://user-images.githubusercontent.com/30719264/74211633-1d811d00-4cd4-11ea-9c55-a8ae2f054ebb.png"> | <img src="https://user-images.githubusercontent.com/30719264/74211631-1ce88680-4cd4-11ea-8566-408482dc932c.png"> |
 
 ### 2. 並列処理で複数のAPI取得
 
