@@ -128,10 +128,10 @@ extension ListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.backgroundColor = UIColor.secondarySystemBackground
+        label.backgroundColor = UIColor.systemGroupedBackground
         label.textColor = UIColor.label
         label.text = viewModel.contentsSubject.value[section].sectionTitle
-        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.font = UIFont.systemFont(ofSize: 14.0, weight: .bold)
         return label
     }
 }
