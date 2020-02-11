@@ -44,8 +44,13 @@ final class QiitaCollectionCell: UICollectionViewCell {
     private let disposeBag = DisposeBag()
     private let qiitaItemSubject = PublishRelay<QiitaItem>()
 
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 3.0)
+        layer.shadowOpacity = 0.8
+        layer.shadowRadius = 4.0
     }
 
     func render(qiitaItem: QiitaItem) {
