@@ -33,6 +33,11 @@ APIのGET・POST・DELETE・PUTを学ぶために。
 - Itemの一覧表示・削除: ItemViewControllerなど
 - Itemの登録・更新: ItemRegisterViewControllerなど
 
+| アイテム一覧 | アイテム登録 | アイテム削除 | アイテム更新 |
+| --- | --- | --- | --- |
+| <img src="https://user-images.githubusercontent.com/30719264/74211635-1e19b380-4cd4-11ea-99ca-f555a76138f7.png"> | <img src="https://user-images.githubusercontent.com/30719264/74211632-1ce88680-4cd4-11ea-8a02-23601be50489.png"> | <img src="https://user-images.githubusercontent.com/30719264/74211633-1d811d00-4cd4-11ea-9c55-a8ae2f054ebb.png">
+<img src="https://user-images.githubusercontent.com/30719264/74211631-1ce88680-4cd4-11ea-8566-408482dc932c.png"> |
+
 ### 2. 並列処理で複数のAPI取得
 
 複数のAPIの扱いを学ぶために。
@@ -43,12 +48,20 @@ Qiitaの記事一覧取得APIでお気に入り登録したものを、まとめ
 - Githubのリポジトリ一覧取得とお気に入り登録: GithubViewControllerなど
 - Qiitaの記事一覧取得とお気に入り登録: QiitaViewControllerなど
 
+| お気に入りリスト | Github検索 | Qiita検索 |
+| --- | --- | --- |
+| <img src="https://user-images.githubusercontent.com/30719264/74211630-1bb75980-4cd4-11ea-8cab-a680ce7b44d8.png" width=320px> | <img src="https://user-images.githubusercontent.com/30719264/74211628-1b1ec300-4cd4-11ea-96bf-26ff301d4043.png" width=320px> | <img src="https://user-images.githubusercontent.com/30719264/74211627-19ed9600-4cd4-11ea-8ec3-b48bd1eb2213.png" width=320px> |
+
 ### 3. 新規登録・ログイン
 
 ローカルデータの扱いを学ぶために。
 新規登録・ログインは、UrlSchemeとUniversalLink周りも学べるLINEログインを採用した。
 
 - 新規登録・ログインへの導線、ユーザ情報の表示: MypageViewControllerなど
+
+| マイページ 未ログイン | マイページ ログイン済み | ユーザ情報入力
+| --- | --- | --- |
+| <img src="https://user-images.githubusercontent.com/30719264/74211623-18bc6900-4cd4-11ea-90a5-e3ffe5a83062.png" width=320px> | <img src="https://user-images.githubusercontent.com/30719264/74211626-1954ff80-4cd4-11ea-9703-1c5228b49a3f.png" width=320px> | <img src="https://user-images.githubusercontent.com/30719264/74211622-178b3c00-4cd4-11ea-9fa1-b95fb29fe2e7.png" width=320px> |
 
 ## 使用ライブラリ
 
