@@ -20,7 +20,7 @@ final class QiitaTableCell: UITableViewCell {
     }
 
     class func defaultHeight(_ tableView: UITableView) -> CGFloat {
-        return 56.0
+        return 64.0
     }
 
     func render(item: QiitaItem) {
