@@ -50,11 +50,12 @@ final class ListGithubTableCell: UITableViewCell {
     }
 }
 
-extension ListGithubTableCell: UICollectionViewDelegate {
-}
+// MARK: UICollectionViewDelegate
+extension ListGithubTableCell: UICollectionViewDelegate {}
 
+// MARK: UICollectionViewDelegateFlowLayout
 extension ListGithubTableCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: 100)
+        return CGSize(width: 240, height: 100)
     }
 }

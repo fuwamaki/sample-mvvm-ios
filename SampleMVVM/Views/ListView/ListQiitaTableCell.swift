@@ -50,9 +50,10 @@ final class ListQiitaTableCell: UITableViewCell {
     }
 }
 
-extension ListQiitaTableCell: UICollectionViewDelegate {
-}
+// MARK: UICollectionViewDelegate
+extension ListQiitaTableCell: UICollectionViewDelegate {}
 
+// MARK: UICollectionViewDelegateFlowLayout
 extension ListQiitaTableCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 240, height: 100)

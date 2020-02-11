@@ -22,6 +22,7 @@ final class GithubCollectionCell: UICollectionViewCell {
                 .disposed(by: disposeBag)
         }
     }
+
     @IBOutlet private weak var iconImageView: UIImageView! {
         didSet {
             repositorySubject
@@ -32,11 +33,26 @@ final class GithubCollectionCell: UICollectionViewCell {
         }
     }
 
+    @IBOutlet weak var favoriteCountLabel: UILabel! {
+        didSet {
+            repositorySubject
+                .subscribe(onNext: { [unowned self] repository in
+                    self.favoriteCountLabel.text = String(repository.stargazersCount)
+                })
+                .disposed(by: disposeBag)
+        }
+    }
+
     private let disposeBag = DisposeBag()
     private let repositorySubject = PublishRelay<GithubRepository>()
 
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 3.0)
+        layer.shadowOpacity = 0.8
+        layer.shadowRadius = 4.0
     }
 
     func render(repository: GithubRepository) {
