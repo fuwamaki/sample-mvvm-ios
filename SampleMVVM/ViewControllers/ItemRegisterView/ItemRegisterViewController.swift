@@ -78,16 +78,17 @@ final class ItemRegisterViewController: UIViewController {
             $1.inputAccessoryView = inputAccessoryView
             $1.delegate = self
         }
-        switch viewModel.mode {
-        case .register:
-            registerButton.setTitle(R.string.localizable.item_register_create_button(), for: .normal)
-        case .update:
-            registerButton.setTitle(R.string.localizable.item_register_update_button(), for: .normal)
-        }
     }
 
     private func setupTexts() {
-        title = R.string.localizable.item_register_title()
+        switch viewModel.mode {
+        case .register:
+            title = R.string.localizable.item_register_title()
+            registerButton.setTitle(R.string.localizable.item_register_create_button(), for: .normal)
+        case .update:
+            title = R.string.localizable.item_update_title()
+            registerButton.setTitle(R.string.localizable.item_register_update_button(), for: .normal)
+        }
         nameLabel.text = R.string.localizable.item_register_name()
         categoryLabel.text = R.string.localizable.item_register_category()
         priceLabel.text = R.string.localizable.item_register_price()
