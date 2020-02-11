@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import PKHUD
+import SafariServices
 
 final class GithubViewController: UIViewController {
 
@@ -43,7 +44,8 @@ final class GithubViewController: UIViewController {
             tableView.rx.itemSelected
                 .subscribe(onNext: { [unowned self] indexPath in
                     self.tableView.deselectRow(at: indexPath, animated: false)
-                    self.viewModel.showGithubWebView(indexPath: indexPath)})
+                    self.viewModel.showGithubWebView(self, indexPath: indexPath)
+                })
                 .disposed(by: disposeBag)
         }
     }
@@ -149,6 +151,7 @@ final class GithubViewController: UIViewController {
     }
 }
 
+// MARK: UITableViewDelegate
 extension GithubViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -156,6 +159,7 @@ extension GithubViewController: UITableViewDelegate {
     }
 }
 
+// MARK: UITextFieldDelegate
 extension GithubViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -163,5 +167,12 @@ extension GithubViewController: UITextFieldDelegate {
             .subscribe()
             .disposed(by: disposeBag)
         return true
+    }
+}
+
+// MARK: SFSafariViewControllerDelegate
+extension GithubViewController: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        dismiss(animated: true, completion: nil)
     }
 }
