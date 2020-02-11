@@ -113,8 +113,7 @@ final class ItemRegisterViewController: UIViewController {
         viewModel.dismissSubject
             .filter { $0 }
             .subscribe(onNext: { [weak self] _ in
-                self?.navigationController?
-                    .popViewController(animated: true)
+                self?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
 

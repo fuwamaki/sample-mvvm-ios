@@ -32,8 +32,9 @@ final class GithubViewController: UIViewController {
 
             viewModel.repositories
                 .drive(tableView.rx.items) { tableView, index, element in
-                    let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.githubTableCell,
-                                                             for: IndexPath(item: index, section: 0))!
+                    let cell = tableView.dequeueReusableCell(
+                        withIdentifier: R.reuseIdentifier.githubTableCell,
+                        for: IndexPath(item: index, section: 0))!
                     cell.render(repository: element)
                     return cell }
                 .disposed(by: disposeBag)
@@ -103,19 +104,38 @@ final class GithubViewController: UIViewController {
                     .pushViewController(viewController, animated: true)})
             .disposed(by: disposeBag)
 
+        viewModel.searchQueryValid
+            .bind(to: searchButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
         searchButton.rx.tap
             .subscribe(onNext: { [unowned self] in
                 self.searchBar.searchTextField.resignFirstResponder()
-                self.viewModel.fetchRepositories(query: self.searchBar.text)
+                self.viewModel.handleSearchButton()
                     .subscribe()
                     .disposed(by: self.disposeBag)
             })
             .disposed(by: disposeBag)
 
+        viewModel.searchedQueryValid
+            .bind(to: favoriteBarButtonItem.rx.isEnabled)
+            .disposed(by: disposeBag)
+
         favoriteBarButtonItem.rx.tap
             .subscribe(onNext: { [unowned self] in
-                self.viewModel.saveKeyword()
+                self.viewModel.handleFavoriteBarButton()
+                    .subscribe()
+                    .disposed(by: self.disposeBag)
             })
+            .disposed(by: disposeBag)
+
+        viewModel.searchQuery
+            .asDriver(onErrorJustReturn: "")
+            .drive(searchBar.rx.text)
+            .disposed(by: disposeBag)
+
+        searchBar.rx.text.orEmpty
+            .bind(to: viewModel.searchQuery)
             .disposed(by: disposeBag)
     }
 }
@@ -130,7 +150,7 @@ extension GithubViewController: UITableViewDelegate {
 extension GithubViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        viewModel.fetchRepositories(query: searchBar.text)
+        viewModel.handleSearchButton()
             .subscribe()
             .disposed(by: disposeBag)
         return true

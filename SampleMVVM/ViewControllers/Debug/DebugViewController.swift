@@ -51,8 +51,6 @@ extension DebugViewController {
         content.userInfo = userInfo
         let request = UNNotificationRequest(identifier: "TestLocalnotification", content: content, trigger: trigger)
         let center = UNUserNotificationCenter.current()
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        center.delegate = appDelegate
         center.add(request)
     }
 }

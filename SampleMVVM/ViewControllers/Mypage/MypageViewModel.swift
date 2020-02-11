@@ -29,11 +29,11 @@ protocol MypageViewModelable {
 
 final class MypageViewModel {
 
-    var viewWillAppear = PublishRelay<Void>()
-    var completedSubject = BehaviorRelay<Bool>(value: false)
-    var isLoading = BehaviorRelay<Bool>(value: false)
-    var isSignedIn = BehaviorRelay<Bool>(value: false)
-    var user = BehaviorRelay<User?>(value: nil)
+    private(set) var viewWillAppear = PublishRelay<Void>()
+    private(set) var completedSubject = BehaviorRelay<Bool>(value: false)
+    private(set) var isLoading = BehaviorRelay<Bool>(value: false)
+    private(set) var isSignedIn = BehaviorRelay<Bool>(value: false)
+    private(set) var user = BehaviorRelay<User?>(value: nil)
 
     private var pushViewControllerSubject = PublishRelay<UIViewController>()
     var pushViewController: Driver<UIViewController> {

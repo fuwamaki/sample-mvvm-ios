@@ -19,27 +19,16 @@ protocol QiitaViewModelable {
     var qiitaItems: Driver<[QiitaItem]> { get }
     var pushViewController: Driver<UIViewController> { get }
     var presentViewController: Driver<UIViewController> { get }
-    func fetchQiitaItems() -> Completable
+    func handleSearchButton() -> Completable
     func handleFavoriteBarButton() -> Completable
     func showQiitaWebView(indexPath: IndexPath)
 }
 
 final class QiitaViewModel {
 
-    var isLoading = BehaviorRelay<Bool>(value: false)
-
-    private var pushViewControllerSubject = PublishRelay<UIViewController>()
-    var pushViewController: Driver<UIViewController> {
-        return pushViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
-    }
-
-    private var presentViewControllerSubject = PublishRelay<UIViewController>()
-    var presentViewController: Driver<UIViewController> {
-        return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
-    }
-
-    var searchQuery = BehaviorRelay<String?>(value: nil)
-    var searchedQuery = BehaviorRelay<String?>(value: nil)
+    private(set) var isLoading = BehaviorRelay<Bool>(value: false)
+    private(set) var searchQuery = BehaviorRelay<String?>(value: nil)
+    private(set) var searchedQuery = BehaviorRelay<String?>(value: nil)
 
     lazy var searchQueryValid: Observable<Bool> = {
         return searchQuery
@@ -56,6 +45,16 @@ final class QiitaViewModel {
     private let qiitaItemsSubject = BehaviorRelay<[QiitaItem]>(value: [])
     var qiitaItems: Driver<[QiitaItem]> {
         return qiitaItemsSubject.asDriver(onErrorJustReturn: [])
+    }
+
+    private var pushViewControllerSubject = PublishRelay<UIViewController>()
+    var pushViewController: Driver<UIViewController> {
+        return pushViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
+    }
+
+    private var presentViewControllerSubject = PublishRelay<UIViewController>()
+    var presentViewController: Driver<UIViewController> {
+        return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
     }
 
     private let disposeBag = DisposeBag()
@@ -75,10 +74,68 @@ final class QiitaViewModel {
 }
 
 extension QiitaViewModel: QiitaViewModelable {
-    func fetchQiitaItems() -> Completable {
+    func handleSearchButton() -> Completable {
         guard let tag = searchQuery.value else {
             return Completable.empty()
         }
+        return fetchQiitaItems(tag: tag)
+    }
+
+    func handleFavoriteBarButton() -> Completable {
+        guard let keyword = searchedQuery.value else { return Completable.empty() }
+        return itemExists(keyword: keyword)
+            .flatMapCompletable { [weak self] in
+                guard let `self` = self else {
+                    return Completable.empty()
+                }
+                guard !$0 else {
+                    let errorAlert = UIAlertController.singleErrorAlert(message: "既にお気に入り済みのキーワードです")
+                    self.presentViewControllerSubject.accept(errorAlert)
+                    return Completable.empty()
+                }
+                return self.saveQiitaItem(keyword: keyword)
+        }
+    }
+
+    func showQiitaWebView(indexPath: IndexPath) {
+        guard let url = URL(string: qiitaItemsSubject.value[indexPath.row].url) else { return }
+        let viewController = SFSafariViewController(url: url)
+        viewController.hidesBottomBarWhenPushed = true
+        pushViewControllerSubject.accept(viewController)
+    }
+}
+
+// MARK: private UseCase
+extension QiitaViewModel {
+    // キーワードをローカルデータに保存
+    private func saveQiitaItem(keyword: String) -> Completable {
+        let entity = ListRealmEntity.make(keyword: keyword, type: .qiita)
+        return ItemRealmRepository<ListRealmEntity>.save(item: entity)
+            .do(
+                onError: { [weak self] error in
+                    let errorAlert = UIAlertController.singleErrorAlert(message: error.localizedDescription)
+                    self?.presentViewControllerSubject.accept(errorAlert)
+                },
+                onCompleted: {
+                    UserDefaultsRepository.shared.oneUp(type: .incrementListId)
+            })
+    }
+
+    // 保存するキーワードが、既にローカルデータに保存済みかどうかを確認
+    private func itemExists(keyword: String) -> Single<Bool> {
+        return Single<Bool>.create { single in
+            ItemRealmRepository<ListRealmEntity>.find(keyword: keyword, type: .qiita)
+                .subscribe(
+                    onNext: { entity in
+                        single(.success(entity != nil))
+                },
+                    onError: { error in
+                        single(.error(error))
+                })
+        }
+    }
+
+    func fetchQiitaItems(tag: String) -> Completable {
         isLoading.accept(true)
         return apiClient.fetchQiitaItems(tag: tag)
             .do(
@@ -95,49 +152,5 @@ extension QiitaViewModel: QiitaViewModelable {
             })
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
-    }
-
-    func saveQiitaItem(keyword: String) -> Completable {
-        let entity = ListRealmEntity.make(keyword: keyword, type: .qiita)
-        return ItemRealmRepository<ListRealmEntity>.save(item: entity)
-            .do(
-                onError: { [weak self] error in
-                    let errorAlert = UIAlertController.singleErrorAlert(message: error.localizedDescription)
-                    self?.presentViewControllerSubject.accept(errorAlert)
-                },
-                onCompleted: {
-                    UserDefaultsRepository.shared.oneUp(type: .incrementListId)
-            })
-    }
-
-    // 保存するキーワードが、既に保存済みかどうか
-    private func itemExists(keyword: String) -> Single<Bool> {
-        return Single<Bool>.create { single in
-            ItemRealmRepository<ListRealmEntity>.find(keyword: keyword, type: .qiita)
-                .subscribe(
-                    onNext: { entity in
-                        single(.success(entity != nil))
-                },
-                    onError: { error in
-                        single(.error(error))
-                })
-        }
-    }
-
-    func handleFavoriteBarButton() -> Completable {
-        guard let keyword = searchedQuery.value else { return Completable.empty() }
-        // TODO: これで一旦実現OKだが、他に良いRxの定義方法があるか調べる
-        return itemExists(keyword: keyword)
-            .flatMapCompletable({ [weak self] _ in
-                guard let `self` = self else { return Completable.empty() }
-                return self.saveQiitaItem(keyword: keyword)
-            })
-    }
-
-    func showQiitaWebView(indexPath: IndexPath) {
-        guard let url = URL(string: qiitaItemsSubject.value[indexPath.row].url) else { return }
-        let viewController = SFSafariViewController(url: url)
-        viewController.hidesBottomBarWhenPushed = true
-        pushViewControllerSubject.accept(viewController)
     }
 }

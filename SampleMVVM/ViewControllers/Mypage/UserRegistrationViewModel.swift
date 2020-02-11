@@ -27,11 +27,11 @@ protocol UserRegistrationViewModelable {
 
 final class UserRegistrationViewModel {
 
-    var dismissSubject = BehaviorRelay<Bool>(value: false)
-    var completedSubject = BehaviorRelay<Bool>(value: false)
-    var name = BehaviorRelay<String?>(value: nil)
-    var birthday = BehaviorRelay<Date?>(value: nil)
-    var iconImageURL = BehaviorRelay<URL?>(value: nil)
+    private(set) var dismissSubject = BehaviorRelay<Bool>(value: false)
+    private(set) var completedSubject = BehaviorRelay<Bool>(value: false)
+    private(set) var name = BehaviorRelay<String?>(value: nil)
+    private(set) var birthday = BehaviorRelay<Date?>(value: nil)
+    private(set) var iconImageURL = BehaviorRelay<URL?>(value: nil)
 
     var uploadImage = BehaviorRelay<UIImage?>(value: nil)
 

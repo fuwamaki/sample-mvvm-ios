@@ -65,41 +65,34 @@ final class ItemRealmRepository<Model: ItemRealmModelable> {
         }
     }
 
-    // TODO: 置き換えて消す
-    static func save(item: ItemRealmModelable, completion: @escaping (Result<Any?, NSError>) -> Void) {
-        do {
-            let realm = try Realm()
-            try realm.write {
-                realm.add(item)
-                completion(.success(nil))
+    static func delete(item: ItemRealmModelable) -> Completable {
+        return Completable.create { completable in
+            do {
+                let realm = try Realm()
+                let deleteItem = realm.objects(Model.self).filter { $0.itemId == item.itemId }
+                try realm.write {
+                    realm.delete(deleteItem)
+                    completable(.completed)
+                }
+            } catch let error {
+                completable(.error(error))
             }
-        } catch let error as NSError {
-            completion(.failure(error))
+            return Disposables.create()
         }
     }
 
-    static func delete(item: ItemRealmModelable, completion: @escaping (Result<Any?, NSError>) -> Void) {
-        do {
-            let realm = try Realm()
-            let deleteItem = realm.objects(Model.self).filter { $0.itemId == item.itemId }
-            try realm.write {
-                realm.delete(deleteItem)
-                completion(.success(nil))
+    static func update(item: ItemRealmModelable) -> Completable {
+        return Completable.create { completable in
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    realm.add(item, update: .all)
+                    completable(.completed)
+                }
+            } catch let error {
+                completable(.error(error))
             }
-        } catch let error as NSError {
-            completion(.failure(error))
-        }
-    }
-
-    static func update(item: ItemRealmModelable, completion: @escaping (Result<Any?, NSError>) -> Void) {
-        do {
-            let realm = try Realm()
-            try realm.write {
-                realm.add(item, update: .all)
-                completion(.success(nil))
-            }
-        } catch let error as NSError {
-            completion(.failure(error))
+            return Disposables.create()
         }
     }
 }

@@ -22,8 +22,8 @@ protocol ListViewModelable {
 
 final class ListViewModel {
 
-    var isLoading = BehaviorRelay<Bool>(value: false)
-    var viewWillAppear = PublishRelay<Void>()
+    private(set) var isLoading = BehaviorRelay<Bool>(value: false)
+    private(set) var viewWillAppear = PublishRelay<Void>()
 
     private var apiAccessCount = BehaviorRelay<Int>(value: 0)
     private var entitiesSubject = BehaviorRelay<[ListRealmEntity]>(value: [])

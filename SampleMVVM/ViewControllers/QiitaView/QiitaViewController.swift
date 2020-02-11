@@ -32,8 +32,9 @@ final class QiitaViewController: UIViewController {
 
             viewModel.qiitaItems
                 .drive(tableView.rx.items) { tableView, index, element in
-                    let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.qiitaTableCell,
-                                                             for: IndexPath(item: index, section: 0))!
+                    let cell = tableView.dequeueReusableCell(
+                        withIdentifier: R.reuseIdentifier.qiitaTableCell,
+                        for: IndexPath(item: index, section: 0))!
                     cell.render(item: element)
                     return cell }
                 .disposed(by: disposeBag)
@@ -105,7 +106,7 @@ final class QiitaViewController: UIViewController {
         searchButton.rx.tap
             .subscribe(onNext: { [unowned self] in
                 self.searchBar.searchTextField.resignFirstResponder()
-                self.viewModel.fetchQiitaItems()
+                self.viewModel.handleSearchButton()
                     .subscribe()
                     .disposed(by: self.disposeBag)
             }).disposed(by: disposeBag)
@@ -143,7 +144,7 @@ extension QiitaViewController: UITableViewDelegate {
 extension QiitaViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        viewModel.fetchQiitaItems()
+        viewModel.handleSearchButton()
             .subscribe()
             .disposed(by: disposeBag)
         return true

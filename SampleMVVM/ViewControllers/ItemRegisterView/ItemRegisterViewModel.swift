@@ -32,13 +32,13 @@ protocol ItemRegisterViewModelable {
 
 final class ItemRegisterViewModel {
 
-    var isLoading = BehaviorRelay<Bool>(value: false)
-    var dismissSubject = BehaviorRelay<Bool>(value: false)
-    var completedSubject = BehaviorRelay<Bool>(value: false)
-    var itemId = BehaviorRelay<Int?>(value: nil)
-    var nameText = BehaviorRelay<String?>(value: nil)
-    var categoryText = BehaviorRelay<String?>(value: nil)
-    var priceText = BehaviorRelay<String?>(value: nil)
+    private(set) var isLoading = BehaviorRelay<Bool>(value: false)
+    private(set) var dismissSubject = BehaviorRelay<Bool>(value: false)
+    private(set) var completedSubject = BehaviorRelay<Bool>(value: false)
+    private(set) var itemId = BehaviorRelay<Int?>(value: nil)
+    private(set) var nameText = BehaviorRelay<String?>(value: nil)
+    private(set) var categoryText = BehaviorRelay<String?>(value: nil)
+    private(set) var priceText = BehaviorRelay<String?>(value: nil)
 
     var editItem: Item?
     var mode: ItemRegisterMode {

@@ -23,8 +23,8 @@ protocol ItemViewModelable {
 
 final class ItemViewModel {
 
-    var isLoading = BehaviorRelay<Bool>(value: false)
-    var viewWillAppear = PublishRelay<Void>()
+    private(set) var isLoading = BehaviorRelay<Bool>(value: false)
+    private(set) var viewWillAppear = PublishRelay<Void>()
 
     private let itemsSubject = BehaviorRelay<[Item]>(value: [])
     var items: Driver<[Item]> {
