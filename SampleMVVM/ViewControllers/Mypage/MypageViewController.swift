@@ -112,6 +112,8 @@ final class MypageViewController: UIViewController {
             .subscribe(onNext: { [unowned self] in
                 self.profileCardView.isHidden = !$0
                 self.loginStackView.isHidden = $0
+                self.settingBarButtonItem.isEnabled = $0
+                self.settingBarButtonItem.tintColor = $0 ? UIColor.systemBlue : UIColor.clear
             })
             .disposed(by: disposeBag)
 

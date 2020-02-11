@@ -165,7 +165,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="person.circle" catalog="system" id="ZYA-9V-y5D"/>
                     <navigationItem key="navigationItem" title="マイページ" largeTitleDisplayMode="always" id="yn4-B1-vbq">
-                        <barButtonItem key="rightBarButtonItem" image="gear" catalog="system" id="zev-HD-4bx"/>
+                        <barButtonItem key="rightBarButtonItem" image="gear" catalog="system" id="zev-HD-4bx">
+                            <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
