@@ -22,7 +22,7 @@ protocol GithubViewModelable {
     var presentViewController: Driver<UIViewController> { get }
     func handleSearchButton() -> Completable
     func handleFavoriteBarButton() -> Completable
-    func showGithubWebView(_ viewController: SFSafariViewControllerDelegate, indexPath: IndexPath)
+    func showGithubWebView(indexPath: IndexPath)
 }
 
 final class GithubViewModel {
@@ -99,10 +99,9 @@ extension GithubViewModel: GithubViewModelable {
         }
     }
 
-    func showGithubWebView(_ viewController: SFSafariViewControllerDelegate, indexPath: IndexPath) {
+    func showGithubWebView(indexPath: IndexPath) {
         guard let url = URL(string: repositoriesSubject.value[indexPath.row].htmlUrl) else { return }
         let safariViewController = SFSafariViewController(url: url)
-        safariViewController.delegate = viewController
         presentViewControllerSubject.accept(safariViewController)
     }
 }

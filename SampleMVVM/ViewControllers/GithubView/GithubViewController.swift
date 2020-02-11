@@ -44,7 +44,7 @@ final class GithubViewController: UIViewController {
             tableView.rx.itemSelected
                 .subscribe(onNext: { [unowned self] indexPath in
                     self.tableView.deselectRow(at: indexPath, animated: false)
-                    self.viewModel.showGithubWebView(self, indexPath: indexPath)
+                    self.viewModel.showGithubWebView(indexPath: indexPath)
                 })
                 .disposed(by: disposeBag)
         }
@@ -167,12 +167,5 @@ extension GithubViewController: UITextFieldDelegate {
             .subscribe()
             .disposed(by: disposeBag)
         return true
-    }
-}
-
-// MARK: SFSafariViewControllerDelegate
-extension GithubViewController: SFSafariViewControllerDelegate {
-    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-        dismiss(animated: true, completion: nil)
     }
 }
