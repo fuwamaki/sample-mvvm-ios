@@ -12,6 +12,7 @@ import SafariServices
 
 protocol GithubViewModelable {
     var isLoading: BehaviorRelay<Bool> { get }
+    var completedSubject: BehaviorRelay<Bool> { get }
     var searchQuery: BehaviorRelay<String?> { get }
     var searchedQuery: BehaviorRelay<String?> { get }
     var searchQueryValid: Observable<Bool> { get }
@@ -27,6 +28,7 @@ protocol GithubViewModelable {
 final class GithubViewModel {
 
     private(set) var isLoading = BehaviorRelay<Bool>(value: false)
+    private(set) var completedSubject = BehaviorRelay<Bool>(value: false)
     private(set) var searchQuery = BehaviorRelay<String?>(value: nil)
     private(set) var searchedQuery = BehaviorRelay<String?>(value: nil)
 
@@ -115,8 +117,9 @@ extension GithubViewModel {
                     let errorAlert = UIAlertController.singleErrorAlert(message: error.localizedDescription)
                     self?.presentViewControllerSubject.accept(errorAlert)
                 },
-                onCompleted: {
+                onCompleted: { [weak self] in
                     UserDefaultsRepository.shared.oneUp(type: .incrementListId)
+                    self?.completedSubject.accept(true)
             })
     }
 
