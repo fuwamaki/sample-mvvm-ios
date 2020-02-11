@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SafariServices
 
 final class ListGithubTableCell: UITableViewCell {
 
@@ -27,6 +28,15 @@ final class ListGithubTableCell: UITableViewCell {
                     cell.render(repository: element)
                     return cell }
                 .disposed(by: disposeBag)
+
+            collectionView.rx.itemSelected
+                .subscribe(onNext: { [unowned self] indexPath in
+                    self.collectionView.deselectItem(at: indexPath, animated: true)
+                    guard let url = URL(string: self.repositoriesSubject.value[indexPath.row].htmlUrl) else { return }
+                    let safariViewController = SFSafariViewController(url: url)
+                    self.delegate?.showWebView(safariViewController)
+                })
+                .disposed(by: disposeBag)
         }
     }
 
@@ -36,8 +46,9 @@ final class ListGithubTableCell: UITableViewCell {
     }
 
     private let disposeBag = DisposeBag()
+    public weak var delegate: ListTableDelegate?
 
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
     }
 

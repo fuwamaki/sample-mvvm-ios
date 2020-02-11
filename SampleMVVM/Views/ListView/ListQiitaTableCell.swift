@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SafariServices
 
 final class ListQiitaTableCell: UITableViewCell {
 
@@ -27,6 +28,15 @@ final class ListQiitaTableCell: UITableViewCell {
                     cell.render(qiitaItem: element)
                     return cell }
                 .disposed(by: disposeBag)
+
+            collectionView.rx.itemSelected
+                .subscribe(onNext: { [unowned self] indexPath in
+                    self.collectionView.deselectItem(at: indexPath, animated: true)
+                    guard let url = URL(string: self.qiitaItemsSubject.value[indexPath.row].url) else { return }
+                    let safariViewController = SFSafariViewController(url: url)
+                    self.delegate?.showWebView(safariViewController)
+                })
+                .disposed(by: disposeBag)
         }
     }
 
@@ -36,8 +46,9 @@ final class ListQiitaTableCell: UITableViewCell {
     }
 
     private let disposeBag = DisposeBag()
+    public weak var delegate: ListTableDelegate?
 
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
     }
 

@@ -10,6 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol ListTableDelegate: class {
+    func showWebView(_ viewController: UIViewController)
+}
+
 final class ListViewController: UIViewController {
 
     @IBOutlet private weak var githubBarButtonItem: UIBarButtonItem!
@@ -52,11 +56,6 @@ final class ListViewController: UIViewController {
                 self.indicator.isHidden = !self.isLoading
             }
         }
-    }
-
-    private let itemsSubject = BehaviorRelay<[String]>(value: ["a", "b", "c", "d", "e", "f", "g", "h"])
-    var items: Driver<[String]> {
-        return itemsSubject.asDriver(onErrorJustReturn: [])
     }
 
     private let disposeBag = DisposeBag()
@@ -114,6 +113,14 @@ final class ListViewController: UIViewController {
     }
 }
 
+// MARK: ListTableDelegate
+extension ListViewController: ListTableDelegate {
+    func showWebView(_ viewController: UIViewController) {
+        present(viewController, animated: true, completion: nil)
+    }
+}
+
+// MARK: UITableViewDelegate
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return ListGithubTableCell.defaultHeight(tableView)
@@ -129,6 +136,7 @@ extension ListViewController: UITableViewDelegate {
     }
 }
 
+// MARK: UITableViewDataSource
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -144,10 +152,12 @@ extension ListViewController: UITableViewDataSource {
         case .github:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.listGithubTableCell, for: indexPath)!
             cell.render(repositories: element.contents as! [GithubRepository])
+            cell.delegate = self
             return cell
         case .qiita:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.listQiitaTableCell, for: indexPath)!
             cell.render(qiitaItems: element.contents as! [QiitaItem])
+            cell.delegate = self
             return cell
         case .other:
             return UITableViewCell()
