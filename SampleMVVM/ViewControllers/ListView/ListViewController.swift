@@ -33,10 +33,10 @@ final class ListViewController: UIViewController {
 
             viewModel.contentsSubject
                 .subscribe(onNext: { [weak self] contents in
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                    self?.noContentLabel.isHidden = contents.count != 0
-                }})
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                        self?.noContentLabel.isHidden = contents.count != 0
+                    }})
                 .disposed(by: disposeBag)
         }
     }
