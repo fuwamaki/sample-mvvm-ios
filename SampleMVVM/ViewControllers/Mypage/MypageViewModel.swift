@@ -190,6 +190,8 @@ extension MypageViewModel: MypageViewModelable {
             print("identity token : \(idToken)")
             print("email: \(email)")
             print("full name : \(fullName)")
+            print("first name: \(String(describing: fullName.givenName))")
+            print("last name: \(String(describing: fullName.familyName))")
         }
     }
 
