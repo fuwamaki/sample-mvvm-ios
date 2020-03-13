@@ -25,5 +25,4 @@ target 'SampleMVVM' do
     pod 'RxTest', '~> 5.0.0'
     pod 'RxBlocking', '~> 5.0.0'
   end
-
 end
