@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JAk-lh-d4o">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--List-->
+        <scene sceneID="IfX-ee-a80">
+            <objects>
+                <viewController storyboardIdentifier="ListViewController" id="tgi-SA-ru6" customClass="ListViewController" customModule="SampleMVVM" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S3O-AU-JmK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buU-Zb-oqo">
+                                <rect key="frame" x="186" y="397" width="42.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zyf-ku-uL4">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="buU-Zb-oqo" firstAttribute="centerY" secondItem="S3O-AU-JmK" secondAttribute="centerY" id="35N-AO-feH"/>
+                            <constraint firstItem="zyf-ku-uL4" firstAttribute="leading" secondItem="F49-Nl-FZw" secondAttribute="leading" id="471-Co-LqL"/>
+                            <constraint firstItem="F49-Nl-FZw" firstAttribute="trailing" secondItem="zyf-ku-uL4" secondAttribute="trailing" id="4UE-Q6-cJb"/>
+                            <constraint firstItem="zyf-ku-uL4" firstAttribute="top" secondItem="F49-Nl-FZw" secondAttribute="top" id="ac0-2H-9GD"/>
+                            <constraint firstItem="F49-Nl-FZw" firstAttribute="bottom" secondItem="zyf-ku-uL4" secondAttribute="bottom" id="fDM-aN-KJC"/>
+                            <constraint firstItem="buU-Zb-oqo" firstAttribute="centerX" secondItem="S3O-AU-JmK" secondAttribute="centerX" id="zaO-EH-jco"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="F49-Nl-FZw"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="heart.circle" catalog="system" id="RcJ-mo-jU9"/>
+                    <navigationItem key="navigationItem" title="List" largeTitleDisplayMode="always" id="PeJ-Um-qIf">
+                        <rightBarButtonItems>
+                            <barButtonItem image="qiita_icon" id="HqE-eR-X8r"/>
+                            <barButtonItem title="Item" image="github_icon" id="2b8-yE-Ojp"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <connections>
+                        <outlet property="githubBarButtonItem" destination="2b8-yE-Ojp" id="Is1-lc-JKU"/>
+                        <outlet property="noContentLabel" destination="buU-Zb-oqo" id="KjC-Qh-6uw"/>
+                        <outlet property="qiitaBarButtonItem" destination="HqE-eR-X8r" id="pdb-B1-JM0"/>
+                        <outlet property="tableView" destination="zyf-ku-uL4" id="9yJ-lo-nT0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tDM-Ac-hg0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="458" y="161"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="t2d-w0-0ZL">
+            <objects>
+                <navigationController id="JAk-lh-d4o" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="0j6-ii-ipJ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="tgi-SA-ru6" kind="relationship" relationship="rootViewController" id="ylY-io-2Fl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GVG-s0-nNe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-475" y="162"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="github_icon" width="30" height="30"/>
+        <image name="heart.circle" catalog="system" width="64" height="60"/>
+        <image name="qiita_icon" width="30" height="30"/>
+    </resources>
+</document>

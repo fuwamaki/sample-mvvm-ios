@@ -1,0 +1,17 @@
+excluded:
+  - Pods/
+  - .bundle
+  - R.generated.swift
+disabled_rules:
+  - line_length
+  - variable_name
+  - force_cast
+  - force_try
+  - large_tuple
+line_length: 400
+type_name:
+  min_length: 3
+  max_length: 50
+identifier_name:
+  min_length:
+    warning: 1
