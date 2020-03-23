@@ -35,7 +35,12 @@ final class DebugViewController: UITableViewController {
         tableView.rx.itemSelected
             .subscribe(onNext: { [unowned self] indexPath in
                 self.tableView.deselectRow(at: indexPath, animated: false)
-                self.handleLocalPushTestButton()
+                switch indexPath {
+                case IndexPath(row: 0, section: 0):
+                    self.handleLocalPushTestButton()
+                default:
+                    break
+                }
             })
             .disposed(by: disposeBag)
     }
