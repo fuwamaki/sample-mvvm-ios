@@ -179,19 +179,19 @@ extension MypageViewModel: MypageViewModelable {
             guard let authCodeData = appleIDCredential.authorizationCode,
                 let authCode = String(data: authCodeData, encoding: .utf8),
                 let idTokenData = appleIDCredential.identityToken,
-                let idToken = String(data: idTokenData, encoding: .utf8),
-                let email = appleIDCredential.email,
-                let fullName = appleIDCredential.fullName else {
+                let idToken = String(data: idTokenData, encoding: .utf8) else {
                     print("Problem with the authorizationCode")
                     return
             }
+            let email = appleIDCredential.email
+            let fullName = appleIDCredential.fullName
             // TODO: 以下処理
             print("authorization code : \(authCode)")
             print("identity token : \(idToken)")
             print("email: \(email)")
             print("full name : \(fullName)")
-            print("first name: \(String(describing: fullName.givenName))")
-            print("last name: \(String(describing: fullName.familyName))")
+            print("first name: \(String(describing: fullName?.givenName))")
+            print("last name: \(String(describing: fullName?.familyName))")
         }
     }
 
