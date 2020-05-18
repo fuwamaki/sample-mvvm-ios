@@ -9,4 +9,4 @@
 import Foundation
 
 // Alamofire.ResultとResult.ResultのConflict解消用
-typealias OriginalResult<T, Error: Error> = Result<T, Error>
+typealias OriginalResult<T, Error: Swift.Error> = Result<T, Error>
