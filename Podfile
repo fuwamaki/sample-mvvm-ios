@@ -13,7 +13,7 @@ target 'SampleMVVM' do
   pod 'RxSwift', '~> 5.0.0'
   pod 'RxOptional', '~> 4.0.0'
   pod 'R.swift', '~> 5.0.3'
-  pod 'SwiftLint', '~> 0.35.0'
+  pod 'SwiftLint', '~> 0.39.0'
   pod 'PINRemoteImage', '~> 2.1.4'
   pod 'RealmSwift', '~> 3.18.0'
   pod 'Alamofire', '~> 4.9.0'

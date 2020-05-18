@@ -25,7 +25,8 @@ extension UIView {
 
 // MARK: @IBInspectable storyboard上で設定できるように
 extension UIView {
-    @IBInspectable var cornerRadiusView: CGFloat {
+    @IBInspectable
+    public var cornerRadiusView: CGFloat {
         get {
             return layer.cornerRadius
         }
@@ -36,7 +37,7 @@ extension UIView {
     }
 
     @IBInspectable
-    var borderWidthView: CGFloat {
+    public var borderWidthView: CGFloat {
         get {
             return self.layer.borderWidth
         }
@@ -46,7 +47,7 @@ extension UIView {
     }
 
     @IBInspectable
-    var borderColorView: UIColor? {
+    public var borderColorView: UIColor? {
         get {
             return UIColor.init(cgColor: self.layer.borderColor!)
         }

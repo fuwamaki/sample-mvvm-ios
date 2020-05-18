@@ -188,8 +188,8 @@ extension MypageViewModel: MypageViewModelable {
             // TODO: 以下処理
             print("authorization code : \(authCode)")
             print("identity token : \(idToken)")
-            print("email: \(email)")
-            print("full name : \(fullName)")
+            print("email: \(String(describing: email))")
+            print("full name : \(String(describing: fullName))")
             print("first name: \(String(describing: fullName?.givenName))")
             print("last name: \(String(describing: fullName?.familyName))")
         }

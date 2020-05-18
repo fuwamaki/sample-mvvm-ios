@@ -10,7 +10,8 @@ import UIKit
 
 // MARK: @IBInspectable storyboard上で設定できるように
 extension UIButton {
-    @IBInspectable var disableBackgroundColor: UIColor? {
+    @IBInspectable
+    public var disableBackgroundColor: UIColor? {
         get {
             return backgroundColor
         }
@@ -19,7 +20,8 @@ extension UIButton {
         }
     }
 
-    @IBInspectable var disableTintColor: UIColor? {
+    @IBInspectable
+    public var disableTintColor: UIColor? {
         get {
             return tintColor
         }
