@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PINRemoteImage
 
 final class GithubTableCell: UITableViewCell {
 
@@ -26,6 +27,15 @@ final class GithubTableCell: UITableViewCell {
         titleLabel.text = repository.fullName
         stargazersCountLabel.text = String(repository.stargazersCount)
         let avatarUrl = repository.owner.avatarUrl
-        iconImageView?.pin_setImage(from: URL(string: avatarUrl))
+        iconImageView.image = UIColor.secondarySystemBackground.image
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            UIView.transition(
+                with: self.iconImageView,
+                duration: 0.2,
+                options: .transitionCrossDissolve,
+                animations: {
+                    self.iconImageView?.pin_setImage(from: URL(string: avatarUrl))
+            })
+        }
     }
 }
