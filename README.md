@@ -23,11 +23,12 @@ iOSのMVVMとは、Model, ViewController, ViewModelの3つの層に分けた、
 以下補足。
 
 - ViewController層: UI層。画面遷移などUI操作を行うが、ロジックは持たない。ViewControllerだけでなく、Viewクラスも含む。
-- ViewModel層: UI層のビジネスロジックを持ち、加えてModel層のビジネスロジックを持つ層。Model層のビジネスロジックをUseCase層が持つMVVMアーキテクチャのケースもあるが、UseCase層があると頻繁にコード内容が薄くなり、レイヤーが増えるのでコード全体でみると見通しが悪くなりかねないので、本リポジトリではViewModel層に統合する形を採用した。UnitTestの対象。
+- ViewModel層: UI層のビジネスロジックを持ち、加えてModel層のデータ連携ロジック(API取得データをローカルに保存するなど)を持つ層。Model層のビジネスロジックをUseCase層が持つMVVMアーキテクチャのケースもあるが、UseCase層があると頻繁にコード内容が薄くなり、レイヤーが増えるのでコード全体でみると見通しが悪くなりかねないので、本リポジトリではViewModel層に統合する形を採用した。UnitTestの対象。
 - Model層: データの管理や操作を行う層。
   - Entity: オブジェクトクラス。UnitTestの対象。
   - Repository: ローカルデータの読込・検索・削除・更新などを行うクラス。UnitTestの対象。
   - APIClient: APIアクセスを行うクラス。
+- DIについて: ViewModelをテストしやすくするために、ViewModelのInitializerにはDIを採用している。Mockの指定を行う場合は、MockインスタンスをViewModelのInitializer変数に適用する。
 
 ## 実現している機能
 
