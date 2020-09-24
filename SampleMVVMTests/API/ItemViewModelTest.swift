@@ -23,13 +23,13 @@ class ItemViewModelTest: XCTestCase {
             .subscribe()
             .disposed(by: disposeBag)
         scheduler.scheduleAt(100) {
-            viewModel.pushRegister
-            .drive(onNext: { viewController in
-                XCTAssertNotNil(viewController)})
+            viewModel.pushViewController
+                .drive(onNext: { viewController in
+                        XCTAssertNotNil(viewController)})
                 .disposed(by: disposeBag)
         }
         scheduler.scheduleAt(200) {
-            viewModel.showRegister(indexPath: IndexPath(row: 0, section: 0))
+            viewModel.handleRegisterBarButtonItem()
         }
         scheduler.start()
     }
@@ -45,6 +45,7 @@ extension ItemViewModelTest {
             Item(id: 2, name: "test3", category: "machine", price: 300)
         ]
         var githubRepositories: [GithubRepository]?
+        var qiitaItem: [QiitaItem]?
 
         required init(result: TestResultType) {
             self.result = result
@@ -103,6 +104,30 @@ extension ItemViewModelTest {
                 switch self.result {
                 case .success:
                     single(.success(self.githubRepositories ?? []))
+                case .failure:
+                    single(.error(NSError(domain: "test", code: 0, userInfo: nil)))
+                }
+                return Disposables.create()
+            })
+        }
+
+        func fetchQiitaItems(tag: String) -> Single<[QiitaItem]> {
+            return Single<[QiitaItem]>.create(subscribe: { single in
+                switch self.result {
+                case .success:
+                    single(.success(self.qiitaItem ?? []))
+                case .failure:
+                    single(.error(NSError(domain: "test", code: 0, userInfo: nil)))
+                }
+                return Disposables.create()
+            })
+        }
+
+        func lineLogin(viewController: UIViewController) -> Single<LineUser> {
+            return Single<LineUser>.create(subscribe: { single in
+                switch self.result {
+                case .success:
+                    single(.success(LineUser(accessToken: "testToken")))
                 case .failure:
                     single(.error(NSError(domain: "test", code: 0, userInfo: nil)))
                 }

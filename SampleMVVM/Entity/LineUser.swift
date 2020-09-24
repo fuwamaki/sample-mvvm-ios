@@ -20,4 +20,12 @@ struct LineUser {
         self.displayName = loginResult.userProfile?.displayName
         self.pictureURL = loginResult.userProfile?.pictureURL
     }
+
+    // for unit test
+    init(accessToken: String) {
+        self.accessToken = accessToken
+        self.userId = nil
+        self.displayName = nil
+        self.pictureURL = nil
+    }
 }
