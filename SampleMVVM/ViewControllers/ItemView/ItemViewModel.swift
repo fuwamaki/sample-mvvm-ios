@@ -64,6 +64,7 @@ final class ItemViewModel {
     }
 }
 
+// MARK: ItemViewModelable
 extension ItemViewModel: ItemViewModelable {
     func handleRegisterBarButtonItem() {
         let viewController = ItemRegisterViewController.make()
@@ -82,7 +83,6 @@ extension ItemViewModel: ItemViewModelable {
             .do(
                 onSuccess: { [weak self] response in
                     self?.isLoading.accept(false)
-                    self?.itemsSubject.accept([])
                     self?.itemsSubject.accept(response)
                 },
                 onError: { [weak self] error in

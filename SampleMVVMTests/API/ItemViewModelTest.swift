@@ -14,22 +14,131 @@ import RxTest
 
 class ItemViewModelTest: XCTestCase {
 
-    func testShowRegister() {
+    func testHandleRegisterBarButtonItem() {
         let disposeBag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
         let apiClient = MockAPIClient(result: .success)
         let viewModel = ItemViewModel(apiClient: apiClient)
-        viewModel.fetchItems()
-            .subscribe()
-            .disposed(by: disposeBag)
         scheduler.scheduleAt(100) {
             viewModel.pushViewController
                 .drive(onNext: { viewController in
-                        XCTAssertNotNil(viewController)})
+                    XCTAssertNotNil(viewController)
+                })
                 .disposed(by: disposeBag)
         }
         scheduler.scheduleAt(200) {
             viewModel.handleRegisterBarButtonItem()
+        }
+        scheduler.start()
+    }
+
+    func testHandleTableItemButtonWithSuccess() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let apiClient = MockAPIClient(result: .success)
+        let viewModel = ItemViewModel(apiClient: apiClient)
+        scheduler.scheduleAt(100) {
+            viewModel.pushViewController
+                .drive(onNext: { viewController in
+                    XCTAssertNotNil(viewController)
+                })
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(200) {
+            viewModel.fetchItems()
+                .subscribe()
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(300) {
+            viewModel.handleTableItemButton(indexPath: IndexPath(row: 0, section: 0))
+        }
+        scheduler.start()
+    }
+
+    func testHandleTableItemButtonWithFailure() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let apiClient = MockAPIClient(result: .success)
+        let viewModel = ItemViewModel(apiClient: apiClient)
+        scheduler.scheduleAt(100) {
+            viewModel.pushViewController
+                .drive(onNext: { viewController in
+                    XCTAssertNil(viewController)
+                })
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(200) {
+            viewModel.handleTableItemButton(indexPath: nil)
+        }
+        scheduler.start()
+    }
+
+    func testFetchItemsWithSuccess() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let apiClient = MockAPIClient(result: .success)
+        let viewModel = ItemViewModel(apiClient: apiClient)
+        var itemsCount: Int = 0
+        scheduler.scheduleAt(100) {
+            viewModel.items
+                .drive(onNext: { items in
+                    XCTAssertEqual(items.count, itemsCount)
+                })
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(200) {
+            itemsCount = 3
+            viewModel.fetchItems()
+                .subscribe()
+                .disposed(by: disposeBag)
+        }
+        scheduler.start()
+    }
+
+    func testFetchItemsWithFailure() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let apiClient = MockAPIClient(result: .failure)
+        let viewModel = ItemViewModel(apiClient: apiClient)
+        scheduler.scheduleAt(100) {
+            viewModel.presentViewController
+                .drive(onNext: { viewController in
+                    XCTAssertNotNil(viewController)
+                })
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(200) {
+            viewModel.fetchItems()
+                .subscribe()
+                .disposed(by: disposeBag)
+        }
+        scheduler.start()
+    }
+
+    func testDeleteItemWithSuccess() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let apiClient = MockAPIClient(result: .success)
+        let viewModel = ItemViewModel(apiClient: apiClient)
+        var itemsCount: Int = 0
+        scheduler.scheduleAt(100) {
+            viewModel.items
+                .drive(onNext: { items in
+                    XCTAssertEqual(items.count, itemsCount)
+                })
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(200) {
+            itemsCount = 3
+            viewModel.fetchItems()
+                .subscribe()
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(300) {
+            itemsCount = 2
+            viewModel.deleteItem(indexPath: IndexPath(row: 0, section: 0))
+                .subscribe()
+                .disposed(by: disposeBag)
         }
         scheduler.start()
     }
@@ -57,7 +166,7 @@ extension ItemViewModelTest {
                 case .success:
                     single(.success(self.items))
                 case .failure:
-                    single(.error(NSError(domain: "test", code: 0, userInfo: nil)))
+                    single(.error(APIError.unknownError))
                 }
                 return Disposables.create()
             })
@@ -69,7 +178,7 @@ extension ItemViewModelTest {
                 case .success:
                     completable(.completed)
                 case .failure:
-                    completable(.error(NSError(domain: "test", code: 0, userInfo: nil)))
+                    completable(.error(APIError.unknownError))
                 }
                 return Disposables.create()
             })
@@ -81,7 +190,7 @@ extension ItemViewModelTest {
                 case .success:
                     completable(.completed)
                 case .failure:
-                    completable(.error(NSError(domain: "test", code: 0, userInfo: nil)))
+                    completable(.error(APIError.unknownError))
                 }
                 return Disposables.create()
             })
@@ -93,7 +202,7 @@ extension ItemViewModelTest {
                 case .success:
                     completable(.completed)
                 case .failure:
-                    completable(.error(NSError(domain: "test", code: 0, userInfo: nil)))
+                    completable(.error(APIError.unknownError))
                 }
                 return Disposables.create()
             })
@@ -105,7 +214,7 @@ extension ItemViewModelTest {
                 case .success:
                     single(.success(self.githubRepositories ?? []))
                 case .failure:
-                    single(.error(NSError(domain: "test", code: 0, userInfo: nil)))
+                    single(.error(APIError.unknownError))
                 }
                 return Disposables.create()
             })
@@ -117,7 +226,7 @@ extension ItemViewModelTest {
                 case .success:
                     single(.success(self.qiitaItem ?? []))
                 case .failure:
-                    single(.error(NSError(domain: "test", code: 0, userInfo: nil)))
+                    single(.error(APIError.unknownError))
                 }
                 return Disposables.create()
             })
@@ -129,7 +238,7 @@ extension ItemViewModelTest {
                 case .success:
                     single(.success(LineUser(accessToken: "testToken")))
                 case .failure:
-                    single(.error(NSError(domain: "test", code: 0, userInfo: nil)))
+                    single(.error(APIError.unknownError))
                 }
                 return Disposables.create()
             })
