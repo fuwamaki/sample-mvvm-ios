@@ -107,6 +107,19 @@
 		20AC3E722356BB48007F67ED /* APIClient+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E712356BB48007F67ED /* APIClient+Item.swift */; };
 		20AC3E742356BB52007F67ED /* APIClient+Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E732356BB52007F67ED /* APIClient+Github.swift */; };
 		20AC3E762356BE17007F67ED /* ItemViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AC3E752356BE17007F67ED /* ItemViewModelTest.swift */; };
+		20B25053251CA8300000E409 /* ItemRegisterViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B25052251CA8300000E409 /* ItemRegisterViewModelTest.swift */; };
+		20B25057251CA8430000E409 /* ListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B25056251CA8420000E409 /* ListViewModelTest.swift */; };
+		20B2505B251CA8510000E409 /* GithubViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B2505A251CA8510000E409 /* GithubViewModelTest.swift */; };
+		20B2505F251CA8620000E409 /* QiitaViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B2505E251CA8620000E409 /* QiitaViewModelTest.swift */; };
+		20B25063251CA86E0000E409 /* MypageViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B25062251CA86E0000E409 /* MypageViewModelTest.swift */; };
+		20B25067251CA87F0000E409 /* UserRegistrationViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B25066251CA87F0000E409 /* UserRegistrationViewModelTest.swift */; };
+		20B2506E251CA8D40000E409 /* ItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B2506D251CA8D40000E409 /* ItemTest.swift */; };
+		20B25074251CA8E40000E409 /* GithubRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B25073251CA8E40000E409 /* GithubRepositoryTest.swift */; };
+		20B25078251CA8F40000E409 /* GithubRepositoryOwnerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B25077251CA8F40000E409 /* GithubRepositoryOwnerTest.swift */; };
+		20B2507C251CA9000000E409 /* QiitaItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B2507B251CA9000000E409 /* QiitaItemTest.swift */; };
+		20B25080251CA90D0000E409 /* QiitaUserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B2507F251CA90D0000E409 /* QiitaUserTest.swift */; };
+		20B25084251CA91A0000E409 /* LineUserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B25083251CA91A0000E409 /* LineUserTest.swift */; };
+		20B25088251CA9230000E409 /* UserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B25087251CA9230000E409 /* UserTest.swift */; };
 		20C0A4EC23390DBE00B12264 /* UIAlertController+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0A4EB23390DBE00B12264 /* UIAlertController+Addition.swift */; };
 		20C0A4EE23390ED800B12264 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0A4ED23390ED800B12264 /* UIViewController+Rx.swift */; };
 		20C0A4F42339226B00B12264 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20C0A4F62339226B00B12264 /* Localizable.strings */; };
@@ -233,6 +246,19 @@
 		20AC3E712356BB48007F67ED /* APIClient+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Item.swift"; sourceTree = "<group>"; };
 		20AC3E732356BB52007F67ED /* APIClient+Github.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Github.swift"; sourceTree = "<group>"; };
 		20AC3E752356BE17007F67ED /* ItemViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModelTest.swift; sourceTree = "<group>"; };
+		20B25052251CA8300000E409 /* ItemRegisterViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRegisterViewModelTest.swift; sourceTree = "<group>"; };
+		20B25056251CA8420000E409 /* ListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelTest.swift; sourceTree = "<group>"; };
+		20B2505A251CA8510000E409 /* GithubViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubViewModelTest.swift; sourceTree = "<group>"; };
+		20B2505E251CA8620000E409 /* QiitaViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaViewModelTest.swift; sourceTree = "<group>"; };
+		20B25062251CA86E0000E409 /* MypageViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewModelTest.swift; sourceTree = "<group>"; };
+		20B25066251CA87F0000E409 /* UserRegistrationViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistrationViewModelTest.swift; sourceTree = "<group>"; };
+		20B2506D251CA8D40000E409 /* ItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTest.swift; sourceTree = "<group>"; };
+		20B25073251CA8E40000E409 /* GithubRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepositoryTest.swift; sourceTree = "<group>"; };
+		20B25077251CA8F40000E409 /* GithubRepositoryOwnerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepositoryOwnerTest.swift; sourceTree = "<group>"; };
+		20B2507B251CA9000000E409 /* QiitaItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaItemTest.swift; sourceTree = "<group>"; };
+		20B2507F251CA90D0000E409 /* QiitaUserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaUserTest.swift; sourceTree = "<group>"; };
+		20B25083251CA91A0000E409 /* LineUserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineUserTest.swift; sourceTree = "<group>"; };
+		20B25087251CA9230000E409 /* UserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTest.swift; sourceTree = "<group>"; };
 		20C0A4EB23390DBE00B12264 /* UIAlertController+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Addition.swift"; sourceTree = "<group>"; };
 		20C0A4ED23390ED800B12264 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		20C0A4F52339226B00B12264 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -425,7 +451,8 @@
 				209A60B623388F1600D6338C /* Info.plist */,
 				20AC3E6A23558D4F007F67ED /* TestResultType.swift */,
 				20AC3E6C23558DF0007F67ED /* TestResponse.swift */,
-				20AC3E6E23558E49007F67ED /* API */,
+				20AC3E6E23558E49007F67ED /* ViewModel */,
+				20B2506C251CA8BE0000E409 /* Entity */,
 			);
 			path = SampleMVVMTests;
 			sourceTree = "<group>";
@@ -583,12 +610,32 @@
 			path = QiitaView;
 			sourceTree = "<group>";
 		};
-		20AC3E6E23558E49007F67ED /* API */ = {
+		20AC3E6E23558E49007F67ED /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				20AC3E752356BE17007F67ED /* ItemViewModelTest.swift */,
+				20B25052251CA8300000E409 /* ItemRegisterViewModelTest.swift */,
+				20B25056251CA8420000E409 /* ListViewModelTest.swift */,
+				20B2505A251CA8510000E409 /* GithubViewModelTest.swift */,
+				20B2505E251CA8620000E409 /* QiitaViewModelTest.swift */,
+				20B25062251CA86E0000E409 /* MypageViewModelTest.swift */,
+				20B25066251CA87F0000E409 /* UserRegistrationViewModelTest.swift */,
 			);
-			path = API;
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		20B2506C251CA8BE0000E409 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				20B2506D251CA8D40000E409 /* ItemTest.swift */,
+				20B25073251CA8E40000E409 /* GithubRepositoryTest.swift */,
+				20B25077251CA8F40000E409 /* GithubRepositoryOwnerTest.swift */,
+				20B2507B251CA9000000E409 /* QiitaItemTest.swift */,
+				20B2507F251CA90D0000E409 /* QiitaUserTest.swift */,
+				20B25083251CA91A0000E409 /* LineUserTest.swift */,
+				20B25087251CA9230000E409 /* UserTest.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		20C0A4EF23391F2200B12264 /* API */ = {
@@ -1076,8 +1123,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20B25078251CA8F40000E409 /* GithubRepositoryOwnerTest.swift in Sources */,
+				20B25080251CA90D0000E409 /* QiitaUserTest.swift in Sources */,
+				20B25084251CA91A0000E409 /* LineUserTest.swift in Sources */,
+				20B2506E251CA8D40000E409 /* ItemTest.swift in Sources */,
 				20AC3E6B23558D4F007F67ED /* TestResultType.swift in Sources */,
+				20B25057251CA8430000E409 /* ListViewModelTest.swift in Sources */,
 				20AC3E762356BE17007F67ED /* ItemViewModelTest.swift in Sources */,
+				20B25063251CA86E0000E409 /* MypageViewModelTest.swift in Sources */,
+				20B25088251CA9230000E409 /* UserTest.swift in Sources */,
+				20B2505F251CA8620000E409 /* QiitaViewModelTest.swift in Sources */,
+				20B25067251CA87F0000E409 /* UserRegistrationViewModelTest.swift in Sources */,
+				20B2505B251CA8510000E409 /* GithubViewModelTest.swift in Sources */,
+				20B25074251CA8E40000E409 /* GithubRepositoryTest.swift in Sources */,
+				20B2507C251CA9000000E409 /* QiitaItemTest.swift in Sources */,
+				20B25053251CA8300000E409 /* ItemRegisterViewModelTest.swift in Sources */,
 				20AC3E6D23558DF0007F67ED /* TestResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
