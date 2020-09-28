@@ -86,8 +86,7 @@ final class ItemRegisterViewModel {
         subscribe()
     }
 
-    private func subscribe() {
-    }
+    private func subscribe() {}
 
     private func postItem() -> Completable {
         guard let name = nameText.value, let category = categoryText.value,
