@@ -163,6 +163,7 @@ final class ListViewModel {
     }
 }
 
+// MARK: ListViewModelable
 extension ListViewModel: ListViewModelable {
     func showGithubView() {
         pushViewControllerSubject.accept(GithubViewController.make())

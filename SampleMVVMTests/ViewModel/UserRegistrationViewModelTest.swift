@@ -14,24 +14,71 @@ import RxTest
 
 class UserRegistrationViewModelTest: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testHandleFailureAppleSignin() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let viewModel = UserRegistrationViewModel(
+            type: .create(lineUser: LineUser(accessToken: "token")))
+        scheduler.scheduleAt(100) {
+            viewModel.presentViewController
+                .drive(onNext: {
+                    XCTAssertNotNil($0)
+                })
+                .disposed(by: disposeBag)
         }
+        scheduler.scheduleAt(200) {
+            viewModel.handleChangeImageButton(UIImagePickerController())
+        }
+        scheduler.start()
     }
 
+    func testHandleSubmitButtonWithEmpty() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let viewModel = UserRegistrationViewModel(
+            type: .create(lineUser: LineUser(accessToken: "token")))
+        scheduler.scheduleAt(100) {
+            viewModel.presentViewController
+                .drive(onNext: {
+                    XCTAssertNotNil($0)
+                })
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(200) {
+            viewModel.handleSubmitButton()
+        }
+        scheduler.start()
+    }
+
+    func testHandleSubmitButtonWithCreate() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let viewModel = UserRegistrationViewModel(
+            type: .create(lineUser: LineUser(accessToken: "token")))
+        viewModel.name.accept("testName")
+        viewModel.birthday.accept(Date())
+        scheduler.scheduleAt(100) {
+            viewModel.presentViewController
+                .drive(onNext: {
+                    XCTAssertNotNil($0)
+                })
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(200) {
+            viewModel.handleSubmitButton()
+        }
+        scheduler.start()
+    }
+
+    func testHandleSubmitButtonWithUpdate() {
+        let scheduler = TestScheduler(initialClock: 0)
+        let viewModel = UserRegistrationViewModel(
+            type: .update(user: User(lineAccessToken: "token", userId: "userId", name: "name", birthday: Date(), iconImageURL: nil, iconImage: nil)))
+        viewModel.name.accept("testName")
+        viewModel.birthday.accept(Date())
+        scheduler.scheduleAt(100) {
+            viewModel.handleSubmitButton()
+        }
+        scheduler.start()
+    }
 }

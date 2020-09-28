@@ -20,7 +20,7 @@ class MockAPIClient: APIClientable {
         Item(id: 2, name: "test3", category: "machine", price: 300)
     ]
     var githubRepositories: [GithubRepository]?
-    var qiitaItem: [QiitaItem]?
+    var qiitaItems: [QiitaItem]?
 
     required init(result: TestResultType) {
         self.result = result
@@ -90,7 +90,7 @@ class MockAPIClient: APIClientable {
         return Single<[QiitaItem]>.create(subscribe: { single in
             switch self.result {
             case .success:
-                single(.success(self.qiitaItem ?? []))
+                single(.success(self.qiitaItems ?? []))
             case .failure:
                 single(.error(APIError.unknownError))
             }

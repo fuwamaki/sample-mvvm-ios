@@ -75,37 +75,6 @@ final class GithubViewModel {
     }
 }
 
-extension GithubViewModel: GithubViewModelable {
-    func handleSearchButton() -> Completable {
-        guard let query = searchQuery.value else {
-            return Completable.empty()
-        }
-        return fetchRepositories(query: query)
-    }
-
-    func handleFavoriteBarButton() -> Completable {
-        guard let keyword = searchedQuery.value else { return Completable.empty() }
-        return itemExists(keyword: keyword)
-            .flatMapCompletable { [weak self] in
-                guard let `self` = self else {
-                    return Completable.empty()
-                }
-                guard !$0 else {
-                    let errorAlert = UIAlertController.singleErrorAlert(message: "既にお気に入り済みのキーワードです")
-                    self.presentViewControllerSubject.accept(errorAlert)
-                    return Completable.empty()
-                }
-                return self.saveGithubItem(keyword: keyword)
-        }
-    }
-
-    func showGithubWebView(indexPath: IndexPath) {
-        guard let url = URL(string: repositoriesSubject.value[indexPath.row].htmlUrl) else { return }
-        let safariViewController = SFSafariViewController(url: url)
-        presentViewControllerSubject.accept(safariViewController)
-    }
-}
-
 // MARK: private UseCase
 extension GithubViewModel {
     private func saveGithubItem(keyword: String) -> Completable {
@@ -152,5 +121,37 @@ extension GithubViewModel {
                     self?.presentViewControllerSubject.accept(errorAlert) })
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
+    }
+}
+
+// MARK: GithubViewModelable
+extension GithubViewModel: GithubViewModelable {
+    func handleSearchButton() -> Completable {
+        guard let query = searchQuery.value else {
+            return Completable.empty()
+        }
+        return fetchRepositories(query: query)
+    }
+
+    func handleFavoriteBarButton() -> Completable {
+        guard let keyword = searchedQuery.value else { return Completable.empty() }
+        return itemExists(keyword: keyword)
+            .flatMapCompletable { [weak self] in
+                guard let `self` = self else {
+                    return Completable.empty()
+                }
+                guard !$0 else {
+                    let errorAlert = UIAlertController.singleErrorAlert(message: "既にお気に入り済みのキーワードです")
+                    self.presentViewControllerSubject.accept(errorAlert)
+                    return Completable.empty()
+                }
+                return self.saveGithubItem(keyword: keyword)
+        }
+    }
+
+    func showGithubWebView(indexPath: IndexPath) {
+        guard let url = URL(string: repositoriesSubject.value[indexPath.row].htmlUrl) else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        presentViewControllerSubject.accept(safariViewController)
     }
 }

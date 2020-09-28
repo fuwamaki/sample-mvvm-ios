@@ -14,24 +14,93 @@ import RxTest
 
 class MypageViewModelTest: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testHandleSettingBarButtonItem() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let apiClient = MockAPIClient(result: .success)
+        let viewModel = MypageViewModel(apiClient: apiClient)
+        scheduler.scheduleAt(100) {
+            viewModel.presentViewController
+                .drive(onNext: {
+                    XCTAssertNotNil($0)
+                })
+                .disposed(by: disposeBag)
         }
+        scheduler.scheduleAt(200) {
+            viewModel.handleSettingBarButtonItem()
+        }
+        scheduler.start()
     }
 
+    func testHandleAppleSigninButton() {
+        let scheduler = TestScheduler(initialClock: 0)
+        let apiClient = MockAPIClient(result: .success)
+        let viewModel = MypageViewModel(apiClient: apiClient)
+        scheduler.scheduleAt(100) {
+            viewModel.handleAppleSigninButton(
+                viewController: MypageViewController())
+        }
+        scheduler.start()
+    }
+
+    func testHandleFailureAppleSignin() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let apiClient = MockAPIClient(result: .success)
+        let viewModel = MypageViewModel(apiClient: apiClient)
+        scheduler.scheduleAt(100) {
+            viewModel.presentViewController
+                .drive(onNext: {
+                    XCTAssertNotNil($0)
+                })
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(200) {
+            viewModel.handleFailureAppleSignin(APIError.unknownError)
+        }
+        scheduler.start()
+    }
+
+    func testHandleEditButtonWithSuccess() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let apiClient = MockAPIClient(result: .success)
+        let viewModel = MypageViewModel(apiClient: apiClient)
+        viewModel.user.accept(
+            User(lineAccessToken: "test",
+                 userId: "testUserId",
+                 name: "testName",
+                 birthday: Date(),
+                 iconImageURL: nil,
+                 iconImage: nil))
+        scheduler.scheduleAt(100) {
+            viewModel.pushViewController
+                .drive(onNext: {
+                    XCTAssertNotNil($0)
+                })
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(200) {
+            viewModel.handleEditButton()
+        }
+        scheduler.start()
+    }
+
+    func testHandleEditButtonWithFailure() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let apiClient = MockAPIClient(result: .success)
+        let viewModel = MypageViewModel(apiClient: apiClient)
+        scheduler.scheduleAt(100) {
+            viewModel.presentViewController
+                .drive(onNext: {
+                    XCTAssertNotNil($0)
+                })
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(200) {
+            viewModel.handleEditButton()
+        }
+        scheduler.start()
+    }
 }

@@ -109,6 +109,7 @@ final class MypageViewModel {
     }
 }
 
+// MARK: MypageViewModelable
 extension MypageViewModel: MypageViewModelable {
     func handleSettingBarButtonItem() {
         let actionSheet = UIAlertController(
