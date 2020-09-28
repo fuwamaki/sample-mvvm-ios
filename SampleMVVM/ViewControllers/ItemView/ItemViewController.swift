@@ -97,15 +97,15 @@ final class ItemViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.presentViewController
-            .drive(onNext: { [unowned self] viewController in
-                self.present(viewController, animated: true, completion: nil)
+        viewModel.presentScreen
+            .drive(onNext: { [unowned self] in
+                self.present($0.viewController, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
 
-        viewModel.pushViewController
-            .drive(onNext: { [unowned self] viewController in
-                self.navigationController?.pushViewController(viewController, animated: true)})
+        viewModel.pushScreen
+            .drive(onNext: { [unowned self] in
+                    self.navigationController?.pushViewController($0.viewController, animated: true)})
             .disposed(by: disposeBag)
 
         registerBarButtonItem.rx.tap

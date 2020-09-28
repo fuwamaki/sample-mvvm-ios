@@ -20,9 +20,9 @@ class ItemViewModelTest: XCTestCase {
         let apiClient = MockAPIClient(result: .success)
         let viewModel = ItemViewModel(apiClient: apiClient)
         scheduler.scheduleAt(100) {
-            viewModel.pushViewController
-                .drive(onNext: { viewController in
-                    XCTAssertNotNil(viewController)
+            viewModel.pushScreen
+                .drive(onNext: {
+                    XCTAssertTrue($0 == .register)
                 })
                 .disposed(by: disposeBag)
         }
@@ -38,9 +38,9 @@ class ItemViewModelTest: XCTestCase {
         let apiClient = MockAPIClient(result: .success)
         let viewModel = ItemViewModel(apiClient: apiClient)
         scheduler.scheduleAt(100) {
-            viewModel.pushViewController
-                .drive(onNext: { viewController in
-                    XCTAssertNotNil(viewController)
+            viewModel.pushScreen
+                .drive(onNext: {
+                    XCTAssertTrue($0 == .update(item: Item(id: nil, name: "", category: "", price: 0)))
                 })
                 .disposed(by: disposeBag)
         }
@@ -61,9 +61,9 @@ class ItemViewModelTest: XCTestCase {
         let apiClient = MockAPIClient(result: .success)
         let viewModel = ItemViewModel(apiClient: apiClient)
         scheduler.scheduleAt(100) {
-            viewModel.pushViewController
-                .drive(onNext: { viewController in
-                    XCTAssertNil(viewController)
+            viewModel.pushScreen
+                .drive(onNext: {
+                    XCTAssertTrue($0 == .update(item: Item(id: nil, name: "", category: "", price: 0)))
                 })
                 .disposed(by: disposeBag)
         }
@@ -101,9 +101,9 @@ class ItemViewModelTest: XCTestCase {
         let apiClient = MockAPIClient(result: .failure)
         let viewModel = ItemViewModel(apiClient: apiClient)
         scheduler.scheduleAt(100) {
-            viewModel.presentViewController
-                .drive(onNext: { viewController in
-                    XCTAssertNotNil(viewController)
+            viewModel.presentScreen
+                .drive(onNext: {
+                    XCTAssertTrue($0 == .errorAlert(message: ""))
                 })
                 .disposed(by: disposeBag)
         }

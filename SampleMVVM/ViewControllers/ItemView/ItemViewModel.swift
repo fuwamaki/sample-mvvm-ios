@@ -9,12 +9,44 @@
 import RxSwift
 import RxCocoa
 
+enum Screen: Equatable {
+    case register
+    case update(item: Item)
+    case errorAlert(message: String)
+    case other
+
+    var viewController: UIViewController {
+        switch self {
+        case .register:
+            return ItemRegisterViewController.make()
+        case .update(let item):
+            return ItemRegisterViewController.make(item: item)
+        case .errorAlert(let message):
+            return UIAlertController.singleErrorAlert(message: message)
+        case .other:
+            return UIViewController()
+        }
+    }
+}
+
+// swiftlint:disable operator_whitespace
+func ==(a: Screen, b: Screen) -> Bool {
+    switch (a, b) {
+    case (.register, .register), (.other, .other):
+        return true
+    case (.update, .update), (.errorAlert, .errorAlert):
+        return true
+    default:
+        return false
+    }
+}
+
 protocol ItemViewModelable {
     var items: Driver<[Item]> { get }
     var isLoading: BehaviorRelay<Bool> { get }
     var viewWillAppear: PublishRelay<Void> { get }
-    var pushViewController: Driver<UIViewController> { get }
-    var presentViewController: Driver<UIViewController> { get }
+    var pushScreen: Driver<Screen> { get }
+    var presentScreen: Driver<Screen> { get }
     func handleRegisterBarButtonItem()
     func handleTableItemButton(indexPath: IndexPath?)
     func fetchItems() -> Completable
@@ -31,14 +63,14 @@ final class ItemViewModel {
         return itemsSubject.asDriver(onErrorJustReturn: [])
     }
 
-    private var pushViewControllerSubject = PublishRelay<UIViewController>()
-    var pushViewController: Driver<UIViewController> {
-        return pushViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
+    private var pushScreenSubject = PublishRelay<Screen>()
+    var pushScreen: Driver<Screen> {
+        return pushScreenSubject.asDriver(onErrorJustReturn: .other)
     }
 
-    private var presentViewControllerSubject = PublishRelay<UIViewController>()
-    var presentViewController: Driver<UIViewController> {
-        return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
+    private var presentScreenSubject = PublishRelay<Screen>()
+    var presentScreen: Driver<Screen> {
+        return presentScreenSubject.asDriver(onErrorJustReturn: .other)
     }
 
     private let disposeBag = DisposeBag()
@@ -67,14 +99,12 @@ final class ItemViewModel {
 // MARK: ItemViewModelable
 extension ItemViewModel: ItemViewModelable {
     func handleRegisterBarButtonItem() {
-        let viewController = ItemRegisterViewController.make()
-        pushViewControllerSubject.accept(viewController)
+        pushScreenSubject.accept(.register)
     }
 
     func handleTableItemButton(indexPath: IndexPath?) {
         guard let indexPath = indexPath else { return }
-        let viewController = ItemRegisterViewController.make(item: itemsSubject.value[indexPath.row])
-        pushViewControllerSubject.accept(viewController)
+        pushScreenSubject.accept(.update(item: itemsSubject.value[indexPath.row]))
     }
 
     func fetchItems() -> Completable {
@@ -88,8 +118,7 @@ extension ItemViewModel: ItemViewModelable {
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
-                    self?.presentViewControllerSubject.accept(errorAlert) })
+                    self?.presentScreenSubject.accept(.errorAlert(message: error.message)) })
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
     }
@@ -104,8 +133,7 @@ extension ItemViewModel: ItemViewModelable {
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
-                    self?.presentViewControllerSubject.accept(errorAlert) },
+                    self?.presentScreenSubject.accept(.errorAlert(message: error.message)) },
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
                     var items = self?.itemsSubject.value
