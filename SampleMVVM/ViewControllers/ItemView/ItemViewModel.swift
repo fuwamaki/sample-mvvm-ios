@@ -9,6 +9,12 @@
 import RxSwift
 import RxCocoa
 
+// memo: UIViewControllerからScreenに変更
+// メリット: ViewModelでは、ViewControllerの実体を意識しなくて良い
+// メリット: ViewModelはシンプルに書ける
+// デメリット: 画面作成時に必ずScreenのenumも設定しないといけない、2重管理になる
+// デメリット: UIViewControllerだけでなくUIAlertControllerの分もenumで管理しないとなので、管理が大変
+// デメリット: enumの変数付きはデフォルトEquatableではないので、テストが書きにくい
 enum Screen: Equatable {
     case register
     case update(item: Item)
