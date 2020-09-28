@@ -37,6 +37,7 @@
 		20382BE9233A04E800CF77A1 /* QiitaCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20382BE8233A04E800CF77A1 /* QiitaCollectionCell.swift */; };
 		20382BEB233A0CA100CF77A1 /* GithubCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BEA233A0CA100CF77A1 /* GithubCollectionCell.xib */; };
 		20382BED233A0CB100CF77A1 /* QiitaCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BEC233A0CB100CF77A1 /* QiitaCollectionCell.xib */; };
+		2043A79B2521CB0D0060DE8F /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043A79A2521CB0D0060DE8F /* MockAPIClient.swift */; };
 		204D813823D6CE900059F379 /* UIApplication+TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D813723D6CE8F0059F379 /* UIApplication+TopViewController.swift */; };
 		204D813A23D6CECA0059F379 /* UIWindow+Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D813923D6CECA0059F379 /* UIWindow+Motion.swift */; };
 		204D813C23D6CF250059F379 /* DebugViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 204D813B23D6CF250059F379 /* DebugViewController.storyboard */; };
@@ -172,6 +173,7 @@
 		20382BE8233A04E800CF77A1 /* QiitaCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaCollectionCell.swift; sourceTree = "<group>"; };
 		20382BEA233A0CA100CF77A1 /* GithubCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GithubCollectionCell.xib; sourceTree = "<group>"; };
 		20382BEC233A0CB100CF77A1 /* QiitaCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QiitaCollectionCell.xib; sourceTree = "<group>"; };
+		2043A79A2521CB0D0060DE8F /* MockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
 		204D813723D6CE8F0059F379 /* UIApplication+TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+TopViewController.swift"; sourceTree = "<group>"; };
 		204D813923D6CECA0059F379 /* UIWindow+Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Motion.swift"; sourceTree = "<group>"; };
 		204D813B23D6CF250059F379 /* DebugViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DebugViewController.storyboard; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 				209A60B623388F1600D6338C /* Info.plist */,
 				20AC3E6A23558D4F007F67ED /* TestResultType.swift */,
 				20AC3E6C23558DF0007F67ED /* TestResponse.swift */,
+				2043A79A2521CB0D0060DE8F /* MockAPIClient.swift */,
 				20AC3E6E23558E49007F67ED /* ViewModel */,
 				20B2506C251CA8BE0000E409 /* Entity */,
 			);
@@ -1125,6 +1128,7 @@
 			files = (
 				20B25078251CA8F40000E409 /* GithubRepositoryOwnerTest.swift in Sources */,
 				20B25080251CA90D0000E409 /* QiitaUserTest.swift in Sources */,
+				2043A79B2521CB0D0060DE8F /* MockAPIClient.swift in Sources */,
 				20B25084251CA91A0000E409 /* LineUserTest.swift in Sources */,
 				20B2506E251CA8D40000E409 /* ItemTest.swift in Sources */,
 				20AC3E6B23558D4F007F67ED /* TestResultType.swift in Sources */,
