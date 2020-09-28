@@ -38,6 +38,7 @@
 		20382BEB233A0CA100CF77A1 /* GithubCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BEA233A0CA100CF77A1 /* GithubCollectionCell.xib */; };
 		20382BED233A0CB100CF77A1 /* QiitaCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20382BEC233A0CB100CF77A1 /* QiitaCollectionCell.xib */; };
 		2043A79B2521CB0D0060DE8F /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043A79A2521CB0D0060DE8F /* MockAPIClient.swift */; };
+		2043A7A125222C3E0060DE8F /* ListRealmEntityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043A7A025222C3E0060DE8F /* ListRealmEntityTest.swift */; };
 		204D813823D6CE900059F379 /* UIApplication+TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D813723D6CE8F0059F379 /* UIApplication+TopViewController.swift */; };
 		204D813A23D6CECA0059F379 /* UIWindow+Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D813923D6CECA0059F379 /* UIWindow+Motion.swift */; };
 		204D813C23D6CF250059F379 /* DebugViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 204D813B23D6CF250059F379 /* DebugViewController.storyboard */; };
@@ -115,12 +116,6 @@
 		20B25063251CA86E0000E409 /* MypageViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B25062251CA86E0000E409 /* MypageViewModelTest.swift */; };
 		20B25067251CA87F0000E409 /* UserRegistrationViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B25066251CA87F0000E409 /* UserRegistrationViewModelTest.swift */; };
 		20B2506E251CA8D40000E409 /* ItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B2506D251CA8D40000E409 /* ItemTest.swift */; };
-		20B25074251CA8E40000E409 /* GithubRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B25073251CA8E40000E409 /* GithubRepositoryTest.swift */; };
-		20B25078251CA8F40000E409 /* GithubRepositoryOwnerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B25077251CA8F40000E409 /* GithubRepositoryOwnerTest.swift */; };
-		20B2507C251CA9000000E409 /* QiitaItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B2507B251CA9000000E409 /* QiitaItemTest.swift */; };
-		20B25080251CA90D0000E409 /* QiitaUserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B2507F251CA90D0000E409 /* QiitaUserTest.swift */; };
-		20B25084251CA91A0000E409 /* LineUserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B25083251CA91A0000E409 /* LineUserTest.swift */; };
-		20B25088251CA9230000E409 /* UserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B25087251CA9230000E409 /* UserTest.swift */; };
 		20C0A4EC23390DBE00B12264 /* UIAlertController+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0A4EB23390DBE00B12264 /* UIAlertController+Addition.swift */; };
 		20C0A4EE23390ED800B12264 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0A4ED23390ED800B12264 /* UIViewController+Rx.swift */; };
 		20C0A4F42339226B00B12264 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20C0A4F62339226B00B12264 /* Localizable.strings */; };
@@ -174,6 +169,7 @@
 		20382BEA233A0CA100CF77A1 /* GithubCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GithubCollectionCell.xib; sourceTree = "<group>"; };
 		20382BEC233A0CB100CF77A1 /* QiitaCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QiitaCollectionCell.xib; sourceTree = "<group>"; };
 		2043A79A2521CB0D0060DE8F /* MockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
+		2043A7A025222C3E0060DE8F /* ListRealmEntityTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRealmEntityTest.swift; sourceTree = "<group>"; };
 		204D813723D6CE8F0059F379 /* UIApplication+TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+TopViewController.swift"; sourceTree = "<group>"; };
 		204D813923D6CECA0059F379 /* UIWindow+Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Motion.swift"; sourceTree = "<group>"; };
 		204D813B23D6CF250059F379 /* DebugViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DebugViewController.storyboard; sourceTree = "<group>"; };
@@ -255,12 +251,6 @@
 		20B25062251CA86E0000E409 /* MypageViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewModelTest.swift; sourceTree = "<group>"; };
 		20B25066251CA87F0000E409 /* UserRegistrationViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistrationViewModelTest.swift; sourceTree = "<group>"; };
 		20B2506D251CA8D40000E409 /* ItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTest.swift; sourceTree = "<group>"; };
-		20B25073251CA8E40000E409 /* GithubRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepositoryTest.swift; sourceTree = "<group>"; };
-		20B25077251CA8F40000E409 /* GithubRepositoryOwnerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepositoryOwnerTest.swift; sourceTree = "<group>"; };
-		20B2507B251CA9000000E409 /* QiitaItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaItemTest.swift; sourceTree = "<group>"; };
-		20B2507F251CA90D0000E409 /* QiitaUserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaUserTest.swift; sourceTree = "<group>"; };
-		20B25083251CA91A0000E409 /* LineUserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineUserTest.swift; sourceTree = "<group>"; };
-		20B25087251CA9230000E409 /* UserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTest.swift; sourceTree = "<group>"; };
 		20C0A4EB23390DBE00B12264 /* UIAlertController+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Addition.swift"; sourceTree = "<group>"; };
 		20C0A4ED23390ED800B12264 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		20C0A4F52339226B00B12264 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -631,12 +621,7 @@
 			isa = PBXGroup;
 			children = (
 				20B2506D251CA8D40000E409 /* ItemTest.swift */,
-				20B25073251CA8E40000E409 /* GithubRepositoryTest.swift */,
-				20B25077251CA8F40000E409 /* GithubRepositoryOwnerTest.swift */,
-				20B2507B251CA9000000E409 /* QiitaItemTest.swift */,
-				20B2507F251CA90D0000E409 /* QiitaUserTest.swift */,
-				20B25083251CA91A0000E409 /* LineUserTest.swift */,
-				20B25087251CA9230000E409 /* UserTest.swift */,
+				2043A7A025222C3E0060DE8F /* ListRealmEntityTest.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1126,22 +1111,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20B25078251CA8F40000E409 /* GithubRepositoryOwnerTest.swift in Sources */,
-				20B25080251CA90D0000E409 /* QiitaUserTest.swift in Sources */,
 				2043A79B2521CB0D0060DE8F /* MockAPIClient.swift in Sources */,
-				20B25084251CA91A0000E409 /* LineUserTest.swift in Sources */,
 				20B2506E251CA8D40000E409 /* ItemTest.swift in Sources */,
 				20AC3E6B23558D4F007F67ED /* TestResultType.swift in Sources */,
 				20B25057251CA8430000E409 /* ListViewModelTest.swift in Sources */,
 				20AC3E762356BE17007F67ED /* ItemViewModelTest.swift in Sources */,
 				20B25063251CA86E0000E409 /* MypageViewModelTest.swift in Sources */,
-				20B25088251CA9230000E409 /* UserTest.swift in Sources */,
 				20B2505F251CA8620000E409 /* QiitaViewModelTest.swift in Sources */,
 				20B25067251CA87F0000E409 /* UserRegistrationViewModelTest.swift in Sources */,
 				20B2505B251CA8510000E409 /* GithubViewModelTest.swift in Sources */,
-				20B25074251CA8E40000E409 /* GithubRepositoryTest.swift in Sources */,
-				20B2507C251CA9000000E409 /* QiitaItemTest.swift in Sources */,
 				20B25053251CA8300000E409 /* ItemRegisterViewModelTest.swift in Sources */,
+				2043A7A125222C3E0060DE8F /* ListRealmEntityTest.swift in Sources */,
 				20AC3E6D23558DF0007F67ED /* TestResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
