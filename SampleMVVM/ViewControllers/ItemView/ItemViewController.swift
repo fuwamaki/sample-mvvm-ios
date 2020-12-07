@@ -112,10 +112,10 @@ final class ItemViewController: UIViewController {
         viewModel.pushScreen
             .drive(onNext: { [unowned self] screen in
                 switch screen {
-                case .register:
+                case .itemRegister:
                     let viewController = ItemRegisterViewController.make()
                     self.navigationController?.pushViewController(viewController, animated: true)
-                case .update(let item):
+                case .itemUpdate(let item):
                     let viewController = ItemRegisterViewController.make(item: item)
                     self.navigationController?.pushViewController(viewController, animated: true)
                 default: break

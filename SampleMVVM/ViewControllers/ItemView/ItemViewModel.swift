@@ -13,8 +13,8 @@ protocol ItemViewModelable {
     var items: Driver<[Item]> { get }
     var isLoading: BehaviorRelay<Bool> { get }
     var viewWillAppear: PublishRelay<Void> { get }
-    var pushScreen: Driver<ItemScreen> { get }
-    var presentScreen: Driver<ItemScreen> { get }
+    var pushScreen: Driver<Screen> { get }
+    var presentScreen: Driver<Screen> { get }
     func handleRegisterBarButtonItem()
     func handleTableItemButton(indexPath: IndexPath?)
     func fetchItems() -> Completable
@@ -31,13 +31,13 @@ final class ItemViewModel {
         return itemsSubject.asDriver(onErrorJustReturn: [])
     }
 
-    private var pushScreenSubject = PublishRelay<ItemScreen>()
-    var pushScreen: Driver<ItemScreen> {
+    private var pushScreenSubject = PublishRelay<Screen>()
+    var pushScreen: Driver<Screen> {
         return pushScreenSubject.asDriver(onErrorJustReturn: .other)
     }
 
-    private var presentScreenSubject = PublishRelay<ItemScreen>()
-    var presentScreen: Driver<ItemScreen> {
+    private var presentScreenSubject = PublishRelay<Screen>()
+    var presentScreen: Driver<Screen> {
         return presentScreenSubject.asDriver(onErrorJustReturn: .other)
     }
 
@@ -67,12 +67,12 @@ final class ItemViewModel {
 // MARK: ItemViewModelable
 extension ItemViewModel: ItemViewModelable {
     func handleRegisterBarButtonItem() {
-        pushScreenSubject.accept(.register)
+        pushScreenSubject.accept(.itemRegister)
     }
 
     func handleTableItemButton(indexPath: IndexPath?) {
         guard let indexPath = indexPath else { return }
-        pushScreenSubject.accept(.update(item: itemsSubject.value[indexPath.row]))
+        pushScreenSubject.accept(.itemUpdate(item: itemsSubject.value[indexPath.row]))
     }
 
     func fetchItems() -> Completable {
