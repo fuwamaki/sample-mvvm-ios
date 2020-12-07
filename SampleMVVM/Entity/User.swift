@@ -9,7 +9,7 @@
 import Foundation
 
 struct User {
-    let lineAccessToken: String
+    let token: String
     let userId: String
     let name: String
     let birthday: Date

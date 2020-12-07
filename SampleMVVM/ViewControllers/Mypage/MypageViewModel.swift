@@ -71,7 +71,7 @@ final class MypageViewModel {
             let userId = UserDefaultsRepository.shared.userId,
             let name = UserDefaultsRepository.shared.name,
             let birthday = UserDefaultsRepository.shared.birthday {
-            let user = User(lineAccessToken: lineAccessToken,
+            let user = User(token: lineAccessToken,
                             userId: userId,
                             name: name,
                             birthday: DateFormat.yyyyMMdd.date(from: birthday)!,

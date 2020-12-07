@@ -73,7 +73,7 @@ class UserRegistrationViewModelTest: XCTestCase {
     func testHandleSubmitButtonWithUpdate() {
         let scheduler = TestScheduler(initialClock: 0)
         let viewModel = UserRegistrationViewModel(
-            type: .update(user: User(lineAccessToken: "token", userId: "userId", name: "name", birthday: Date(), iconImageURL: nil, iconImage: nil)))
+            type: .update(user: User(token: "token", userId: "userId", name: "name", birthday: Date(), iconImageURL: nil, iconImage: nil)))
         viewModel.name.accept("testName")
         viewModel.birthday.accept(Date())
         scheduler.scheduleAt(100) {
