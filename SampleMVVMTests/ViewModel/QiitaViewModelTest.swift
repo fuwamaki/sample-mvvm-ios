@@ -90,7 +90,7 @@ class QiitaViewModelTest: XCTestCase {
         let viewModel = QiitaViewModel(apiClient: apiClient)
         viewModel.searchQuery.accept("test")
         scheduler.scheduleAt(100) {
-            viewModel.presentViewController
+            viewModel.presentScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })
@@ -148,7 +148,7 @@ class QiitaViewModelTest: XCTestCase {
         viewModel.searchedQuery.accept("test")
         var isCompleted: Bool = false
         scheduler.scheduleAt(100) {
-            viewModel.presentViewController
+            viewModel.presentScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })
@@ -180,7 +180,7 @@ class QiitaViewModelTest: XCTestCase {
             viewModel.handleSearchButton()
                 .subscribe()
                 .disposed(by: disposeBag)
-            viewModel.presentViewController
+            viewModel.presentScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })

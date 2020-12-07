@@ -20,7 +20,7 @@ class MypageViewModelTest: XCTestCase {
         let apiClient = MockAPIClient(result: .success)
         let viewModel = MypageViewModel(apiClient: apiClient)
         scheduler.scheduleAt(100) {
-            viewModel.presentViewController
+            viewModel.presentScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })
@@ -49,7 +49,7 @@ class MypageViewModelTest: XCTestCase {
         let apiClient = MockAPIClient(result: .success)
         let viewModel = MypageViewModel(apiClient: apiClient)
         scheduler.scheduleAt(100) {
-            viewModel.presentViewController
+            viewModel.presentScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })
@@ -74,7 +74,7 @@ class MypageViewModelTest: XCTestCase {
                  iconImageURL: nil,
                  iconImage: nil))
         scheduler.scheduleAt(100) {
-            viewModel.pushViewController
+            viewModel.pushScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })
@@ -92,7 +92,7 @@ class MypageViewModelTest: XCTestCase {
         let apiClient = MockAPIClient(result: .success)
         let viewModel = MypageViewModel(apiClient: apiClient)
         scheduler.scheduleAt(100) {
-            viewModel.presentViewController
+            viewModel.presentScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })

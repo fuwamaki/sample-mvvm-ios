@@ -124,7 +124,7 @@ class ItemRegisterViewModelTest: XCTestCase {
         viewModel.categoryText.accept("testCategory")
         viewModel.priceText.accept("100")
         scheduler.scheduleAt(100) {
-            viewModel.presentViewController
+            viewModel.presentScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })
@@ -176,7 +176,7 @@ class ItemRegisterViewModelTest: XCTestCase {
         viewModel.categoryText.accept("testNewCategory")
         viewModel.priceText.accept("100")
         scheduler.scheduleAt(100) {
-            viewModel.presentViewController
+            viewModel.presentScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })

@@ -20,14 +20,14 @@ class UserRegistrationViewModelTest: XCTestCase {
         let viewModel = UserRegistrationViewModel(
             type: .create(lineUser: LineUser(accessToken: "token")))
         scheduler.scheduleAt(100) {
-            viewModel.presentViewController
+            viewModel.presentScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })
                 .disposed(by: disposeBag)
         }
         scheduler.scheduleAt(200) {
-            viewModel.handleChangeImageButton(UIImagePickerController())
+            viewModel.handleChangeImageButton()
         }
         scheduler.start()
     }
@@ -38,7 +38,7 @@ class UserRegistrationViewModelTest: XCTestCase {
         let viewModel = UserRegistrationViewModel(
             type: .create(lineUser: LineUser(accessToken: "token")))
         scheduler.scheduleAt(100) {
-            viewModel.presentViewController
+            viewModel.presentScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })
@@ -58,7 +58,7 @@ class UserRegistrationViewModelTest: XCTestCase {
         viewModel.name.accept("testName")
         viewModel.birthday.accept(Date())
         scheduler.scheduleAt(100) {
-            viewModel.presentViewController
+            viewModel.presentScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })

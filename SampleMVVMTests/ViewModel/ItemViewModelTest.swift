@@ -22,7 +22,7 @@ class ItemViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.pushScreen
                 .drive(onNext: {
-                    XCTAssertTrue($0 == .register)
+                    XCTAssertTrue($0 == .itemRegister)
                 })
                 .disposed(by: disposeBag)
         }
@@ -40,7 +40,7 @@ class ItemViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.pushScreen
                 .drive(onNext: {
-                    XCTAssertTrue($0 == .update(item: Item(id: nil, name: "", category: "", price: 0)))
+                    XCTAssertTrue($0 == .itemUpdate(item: Item(id: nil, name: "", category: "", price: 0)))
                 })
                 .disposed(by: disposeBag)
         }
@@ -63,7 +63,7 @@ class ItemViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.pushScreen
                 .drive(onNext: {
-                    XCTAssertTrue($0 == .update(item: Item(id: nil, name: "", category: "", price: 0)))
+                    XCTAssertTrue($0 == .itemUpdate(item: Item(id: nil, name: "", category: "", price: 0)))
                 })
                 .disposed(by: disposeBag)
         }

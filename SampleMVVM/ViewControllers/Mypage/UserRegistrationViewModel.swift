@@ -120,8 +120,7 @@ extension UserRegistrationViewModel: UserRegistrationViewModelable {
 
 // MARK: imagePickerController
 extension UserRegistrationViewModel {
-    func imagePicker(_ picker: UIImagePickerController,
-                     info: [UIImagePickerController.InfoKey: Any]) {
+    func imagePicker(_ picker: UIImagePickerController, info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
             presentScreenSubject.accept(.crop(picker: picker, image: image))
         }

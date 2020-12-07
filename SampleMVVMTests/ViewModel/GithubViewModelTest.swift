@@ -88,7 +88,7 @@ class GithubViewModelTest: XCTestCase {
         let viewModel = GithubViewModel(apiClient: apiClient)
         viewModel.searchQuery.accept("test")
         scheduler.scheduleAt(100) {
-            viewModel.presentViewController
+            viewModel.presentScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })
@@ -146,7 +146,7 @@ class GithubViewModelTest: XCTestCase {
         viewModel.searchedQuery.accept("test")
         var isCompleted: Bool = false
         scheduler.scheduleAt(100) {
-            viewModel.presentViewController
+            viewModel.presentScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })
@@ -176,7 +176,7 @@ class GithubViewModelTest: XCTestCase {
             viewModel.handleSearchButton()
                 .subscribe()
                 .disposed(by: disposeBag)
-            viewModel.presentViewController
+            viewModel.presentScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })

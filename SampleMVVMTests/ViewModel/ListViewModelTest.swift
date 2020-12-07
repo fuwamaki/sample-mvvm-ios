@@ -20,7 +20,7 @@ class ListViewModelTest: XCTestCase {
         let apiClient = MockAPIClient(result: .success)
         let viewModel = ListViewModel(apiClient: apiClient)
         scheduler.scheduleAt(100) {
-            viewModel.pushViewController
+            viewModel.pushScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })
@@ -38,7 +38,7 @@ class ListViewModelTest: XCTestCase {
         let apiClient = MockAPIClient(result: .failure)
         let viewModel = ListViewModel(apiClient: apiClient)
         scheduler.scheduleAt(100) {
-            viewModel.pushViewController
+            viewModel.pushScreen
                 .drive(onNext: {
                     XCTAssertNotNil($0)
                 })

@@ -23,3 +23,26 @@ enum Screen {
     case errorAlertAndDismiss(message: String)
     case other
 }
+
+// for unit test
+// swiftlint:disable operator_whitespace
+func ==(a: Screen, b: Screen) -> Bool {
+    switch (a, b) {
+    case (.itemRegister, .itemRegister),
+         (.itemUpdate, .itemUpdate),
+         (.github, .github),
+         (.qiita, .qiita),
+         (.createUser, .createUser),
+         (.updateUser, .updateUser),
+         (.mypageActionSheet, .mypageActionSheet),
+         (.imagePicker, .imagePicker),
+         (.crop, .crop),
+         (.safari, .safari),
+         (.errorAlert, .errorAlert),
+         (.errorAlertAndDismiss, .errorAlertAndDismiss),
+         (.other, .other):
+        return true
+    default:
+        return false
+    }
+}
