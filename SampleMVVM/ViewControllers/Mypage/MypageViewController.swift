@@ -89,16 +89,47 @@ final class MypageViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.presentViewController
-            .drive(onNext: { [unowned self] viewController in
-                self.present(viewController, animated: true, completion: nil)
+        viewModel.presentScreen
+            .drive(onNext: { [unowned self] screen in
+                switch screen {
+                case .errorAlert(let message):
+                    let alert = UIAlertController.singleErrorAlert(message: message)
+                    self.present(alert, animated: true, completion: nil)
+                case .mypageActionSheet:
+                    let actionSheet = UIAlertController(
+                        title: R.string.localizable.mypage_setting_menu_title(),
+                        message: nil,
+                        preferredStyle: .actionSheet)
+                    actionSheet.addAction(
+                        UIAlertAction(
+                            title: R.string.localizable.mypage_setting_menu_logout(),
+                            style: .destructive,
+                            handler: { _ in
+                                self.viewModel.handleLogoutInSettingBarButtonItem()
+                            }))
+                    actionSheet.addAction(
+                        UIAlertAction(
+                            title: R.string.localizable.mypage_setting_menu_cancel(),
+                            style: .cancel,
+                            handler: nil))
+                    self.present(actionSheet, animated: true, completion: nil)
+                default: break
+                }
             })
             .disposed(by: disposeBag)
 
-        viewModel.pushViewController
-            .drive(onNext: { [unowned self] viewController in
-                self.navigationController?
-                    .pushViewController(viewController, animated: true)})
+        viewModel.pushScreen
+            .drive(onNext: { [unowned self] screen in
+                switch screen {
+                case .createUser(let lineUser):
+                    let viewController = UserRegistrationViewController.make(type: .create(lineUser: lineUser))
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                case .updateUser(let user):
+                    let viewController = UserRegistrationViewController.make(type: .update(user: user))
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                default: break
+                }
+            })
             .disposed(by: disposeBag)
 
         viewModel.completedSubject

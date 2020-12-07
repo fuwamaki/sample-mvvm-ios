@@ -14,8 +14,8 @@ protocol ListViewModelable {
     var viewWillAppear: PublishRelay<Void> { get }
     var contentsSubject: BehaviorRelay<[ListContents]> { get }
     var contents: Driver<[ListContents]> { get }
-    var pushViewController: Driver<UIViewController> { get }
-    var presentViewController: Driver<UIViewController> { get }
+    var pushScreen: Driver<Screen> { get }
+    var presentScreen: Driver<Screen> { get }
     func showGithubView()
     func showQiitaView()
 }
@@ -33,14 +33,14 @@ final class ListViewModel {
         return contentsSubject.asDriver(onErrorJustReturn: [])
     }
 
-    private var pushViewControllerSubject = PublishRelay<UIViewController>()
-    var pushViewController: Driver<UIViewController> {
-        return pushViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
+    private var pushScreenSubject = PublishRelay<Screen>()
+    var pushScreen: Driver<Screen> {
+        return pushScreenSubject.asDriver(onErrorJustReturn: .other)
     }
 
-    private var presentViewControllerSubject = PublishRelay<UIViewController>()
-    var presentViewController: Driver<UIViewController> {
-        return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
+    private var presentScreenSubject = PublishRelay<Screen>()
+    var presentScreen: Driver<Screen> {
+        return presentScreenSubject.asDriver(onErrorJustReturn: .other)
     }
 
     private let disposeBag = DisposeBag()
@@ -130,8 +130,7 @@ final class ListViewModel {
                     guard let `self` = self, let error = error as? APIError else { return }
                     self.apiAccessCount.accept(self.apiAccessCount.value-1)
                     if self.apiAccessCount.value == 0 {
-                        let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
-                        self.presentViewControllerSubject.accept(errorAlert)
+                        self.presentScreenSubject.accept(.errorAlert(message: error.message))
                     }})
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
@@ -155,8 +154,7 @@ final class ListViewModel {
                     guard let `self` = self, let error = error as? APIError else { return }
                     self.apiAccessCount.accept(self.apiAccessCount.value-1)
                     if self.apiAccessCount.value == 0 {
-                        let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
-                        self.presentViewControllerSubject.accept(errorAlert)
+                        self.presentScreenSubject.accept(.errorAlert(message: error.message))
                     }})
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
@@ -166,10 +164,10 @@ final class ListViewModel {
 // MARK: ListViewModelable
 extension ListViewModel: ListViewModelable {
     func showGithubView() {
-        pushViewControllerSubject.accept(GithubViewController.make())
+        pushScreenSubject.accept(.github)
     }
 
     func showQiitaView() {
-        pushViewControllerSubject.accept(QiitaViewController.make())
+        pushScreenSubject.accept(.qiita)
     }
 }

@@ -18,16 +18,17 @@ protocol UserRegistrationViewModelable {
     var birthday: BehaviorRelay<Date?> { get }
     var iconImageURL: BehaviorRelay<URL?> { get }
     var uploadImage: BehaviorRelay<UIImage?> { get }
-    var presentViewController: Driver<UIViewController> { get }
-    func handleChangeImageButton(_ imagePickerController: UIImagePickerController)
+    var presentScreen: Driver<Screen> { get }
+    func handleChangeImageButton()
     func handleSubmitButton()
-    func imagePicker(_ picker: UIImagePickerController, info: [UIImagePickerController.InfoKey: Any], viewController: UserRegistrationViewController)
-    func cropView(_ cropViewController: CropViewController, image: UIImage)
+    func imagePicker(_ picker: UIImagePickerController, info: [UIImagePickerController.InfoKey: Any])
+    func cropView(image: UIImage)
 }
 
 final class UserRegistrationViewModel {
 
     private(set) var dismissSubject = BehaviorRelay<Bool>(value: false)
+    private(set) var cropDismissSubject = BehaviorRelay<Bool>(value: false)
     private(set) var completedSubject = BehaviorRelay<Bool>(value: false)
     private(set) var name = BehaviorRelay<String?>(value: nil)
     private(set) var birthday = BehaviorRelay<Date?>(value: nil)
@@ -35,9 +36,9 @@ final class UserRegistrationViewModel {
 
     var uploadImage = BehaviorRelay<UIImage?>(value: nil)
 
-    private var presentViewControllerSubject = PublishRelay<UIViewController>()
-    var presentViewController: Driver<UIViewController> {
-        return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
+    private var presentScreenSubject = PublishRelay<Screen>()
+    var presentScreen: Driver<Screen> {
+        return presentScreenSubject.asDriver(onErrorJustReturn: .other)
     }
 
     private let disposeBag = DisposeBag()
@@ -65,26 +66,22 @@ final class UserRegistrationViewModel {
 
 // MARK: UserRegistrationViewModelable
 extension UserRegistrationViewModel: UserRegistrationViewModelable {
-    func handleChangeImageButton(_ imagePickerController: UIImagePickerController) {
+    func handleChangeImageButton() {
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-            presentViewControllerSubject.accept(imagePickerController)
+            presentScreenSubject.accept(.imagePicker)
         }
     }
 
     func handleSubmitButton() {
         guard let name = name.value, let birthday = birthday.value else {
-            let errorAlert = UIAlertController.singleErrorAlert(message: "未入力の項目があります")
-            presentViewControllerSubject.accept(errorAlert)
+            presentScreenSubject.accept(.errorAlert(message: "未入力の項目があります"))
             return
         }
         let entity = UserRealmEntity()
         switch type {
         case .create(let lineUser):
             guard let userId = lineUser.userId else {
-                let errorAlert = UIAlertController.singleErrorAlert(message: "エラーが発生しました。再度ログインし直してください。") {
-                    self.dismissSubject.accept(true)
-                }
-                presentViewControllerSubject.accept(errorAlert)
+                presentScreenSubject.accept(.errorAlertAndDismiss(message: "エラーが発生しました。再度ログインし直してください。"))
                 return
             }
             entity.userId = userId
@@ -99,7 +96,6 @@ extension UserRegistrationViewModel: UserRegistrationViewModelable {
             entity.iconImageUrl = iconImageURL.value?.absoluteString ?? ""
             entity.iconImageData = uploadImage.value?.pngData() ?? Data()
         }
-
         UserRealmRepository<UserRealmEntity>.save(user: entity) { [weak self] result in
             switch result {
             case .success:
@@ -116,8 +112,7 @@ extension UserRegistrationViewModel: UserRegistrationViewModelable {
                 self?.dismissSubject.accept(true)
                 self?.completedSubject.accept(true)
             case .failure:
-                let errorAlert = UIAlertController.singleErrorAlert(message: "保存に失敗しました")
-                self?.presentViewControllerSubject.accept(errorAlert)
+                self?.presentScreenSubject.accept(.errorAlert(message: "保存に失敗しました"))
             }
         }
     }
@@ -125,19 +120,18 @@ extension UserRegistrationViewModel: UserRegistrationViewModelable {
 
 // MARK: imagePickerController
 extension UserRegistrationViewModel {
-    func imagePicker(_ picker: UIImagePickerController, info: [UIImagePickerController.InfoKey: Any], viewController: UserRegistrationViewController) {
+    func imagePicker(_ picker: UIImagePickerController,
+                     info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
-            let cropViewController = CropViewController(croppingStyle: .circular, image: image)
-            cropViewController.delegate = viewController
-            picker.pushViewController(cropViewController, animated: true)
+            presentScreenSubject.accept(.crop(picker: picker, image: image))
         }
     }
 }
 
 // MARK: CropViewController
 extension UserRegistrationViewModel {
-    func cropView(_ cropViewController: CropViewController, image: UIImage) {
+    func cropView(image: UIImage) {
         uploadImage.accept(image)
-        cropViewController.dismiss(animated: true, completion: nil)
+        cropDismissSubject.accept(true)
     }
 }

@@ -18,7 +18,7 @@ protocol ItemRegisterViewModelable {
     var editItem: Item? { get set }
     var mode: ItemRegisterMode { get }
     var isLoading: BehaviorRelay<Bool> { get }
-    var presentViewController: Driver<UIViewController> { get }
+    var presentScreen: Driver<Screen> { get }
     var dismissSubject: BehaviorRelay<Bool> { get }
     var completedSubject: BehaviorRelay<Bool> { get }
     var itemId: BehaviorRelay<Int?> { get }
@@ -69,9 +69,9 @@ final class ItemRegisterViewModel {
             .share(replay: 1)
     }()
 
-    private var presentViewControllerSubject = PublishRelay<UIViewController>()
-    var presentViewController: Driver<UIViewController> {
-        return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
+    private var presentScreenSubject = PublishRelay<Screen>()
+    var presentScreen: Driver<Screen> {
+        return presentScreenSubject.asDriver(onErrorJustReturn: .other)
     }
 
     private let disposeBag = DisposeBag()
@@ -100,8 +100,8 @@ final class ItemRegisterViewModel {
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
-                    self?.presentViewControllerSubject.accept(errorAlert) },
+                    self?.presentScreenSubject.accept(.errorAlert(message: error.message))
+                },
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
                     self?.completedSubject.accept(true)
@@ -120,8 +120,8 @@ final class ItemRegisterViewModel {
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
-                    self?.presentViewControllerSubject.accept(errorAlert) },
+                    self?.presentScreenSubject.accept(.errorAlert(message: error.message))
+                },
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
                     self?.completedSubject.accept(true)

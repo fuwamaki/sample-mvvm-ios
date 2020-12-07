@@ -16,10 +16,11 @@ protocol MypageViewModelable {
     var isLoading: BehaviorRelay<Bool> { get }
     var isSignedIn: BehaviorRelay<Bool> { get }
     var user: BehaviorRelay<User?> { get }
-    var pushViewController: Driver<UIViewController> { get }
-    var presentViewController: Driver<UIViewController> { get }
+    var pushScreen: Driver<Screen> { get }
+    var presentScreen: Driver<Screen> { get }
     var completedSubject: BehaviorRelay<Bool> { get }
     func handleSettingBarButtonItem()
+    func handleLogoutInSettingBarButtonItem()
     func handleLineLoginButton(viewController: UIViewController) -> Completable
     func handleAppleSigninButton(viewController: MypageViewController)
     func handleCompletedAppleSignin(_ authorization: ASAuthorization)
@@ -35,14 +36,14 @@ final class MypageViewModel {
     private(set) var isSignedIn = BehaviorRelay<Bool>(value: false)
     private(set) var user = BehaviorRelay<User?>(value: nil)
 
-    private var pushViewControllerSubject = PublishRelay<UIViewController>()
-    var pushViewController: Driver<UIViewController> {
-        return pushViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
+    private var pushScreenSubject = PublishRelay<Screen>()
+    var pushScreen: Driver<Screen> {
+        return pushScreenSubject.asDriver(onErrorJustReturn: .other)
     }
 
-    private var presentViewControllerSubject = PublishRelay<UIViewController>()
-    var presentViewController: Driver<UIViewController> {
-        return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
+    private var presentScreenSubject = PublishRelay<Screen>()
+    var presentScreen: Driver<Screen> {
+        return presentScreenSubject.asDriver(onErrorJustReturn: .other)
     }
 
     private let disposeBag = DisposeBag()
@@ -112,24 +113,12 @@ final class MypageViewModel {
 // MARK: MypageViewModelable
 extension MypageViewModel: MypageViewModelable {
     func handleSettingBarButtonItem() {
-        let actionSheet = UIAlertController(
-            title: R.string.localizable.mypage_setting_menu_title(),
-            message: nil,
-            preferredStyle: .actionSheet)
-        actionSheet.addAction(
-            UIAlertAction(
-                title: R.string.localizable.mypage_setting_menu_logout(),
-                style: .destructive,
-                handler: { _ in
-                    UserDefaultsRepository.shared.removeUser()
-                    self.checkUser()
-            }))
-        actionSheet.addAction(
-            UIAlertAction(
-                title: R.string.localizable.mypage_setting_menu_cancel(),
-                style: .cancel,
-                handler: nil))
-        presentViewControllerSubject.accept(actionSheet)
+        presentScreenSubject.accept(.mypageActionSheet)
+    }
+
+    func handleLogoutInSettingBarButtonItem() {
+        UserDefaultsRepository.shared.removeUser()
+        checkUser()
     }
 
     // TODO: 状態管理ベースでリファクタリング
@@ -145,22 +134,20 @@ extension MypageViewModel: MypageViewModelable {
                                 self?.checkUser()
                                 self?.completedSubject.accept(true)
                             } else {
-                                let viewController = UserRegistrationViewController.make(type: .create(lineUser: lineUser))
-                                self?.pushViewControllerSubject.accept(viewController)
+                                self?.pushScreenSubject.accept(.createUser(lineUser: lineUser))
                             }
                         case .failure(let error):
                             guard let error = error as? APIError else { return }
                             self?.isLoading.accept(false)
-                            let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
-                            self?.presentViewControllerSubject.accept(errorAlert)
+                            self?.presentScreenSubject.accept(.errorAlert(message: error.message))
                         }
                     })
                 },
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
-                    self?.presentViewControllerSubject.accept(errorAlert) })
+                    self?.presentScreenSubject.accept(.errorAlert(message: error.message))
+                })
             .map { _ in }
             .asCompletable()
     }
@@ -197,17 +184,14 @@ extension MypageViewModel: MypageViewModelable {
     }
 
     func handleFailureAppleSignin(_ error: Error) {
-        let errorAlert = UIAlertController.singleErrorAlert(message: error.localizedDescription)
-        presentViewControllerSubject.accept(errorAlert)
+        presentScreenSubject.accept(.errorAlert(message: error.localizedDescription))
     }
 
     func handleEditButton() {
         guard let user = user.value else {
-            let errorAlert = UIAlertController.singleErrorAlert(message: "ユーザ情報を正しく取得できません。再度ログインしてください。")
-            presentViewControllerSubject.accept(errorAlert)
+            presentScreenSubject.accept(.errorAlert(message: "ユーザ情報を正しく取得できません。再度ログインしてください。"))
             return
         }
-        let viewController = UserRegistrationViewController.make(type: .update(user: user))
-        pushViewControllerSubject.accept(viewController)
+        pushScreenSubject.accept(.updateUser(user: user))
     }
 }

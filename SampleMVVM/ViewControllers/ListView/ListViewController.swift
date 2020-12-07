@@ -90,14 +90,28 @@ final class ListViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.pushViewController
-            .drive(onNext: { [unowned self] viewController in
-                self.navigationController?.pushViewController(viewController, animated: true)})
+        viewModel.presentScreen
+            .drive(onNext: { [unowned self] screen in
+                switch screen {
+                case .errorAlert(let message):
+                    let alert = UIAlertController.singleErrorAlert(message: message)
+                    self.present(alert, animated: true, completion: nil)
+                default: break
+                }
+            })
             .disposed(by: disposeBag)
 
-        viewModel.presentViewController
-            .drive(onNext: { [unowned self] viewController in
-                self.present(viewController, animated: true, completion: nil)
+        viewModel.pushScreen
+            .drive(onNext: { [unowned self] screen in
+                switch screen {
+                case .github:
+                    let viewController = GithubViewController.make()
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                case .qiita:
+                    let viewController = QiitaViewController.make()
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                default: break
+                }
             })
             .disposed(by: disposeBag)
 

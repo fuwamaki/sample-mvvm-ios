@@ -8,7 +8,6 @@
 
 import RxSwift
 import RxCocoa
-import SafariServices
 
 protocol QiitaViewModelable {
     var isLoading: BehaviorRelay<Bool> { get }
@@ -18,8 +17,7 @@ protocol QiitaViewModelable {
     var searchQueryValid: Observable<Bool> { get }
     var searchedQueryValid: Observable<Bool> { get }
     var qiitaItems: Driver<[QiitaItem]> { get }
-    var pushViewController: Driver<UIViewController> { get }
-    var presentViewController: Driver<UIViewController> { get }
+    var presentScreen: Driver<Screen> { get }
     func handleSearchButton() -> Completable
     func handleFavoriteBarButton() -> Completable
     func showQiitaWebView(indexPath: IndexPath)
@@ -49,14 +47,9 @@ final class QiitaViewModel {
         return qiitaItemsSubject.asDriver(onErrorJustReturn: [])
     }
 
-    private var pushViewControllerSubject = PublishRelay<UIViewController>()
-    var pushViewController: Driver<UIViewController> {
-        return pushViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
-    }
-
-    private var presentViewControllerSubject = PublishRelay<UIViewController>()
-    var presentViewController: Driver<UIViewController> {
-        return presentViewControllerSubject.asDriver(onErrorJustReturn: UIViewController())
+    private var presentScreenSubject = PublishRelay<Screen>()
+    var presentScreen: Driver<Screen> {
+        return presentScreenSubject.asDriver(onErrorJustReturn: .other)
     }
 
     private let disposeBag = DisposeBag()
@@ -68,10 +61,6 @@ final class QiitaViewModel {
 
     init(apiClient: APIClientable) {
         self.apiClient = apiClient
-        subscribe()
-    }
-
-    private func subscribe() {
     }
 }
 
@@ -91,18 +80,16 @@ extension QiitaViewModel: QiitaViewModelable {
                     return Completable.empty()
                 }
                 guard !$0 else {
-                    let errorAlert = UIAlertController.singleErrorAlert(message: "既にお気に入り済みのキーワードです")
-                    self.presentViewControllerSubject.accept(errorAlert)
+                    self.presentScreenSubject.accept(.errorAlert(message: "既にお気に入り済みのキーワードです"))
                     return Completable.empty()
                 }
                 return self.saveQiitaItem(keyword: keyword)
-        }
+            }
     }
 
     func showQiitaWebView(indexPath: IndexPath) {
         guard let url = URL(string: qiitaItemsSubject.value[indexPath.row].url) else { return }
-        let safariViewController = SFSafariViewController(url: url)
-        presentViewControllerSubject.accept(safariViewController)
+        presentScreenSubject.accept(.safari(url: url))
     }
 }
 
@@ -114,13 +101,12 @@ extension QiitaViewModel {
         return ItemRealmRepository<ListRealmEntity>.save(item: entity)
             .do(
                 onError: { [weak self] error in
-                    let errorAlert = UIAlertController.singleErrorAlert(message: error.localizedDescription)
-                    self?.presentViewControllerSubject.accept(errorAlert)
+                    self?.presentScreenSubject.accept(.errorAlert(message: error.localizedDescription))
                 },
                 onCompleted: { [weak self] in
                     UserDefaultsRepository.shared.oneUp(type: .incrementListId)
                     self?.completedSubject.accept(true)
-            })
+                })
     }
 
     // 保存するキーワードが、既にローカルデータに保存済みかどうかを確認
@@ -130,10 +116,10 @@ extension QiitaViewModel {
                 .subscribe(
                     onNext: { entity in
                         single(.success(entity != nil))
-                },
+                    },
                     onError: { error in
                         single(.error(error))
-                })
+                    })
         }
     }
 
@@ -149,9 +135,8 @@ extension QiitaViewModel {
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    let errorAlert = UIAlertController.singleErrorAlert(message: error.message)
-                    self?.presentViewControllerSubject.accept(errorAlert)
-            })
+                    self?.presentScreenSubject.accept(.errorAlert(message: error.message))
+                })
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
     }

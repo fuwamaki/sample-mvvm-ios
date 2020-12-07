@@ -93,11 +93,9 @@ final class UserRegistrationViewController: UIViewController {
         guard let viewModel = viewModel else { return }
 
         viewModel.dismissSubject
-            .subscribe(onNext: { [weak self] isDismiss in
-                if isDismiss {
-                    self?.navigationController?
-                        .popViewController(animated: true)
-                }
+            .filter { $0 }
+            .subscribe(onNext: { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
 
@@ -108,9 +106,25 @@ final class UserRegistrationViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.presentViewController
-            .drive(onNext: { [unowned self] viewController in
-                self.present(viewController, animated: true, completion: nil)
+        viewModel.presentScreen
+            .drive(onNext: { [unowned self] screen in
+                switch screen {
+                case .imagePicker:
+                    self.present(self.imagePickerController, animated: true, completion: nil)
+                case .crop(let picker, let image):
+                    let cropViewController = CropViewController(croppingStyle: .circular, image: image)
+                    cropViewController.delegate = self
+                    picker.pushViewController(cropViewController, animated: true)
+                case .errorAlert(let message):
+                    let alert = UIAlertController.singleErrorAlert(message: message)
+                    self.present(alert, animated: true, completion: nil)
+                case .errorAlertAndDismiss(let message):
+                    let alert = UIAlertController.singleErrorAlert(message: message)
+                    self.present(alert, animated: true) {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                default: break
+                }
             })
             .disposed(by: disposeBag)
 
@@ -126,7 +140,7 @@ final class UserRegistrationViewController: UIViewController {
 
         changeImageButton.rx.tap
             .subscribe(onNext: { [unowned self] in
-                viewModel.handleChangeImageButton(self.imagePickerController)
+                self.viewModel?.handleChangeImageButton()
             })
             .disposed(by: disposeBag)
 
@@ -165,14 +179,15 @@ final class UserRegistrationViewController: UIViewController {
 // MARK: UIImagePickerControllerDelegate
 extension UserRegistrationViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        viewModel?.imagePicker(picker, info: info, viewController: self)
+        viewModel?.imagePicker(picker, info: info)
     }
 }
 
 // MARK: CropViewControllerDelegate
 extension UserRegistrationViewController: CropViewControllerDelegate {
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
-        viewModel?.cropView(cropViewController, image: image)
+        viewModel?.cropView(image: image)
+        cropViewController.dismiss(animated: true, completion: nil)
     }
 
     func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {

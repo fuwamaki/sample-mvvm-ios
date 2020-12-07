@@ -96,16 +96,18 @@ final class GithubViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.presentViewController
-            .drive(onNext: { [unowned self] viewController in
-                self.present(viewController, animated: true, completion: nil)
+        viewModel.presentScreen
+            .drive(onNext: { [unowned self] screen in
+                switch screen {
+                case .safari(let url):
+                    let safari = SFSafariViewController(url: url)
+                    self.present(safari, animated: true, completion: nil)
+                case .errorAlert(let message):
+                    let alert = UIAlertController.singleErrorAlert(message: message)
+                    self.present(alert, animated: true, completion: nil)
+                default: break
+                }
             })
-            .disposed(by: disposeBag)
-
-        viewModel.pushViewController
-            .drive(onNext: { [unowned self] viewController in
-                self.navigationController?
-                    .pushViewController(viewController, animated: true)})
             .disposed(by: disposeBag)
 
         viewModel.completedSubject
