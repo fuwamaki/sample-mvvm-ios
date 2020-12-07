@@ -34,7 +34,6 @@
 "mypage_line_login" = "LINE Login";
 "mypage_apple_login" = "Sign in with Apple";
 "mypage_apple_login_description" = "Custom Apple Sign in Button";
-"mypage_apple_Signin_description" = "Default Apple Sign in Button";
 "mypage_edit" = "Edit";
 "mypage_setting_menu_title" = "Setting";
 "mypage_setting_menu_logout" = "Logout";

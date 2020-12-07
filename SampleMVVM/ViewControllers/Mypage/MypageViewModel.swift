@@ -22,7 +22,6 @@ protocol MypageViewModelable {
     func handleSettingBarButtonItem()
     func handleLogoutInSettingBarButtonItem()
     func handleLineLoginButton(viewController: UIViewController) -> Completable
-    func handleAppleSigninButton(viewController: MypageViewController)
     func handleCompletedAppleSignin(_ authorization: ASAuthorization)
     func handleFailureAppleSignin(_ error: Error)
     func handleEditButton()
@@ -95,7 +94,8 @@ final class MypageViewModel {
                     UserDefaultsRepository.shared.lineAccessToken = lineUser.accessToken
                     UserDefaultsRepository.shared.name = userEntity.name
                     UserDefaultsRepository.shared.birthday = DateFormat.yyyyMMdd.string(from: userEntity.birthday)
-                    if userEntity.iconImageUrl != "", let imageUrl = URL(string: userEntity.iconImageUrl) {
+                    if userEntity.iconImageUrl != "",
+                       let imageUrl = URL(string: userEntity.iconImageUrl) {
                         UserDefaultsRepository.shared.pictureUrl = imageUrl
                     }
                     UserDefaultsRepository.shared.iconImage = userEntity.iconImageData
@@ -150,16 +150,6 @@ extension MypageViewModel: MypageViewModelable {
                 })
             .map { _ in }
             .asCompletable()
-    }
-
-    func handleAppleSigninButton(viewController: MypageViewController) {
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = viewController
-        authorizationController.presentationContextProvider = viewController
-        authorizationController.performRequests()
     }
 
     func handleCompletedAppleSignin(_ authorization: ASAuthorization) {

@@ -32,17 +32,6 @@ class MypageViewModelTest: XCTestCase {
         scheduler.start()
     }
 
-    func testHandleAppleSigninButton() {
-        let scheduler = TestScheduler(initialClock: 0)
-        let apiClient = MockAPIClient(result: .success)
-        let viewModel = MypageViewModel(apiClient: apiClient)
-        scheduler.scheduleAt(100) {
-            viewModel.handleAppleSigninButton(
-                viewController: MypageViewController())
-        }
-        scheduler.start()
-    }
-
     func testHandleFailureAppleSignin() {
         let disposeBag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)

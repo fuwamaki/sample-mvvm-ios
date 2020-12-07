@@ -26,8 +26,6 @@ final class MypageViewController: UIViewController {
     @IBOutlet private weak var lineLoginButton: UIButton!
     @IBOutlet private weak var appleLoginDescriptionLabel: UILabel!
     @IBOutlet private weak var appleLoginButton: UIButton!
-    @IBOutlet private weak var appleSigninDescriptionLabel: UILabel!
-    @IBOutlet private weak var appleSigninStackView: UIStackView!
 
     private lazy var indicator: UIActivityIndicatorView = {
         let indicator = defaultIndicator
@@ -63,9 +61,6 @@ final class MypageViewController: UIViewController {
         iconImageView.layer.shadowColor = UIColor.label.cgColor
         iconImageView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
         lineLoginButton.setTitle(R.string.localizable.mypage_line_login(), for: .normal)
-        let authorizationButton = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .white)
-        authorizationButton.addTarget(self, action: #selector(handleAppleSignIn), for: .touchUpInside)
-        self.appleSigninStackView.addArrangedSubview(authorizationButton)
     }
 
     private func setupTexts() {
@@ -74,7 +69,6 @@ final class MypageViewController: UIViewController {
         editButton.setTitle(R.string.localizable.mypage_edit(), for: .normal)
         appleLoginButton.setTitle(R.string.localizable.mypage_apple_login(), for: .normal)
         appleLoginDescriptionLabel.text = R.string.localizable.mypage_apple_login_description()
-        appleSigninDescriptionLabel.text = R.string.localizable.mypage_apple_Signin_description()
     }
 
     // swiftlint:disable function_body_length
@@ -183,13 +177,15 @@ final class MypageViewController: UIViewController {
 
         appleLoginButton.rx.tap
             .subscribe(onNext: { [unowned self] in
-                self.viewModel.handleAppleSigninButton(viewController: self)
+                let appleIDProvider = ASAuthorizationAppleIDProvider()
+                let request = appleIDProvider.createRequest()
+                request.requestedScopes = [.fullName, .email]
+                let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+                authorizationController.delegate = self
+                authorizationController.presentationContextProvider = self
+                authorizationController.performRequests()
             })
             .disposed(by: disposeBag)
-    }
-
-    @objc private func handleAppleSignIn() {
-        viewModel.handleAppleSigninButton(viewController: self)
     }
 }
 
