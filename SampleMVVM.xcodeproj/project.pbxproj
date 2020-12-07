@@ -75,6 +75,7 @@
 		206F688723E162260025D559 /* Alamofire+DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688623E162260025D559 /* Alamofire+DataRequest.swift */; };
 		206F688923E1AED40025D559 /* UIColor+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688823E1AED40025D559 /* UIColor+Addition.swift */; };
 		206F688B23E1AF930025D559 /* UIButton+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688A23E1AF930025D559 /* UIButton+Addition.swift */; };
+		2075625A257E2161002AC510 /* MVVMError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20756259257E2161002AC510 /* MVVMError.swift */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
 		209A60A723388F1600D6338C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A623388F1600D6338C /* Assets.xcassets */; };
@@ -206,6 +207,7 @@
 		206F688623E162260025D559 /* Alamofire+DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire+DataRequest.swift"; sourceTree = "<group>"; };
 		206F688823E1AED40025D559 /* UIColor+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Addition.swift"; sourceTree = "<group>"; };
 		206F688A23E1AF930025D559 /* UIButton+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Addition.swift"; sourceTree = "<group>"; };
+		20756259257E2161002AC510 /* MVVMError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMError.swift; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		209A609D23388F1500D6338C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 				201BF042233904570020F7B4 /* Response */,
 				209A60DE2338CBEC00D6338C /* OriginalResult.swift */,
 				201BF0352338F8CD0020F7B4 /* APIError.swift */,
+				20756259257E2161002AC510 /* MVVMError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1045,6 +1048,7 @@
 				20AC3E742356BB52007F67ED /* APIClient+Github.swift in Sources */,
 				206F688B23E1AF930025D559 /* UIButton+Addition.swift in Sources */,
 				20382BE7233A04DD00CF77A1 /* GithubCollectionCell.swift in Sources */,
+				2075625A257E2161002AC510 /* MVVMError.swift in Sources */,
 				206F688323E13A440025D559 /* ItemTableHeaderView.swift in Sources */,
 				201BF03A2338FB180020F7B4 /* ResponseProtocol.swift in Sources */,
 				2063EF6923DC4BF4000992D1 /* UserRegistrationViewModel.swift in Sources */,

@@ -162,8 +162,10 @@ final class MypageViewController: UIViewController {
     }
 }
 
+// MARK: TextFieldInputAccessoryViewDelegate
 extension MypageViewController: TextFieldInputAccessoryViewDelegate {}
 
+// MARK: ASAuthorizationControllerDelegate
 extension MypageViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         viewModel.handleCompletedAppleSignin(authorization)

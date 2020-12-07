@@ -25,8 +25,9 @@ final class ItemViewController: UIViewController {
 
             viewModel.items
                 .drive(tableView.rx.items) { tableView, index, element in
-                    let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.itemTableCell,
-                                                             for: IndexPath(item: index, section: 0))!
+                    let cell = tableView.dequeueReusableCell(
+                        withIdentifier: R.reuseIdentifier.itemTableCell,
+                        for: IndexPath(item: index, section: 0))!
                     cell.render(item: element)
                     return cell }
                 .disposed(by: disposeBag)
@@ -116,6 +117,7 @@ final class ItemViewController: UIViewController {
     }
 }
 
+// MARK: UITableViewDelegate
 extension ItemViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return ItemTableCell.defaultHeight(tableView)

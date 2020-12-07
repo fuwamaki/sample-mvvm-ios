@@ -180,5 +180,8 @@ extension UserRegistrationViewController: CropViewControllerDelegate {
     }
 }
 
+// MARK: UINavigationControllerDelegate
 extension UserRegistrationViewController: UINavigationControllerDelegate {}
+
+// MARK: TextFieldInputAccessoryViewDelegate
 extension UserRegistrationViewController: TextFieldInputAccessoryViewDelegate {}

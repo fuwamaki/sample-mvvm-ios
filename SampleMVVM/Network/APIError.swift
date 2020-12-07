@@ -35,14 +35,3 @@ enum APIError: Error {
         }
     }
 }
-
-enum MVVMError: Error {
-    case jsonParseError
-
-    var message: String {
-        switch self {
-        case .jsonParseError:
-            return R.string.localizable.error_unknown()
-        }
-    }
-}

@@ -129,6 +129,7 @@ final class ItemRegisterViewModel {
     }
 }
 
+// MARK: ItemRegisterViewModelable
 extension ItemRegisterViewModel: ItemRegisterViewModelable {
     func setupItem() {
         guard let item = editItem else { return }

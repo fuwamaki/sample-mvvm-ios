@@ -15,6 +15,7 @@ final class CustomPicker: NSObject {
     var selectedContent = BehaviorRelay<String?>(value: nil)
 }
 
+// MARK: UIPickerViewDataSource
 extension CustomPicker: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -25,6 +26,7 @@ extension CustomPicker: UIPickerViewDataSource {
     }
 }
 
+// MARK: UIPickerViewDelegate
 extension CustomPicker: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return array[row]

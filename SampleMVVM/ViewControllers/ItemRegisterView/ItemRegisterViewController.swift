@@ -166,8 +166,10 @@ final class ItemRegisterViewController: UIViewController {
     }
 }
 
+// MARK: TextFieldInputAccessoryViewDelegate
 extension ItemRegisterViewController: TextFieldInputAccessoryViewDelegate {}
 
+// MARK: UITextFieldDelegate
 extension ItemRegisterViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let index = textFields.firstIndex(of: textField) else { return true }

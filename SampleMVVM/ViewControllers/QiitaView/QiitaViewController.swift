@@ -143,6 +143,7 @@ final class QiitaViewController: UIViewController {
     }
 }
 
+// MARK: UITableViewDelegate
 extension QiitaViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -150,6 +151,7 @@ extension QiitaViewController: UITableViewDelegate {
     }
 }
 
+// MARK: UITextFieldDelegate
 extension QiitaViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
