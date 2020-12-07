@@ -9,50 +9,12 @@
 import RxSwift
 import RxCocoa
 
-// memo: UIViewControllerからScreenに変更
-// メリット: ViewModelでは、ViewControllerの実体を意識しなくて良い
-// メリット: ViewModelはシンプルに書ける
-// デメリット: 画面作成時に必ずScreenのenumも設定しないといけない、2重管理になる
-// デメリット: UIViewControllerだけでなくUIAlertControllerの分もenumで管理しないとなので、管理が大変
-// デメリット: enumの変数付きはデフォルトEquatableではないので、テストが書きにくい
-enum Screen: Equatable {
-    case register
-    case update(item: Item)
-    case errorAlert(message: String)
-    case other
-
-    var viewController: UIViewController {
-        switch self {
-        case .register:
-            return ItemRegisterViewController.make()
-        case .update(let item):
-            return ItemRegisterViewController.make(item: item)
-        case .errorAlert(let message):
-            return UIAlertController.singleErrorAlert(message: message)
-        case .other:
-            return UIViewController()
-        }
-    }
-}
-
-// swiftlint:disable operator_whitespace
-func ==(a: Screen, b: Screen) -> Bool {
-    switch (a, b) {
-    case (.register, .register), (.other, .other):
-        return true
-    case (.update, .update), (.errorAlert, .errorAlert):
-        return true
-    default:
-        return false
-    }
-}
-
 protocol ItemViewModelable {
     var items: Driver<[Item]> { get }
     var isLoading: BehaviorRelay<Bool> { get }
     var viewWillAppear: PublishRelay<Void> { get }
-    var pushScreen: Driver<Screen> { get }
-    var presentScreen: Driver<Screen> { get }
+    var pushScreen: Driver<ItemScreen> { get }
+    var presentScreen: Driver<ItemScreen> { get }
     func handleRegisterBarButtonItem()
     func handleTableItemButton(indexPath: IndexPath?)
     func fetchItems() -> Completable
@@ -69,13 +31,13 @@ final class ItemViewModel {
         return itemsSubject.asDriver(onErrorJustReturn: [])
     }
 
-    private var pushScreenSubject = PublishRelay<Screen>()
-    var pushScreen: Driver<Screen> {
+    private var pushScreenSubject = PublishRelay<ItemScreen>()
+    var pushScreen: Driver<ItemScreen> {
         return pushScreenSubject.asDriver(onErrorJustReturn: .other)
     }
 
-    private var presentScreenSubject = PublishRelay<Screen>()
-    var presentScreen: Driver<Screen> {
+    private var presentScreenSubject = PublishRelay<ItemScreen>()
+    var presentScreen: Driver<ItemScreen> {
         return presentScreenSubject.asDriver(onErrorJustReturn: .other)
     }
 
