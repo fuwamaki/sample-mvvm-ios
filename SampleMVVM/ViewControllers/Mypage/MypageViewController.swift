@@ -13,6 +13,7 @@ import RxOptional
 import PINRemoteImage
 import PKHUD
 import AuthenticationServices
+import LineSDK
 
 final class MypageViewController: UIViewController {
 
@@ -147,7 +148,8 @@ final class MypageViewController: UIViewController {
             .subscribe(onNext: { [unowned self] user in
                 self.nameLabel.text = user.name
                 self.birthdayLabel.text = DateFormat.yyyyMMdd.string(from: user.birthday)
-                if let imageData = user.iconImage, imageData != Data() {
+                if let imageData = user.iconImage,
+                   imageData != Data() {
                     self.iconImageView.image = UIImage(data: imageData)
                 } else {
                     self.iconImageView.pin_setImage(from: user.iconImageURL)
@@ -169,9 +171,15 @@ final class MypageViewController: UIViewController {
 
         lineLoginButton.rx.tap
             .subscribe(onNext: { [unowned self] in
-                self.viewModel.handleLineLoginButton(viewController: self)
-                    .subscribe()
-                    .disposed(by: self.disposeBag)
+                LoginManager.shared.login(permissions: [.profile, .openID], in: self) { result in
+                    switch result {
+                    case .success(let loginResult):
+                        let lineUser = LineUser(loginResult: loginResult)
+                        self.viewModel.handleLineLoginWithSuccess(lineUser: lineUser)
+                    case .failure(let error):
+                        self.viewModel.handleLineLoginWithError(error: error)
+                    }
+                }
             })
             .disposed(by: disposeBag)
 
@@ -203,6 +211,7 @@ extension MypageViewController: ASAuthorizationControllerDelegate {
     }
 }
 
+// MARK: ASAuthorizationControllerPresentationContextProviding
 extension MypageViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!

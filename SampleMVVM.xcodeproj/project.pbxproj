@@ -62,7 +62,6 @@
 		2063EF7023DC56A4000992D1 /* UIView+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF6F23DC56A4000992D1 /* UIView+Addition.swift */; };
 		2063EF7323DC5E79000992D1 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7223DC5E79000992D1 /* DateFormat.swift */; };
 		2063EF7523DC5FA2000992D1 /* LineUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7423DC5FA2000992D1 /* LineUser.swift */; };
-		2063EF7723DC928C000992D1 /* APIClient+LineLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7623DC928C000992D1 /* APIClient+LineLogin.swift */; };
 		2063EF7923DC9700000992D1 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7823DC9700000992D1 /* Indicator.swift */; };
 		2063EF7B23DC9EFB000992D1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7A23DC9EFB000992D1 /* User.swift */; };
 		2063EF7D23DD461D000992D1 /* UserRealmEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063EF7C23DD461D000992D1 /* UserRealmEntity.swift */; };
@@ -195,7 +194,6 @@
 		2063EF6F23DC56A4000992D1 /* UIView+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Addition.swift"; sourceTree = "<group>"; };
 		2063EF7223DC5E79000992D1 /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		2063EF7423DC5FA2000992D1 /* LineUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineUser.swift; sourceTree = "<group>"; };
-		2063EF7623DC928C000992D1 /* APIClient+LineLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+LineLogin.swift"; sourceTree = "<group>"; };
 		2063EF7823DC9700000992D1 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		2063EF7A23DC9EFB000992D1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2063EF7C23DD461D000992D1 /* UserRealmEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRealmEntity.swift; sourceTree = "<group>"; };
@@ -640,7 +638,6 @@
 				20AC3E712356BB48007F67ED /* APIClient+Item.swift */,
 				20AC3E732356BB52007F67ED /* APIClient+Github.swift */,
 				20AAA785237D8A96006F2817 /* APIClient+Qiita.swift */,
-				2063EF7623DC928C000992D1 /* APIClient+LineLogin.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1057,7 +1054,6 @@
 				201BF03A2338FB180020F7B4 /* ResponseProtocol.swift in Sources */,
 				2063EF6923DC4BF4000992D1 /* UserRegistrationViewModel.swift in Sources */,
 				201BF0342338EFF90020F7B4 /* Item.swift in Sources */,
-				2063EF7723DC928C000992D1 /* APIClient+LineLogin.swift in Sources */,
 				209A609C23388F1500D6338C /* AppDelegate.swift in Sources */,
 				206F688923E1AED40025D559 /* UIColor+Addition.swift in Sources */,
 				205BE0B8235417DF009EF0F2 /* QiitaViewController.swift in Sources */,

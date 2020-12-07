@@ -21,7 +21,8 @@ protocol MypageViewModelable {
     var completedSubject: BehaviorRelay<Bool> { get }
     func handleSettingBarButtonItem()
     func handleLogoutInSettingBarButtonItem()
-    func handleLineLoginButton(viewController: UIViewController) -> Completable
+    func handleLineLoginWithSuccess(lineUser: LineUser)
+    func handleLineLoginWithError(error: LineSDKError)
     func handleCompletedAppleSignin(_ authorization: ASAuthorization)
     func handleFailureAppleSignin(_ error: Error)
     func handleEditButton()
@@ -121,35 +122,26 @@ extension MypageViewModel: MypageViewModelable {
         checkUser()
     }
 
-    // TODO: 状態管理ベースでリファクタリング
-    func handleLineLoginButton(viewController: UIViewController) -> Completable {
-        return apiClient.lineLogin(viewController: viewController)
-            .do(
-                onSuccess: { [weak self] lineUser in
-                    self?.accountExists(lineUser: lineUser, completion: { [weak self] result in
-                        switch result {
-                        case .success(let isSignedIn):
-                            self?.isLoading.accept(false)
-                            if isSignedIn {
-                                self?.checkUser()
-                                self?.completedSubject.accept(true)
-                            } else {
-                                self?.pushScreenSubject.accept(.createUser(lineUser: lineUser))
-                            }
-                        case .failure(let error):
-                            guard let error = error as? APIError else { return }
-                            self?.isLoading.accept(false)
-                            self?.presentScreenSubject.accept(.errorAlert(message: error.message))
-                        }
-                    })
-                },
-                onError: { [weak self] error in
-                    guard let error = error as? APIError else { return }
-                    self?.isLoading.accept(false)
-                    self?.presentScreenSubject.accept(.errorAlert(message: error.message))
-                })
-            .map { _ in }
-            .asCompletable()
+    func handleLineLoginWithSuccess(lineUser: LineUser) {
+        accountExists(lineUser: lineUser, completion: { [weak self] result in
+            switch result {
+            case .success(let isSignedIn):
+                if isSignedIn {
+                    self?.checkUser()
+                    self?.completedSubject.accept(true)
+                } else {
+                    self?.pushScreenSubject.accept(.createUser(lineUser: lineUser))
+                }
+            case .failure(let error):
+                guard let error = error as? APIError else { return }
+                self?.presentScreenSubject.accept(.errorAlert(message: error.message))
+            }
+        })
+    }
+
+    func handleLineLoginWithError(error: LineSDKError) {
+        presentScreenSubject.accept(
+            .errorAlert(message: error.errorDescription ?? R.string.localizable.error_unknown()))
     }
 
     func handleCompletedAppleSignin(_ authorization: ASAuthorization) {
