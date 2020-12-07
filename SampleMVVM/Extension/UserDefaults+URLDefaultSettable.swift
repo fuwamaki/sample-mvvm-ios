@@ -32,6 +32,6 @@ extension URLDefaultSettable where URLKey.RawValue == String {
 
 extension UserDefaults: URLDefaultSettable {
     enum URLKey: String {
-        case pictureUrl
+        case sample
     }
 }

@@ -31,6 +31,17 @@ extension UserDefaultsRepository {
 
 // MARK: user
 extension UserDefaultsRepository {
+    // line=0, apple=1
+    var userType: Int? {
+        get {
+            return UserDefaults.standard.integer(forKey: .userType)
+        }
+        set {
+            guard let newValue = newValue else { return }
+            UserDefaults.standard.set(newValue, forKey: .userType)
+        }
+    }
+
     var userId: String? {
         get {
             return UserDefaults.standard.string(forKey: .userId)
@@ -41,13 +52,13 @@ extension UserDefaultsRepository {
         }
     }
 
-    var lineAccessToken: String? {
+    var token: String? {
         get {
-            return UserDefaults.standard.string(forKey: .lineAccessToken)
+            return UserDefaults.standard.string(forKey: .token)
         }
         set {
             guard let newValue = newValue else { return }
-            UserDefaults.standard.set(newValue, forKey: .lineAccessToken)
+            UserDefaults.standard.set(newValue, forKey: .token)
         }
     }
 
@@ -71,16 +82,6 @@ extension UserDefaultsRepository {
         }
     }
 
-    var pictureUrl: URL? {
-        get {
-            return UserDefaults.standard.URL(forKey: .pictureUrl)
-        }
-        set {
-            guard let newValue = newValue else { return }
-            UserDefaults.standard.set(newValue, forKey: .pictureUrl)
-        }
-    }
-
     var iconImage: Data? {
         get {
             return UserDefaults.standard.data(forKey: .iconImage)
@@ -91,12 +92,39 @@ extension UserDefaultsRepository {
         }
     }
 
+    func fetchUser() -> User? {
+        if let userTypeInt = userType,
+           let userType = UserType(rawValue: userTypeInt),
+           let token = token,
+           let userId = userId,
+           let birthdayString = birthday,
+           let name = name,
+           let birthday = DateFormat.yyyyMMdd.date(from: birthdayString) {
+            return User(userType: userType,
+                        token: token,
+                        userId: userId,
+                        name: name,
+                        birthday: birthday,
+                        iconImage: iconImage)
+        } else { return nil }
+    }
+
+    // login
+    func createUser(user: User) {
+        userType = user.userType.rawValue
+        userId = user.userId
+        token = user.token
+        name = user.name
+        birthday = DateFormat.yyyyMMdd.string(from: user.birthday)
+        iconImage = user.iconImage
+    }
+
+    // logout
     func removeUser() {
         UserDefaults.standard.remove(forKey: .userId)
-        UserDefaults.standard.remove(forKey: .lineAccessToken)
+        UserDefaults.standard.remove(forKey: .token)
         UserDefaults.standard.remove(forKey: .name)
         UserDefaults.standard.remove(forKey: .birthday)
-        UserDefaults.standard.remove(forKey: .pictureUrl)
         UserDefaults.standard.remove(forKey: .iconImage)
     }
 }

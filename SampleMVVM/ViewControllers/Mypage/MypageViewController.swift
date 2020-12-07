@@ -72,7 +72,7 @@ final class MypageViewController: UIViewController {
         appleLoginDescriptionLabel.text = R.string.localizable.mypage_apple_login_description()
     }
 
-    // swiftlint:disable function_body_length
+    // swiftlint:disable function_body_length cyclomatic_complexity
     private func bind() {
         rx.viewWillAppear
             .bind(to: viewModel.viewWillAppear)
@@ -116,8 +116,11 @@ final class MypageViewController: UIViewController {
         viewModel.pushScreen
             .drive(onNext: { [unowned self] screen in
                 switch screen {
-                case .createUser(let lineUser):
-                    let viewController = UserRegistrationViewController.make(type: .create(lineUser: lineUser))
+                case .createAppleUser(let user):
+                    let viewController = UserRegistrationViewController.make(type: .createAppleUser(user))
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                case .createLineUser(let user):
+                    let viewController = UserRegistrationViewController.make(type: .createLineUser(user))
                     self.navigationController?.pushViewController(viewController, animated: true)
                 case .updateUser(let user):
                     let viewController = UserRegistrationViewController.make(type: .update(user: user))
@@ -148,11 +151,8 @@ final class MypageViewController: UIViewController {
             .subscribe(onNext: { [unowned self] user in
                 self.nameLabel.text = user.name
                 self.birthdayLabel.text = DateFormat.yyyyMMdd.string(from: user.birthday)
-                if let imageData = user.iconImage,
-                   imageData != Data() {
+                if let imageData = user.iconImage, imageData != Data() {
                     self.iconImageView.image = UIImage(data: imageData)
-                } else {
-                    self.iconImageView.pin_setImage(from: user.iconImageURL)
                 }
             })
             .disposed(by: disposeBag)
@@ -174,8 +174,13 @@ final class MypageViewController: UIViewController {
                 LoginManager.shared.login(permissions: [.profile, .openID], in: self) { result in
                     switch result {
                     case .success(let loginResult):
-                        let lineUser = LineUser(loginResult: loginResult)
-                        self.viewModel.handleLineLoginWithSuccess(lineUser: lineUser)
+                        if let userId = loginResult.userProfile?.userID {
+                            let lineUser = LineUser(token: loginResult.accessToken.value,
+                                                    userId: userId,
+                                                    displayName: loginResult.userProfile?.displayName,
+                                                    pictureUrl: loginResult.userProfile?.pictureURL)
+                            self.viewModel.handleLineLoginWithSuccess(lineUser: lineUser)
+                        }
                     case .failure(let error):
                         self.viewModel.handleLineLoginWithError(error: error)
                     }

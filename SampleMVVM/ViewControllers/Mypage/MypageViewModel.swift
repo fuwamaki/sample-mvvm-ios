@@ -67,43 +67,16 @@ final class MypageViewModel {
     }
 
     private func checkUser() {
-        if let lineAccessToken = UserDefaultsRepository.shared.lineAccessToken,
-            let userId = UserDefaultsRepository.shared.userId,
-            let name = UserDefaultsRepository.shared.name,
-            let birthday = UserDefaultsRepository.shared.birthday {
-            let user = User(token: lineAccessToken,
-                            userId: userId,
-                            name: name,
-                            birthday: DateFormat.yyyyMMdd.date(from: birthday)!,
-                            iconImageURL: UserDefaultsRepository.shared.pictureUrl,
-                            iconImage: UserDefaultsRepository.shared.iconImage)
-            self.user.accept(user)
-            isSignedIn.accept(true)
-        } else {
-            user.accept(nil)
-            isSignedIn.accept(false)
-        }
+        let user = UserDefaultsRepository.shared.fetchUser() ?? nil
+        self.user.accept(user)
+        isSignedIn.accept(user != nil)
     }
 
-    private func accountExists(lineUser: LineUser, completion: @escaping (Result<Bool, NSError>) -> Void) {
-        guard let userId = lineUser.userId else { return }
-        UserRealmRepository<UserRealmEntity>.find(userId: userId) { result in
+    private func accountExists(userType: UserType, userId: String, completion: @escaping (Result<UserRealmEntity?, NSError>) -> Void) {
+        UserRealmRepository<UserRealmEntity>.find(userType: userType, userId: userId) { result in
             switch result {
             case .success(let userEntity):
-                if let userEntity = userEntity {
-                    UserDefaultsRepository.shared.userId = userEntity.userId
-                    UserDefaultsRepository.shared.lineAccessToken = lineUser.accessToken
-                    UserDefaultsRepository.shared.name = userEntity.name
-                    UserDefaultsRepository.shared.birthday = DateFormat.yyyyMMdd.string(from: userEntity.birthday)
-                    if userEntity.iconImageUrl != "",
-                       let imageUrl = URL(string: userEntity.iconImageUrl) {
-                        UserDefaultsRepository.shared.pictureUrl = imageUrl
-                    }
-                    UserDefaultsRepository.shared.iconImage = userEntity.iconImageData
-                    completion(.success(true))
-                } else {
-                    completion(.success(false))
-                }
+                completion(.success(userEntity))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -123,20 +96,24 @@ extension MypageViewModel: MypageViewModelable {
     }
 
     func handleLineLoginWithSuccess(lineUser: LineUser) {
-        accountExists(lineUser: lineUser, completion: { [weak self] result in
+        accountExists(userType: .line, userId: lineUser.userId) { [weak self] result in
             switch result {
-            case .success(let isSignedIn):
-                if isSignedIn {
-                    self?.checkUser()
-                    self?.completedSubject.accept(true)
-                } else {
-                    self?.pushScreenSubject.accept(.createUser(lineUser: lineUser))
-                }
+            case .success(.some(let userEntity)):
+                let user = User(userType: UserType(rawValue: userEntity.userType)!,
+                                token: lineUser.token,
+                                userId: userEntity.userId,
+                                name: userEntity.name,
+                                birthday: userEntity.birthday,
+                                iconImage: userEntity.iconImageData)
+                UserDefaultsRepository.shared.createUser(user: user)
+                self?.completedSubject.accept(true)
+            case .success(.none):
+                self?.pushScreenSubject.accept(.createLineUser(lineUser))
             case .failure(let error):
                 guard let error = error as? APIError else { return }
                 self?.presentScreenSubject.accept(.errorAlert(message: error.message))
             }
-        })
+        }
     }
 
     func handleLineLoginWithError(error: LineSDKError) {
@@ -145,23 +122,34 @@ extension MypageViewModel: MypageViewModelable {
     }
 
     func handleCompletedAppleSignin(_ authorization: ASAuthorization) {
-        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            guard let authCodeData = appleIDCredential.authorizationCode,
-                let authCode = String(data: authCodeData, encoding: .utf8),
-                let idTokenData = appleIDCredential.identityToken,
-                let idToken = String(data: idTokenData, encoding: .utf8) else {
-                    print("Problem with the authorizationCode")
-                    return
+        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
+              let authCodeData = appleIDCredential.authorizationCode,
+              let authCode = String(data: authCodeData, encoding: .utf8) else {
+            presentScreenSubject.accept(.errorAlert(message: R.string.localizable.error_unknown()))
+            return
+        }
+        let fullName = appleIDCredential.fullName
+        let appleUser = AppleUser(token: authCode,
+                                  userId: appleIDCredential.user,
+                                  givenName: fullName?.givenName,
+                                  familyName: fullName?.familyName)
+        accountExists(userType: .apple, userId: appleUser.userId) { [weak self] result in
+            switch result {
+            case .success(.some(let userEntity)):
+                let user = User(userType: UserType(rawValue: userEntity.userType)!,
+                                token: appleUser.token,
+                                userId: userEntity.userId,
+                                name: userEntity.name,
+                                birthday: userEntity.birthday,
+                                iconImage: userEntity.iconImageData)
+                UserDefaultsRepository.shared.createUser(user: user)
+                self?.completedSubject.accept(true)
+            case .success(.none):
+                self?.pushScreenSubject.accept(.createAppleUser(appleUser))
+            case .failure(let error):
+                guard let error = error as? APIError else { return }
+                self?.presentScreenSubject.accept(.errorAlert(message: error.message))
             }
-            let email = appleIDCredential.email
-            let fullName = appleIDCredential.fullName
-            // TODO: 以下処理
-            print("authorization code : \(authCode)")
-            print("identity token : \(idToken)")
-            print("email: \(String(describing: email))")
-            print("full name : \(String(describing: fullName))")
-            print("first name: \(String(describing: fullName?.givenName))")
-            print("last name: \(String(describing: fullName?.familyName))")
         }
     }
 

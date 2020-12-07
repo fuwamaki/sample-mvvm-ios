@@ -9,23 +9,23 @@
 import LineSDK
 
 struct LineUser {
-    let accessToken: String
-    let userId: String?
+    let token: String
+    let userId: String
     let displayName: String?
-    let pictureURL: URL?
+    let pictureUrl: URL?
 
-    init(loginResult: LoginResult) {
-        self.accessToken = loginResult.accessToken.value
-        self.userId = loginResult.userProfile?.userID
-        self.displayName = loginResult.userProfile?.displayName
-        self.pictureURL = loginResult.userProfile?.pictureURL
+    init(token: String, userId: String, displayName: String?, pictureUrl: URL?) {
+        self.token = token
+        self.userId = userId
+        self.displayName = displayName
+        self.pictureUrl = pictureUrl
     }
 
     // for unit test
     init(accessToken: String) {
-        self.accessToken = accessToken
-        self.userId = nil
+        self.token = accessToken
+        self.userId = ""
         self.displayName = nil
-        self.pictureURL = nil
+        self.pictureUrl = nil
     }
 }

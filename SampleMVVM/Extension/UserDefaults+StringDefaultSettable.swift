@@ -34,7 +34,7 @@ extension UserDefaults: StringDefaultSettable {
     enum StringKey: String {
         case authToken
         case userId
-        case lineAccessToken
+        case token
         case name
         case birthday
     }

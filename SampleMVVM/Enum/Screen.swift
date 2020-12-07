@@ -13,7 +13,8 @@ enum Screen {
     case itemUpdate(item: Item)
     case github
     case qiita
-    case createUser(lineUser: LineUser)
+    case createAppleUser(_ user: AppleUser)
+    case createLineUser(_ user: LineUser)
     case updateUser(user: User)
     case mypageActionSheet
     case imagePicker
@@ -32,7 +33,8 @@ func ==(a: Screen, b: Screen) -> Bool {
          (.itemUpdate, .itemUpdate),
          (.github, .github),
          (.qiita, .qiita),
-         (.createUser, .createUser),
+         (.createAppleUser, .createAppleUser),
+         (.createLineUser, .createLineUser),
          (.updateUser, .updateUser),
          (.mypageActionSheet, .mypageActionSheet),
          (.imagePicker, .imagePicker),

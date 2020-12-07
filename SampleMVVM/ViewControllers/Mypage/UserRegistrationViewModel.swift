@@ -16,8 +16,8 @@ protocol UserRegistrationViewModelable {
     var completedSubject: BehaviorRelay<Bool> { get }
     var name: BehaviorRelay<String?> { get }
     var birthday: BehaviorRelay<Date?> { get }
-    var iconImageURL: BehaviorRelay<URL?> { get }
-    var uploadImage: BehaviorRelay<UIImage?> { get }
+    var iconImageUrl: BehaviorRelay<URL?> { get }
+    var iconImage: BehaviorRelay<UIImage?> { get }
     var presentScreen: Driver<Screen> { get }
     func handleChangeImageButton()
     func handleSubmitButton()
@@ -32,9 +32,8 @@ final class UserRegistrationViewModel {
     private(set) var completedSubject = BehaviorRelay<Bool>(value: false)
     private(set) var name = BehaviorRelay<String?>(value: nil)
     private(set) var birthday = BehaviorRelay<Date?>(value: nil)
-    private(set) var iconImageURL = BehaviorRelay<URL?>(value: nil)
-
-    var uploadImage = BehaviorRelay<UIImage?>(value: nil)
+    private(set) var iconImageUrl = BehaviorRelay<URL?>(value: nil)
+    private(set) var iconImage = BehaviorRelay<UIImage?>(value: nil)
 
     private var presentScreenSubject = PublishRelay<Screen>()
     var presentScreen: Driver<Screen> {
@@ -43,23 +42,59 @@ final class UserRegistrationViewModel {
 
     private let disposeBag = DisposeBag()
     var type: UserRegistrationType
-    private let lineAccessToken: String
+    private let token: String
 
     init(type: UserRegistrationType) {
         self.type = type
         switch type {
-        case .create(let lineUser):
-            lineAccessToken = lineUser.accessToken
-            name.accept(lineUser.displayName)
-            iconImageURL.accept(lineUser.pictureURL)
+        case .createAppleUser(let user):
+            token = user.token
+            name.accept(user.name)
+        case .createLineUser(let user):
+            token = user.token
+            name.accept(user.displayName)
+            iconImageUrl.accept(user.pictureUrl)
         case .update(let user):
-            lineAccessToken = user.token
+            token = user.token
             name.accept(user.name)
             birthday.accept(user.birthday)
-            iconImageURL.accept(user.iconImageURL)
-            if let data = user.iconImage, let image = UIImage(data: data) {
-                uploadImage.accept(image)
+            if let data = user.iconImage,
+               let image = UIImage(data: data) {
+                iconImage.accept(image)
             }
+        }
+    }
+
+    private func createUser(name: String, birthday: Date) -> (userEntity: UserRealmEntity, user: User) {
+        let entity = UserRealmEntity()
+        switch type {
+        case .createAppleUser(let user):
+            entity.userType = UserType.apple.rawValue
+            entity.userId = user.userId
+            entity.name = user.name
+            entity.birthday = birthday
+            entity.iconImageData = iconImage.value?.pngData() ?? Data()
+            let value = User(userType: .apple, token: user.token, userId: user.userId,
+                             name: name, birthday: birthday, iconImage: iconImage.value?.pngData())
+            return (entity, value)
+        case .createLineUser(let user):
+            entity.userType = UserType.line.rawValue
+            entity.userId = user.userId
+            entity.name = name
+            entity.birthday = birthday
+            entity.iconImageData = iconImage.value?.pngData() ?? Data()
+            let value = User(userType: .line, token: user.token, userId: user.userId,
+                             name: name, birthday: birthday, iconImage: iconImage.value?.pngData())
+            return (entity, value)
+        case .update(let user):
+            entity.userType = user.userType.rawValue
+            entity.userId = user.userId
+            entity.name = name
+            entity.birthday = birthday
+            entity.iconImageData = iconImage.value?.pngData() ?? Data()
+            let value = User(userType: user.userType, token: user.token, userId: user.userId,
+                             name: name, birthday: birthday, iconImage: iconImage.value?.pngData())
+            return (entity, value)
         }
     }
 }
@@ -73,42 +108,16 @@ extension UserRegistrationViewModel: UserRegistrationViewModelable {
     }
 
     func handleSubmitButton() {
-        guard let name = name.value, let birthday = birthday.value else {
+        guard let name = name.value,
+              let birthday = birthday.value else {
             presentScreenSubject.accept(.errorAlert(message: "未入力の項目があります"))
             return
         }
-        let entity = UserRealmEntity()
-        switch type {
-        case .create(let lineUser):
-            guard let userId = lineUser.userId else {
-                presentScreenSubject.accept(.errorAlertAndDismiss(message: "エラーが発生しました。再度ログインし直してください。"))
-                return
-            }
-            entity.userId = userId
-            entity.name = name
-            entity.birthday = birthday
-            entity.iconImageUrl = iconImageURL.value?.absoluteString ?? ""
-            entity.iconImageData = uploadImage.value?.pngData() ?? Data()
-        case .update(let user):
-            entity.userId = user.userId
-            entity.name = name
-            entity.birthday = birthday
-            entity.iconImageUrl = iconImageURL.value?.absoluteString ?? ""
-            entity.iconImageData = uploadImage.value?.pngData() ?? Data()
-        }
-        UserRealmRepository<UserRealmEntity>.save(user: entity) { [weak self] result in
+        let value = createUser(name: name, birthday: birthday)
+        UserRealmRepository<UserRealmEntity>.save(user: value.userEntity) { [weak self] result in
             switch result {
             case .success:
-                UserDefaultsRepository.shared.userId = entity.userId
-                UserDefaultsRepository.shared.lineAccessToken = self?.lineAccessToken
-                UserDefaultsRepository.shared.name = entity.name
-                UserDefaultsRepository.shared.birthday = DateFormat.yyyyMMdd.string(from: entity.birthday)
-                if entity.iconImageUrl != "", let imageUrl = URL(string: entity.iconImageUrl) {
-                    UserDefaultsRepository.shared.pictureUrl = imageUrl
-                }
-                if let iconImage = self?.uploadImage.value {
-                    UserDefaultsRepository.shared.iconImage = iconImage.pngData()
-                }
+                UserDefaultsRepository.shared.createUser(user: value.user)
                 self?.dismissSubject.accept(true)
                 self?.completedSubject.accept(true)
             case .failure:
@@ -130,7 +139,7 @@ extension UserRegistrationViewModel {
 // MARK: CropViewController
 extension UserRegistrationViewModel {
     func cropView(image: UIImage) {
-        uploadImage.accept(image)
+        iconImage.accept(image)
         cropDismissSubject.accept(true)
     }
 }

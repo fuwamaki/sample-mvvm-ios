@@ -33,5 +33,6 @@ extension IntegerDefaultSettable where IntegerKey.RawValue == String {
 extension UserDefaults: IntegerDefaultSettable {
     enum IntegerKey: String {
         case incrementListId
+        case userType
     }
 }

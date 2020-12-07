@@ -9,10 +9,10 @@
 import Foundation
 
 struct User {
+    let userType: UserType
     let token: String
     let userId: String
     let name: String
     let birthday: Date
-    let iconImageURL: URL?
     let iconImage: Data?
 }

@@ -15,7 +15,8 @@ import CropViewController
 import PKHUD
 
 enum UserRegistrationType {
-    case create(lineUser: LineUser)
+    case createAppleUser(_ user: AppleUser)
+    case createLineUser(_ user: LineUser)
     case update(user: User)
 }
 
@@ -79,7 +80,7 @@ final class UserRegistrationViewController: UIViewController {
         nameTextField.placeholder = R.string.localizable.user_registration_name_placeholder()
         birthdayTextField.placeholder = R.string.localizable.user_registration_birthday_placeholder()
         switch viewModel?.type {
-        case .create:
+        case .createAppleUser, .createLineUser:
             submitButton.setTitle(R.string.localizable.user_registration_create_button(), for: .normal)
         case .update:
             submitButton.setTitle(R.string.localizable.user_registration_update_button(), for: .normal)
@@ -128,12 +129,14 @@ final class UserRegistrationViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        Observable.combineLatest(viewModel.iconImageURL, viewModel.uploadImage)
+        Observable.combineLatest(viewModel.iconImageUrl, viewModel.iconImage)
             .subscribe(onNext: { url, image in
                 if let image = image {
                     self.iconImageView.image = image
                 } else {
-                    self.iconImageView.pin_setImage(from: url)
+                    self.iconImageView.pin_setImage(from: url) { result in
+                        self.viewModel?.iconImage.accept(result.image)
+                    }
                 }
             })
             .disposed(by: disposeBag)
@@ -178,19 +181,24 @@ final class UserRegistrationViewController: UIViewController {
 
 // MARK: UIImagePickerControllerDelegate
 extension UserRegistrationViewController: UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         viewModel?.imagePicker(picker, info: info)
     }
 }
 
 // MARK: CropViewControllerDelegate
 extension UserRegistrationViewController: CropViewControllerDelegate {
-    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+    func cropViewController(_ cropViewController: CropViewController,
+                            didCropToImage image: UIImage,
+                            withRect cropRect: CGRect,
+                            angle: Int) {
         viewModel?.cropView(image: image)
         cropViewController.dismiss(animated: true, completion: nil)
     }
 
-    func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {
+    func cropViewController(_ cropViewController: CropViewController,
+                            didFinishCancelled cancelled: Bool) {
         cropViewController.dismiss(animated: true, completion: nil)
     }
 }

@@ -76,6 +76,9 @@
 		206F688B23E1AF930025D559 /* UIButton+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F688A23E1AF930025D559 /* UIButton+Addition.swift */; };
 		2075625A257E2161002AC510 /* MVVMError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20756259257E2161002AC510 /* MVVMError.swift */; };
 		2075625E257E2909002AC510 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2075625D257E2909002AC510 /* Screen.swift */; };
+		208AD1F2257E713900D9B20F /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208AD1F1257E713900D9B20F /* UserType.swift */; };
+		208AD1F6257E716300D9B20F /* ListRealmType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208AD1F5257E716300D9B20F /* ListRealmType.swift */; };
+		208AD1FC257E744D00D9B20F /* AppleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208AD1FB257E744D00D9B20F /* AppleUser.swift */; };
 		209A609C23388F1500D6338C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609B23388F1500D6338C /* AppDelegate.swift */; };
 		209A609E23388F1500D6338C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209A609D23388F1500D6338C /* SceneDelegate.swift */; };
 		209A60A723388F1600D6338C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 209A60A623388F1600D6338C /* Assets.xcassets */; };
@@ -208,6 +211,9 @@
 		206F688A23E1AF930025D559 /* UIButton+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Addition.swift"; sourceTree = "<group>"; };
 		20756259257E2161002AC510 /* MVVMError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMError.swift; sourceTree = "<group>"; };
 		2075625D257E2909002AC510 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
+		208AD1F1257E713900D9B20F /* UserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
+		208AD1F5257E716300D9B20F /* ListRealmType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRealmType.swift; sourceTree = "<group>"; };
+		208AD1FB257E744D00D9B20F /* AppleUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleUser.swift; sourceTree = "<group>"; };
 		209A609823388F1400D6338C /* SampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209A609B23388F1500D6338C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		209A609D23388F1500D6338C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -311,6 +317,7 @@
 				20AAA781237D897C006F2817 /* QiitaItem.swift */,
 				20AAA783237D8A65006F2817 /* QiitaUser.swift */,
 				2063EF7423DC5FA2000992D1 /* LineUser.swift */,
+				208AD1FB257E744D00D9B20F /* AppleUser.swift */,
 				2063EF7A23DC9EFB000992D1 /* User.swift */,
 				2063EF7C23DD461D000992D1 /* UserRealmEntity.swift */,
 				200BB35A237E580100AFA246 /* ListRealmEntity.swift */,
@@ -398,6 +405,16 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		208AD1F0257E712A00D9B20F /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				2075625D257E2909002AC510 /* Screen.swift */,
+				208AD1F1257E713900D9B20F /* UserType.swift */,
+				208AD1F5257E716300D9B20F /* ListRealmType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		209A608F23388F1400D6338C = {
 			isa = PBXGroup;
 			children = (
@@ -427,6 +444,7 @@
 				209A60BF2338906300D6338C /* AppDelegate */,
 				209A60C22338908000D6338C /* ViewControllers */,
 				20E3165A23D75B950000A31B /* Views */,
+				208AD1F0257E712A00D9B20F /* Enum */,
 				201BF0322338EFEB0020F7B4 /* Entity */,
 				209A60C12338907600D6338C /* Network */,
 				200BB34A237E328B00AFA246 /* Repository */,
@@ -490,7 +508,6 @@
 		209A60C22338908000D6338C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2075625D257E2909002AC510 /* Screen.swift */,
 				209A60DC2338C88A00D6338C /* MainTabBarViewController.swift */,
 				20AC3E5B23546294007F67ED /* ItemView */,
 				20AC3E5C2354629B007F67ED /* ItemRegisterView */,
@@ -1070,6 +1087,7 @@
 				201BF0362338F8CD0020F7B4 /* APIError.swift in Sources */,
 				209A60D52338C51E00D6338C /* ItemViewModel.swift in Sources */,
 				206F688523E14F040025D559 /* NumberFormat.swift in Sources */,
+				208AD1FC257E744D00D9B20F /* AppleUser.swift in Sources */,
 				20AAA784237D8A65006F2817 /* QiitaUser.swift in Sources */,
 				20AAA78A237D8E90006F2817 /* QiitaItemResponse.swift in Sources */,
 				2063EF7023DC56A4000992D1 /* UIView+Addition.swift in Sources */,
@@ -1081,8 +1099,10 @@
 				2063EF6723DC4BE6000992D1 /* UserRegistrationViewController.swift in Sources */,
 				201BF03D2338FDBD0020F7B4 /* Url.swift in Sources */,
 				205BE0BE2354180D009EF0F2 /* GithubViewModel.swift in Sources */,
+				208AD1F6257E716300D9B20F /* ListRealmType.swift in Sources */,
 				209A60DD2338C88A00D6338C /* MainTabBarViewController.swift in Sources */,
 				2063EF8123DDFB18000992D1 /* UserDefaults+DataDefaultSettable.swift in Sources */,
+				208AD1F2257E713900D9B20F /* UserType.swift in Sources */,
 				2063EF6D23DC5661000992D1 /* BirthdayPickerView.swift in Sources */,
 				205BE0C62354260C009EF0F2 /* GithubRepositoryOwner.swift in Sources */,
 				20255360238100A10077BDC5 /* Constants.swift in Sources */,
