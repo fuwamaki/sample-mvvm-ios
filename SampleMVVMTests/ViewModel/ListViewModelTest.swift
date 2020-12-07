@@ -22,7 +22,7 @@ class ListViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.pushScreen
                 .drive(onNext: {
-                    XCTAssertNotNil($0)
+                    XCTAssertTrue($0 == .github)
                 })
                 .disposed(by: disposeBag)
         }
@@ -40,7 +40,7 @@ class ListViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.pushScreen
                 .drive(onNext: {
-                    XCTAssertNotNil($0)
+                    XCTAssertTrue($0 == .qiita)
                 })
                 .disposed(by: disposeBag)
         }

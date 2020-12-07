@@ -22,7 +22,7 @@ class UserRegistrationViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.presentScreen
                 .drive(onNext: {
-                    XCTAssertNotNil($0)
+                    XCTAssertTrue($0 == .imagePicker)
                 })
                 .disposed(by: disposeBag)
         }
@@ -40,7 +40,7 @@ class UserRegistrationViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.presentScreen
                 .drive(onNext: {
-                    XCTAssertNotNil($0)
+                    XCTAssertTrue($0 == .errorAlert(message: ""))
                 })
                 .disposed(by: disposeBag)
         }
@@ -60,7 +60,7 @@ class UserRegistrationViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.presentScreen
                 .drive(onNext: {
-                    XCTAssertNotNil($0)
+                    XCTAssertTrue($0 == .errorAlertAndDismiss(message: ""))
                 })
                 .disposed(by: disposeBag)
         }

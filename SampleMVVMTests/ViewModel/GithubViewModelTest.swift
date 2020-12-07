@@ -90,7 +90,7 @@ class GithubViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.presentScreen
                 .drive(onNext: {
-                    XCTAssertNotNil($0)
+                    XCTAssertTrue($0 == .errorAlert(message: ""))
                 })
                 .disposed(by: disposeBag)
         }
@@ -148,7 +148,7 @@ class GithubViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.presentScreen
                 .drive(onNext: {
-                    XCTAssertNotNil($0)
+                    XCTAssertTrue($0 == .errorAlert(message: ""))
                 })
                 .disposed(by: disposeBag)
         }
@@ -178,7 +178,7 @@ class GithubViewModelTest: XCTestCase {
                 .disposed(by: disposeBag)
             viewModel.presentScreen
                 .drive(onNext: {
-                    XCTAssertNotNil($0)
+                    XCTAssertTrue($0 == .safari(url: URL(string: "https://google.com")!))
                 })
                 .disposed(by: disposeBag)
         }

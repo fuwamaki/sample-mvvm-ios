@@ -22,7 +22,7 @@ class MypageViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.presentScreen
                 .drive(onNext: {
-                    XCTAssertNotNil($0)
+                    XCTAssertTrue($0 == .mypageActionSheet)
                 })
                 .disposed(by: disposeBag)
         }
@@ -51,7 +51,7 @@ class MypageViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.presentScreen
                 .drive(onNext: {
-                    XCTAssertNotNil($0)
+                    XCTAssertTrue($0 == .errorAlert(message: ""))
                 })
                 .disposed(by: disposeBag)
         }
@@ -76,7 +76,7 @@ class MypageViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.pushScreen
                 .drive(onNext: {
-                    XCTAssertNotNil($0)
+                    XCTAssertTrue($0 == .updateUser(user: User(lineAccessToken: "", userId: "", name: "", birthday: Date(), iconImageURL: nil, iconImage: nil)))
                 })
                 .disposed(by: disposeBag)
         }
@@ -94,7 +94,7 @@ class MypageViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.presentScreen
                 .drive(onNext: {
-                    XCTAssertNotNil($0)
+                    XCTAssertTrue($0 == .errorAlert(message: ""))
                 })
                 .disposed(by: disposeBag)
         }
