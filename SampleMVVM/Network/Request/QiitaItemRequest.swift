@@ -12,7 +12,8 @@ struct QiitaItemsFetchRequest: RequestProtocol {
     typealias Response = QiitaItemFetchResponse
     var tag: String
     var url: String {
-        return Url.qiitaItemsParTagURL + "/" + tag + "/items"
+        let value = Url.qiitaItemsParTagURL + "/" + tag + "/items"
+        return value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     }
     var method: HTTPMethod = .get
 }
