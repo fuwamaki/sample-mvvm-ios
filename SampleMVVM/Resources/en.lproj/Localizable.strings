@@ -55,7 +55,11 @@
 "error_not_found" = "Sorry, no data found.";
 "error_maintenance" = "Under maintenance, please wait until the end.";
 "error_network" = "Network error has occurred, please try again in a place with good signal.";
-"error_unknown" = "A malfunction occurred, please try again later";
+"error_unknown" = "A malfunction occurred, please try again later.";
+"error_realm_save" = "Save error, please try again later.";
+"error_not_input" = "A item is empty.";
+"error_login" = "User information error, please login again.";
+"error_already_favorite" = "Already favorited.";
 
 // MARK: Common
 "toolbar_done" = "done";

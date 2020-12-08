@@ -56,6 +56,10 @@
 "error_maintenance" = "メンテナンス中です。終了までしばらくお待ちください。";
 "error_network" = "通信エラーが発生しました。電波の良い所で再度お試しください。";
 "error_unknown" = "不具合が発生しました。お手数ですが時間をおいてもう一度お試しください。";
+"error_realm_save" = "保存に失敗しました。お手数ですが時間をおいてもう一度お試しください。";
+"error_not_input" = "未入力の項目があります。";
+"error_login" = "ユーザ情報を正しく取得できません。再度ログインしてください。";
+"error_already_favorite" = "既にお気に入り済みのキーワードです";
 
 // MARK: Common
 "toolbar_done" = "完了";

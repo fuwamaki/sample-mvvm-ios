@@ -159,7 +159,7 @@ extension MypageViewModel: MypageViewModelable {
 
     func handleEditButton() {
         guard let user = user.value else {
-            presentScreenSubject.accept(.errorAlert(message: "ユーザ情報を正しく取得できません。再度ログインしてください。"))
+            presentScreenSubject.accept(.errorAlert(message: R.string.localizable.error_login()))
             return
         }
         pushScreenSubject.accept(.updateUser(user: user))

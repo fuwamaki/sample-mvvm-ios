@@ -110,7 +110,8 @@ extension UserRegistrationViewModel: UserRegistrationViewModelable {
     func handleSubmitButton() {
         guard let name = name.value,
               let birthday = birthday.value else {
-            presentScreenSubject.accept(.errorAlert(message: "未入力の項目があります"))
+            presentScreenSubject.accept(
+                .errorAlert(message: R.string.localizable.error_not_input()))
             return
         }
         let value = createUser(name: name, birthday: birthday)
@@ -121,7 +122,8 @@ extension UserRegistrationViewModel: UserRegistrationViewModelable {
                 self?.dismissSubject.accept(true)
                 self?.completedSubject.accept(true)
             case .failure:
-                self?.presentScreenSubject.accept(.errorAlert(message: "保存に失敗しました"))
+                self?.presentScreenSubject.accept(
+                    .errorAlert(message: R.string.localizable.error_realm_save()))
             }
         }
     }

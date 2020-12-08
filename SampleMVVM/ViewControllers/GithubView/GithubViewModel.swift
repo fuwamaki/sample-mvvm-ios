@@ -133,7 +133,7 @@ extension GithubViewModel: GithubViewModelable {
                     return Completable.empty()
                 }
                 guard !$0 else {
-                    self.presentScreenSubject.accept(.errorAlert(message: "既にお気に入り済みのキーワードです"))
+                    self.presentScreenSubject.accept(.errorAlert(message: R.string.localizable.error_already_favorite()))
                     return Completable.empty()
                 }
                 return self.saveGithubItem(keyword: keyword)

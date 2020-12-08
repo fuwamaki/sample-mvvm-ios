@@ -94,7 +94,7 @@ extension ItemViewModel: ItemViewModelable {
     func deleteItem(indexPath: IndexPath) -> Completable {
         isLoading.accept(true)
         guard let id = itemsSubject.value[indexPath.row].id else {
-            fatalError("the item don't have id.")
+            fatalError("the item do not have id.")
         }
         return apiClient.deleteItem(id: id)
             .do(
