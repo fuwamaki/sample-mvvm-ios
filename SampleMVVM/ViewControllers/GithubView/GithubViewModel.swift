@@ -14,6 +14,7 @@ protocol GithubViewModelable {
     var completedSubject: BehaviorRelay<Bool> { get }
     var searchQuery: BehaviorRelay<String?> { get }
     var searchedQuery: BehaviorRelay<String?> { get }
+    var isQueryFavorited: BehaviorRelay<Bool> { get }
     var searchQueryValid: Observable<Bool> { get }
     var searchedQueryValid: Observable<Bool> { get }
     var repositories: Driver<[GithubRepository]> { get }
@@ -29,6 +30,7 @@ final class GithubViewModel {
     private(set) var completedSubject = BehaviorRelay<Bool>(value: false)
     private(set) var searchQuery = BehaviorRelay<String?>(value: nil)
     private(set) var searchedQuery = BehaviorRelay<String?>(value: nil)
+    private(set) var isQueryFavorited = BehaviorRelay<Bool>(value: false)
 
     lazy var searchQueryValid: Observable<Bool> = {
         return searchQuery
@@ -75,6 +77,7 @@ extension GithubViewModel {
                 },
                 onCompleted: { [weak self] in
                     UserDefaultsRepository.shared.oneUp(type: .incrementListId)
+                    self?.isQueryFavorited.accept(true)
                     self?.completedSubject.accept(true)
                 })
     }
@@ -118,11 +121,18 @@ extension GithubViewModel: GithubViewModelable {
         guard let query = searchQuery.value else {
             return Completable.empty()
         }
+        itemExists(keyword: query)
+            .subscribe(onSuccess: { [weak self] in
+                self?.isQueryFavorited.accept($0)
+            })
+            .disposed(by: disposeBag)
         return fetchRepositories(query: query)
     }
 
     func handleFavoriteBarButton() -> Completable {
-        guard let keyword = searchedQuery.value else { return Completable.empty() }
+        guard let keyword = searchedQuery.value else {
+            return Completable.empty()
+        }
         return itemExists(keyword: keyword)
             .flatMapCompletable { [weak self] in
                 guard let `self` = self else {

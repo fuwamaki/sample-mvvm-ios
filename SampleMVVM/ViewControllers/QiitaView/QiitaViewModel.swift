@@ -14,6 +14,7 @@ protocol QiitaViewModelable {
     var completedSubject: BehaviorRelay<Bool> { get }
     var searchQuery: BehaviorRelay<String?> { get }
     var searchedQuery: BehaviorRelay<String?> { get }
+    var isQueryFavorited: BehaviorRelay<Bool> { get }
     var searchQueryValid: Observable<Bool> { get }
     var searchedQueryValid: Observable<Bool> { get }
     var qiitaItems: Driver<[QiitaItem]> { get }
@@ -29,6 +30,7 @@ final class QiitaViewModel {
     private(set) var completedSubject = BehaviorRelay<Bool>(value: false)
     private(set) var searchQuery = BehaviorRelay<String?>(value: nil)
     private(set) var searchedQuery = BehaviorRelay<String?>(value: nil)
+    private(set) var isQueryFavorited = BehaviorRelay<Bool>(value: false)
 
     lazy var searchQueryValid: Observable<Bool> = {
         return searchQuery
@@ -64,35 +66,6 @@ final class QiitaViewModel {
     }
 }
 
-extension QiitaViewModel: QiitaViewModelable {
-    func handleSearchButton() -> Completable {
-        guard let tag = searchQuery.value else {
-            return Completable.empty()
-        }
-        return fetchQiitaItems(tag: tag)
-    }
-
-    func handleFavoriteBarButton() -> Completable {
-        guard let keyword = searchedQuery.value else { return Completable.empty() }
-        return itemExists(keyword: keyword)
-            .flatMapCompletable { [weak self] in
-                guard let `self` = self else {
-                    return Completable.empty()
-                }
-                guard !$0 else {
-                    self.presentScreenSubject.accept(.errorAlert(message: R.string.localizable.error_already_favorite()))
-                    return Completable.empty()
-                }
-                return self.saveQiitaItem(keyword: keyword)
-            }
-    }
-
-    func showQiitaWebView(indexPath: IndexPath) {
-        guard let url = URL(string: qiitaItemsSubject.value[indexPath.row].url) else { return }
-        presentScreenSubject.accept(.safari(url: url))
-    }
-}
-
 // MARK: private UseCase
 extension QiitaViewModel {
     // キーワードをローカルデータに保存
@@ -105,6 +78,7 @@ extension QiitaViewModel {
                 },
                 onCompleted: { [weak self] in
                     UserDefaultsRepository.shared.oneUp(type: .incrementListId)
+                    self?.isQueryFavorited.accept(true)
                     self?.completedSubject.accept(true)
                 })
     }
@@ -123,7 +97,7 @@ extension QiitaViewModel {
         }
     }
 
-    func fetchQiitaItems(tag: String) -> Completable {
+    private func fetchQiitaItems(tag: String) -> Completable {
         isLoading.accept(true)
         return apiClient.fetchQiitaItems(tag: tag)
             .do(
@@ -139,5 +113,41 @@ extension QiitaViewModel {
                 })
             .map { _ in } // Single<Void>に変換
             .asCompletable() // Completableに変換
+    }
+}
+
+// MARK: QiitaViewModelable
+extension QiitaViewModel: QiitaViewModelable {
+    func handleSearchButton() -> Completable {
+        guard let tag = searchQuery.value else {
+            return Completable.empty()
+        }
+        itemExists(keyword: tag)
+            .subscribe(onSuccess: { [weak self] in
+                self?.isQueryFavorited.accept($0)
+            })
+            .disposed(by: disposeBag)
+        return fetchQiitaItems(tag: tag)
+    }
+
+    func handleFavoriteBarButton() -> Completable {
+        guard let keyword = searchedQuery.value else { return Completable.empty() }
+        return itemExists(keyword: keyword)
+            .flatMapCompletable { [weak self] in
+                guard let `self` = self else {
+                    return Completable.empty()
+                }
+                guard !$0 else {
+                    self.presentScreenSubject.accept(
+                        .errorAlert(message: R.string.localizable.error_already_favorite()))
+                    return Completable.empty()
+                }
+                return self.saveQiitaItem(keyword: keyword)
+            }
+    }
+
+    func showQiitaWebView(indexPath: IndexPath) {
+        guard let url = URL(string: qiitaItemsSubject.value[indexPath.row].url) else { return }
+        presentScreenSubject.accept(.safari(url: url))
     }
 }

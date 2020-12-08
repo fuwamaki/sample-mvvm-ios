@@ -134,6 +134,14 @@ final class GithubViewController: UIViewController {
             .bind(to: favoriteBarButtonItem.rx.isEnabled)
             .disposed(by: disposeBag)
 
+        viewModel.isQueryFavorited
+            .subscribe(onNext: { [unowned self] in
+                self.favoriteBarButtonItem.image = $0
+                    ? UIImage(systemName: "checkmark.circle.fill")
+                    : UIImage(systemName: "heart.fill")
+            })
+            .disposed(by: disposeBag)
+
         favoriteBarButtonItem.rx.tap
             .subscribe(onNext: { [unowned self] in
                 self.viewModel.handleFavoriteBarButton()
