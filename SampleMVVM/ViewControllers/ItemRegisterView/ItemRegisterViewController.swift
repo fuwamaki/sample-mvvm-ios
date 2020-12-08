@@ -13,6 +13,7 @@ import PKHUD
 
 final class ItemRegisterViewController: UIViewController {
 
+    @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var categoryLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
@@ -61,6 +62,12 @@ final class ItemRegisterViewController: UIViewController {
         setupViews()
         setupTexts()
         bind()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     private func setupItem() {
@@ -188,5 +195,22 @@ extension ItemRegisterViewController: UITextFieldDelegate {
                 .disposed(by: disposeBag)
         }
         return true
+    }
+}
+
+// MARK: keyboard
+extension ItemRegisterViewController {
+    @objc func keyboardWillShow(_ notification: Foundation.Notification) {
+        guard let userInfo = notification.userInfo,
+            let value = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+        let keyboardSize = value.cgRectValue.height
+        scrollView.contentInset.bottom = keyboardSize
+    }
+
+    @objc func keyboardWillHide(_ notification: Foundation.Notification) {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
     }
 }
