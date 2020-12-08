@@ -142,11 +142,6 @@ final class GithubViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.searchQuery
-            .asDriver(onErrorJustReturn: "")
-            .drive(searchBar.rx.text)
-            .disposed(by: disposeBag)
-
         searchBar.rx.text.orEmpty
             .bind(to: viewModel.searchQuery)
             .disposed(by: disposeBag)
