@@ -61,10 +61,6 @@ final class GithubViewModel {
 
     init(apiClient: APIClientable) {
         self.apiClient = apiClient
-        subscribe()
-    }
-
-    private func subscribe() {
     }
 }
 
@@ -80,7 +76,7 @@ extension GithubViewModel {
                 onCompleted: { [weak self] in
                     UserDefaultsRepository.shared.oneUp(type: .incrementListId)
                     self?.completedSubject.accept(true)
-            })
+                })
     }
 
     // 保存するキーワードが、既にローカルデータに保存済みかどうかを確認
@@ -90,10 +86,10 @@ extension GithubViewModel {
                 .subscribe(
                     onNext: { entity in
                         single(.success(entity != nil))
-                },
+                    },
                     onError: { error in
                         single(.error(error))
-                })
+                    })
         }
     }
 
@@ -133,7 +129,8 @@ extension GithubViewModel: GithubViewModelable {
                     return Completable.empty()
                 }
                 guard !$0 else {
-                    self.presentScreenSubject.accept(.errorAlert(message: R.string.localizable.error_already_favorite()))
+                    self.presentScreenSubject.accept(
+                        .errorAlert(message: R.string.localizable.error_already_favorite()))
                     return Completable.empty()
                 }
                 return self.saveGithubItem(keyword: keyword)
