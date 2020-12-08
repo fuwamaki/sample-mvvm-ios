@@ -45,7 +45,7 @@ final class TextFieldInputAccessoryView: UIView {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
         toolBar.barStyle = UIBarStyle.default
         toolBar.tintColor = UIColor.white
-        toolBar.backgroundColor = UIColor.black
+        toolBar.barTintColor = UIColor.black
         toolBar.alpha = 0.7
         toolBar.isTranslucent = true
         let flexibleSpace = UIBarButtonItem(
@@ -66,7 +66,7 @@ final class TextFieldInputAccessoryView: UIView {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
         toolBar.barStyle = UIBarStyle.default
         toolBar.tintColor = UIColor.white
-        toolBar.backgroundColor = UIColor.black
+        toolBar.barTintColor = UIColor.black
         toolBar.alpha = 0.7
         toolBar.isTranslucent = true
         previousTextField = previous
