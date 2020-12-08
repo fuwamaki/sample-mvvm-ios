@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dwg-pV-yFM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dwg-pV-yFM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,24 +22,24 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="56"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="LO3-K9-ZXb">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="56"/>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="barTintColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="56"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pg-aN-2KJ">
-                                        <rect key="frame" x="350" y="0.0" width="64" height="56"/>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pg-aN-2KJ">
+                                        <rect key="frame" x="334" y="0.0" width="80" height="56"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="64" id="O4Q-bU-33K"/>
+                                            <constraint firstAttribute="width" constant="80" id="O4Q-bU-33K"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <state key="normal" title="Search">
-                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="disableTintColor">
-                                                <color key="value" systemColor="quaternaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" systemColor="quaternaryLabelColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
@@ -45,10 +47,11 @@
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jre-Kp-i1r">
                                 <rect key="frame" x="0.0" y="144" width="414" height="718"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ncw-I4-jNA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ncw-I4-jNA" firstAttribute="trailing" secondItem="jre-Kp-i1r" secondAttribute="trailing" id="6eb-ro-Vhg"/>
                             <constraint firstItem="ncw-I4-jNA" firstAttribute="trailing" secondItem="P5E-WS-pvt" secondAttribute="trailing" id="8UF-KI-YPl"/>
@@ -58,7 +61,6 @@
                             <constraint firstItem="P5E-WS-pvt" firstAttribute="top" secondItem="ncw-I4-jNA" secondAttribute="top" id="eQ4-7u-X1f"/>
                             <constraint firstItem="ncw-I4-jNA" firstAttribute="bottom" secondItem="jre-Kp-i1r" secondAttribute="bottom" id="vaH-ci-rPu"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ncw-I4-jNA"/>
                     </view>
                     <navigationItem key="navigationItem" title="Qiita" largeTitleDisplayMode="always" id="suv-ji-CFP">
                         <barButtonItem key="rightBarButtonItem" image="heart.fill" catalog="system" id="xXn-6h-i4m"/>
@@ -77,6 +79,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart.fill" catalog="system" width="64" height="54"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="quaternaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

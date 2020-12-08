@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="toL-x4-EIL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="toL-x4-EIL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,30 +22,31 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="56"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ckS-yr-rwa">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="56"/>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="barTintColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="56"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nch-Zc-tir">
-                                        <rect key="frame" x="350" y="0.0" width="64" height="56"/>
-                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nch-Zc-tir">
+                                        <rect key="frame" x="334" y="0.0" width="80" height="56"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="64" id="Ka5-mh-oup"/>
+                                            <constraint firstAttribute="width" constant="80" id="Ka5-mh-oup"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <state key="normal" title="Search">
-                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                     </button>
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cey-Po-tDm">
                                 <rect key="frame" x="0.0" y="144" width="414" height="718"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="3Qu-Sx-TUL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cey-Po-tDm" firstAttribute="leading" secondItem="3Qu-Sx-TUL" secondAttribute="leading" id="Urj-Pp-BuG"/>
                             <constraint firstItem="0zO-YC-Ord" firstAttribute="leading" secondItem="3Qu-Sx-TUL" secondAttribute="leading" id="VOX-tI-TG3"/>
@@ -53,7 +56,6 @@
                             <constraint firstItem="3Qu-Sx-TUL" firstAttribute="trailing" secondItem="cey-Po-tDm" secondAttribute="trailing" id="szO-uS-zeX"/>
                             <constraint firstItem="cey-Po-tDm" firstAttribute="top" secondItem="0zO-YC-Ord" secondAttribute="bottom" id="xXV-WL-lXP"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="3Qu-Sx-TUL"/>
                     </view>
                     <navigationItem key="navigationItem" title="Github" largeTitleDisplayMode="always" id="KdP-sl-mBd">
                         <barButtonItem key="rightBarButtonItem" image="heart.fill" catalog="system" id="d6j-Zb-NT0"/>
@@ -72,6 +74,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart.fill" catalog="system" width="64" height="54"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
