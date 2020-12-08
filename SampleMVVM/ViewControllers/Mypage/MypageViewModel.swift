@@ -155,6 +155,7 @@ extension MypageViewModel: MypageViewModelable {
                                 birthday: userEntity.birthday,
                                 iconImage: userEntity.iconImageData)
                 UserDefaultsRepository.shared.createUser(user: user)
+                self?.checkUser()
                 self?.completedSubject.accept(true)
             case .success(.none):
                 self?.pushScreenSubject.accept(
