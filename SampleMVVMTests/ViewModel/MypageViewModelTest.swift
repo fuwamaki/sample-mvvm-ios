@@ -56,16 +56,11 @@ class MypageViewModelTest: XCTestCase {
         let apiClient = MockAPIClient(result: .success)
         let viewModel = MypageViewModel(apiClient: apiClient)
         viewModel.user.accept(
-            User(token: "test",
-                 userId: "testUserId",
-                 name: "testName",
-                 birthday: Date(),
-                 iconImageURL: nil,
-                 iconImage: nil))
+            User(userType: .line, token: "token", userId: "userId", name: "name", birthday: Date(), iconImage: nil))
         scheduler.scheduleAt(100) {
             viewModel.pushScreen
                 .drive(onNext: {
-                    XCTAssertTrue($0 == .updateUser(user: User(token: "", userId: "", name: "", birthday: Date(), iconImageURL: nil, iconImage: nil)))
+                    XCTAssertTrue($0 == .updateUser(user: User(userType: .line, token: "token", userId: "userId", name: "name", birthday: Date(), iconImage: nil)))
                 })
                 .disposed(by: disposeBag)
         }

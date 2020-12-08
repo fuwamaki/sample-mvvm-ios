@@ -18,7 +18,7 @@ class UserRegistrationViewModelTest: XCTestCase {
         let disposeBag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
         let viewModel = UserRegistrationViewModel(
-            type: .create(lineUser: LineUser(accessToken: "token")))
+            type: .createLineUser(LineUser(accessToken: "token")))
         scheduler.scheduleAt(100) {
             viewModel.presentScreen
                 .drive(onNext: {
@@ -36,7 +36,7 @@ class UserRegistrationViewModelTest: XCTestCase {
         let disposeBag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
         let viewModel = UserRegistrationViewModel(
-            type: .create(lineUser: LineUser(accessToken: "token")))
+            type: .createLineUser(LineUser(accessToken: "token")))
         scheduler.scheduleAt(100) {
             viewModel.presentScreen
                 .drive(onNext: {
@@ -54,7 +54,7 @@ class UserRegistrationViewModelTest: XCTestCase {
         let disposeBag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
         let viewModel = UserRegistrationViewModel(
-            type: .create(lineUser: LineUser(accessToken: "token")))
+            type: .createLineUser(LineUser(accessToken: "token")))
         viewModel.name.accept("testName")
         viewModel.birthday.accept(Date())
         scheduler.scheduleAt(100) {
@@ -73,7 +73,7 @@ class UserRegistrationViewModelTest: XCTestCase {
     func testHandleSubmitButtonWithUpdate() {
         let scheduler = TestScheduler(initialClock: 0)
         let viewModel = UserRegistrationViewModel(
-            type: .update(user: User(token: "token", userId: "userId", name: "name", birthday: Date(), iconImageURL: nil, iconImage: nil)))
+            type: .update(user: User(userType: .line, token: "token", userId: "userId", name: "name", birthday: Date(), iconImage: nil)))
         viewModel.name.accept("testName")
         viewModel.birthday.accept(Date())
         scheduler.scheduleAt(100) {
