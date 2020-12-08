@@ -95,6 +95,16 @@ extension MypageViewModel: MypageViewModelable {
         checkUser()
     }
 
+    func handleEditButton() {
+        guard let user = user.value else {
+            presentScreenSubject.accept(
+                .errorAlert(message: R.string.localizable.error_login()))
+            return
+        }
+        pushScreenSubject.accept(.updateUser(user: user))
+    }
+
+    // MARK: LINE
     func handleLineLoginWithSuccess(lineUser: LineUser) {
         accountExists(userType: .line, userId: lineUser.userId) { [weak self] result in
             switch result {
@@ -106,6 +116,7 @@ extension MypageViewModel: MypageViewModelable {
                                 birthday: userEntity.birthday,
                                 iconImage: userEntity.iconImageData)
                 UserDefaultsRepository.shared.createUser(user: user)
+                self?.checkUser()
                 self?.completedSubject.accept(true)
             case .success(.none):
                 self?.pushScreenSubject.accept(.createLineUser(lineUser))
@@ -121,6 +132,7 @@ extension MypageViewModel: MypageViewModelable {
             .errorAlert(message: error.errorDescription ?? R.string.localizable.error_unknown()))
     }
 
+    // MARK: Apple
     func handleCompletedAppleSignin(_ authorization: ASAuthorization) {
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
               let authCodeData = appleIDCredential.authorizationCode,
@@ -145,23 +157,18 @@ extension MypageViewModel: MypageViewModelable {
                 UserDefaultsRepository.shared.createUser(user: user)
                 self?.completedSubject.accept(true)
             case .success(.none):
-                self?.pushScreenSubject.accept(.createAppleUser(appleUser))
+                self?.pushScreenSubject.accept(
+                    .createAppleUser(appleUser))
             case .failure(let error):
                 guard let error = error as? APIError else { return }
-                self?.presentScreenSubject.accept(.errorAlert(message: error.message))
+                self?.presentScreenSubject.accept(
+                    .errorAlert(message: error.message))
             }
         }
     }
 
     func handleFailureAppleSignin(_ error: Error) {
-        presentScreenSubject.accept(.errorAlert(message: error.localizedDescription))
-    }
-
-    func handleEditButton() {
-        guard let user = user.value else {
-            presentScreenSubject.accept(.errorAlert(message: R.string.localizable.error_login()))
-            return
-        }
-        pushScreenSubject.accept(.updateUser(user: user))
+        presentScreenSubject.accept(
+            .errorAlert(message: error.localizedDescription))
     }
 }
