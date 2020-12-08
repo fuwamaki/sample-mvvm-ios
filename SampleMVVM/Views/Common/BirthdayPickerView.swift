@@ -17,6 +17,9 @@ final class BirthdayPickerView: UIView {
     private lazy var birthdayPicker: UIDatePicker = {
         let birthdayPicker = UIDatePicker()
         birthdayPicker.datePickerMode = .date
+        if #available(iOS 13.4, *) {
+            birthdayPicker.preferredDatePickerStyle = .wheels
+        }
         birthdayPicker.locale = Locale.current
         birthdayPicker.minimumDate = DateComponents(
             calendar: Calendar(identifier: .gregorian),
