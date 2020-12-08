@@ -30,6 +30,8 @@ iOSのMVVMとは、Model, ViewController, ViewModelの3つの層に分けた、
   - APIClient: APIアクセスを行うクラス。
 - DIについて: ViewModelをテストしやすくするために、ViewModelのInitializerにはDIを採用している。Mockの指定を行う場合は、MockインスタンスをViewModelのInitializer変数に適用する。
 
+※注意点: ViewModel層では、ViewControllerの状態を知らない。そのため、ViewControllerのインスタンスも持たないようにする。
+
 ## 実現している機能
 
 MVVMアーキテクチャを採用したシステム、以下の機能を実現している。
