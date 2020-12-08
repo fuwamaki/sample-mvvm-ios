@@ -142,4 +142,30 @@ class ItemViewModelTest: XCTestCase {
         }
         scheduler.start()
     }
+
+    func testDeleteItemWithFailure() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let apiClient = MockAPIClient(result: .success)
+        let viewModel = ItemViewModel(apiClient: apiClient)
+        scheduler.scheduleAt(100) {
+            viewModel.presentScreen
+                .drive(onNext: {
+                    XCTAssertTrue($0 == .errorAlert(message: ""))
+                })
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(200) {
+            viewModel.fetchItems()
+                .subscribe()
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(300) {
+            apiClient.result = .failure
+            viewModel.deleteItem(indexPath: IndexPath(row: 0, section: 0))
+                .subscribe()
+                .disposed(by: disposeBag)
+        }
+        scheduler.start()
+    }
 }

@@ -32,6 +32,24 @@ class MypageViewModelTest: XCTestCase {
         scheduler.start()
     }
 
+    func testHandleLogoutInSettingBarButtonItem() {
+        let disposeBag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let apiClient = MockAPIClient(result: .success)
+        let viewModel = MypageViewModel(apiClient: apiClient)
+        scheduler.scheduleAt(100) {
+            viewModel.isSignedIn
+                .subscribe(onNext: {
+                    XCTAssertFalse($0)
+                })
+                .disposed(by: disposeBag)
+        }
+        scheduler.scheduleAt(200) {
+            viewModel.handleLogoutInSettingBarButtonItem()
+        }
+        scheduler.start()
+    }
+
     func testHandleFailureAppleSignin() {
         let disposeBag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
