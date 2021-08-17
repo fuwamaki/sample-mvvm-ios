@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc protocol TextFieldInputAccessoryViewDelegate: class {
+@objc protocol TextFieldInputAccessoryViewDelegate: AnyObject {
     @objc optional func handleDoneButton(_ inputAccessoryView: TextFieldInputAccessoryView)
 }
 

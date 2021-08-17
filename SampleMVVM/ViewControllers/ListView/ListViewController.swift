@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol ListTableDelegate: class {
+protocol ListTableDelegate: AnyObject {
     func showWebView(_ viewController: UIViewController)
 }
 
