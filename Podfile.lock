@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.9.1)
-  - CropViewController (2.5.5)
+  - CropViewController (2.6.0)
   - LineSDKSwift (5.7.0):
     - LineSDKSwift/Core (= 5.7.0)
   - LineSDKSwift/Core (5.7.0)
@@ -45,7 +45,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.9.0)
-  - CropViewController (~> 2.5.5)
+  - CropViewController (~> 2.6.0)
   - LineSDKSwift (~> 5.7.0)
   - PINRemoteImage (~> 3.0.3)
   - PKHUD (~> 5.0)
@@ -80,7 +80,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  CropViewController: bd3ff11eeeaadc1e267bb9c3f3e9ee67a52d3285
+  CropViewController: 7093b39ec3cb508531b22d35773e06cecd7378d8
   LineSDKSwift: f9c232f89185b887b5725aa278325f3a23e33bbc
   PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
   PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
@@ -98,6 +98,6 @@ SPEC CHECKSUMS:
   RxTest: 711632d5644dffbeb62c936a521b5b008a1e1faa
   SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
 
-PODFILE CHECKSUM: 2b863ed06266a9f42a2c7cd0a8f7e34e6a96e53f
+PODFILE CHECKSUM: 5bf2b4ecc6aac28479580c5c4a1d7277e4df793a
 
 COCOAPODS: 1.10.0
