@@ -37,7 +37,9 @@ final class MypageViewController: UIViewController {
     private var isLoading: Bool = false {
         didSet {
             DispatchQueue.main.async {
-                self.isLoading ? self.indicator.startAnimating() : self.indicator.stopAnimating()
+                self.isLoading
+                ? self.indicator.startAnimating()
+                : self.indicator.stopAnimating()
                 self.indicator.isHidden = !self.isLoading
             }
         }
@@ -72,7 +74,7 @@ final class MypageViewController: UIViewController {
         appleLoginDescriptionLabel.text = R.string.localizable.mypage_apple_login_description()
     }
 
-    // swiftlint:disable function_body_length cyclomatic_complexity
+    // swiftlint:disable function_body_length
     private func bind() {
         rx.viewWillAppear
             .bind(to: viewModel.viewWillAppear)
@@ -85,48 +87,14 @@ final class MypageViewController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.presentScreen
-            .drive(onNext: { [unowned self] screen in
-                switch screen {
-                case .errorAlert(let message):
-                    let alert = UIAlertController.singleErrorAlert(message: message)
-                    self.present(alert, animated: true, completion: nil)
-                case .mypageActionSheet:
-                    let actionSheet = UIAlertController(
-                        title: R.string.localizable.mypage_setting_menu_title(),
-                        message: nil,
-                        preferredStyle: .actionSheet)
-                    actionSheet.addAction(
-                        UIAlertAction(
-                            title: R.string.localizable.mypage_setting_menu_logout(),
-                            style: .destructive,
-                            handler: { _ in
-                                self.viewModel.handleLogoutInSettingBarButtonItem()
-                            }))
-                    actionSheet.addAction(
-                        UIAlertAction(
-                            title: R.string.localizable.mypage_setting_menu_cancel(),
-                            style: .cancel,
-                            handler: nil))
-                    self.present(actionSheet, animated: true, completion: nil)
-                default: break
-                }
+            .drive(onNext: { [unowned self] in
+                self.presentScreen($0)
             })
             .disposed(by: disposeBag)
 
         viewModel.pushScreen
-            .drive(onNext: { [unowned self] screen in
-                switch screen {
-                case .createAppleUser(let user):
-                    let viewController = UserRegistrationViewController.make(type: .createAppleUser(user))
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                case .createLineUser(let user):
-                    let viewController = UserRegistrationViewController.make(type: .createLineUser(user))
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                case .updateUser(let user):
-                    let viewController = UserRegistrationViewController.make(type: .update(user: user))
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                default: break
-                }
+            .drive(onNext: { [unowned self] in
+                self.navigationController?.pushScreen($0)
             })
             .disposed(by: disposeBag)
 
@@ -175,10 +143,12 @@ final class MypageViewController: UIViewController {
                     switch result {
                     case .success(let loginResult):
                         if let userId = loginResult.userProfile?.userID {
-                            let lineUser = LineUser(token: loginResult.accessToken.value,
-                                                    userId: userId,
-                                                    displayName: loginResult.userProfile?.displayName,
-                                                    pictureUrl: loginResult.userProfile?.pictureURL)
+                            let lineUser = LineUser(
+                                token: loginResult.accessToken.value,
+                                userId: userId,
+                                displayName: loginResult.userProfile?.displayName,
+                                pictureUrl: loginResult.userProfile?.pictureURL
+                            )
                             self.viewModel.handleLineLoginWithSuccess(lineUser: lineUser)
                         }
                     case .failure(let error):
@@ -207,18 +177,26 @@ extension MypageViewController: TextFieldInputAccessoryViewDelegate {}
 
 // MARK: ASAuthorizationControllerDelegate
 extension MypageViewController: ASAuthorizationControllerDelegate {
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+    func authorizationController(
+        controller: ASAuthorizationController,
+        didCompleteWithAuthorization authorization: ASAuthorization
+    ) {
         viewModel.handleCompletedAppleSignin(authorization)
     }
 
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+    func authorizationController(
+        controller: ASAuthorizationController,
+        didCompleteWithError error: Error
+    ) {
         viewModel.handleFailureAppleSignin(error)
     }
 }
 
 // MARK: ASAuthorizationControllerPresentationContextProviding
 extension MypageViewController: ASAuthorizationControllerPresentationContextProviding {
-    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+    func presentationAnchor(
+        for controller: ASAuthorizationController
+    ) -> ASPresentationAnchor {
         return self.view.window!
     }
 }

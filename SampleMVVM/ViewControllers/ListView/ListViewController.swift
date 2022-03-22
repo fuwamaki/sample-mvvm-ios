@@ -22,6 +22,7 @@ final class ListViewController: UIViewController {
         didSet {
             tableView.register(R.nib.listGithubTableCell)
             tableView.register(R.nib.listQiitaTableCell)
+            tableView.tableFooterView = UIView()
 
             tableView.rx
                 .setDelegate(self)
@@ -63,15 +64,9 @@ final class ListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+        view.addSubview(indicator)
         setupTexts()
         bind()
-    }
-
-    private func setupViews() {
-        view.addSubview(indicator)
-        // Hide blank border of tableview
-        tableView.tableFooterView = UIView()
     }
 
     private func setupTexts() {
@@ -91,27 +86,14 @@ final class ListViewController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.presentScreen
-            .drive(onNext: { [unowned self] screen in
-                switch screen {
-                case .errorAlert(let message):
-                    let alert = UIAlertController.singleErrorAlert(message: message)
-                    self.present(alert, animated: true, completion: nil)
-                default: break
-                }
+            .drive(onNext: { [unowned self] in
+                self.presentScreen($0)
             })
             .disposed(by: disposeBag)
 
         viewModel.pushScreen
-            .drive(onNext: { [unowned self] screen in
-                switch screen {
-                case .github:
-                    let viewController = GithubViewController.make()
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                case .qiita:
-                    let viewController = QiitaViewController.make()
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                default: break
-                }
+            .drive(onNext: { [unowned self] in
+                self.navigationController?.pushScreen($0)
             })
             .disposed(by: disposeBag)
 
@@ -136,11 +118,17 @@ extension ListViewController: ListTableDelegate {
 
 // MARK: UITableViewDelegate
 extension ListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(
+        _ tableView: UITableView,
+        heightForRowAt indexPath: IndexPath
+    ) -> CGFloat {
         return ListGithubTableCell.defaultHeight(tableView)
     }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(
+        _ tableView: UITableView,
+        viewForHeaderInSection section: Int
+    ) -> UIView? {
         let label = UILabel()
         label.backgroundColor = UIColor.systemGroupedBackground
         label.textColor = UIColor.label
@@ -152,7 +140,10 @@ extension ListViewController: UITableViewDelegate {
 
 // MARK: UITableViewDataSource
 extension ListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
         return 1
     }
 
@@ -160,16 +151,25 @@ extension ListViewController: UITableViewDataSource {
         return viewModel.contentsSubject.value.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
         let element = viewModel.contentsSubject.value[indexPath.section]
         switch element.type {
         case .github:
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.listGithubTableCell, for: indexPath)!
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: R.reuseIdentifier.listGithubTableCell,
+                for: indexPath
+            )!
             cell.render(repositories: element.contents as! [GithubRepository])
             cell.delegate = self
             return cell
         case .qiita:
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.listQiitaTableCell, for: indexPath)!
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: R.reuseIdentifier.listQiitaTableCell,
+                for: indexPath
+            )!
             cell.render(qiitaItems: element.contents as! [QiitaItem])
             cell.delegate = self
             return cell

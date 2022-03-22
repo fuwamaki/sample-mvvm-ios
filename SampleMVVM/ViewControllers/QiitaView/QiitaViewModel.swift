@@ -68,19 +68,20 @@ final class QiitaViewModel {
 
 // MARK: private UseCase
 extension QiitaViewModel {
-    // キーワードをローカルデータに保存
     private func saveQiitaItem(keyword: String) -> Completable {
         let entity = ListRealmEntity.make(keyword: keyword, type: .qiita)
         return ItemRealmRepository<ListRealmEntity>.save(item: entity)
             .do(
                 onError: { [weak self] error in
-                    self?.presentScreenSubject.accept(.errorAlert(message: error.localizedDescription))
+                    self?.presentScreenSubject
+                        .accept(.errorAlert(message: error.localizedDescription))
                 },
                 onCompleted: { [weak self] in
                     UserDefaultsRepository.shared.oneUp(type: .incrementListId)
                     self?.isQueryFavorited.accept(true)
                     self?.completedSubject.accept(true)
-                })
+                }
+            )
     }
 
     // 保存するキーワードが、既にローカルデータに保存済みかどうかを確認
@@ -93,7 +94,8 @@ extension QiitaViewModel {
                     },
                     onError: { error in
                         single(.error(error))
-                    })
+                    }
+                )
         }
     }
 
@@ -109,10 +111,12 @@ extension QiitaViewModel {
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    self?.presentScreenSubject.accept(.errorAlert(message: error.message))
-                })
-            .map { _ in } // Single<Void>に変換
-            .asCompletable() // Completableに変換
+                    self?.presentScreenSubject
+                        .accept(.errorAlert(message: error.message))
+                }
+            )
+            .map { _ in }
+            .asCompletable()
     }
 }
 
@@ -131,15 +135,17 @@ extension QiitaViewModel: QiitaViewModelable {
     }
 
     func handleFavoriteBarButton() -> Completable {
-        guard let keyword = searchedQuery.value else { return Completable.empty() }
+        guard let keyword = searchedQuery.value else {
+            return Completable.empty()
+        }
         return itemExists(keyword: keyword)
             .flatMapCompletable { [weak self] in
                 guard let `self` = self else {
                     return Completable.empty()
                 }
                 guard !$0 else {
-                    self.presentScreenSubject.accept(
-                        .errorAlert(message: R.string.localizable.error_already_favorite()))
+                    self.presentScreenSubject
+                        .accept(.errorAlert(message: R.string.localizable.error_already_favorite()))
                     return Completable.empty()
                 }
                 return self.saveQiitaItem(keyword: keyword)

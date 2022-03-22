@@ -24,7 +24,6 @@ extension QiitaItemFetchResponse: Decodable {
     }
 }
 
-// Rootが配列型のJSONをCodableでマッピングしてくれる魔法のprotocol
 private protocol Decodable {
     init(from decoder: Decoder) throws
 }

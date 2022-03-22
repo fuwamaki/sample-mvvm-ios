@@ -23,10 +23,13 @@ final class ListGithubTableCell: UITableViewCell {
 
             repositories
                 .drive(collectionView.rx.items) { collectionView, index, element in
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.githubCollectionCell,
-                                                                  for: IndexPath(row: index, section: 0))!
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: R.reuseIdentifier.githubCollectionCell,
+                        for: IndexPath(row: index, section: 0)
+                    )!
                     cell.render(repository: element)
-                    return cell }
+                    return cell
+                }
                 .disposed(by: disposeBag)
 
             collectionView.rx.itemSelected
@@ -66,7 +69,11 @@ extension ListGithubTableCell: UICollectionViewDelegate {}
 
 // MARK: UICollectionViewDelegateFlowLayout
 extension ListGithubTableCell: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
         return CGSize(width: 240, height: 100)
     }
 }

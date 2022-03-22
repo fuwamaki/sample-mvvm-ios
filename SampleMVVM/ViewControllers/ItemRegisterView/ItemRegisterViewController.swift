@@ -46,12 +46,16 @@ final class ItemRegisterViewController: UIViewController {
     private var item: Item?
 
     static func make() -> ItemRegisterViewController {
-        let viewController = R.storyboard.itemRegisterViewController.instantiateInitialViewController()!
+        let viewController = R.storyboard
+            .itemRegisterViewController
+            .instantiateInitialViewController()!
         return viewController
     }
 
     static func make(item: Item) -> ItemRegisterViewController {
-        let viewController = R.storyboard.itemRegisterViewController.instantiateInitialViewController()!
+        let viewController = R.storyboard
+            .itemRegisterViewController
+            .instantiateInitialViewController()!
         viewController.item = item
         return viewController
     }
@@ -66,8 +70,18 @@ final class ItemRegisterViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(_:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(_:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
     }
 
     private func setupItem() {
@@ -113,13 +127,8 @@ final class ItemRegisterViewController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.presentScreen
-            .drive(onNext: { [unowned self] screen in
-                switch screen {
-                case .errorAlert(let message):
-                    let alert = UIAlertController.singleErrorAlert(message: message)
-                    self.present(alert, animated: true, completion: nil)
-                default: break
-                }
+            .drive(onNext: { [unowned self] in
+                self.presentScreen($0)
             })
             .disposed(by: disposeBag)
 
@@ -202,7 +211,7 @@ extension ItemRegisterViewController: UITextFieldDelegate {
 extension ItemRegisterViewController {
     @objc func keyboardWillShow(_ notification: Foundation.Notification) {
         guard let userInfo = notification.userInfo,
-            let value = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+              let value = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
             return
         }
         let keyboardSize = value.cgRectValue.height

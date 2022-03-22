@@ -72,7 +72,9 @@ extension ItemViewModel: ItemViewModelable {
 
     func handleTableItemButton(indexPath: IndexPath?) {
         guard let indexPath = indexPath else { return }
-        pushScreenSubject.accept(.itemUpdate(item: itemsSubject.value[indexPath.row]))
+        pushScreenSubject.accept(.itemUpdate(
+            item: itemsSubject.value[indexPath.row]
+        ))
     }
 
     func fetchItems() -> Completable {
@@ -86,9 +88,11 @@ extension ItemViewModel: ItemViewModelable {
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    self?.presentScreenSubject.accept(.errorAlert(message: error.message)) })
-            .map { _ in } // Single<Void>に変換
-            .asCompletable() // Completableに変換
+                    self?.presentScreenSubject
+                        .accept(.errorAlert(message: error.message))
+                }
+            ).map { _ in }
+            .asCompletable()
     }
 
     func deleteItem(indexPath: IndexPath) -> Completable {
@@ -101,11 +105,15 @@ extension ItemViewModel: ItemViewModelable {
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    self?.presentScreenSubject.accept(.errorAlert(message: error.message)) },
+                    self?.presentScreenSubject
+                        .accept(.errorAlert(message: error.message))
+                },
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
                     var items = self?.itemsSubject.value
                     items?.remove(at: indexPath.row)
-                    self?.itemsSubject.accept(items ?? [])})
+                    self?.itemsSubject.accept(items ?? [])
+                }
+            )
     }
 }

@@ -16,7 +16,7 @@ enum Screen {
     case createAppleUser(_ user: AppleUser)
     case createLineUser(_ user: LineUser)
     case updateUser(user: User)
-    case mypageActionSheet
+    case mypageActionSheet(logoutAction: (() -> Void))
     case imagePicker
     case crop(picker: UIImagePickerController, image: UIImage)
     case safari(url: URL)

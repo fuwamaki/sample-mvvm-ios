@@ -120,20 +120,27 @@ final class ListViewModel {
                 onSuccess: { [weak self] repositories in
                     guard let `self` = self else { return }
                     self.apiAccessCount.accept(self.apiAccessCount.value-1)
-                    let content = ListContents(offset: offset, type: .github, sectionTitle: keyword + " (github)", contents: repositories)
+                    let content = ListContents(
+                        offset: offset,
+                        type: .github,
+                        sectionTitle: keyword + " (github)",
+                        contents: repositories
+                    )
                     var contents = self.contentsSubject.value
                     contents.append(content)
                     contents.sort { $0.offset < $1.offset }
                     self.contentsSubject.accept(contents)
                 },
                 onError: { [weak self] error in
-                    guard let `self` = self, let error = error as? APIError else { return }
+                    guard let `self` = self,
+                          let error = error as? APIError else { return }
                     self.apiAccessCount.accept(self.apiAccessCount.value-1)
                     if self.apiAccessCount.value == 0 {
-                        self.presentScreenSubject.accept(.errorAlert(message: error.message))
+                        self.presentScreenSubject
+                            .accept(.errorAlert(message: error.message))
                     }})
-            .map { _ in } // Single<Void>に変換
-            .asCompletable() // Completableに変換
+                .map { _ in }
+                .asCompletable()
     }
 
     private func fetchQiitaItems(offset: Int, entity: ListRealmEntity) -> Completable {
@@ -144,20 +151,29 @@ final class ListViewModel {
                 onSuccess: { [weak self] qiitaItems in
                     guard let `self` = self else { return }
                     self.apiAccessCount.accept(self.apiAccessCount.value-1)
-                    let content = ListContents(offset: offset, type: .qiita, sectionTitle: keyword + " (qiita)", contents: qiitaItems)
+                    let content = ListContents(
+                        offset: offset,
+                        type: .qiita,
+                        sectionTitle: keyword + " (qiita)",
+                        contents: qiitaItems
+                    )
                     var contents = self.contentsSubject.value
                     contents.append(content)
                     contents.sort { $0.offset < $1.offset }
                     self.contentsSubject.accept(contents)
                 },
                 onError: { [weak self] error in
-                    guard let `self` = self, let error = error as? APIError else { return }
+                    guard let `self` = self,
+                          let error = error as? APIError else { return }
                     self.apiAccessCount.accept(self.apiAccessCount.value-1)
                     if self.apiAccessCount.value == 0 {
-                        self.presentScreenSubject.accept(.errorAlert(message: error.message))
-                    }})
-            .map { _ in } // Single<Void>に変換
-            .asCompletable() // Completableに変換
+                        self.presentScreenSubject
+                            .accept(.errorAlert(message: error.message))
+                    }
+                }
+            )
+            .map { _ in }
+            .asCompletable()
     }
 }
 

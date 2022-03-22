@@ -27,7 +27,8 @@ final class GithubCollectionCell: UICollectionViewCell {
         didSet {
             repositorySubject
             .subscribe(onNext: { [unowned self] repository in
-                self.iconImageView?.pin_setImage(from: URL(string: repository.owner.avatarUrl))
+                self.iconImageView?
+                    .pin_setImage(from: URL(string: repository.owner.avatarUrl))
             })
             .disposed(by: disposeBag)
         }

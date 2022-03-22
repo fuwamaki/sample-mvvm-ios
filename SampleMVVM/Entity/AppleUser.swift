@@ -13,7 +13,12 @@ struct AppleUser {
     let userId: String
     let name: String
 
-    init(token: String, userId: String, givenName: String?, familyName: String?) {
+    init(
+        token: String,
+        userId: String,
+        givenName: String?,
+        familyName: String?
+    ) {
         self.token = token
         self.userId = userId
         self.name = (givenName ?? "") + (familyName ?? "")

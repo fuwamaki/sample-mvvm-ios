@@ -23,7 +23,12 @@ struct GithubRepository: Codable, Listable {
         case owner
     }
 
-    init(fullName: String, stargazersCount: Int, htmlUrl: String, owner: GithubRepositoryOwner) {
+    init(
+        fullName: String,
+        stargazersCount: Int,
+        htmlUrl: String,
+        owner: GithubRepositoryOwner
+    ) {
         self.fullName = fullName
         self.stargazersCount = stargazersCount
         self.htmlUrl = htmlUrl

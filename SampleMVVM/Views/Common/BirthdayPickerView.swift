@@ -29,12 +29,16 @@ final class BirthdayPickerView: UIView {
         birthdayPicker.setDate(DateComponents(
             calendar: Calendar(identifier: .gregorian),
             timeZone: TimeZone.current, year: 1990, month: 1, day: 1).date ?? Date(), animated: false)
-        birthdayPicker.addTarget(self, action: #selector(birthdayPickerValueDidChange(_:)), for: .valueChanged)
+        birthdayPicker.addTarget(
+            self,
+            action: #selector(birthdayPickerValueDidChange(_:)),
+            for: .valueChanged
+        )
         return birthdayPicker
     }()
 
     override init(frame: CGRect) {
-        let view = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 216)
+        let view = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 216)
         super.init(frame: view)
         setupBirthdayPicker()
     }

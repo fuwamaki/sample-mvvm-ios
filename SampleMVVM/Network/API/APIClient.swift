@@ -65,37 +65,40 @@ final class APIClient: APIClientable {
             completion(.failure(APIError.networkError))
             return
         }
-        apiClient()?.request(request.url,
-                             method: request.method,
-                             parameters: request.parameters,
-                             encoding: request.encoding,
-                             headers: request.headers)
-            .log()
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    do {
-                        guard let data = response.data else {
-                            completion(.failure(APIError.nonDataError))
-                            return
-                        }
-                        let result = try JSONDecoder().decode(T.Response.self, from: data)
-                        completion(.success(result))
-                    } catch {
-                        completion(.failure(APIError.jsonParseError))
+        apiClient()?.request(
+            request.url,
+            method: request.method,
+            parameters: request.parameters,
+            encoding: request.encoding,
+            headers: request.headers
+        )
+        .log()
+        .responseJSON { response in
+            switch response.result {
+            case .success:
+                do {
+                    guard let data = response.data else {
+                        completion(.failure(APIError.nonDataError))
+                        return
                     }
-                case .failure(let error as NSError):
-                    switch error.code {
-                    case 401:
-                        completion(.failure(.unauthorizedError))
-                    case 404:
-                        completion(.failure(.notFoundError))
-                    case 503:
-                        completion(.failure(.maintenanceError))
-                    default:
-                        completion(.failure(.unknownError))
-                    }
-                }}
+                    let result = try JSONDecoder().decode(T.Response.self, from: data)
+                    completion(.success(result))
+                } catch {
+                    completion(.failure(APIError.jsonParseError))
+                }
+            case .failure(let error as NSError):
+                switch error.code {
+                case 401:
+                    completion(.failure(.unauthorizedError))
+                case 404:
+                    completion(.failure(.notFoundError))
+                case 503:
+                    completion(.failure(.maintenanceError))
+                default:
+                    completion(.failure(.unknownError))
+                }
+            }
+        }
     }
 
     func writeCall<T: RequestProtocol>(request: T, completion: @escaping (OriginalResult<T.Response?, APIError>) -> Void) {
@@ -103,32 +106,34 @@ final class APIClient: APIClientable {
             completion(.failure(APIError.networkError))
             return
         }
-        apiClient()?.request(request.url,
-                             method: request.method,
-                             parameters: request.parameters,
-                             encoding: request.encoding,
-                             headers: request.headers)
-            .log()
-            .response { response in
-                if let error = response.error as NSError? {
-                    switch error.code {
-                    case 401:
-                        completion(.failure(.unauthorizedError))
-                    case 404:
-                        completion(.failure(.notFoundError))
-                    case 503:
-                        completion(.failure(.maintenanceError))
-                    default:
-                        completion(.failure(.unknownError))
-                    }
-                } else {
-                    switch response.response?.statusCode {
-                    case .some(let code) where 200 <= code && code < 300:
-                        completion(.success(nil))
-                    default:
-                        completion(.failure(APIError.unknownError))
-                    }
+        apiClient()?.request(
+            request.url,
+            method: request.method,
+            parameters: request.parameters,
+            encoding: request.encoding,
+            headers: request.headers
+        )
+        .log()
+        .response { response in
+            if let error = response.error as NSError? {
+                switch error.code {
+                case 401:
+                    completion(.failure(.unauthorizedError))
+                case 404:
+                    completion(.failure(.notFoundError))
+                case 503:
+                    completion(.failure(.maintenanceError))
+                default:
+                    completion(.failure(.unknownError))
                 }
+            } else {
+                switch response.response?.statusCode {
+                case .some(let code) where 200 <= code && code < 300:
+                    completion(.success(nil))
+                default:
+                    completion(.failure(APIError.unknownError))
+                }
+            }
         }
     }
 

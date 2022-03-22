@@ -65,7 +65,11 @@ final class UserRegistrationViewModel {
         }
     }
 
-    private func createUser(name: String, birthday: Date) -> (userEntity: UserRealmEntity, user: User) {
+    // swiftlint:disable function_body_length
+    private func createUser(
+        name: String,
+        birthday: Date
+    ) -> (userEntity: UserRealmEntity, user: User) {
         let entity = UserRealmEntity()
         switch type {
         case .createAppleUser(let user):
@@ -74,8 +78,14 @@ final class UserRegistrationViewModel {
             entity.name = user.name
             entity.birthday = birthday
             entity.iconImageData = iconImage.value?.pngData() ?? Data()
-            let value = User(userType: .apple, token: user.token, userId: user.userId,
-                             name: name, birthday: birthday, iconImage: iconImage.value?.pngData())
+            let value = User(
+                userType: .apple,
+                token: user.token,
+                userId: user.userId,
+                name: name,
+                birthday: birthday,
+                iconImage: iconImage.value?.pngData()
+            )
             return (entity, value)
         case .createLineUser(let user):
             entity.userType = UserType.line.rawValue
@@ -83,8 +93,14 @@ final class UserRegistrationViewModel {
             entity.name = name
             entity.birthday = birthday
             entity.iconImageData = iconImage.value?.pngData() ?? Data()
-            let value = User(userType: .line, token: user.token, userId: user.userId,
-                             name: name, birthday: birthday, iconImage: iconImage.value?.pngData())
+            let value = User(
+                userType: .line,
+                token: user.token,
+                userId: user.userId,
+                name: name,
+                birthday: birthday,
+                iconImage: iconImage.value?.pngData()
+            )
             return (entity, value)
         case .update(let user):
             entity.userType = user.userType.rawValue
@@ -92,8 +108,14 @@ final class UserRegistrationViewModel {
             entity.name = name
             entity.birthday = birthday
             entity.iconImageData = iconImage.value?.pngData() ?? Data()
-            let value = User(userType: user.userType, token: user.token, userId: user.userId,
-                             name: name, birthday: birthday, iconImage: iconImage.value?.pngData())
+            let value = User(
+                userType: user.userType,
+                token: user.token,
+                userId: user.userId,
+                name: name,
+                birthday: birthday,
+                iconImage: iconImage.value?.pngData()
+            )
             return (entity, value)
         }
     }
@@ -115,23 +137,27 @@ extension UserRegistrationViewModel: UserRegistrationViewModelable {
             return
         }
         let value = createUser(name: name, birthday: birthday)
-        UserRealmRepository<UserRealmEntity>.save(user: value.userEntity) { [weak self] result in
-            switch result {
-            case .success:
-                UserDefaultsRepository.shared.createUser(user: value.user)
-                self?.dismissSubject.accept(true)
-                self?.completedSubject.accept(true)
-            case .failure:
-                self?.presentScreenSubject.accept(
-                    .errorAlert(message: R.string.localizable.error_realm_save()))
+        UserRealmRepository<UserRealmEntity>
+            .save(user: value.userEntity) { [weak self] result in
+                switch result {
+                case .success:
+                    UserDefaultsRepository.shared.createUser(user: value.user)
+                    self?.dismissSubject.accept(true)
+                    self?.completedSubject.accept(true)
+                case .failure:
+                    self?.presentScreenSubject.accept(
+                        .errorAlert(message: R.string.localizable.error_realm_save()))
+                }
             }
-        }
     }
 }
 
 // MARK: imagePickerController
 extension UserRegistrationViewModel {
-    func imagePicker(_ picker: UIImagePickerController, info: [UIImagePickerController.InfoKey: Any]) {
+    func imagePicker(
+        _ picker: UIImagePickerController,
+        info: [UIImagePickerController.InfoKey: Any]
+    ) {
         if let image = info[.originalImage] as? UIImage {
             presentScreenSubject.accept(.crop(picker: picker, image: image))
         }
