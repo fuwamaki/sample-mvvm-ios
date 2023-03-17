@@ -72,22 +72,29 @@ final class MypageViewModel {
         isSignedIn.accept(user != nil)
     }
 
-    private func accountExists(userType: UserType, userId: String, completion: @escaping (Result<UserRealmEntity?, NSError>) -> Void) {
-        UserRealmRepository<UserRealmEntity>.find(userType: userType, userId: userId) { result in
-            switch result {
-            case .success(let userEntity):
-                completion(.success(userEntity))
-            case .failure(let error):
-                completion(.failure(error))
+    private func accountExists(
+        userType: UserType,
+        userId: String,
+        completion: @escaping (Result<UserRealmEntity?, NSError>) -> Void
+    ) {
+        UserRealmRepository<UserRealmEntity>
+            .find(userType: userType, userId: userId) { result in
+                switch result {
+                case .success(let userEntity):
+                    completion(.success(userEntity))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
-        }
     }
 }
 
 // MARK: MypageViewModelable
 extension MypageViewModel: MypageViewModelable {
     func handleSettingBarButtonItem() {
-        presentScreenSubject.accept(.mypageActionSheet)
+        presentScreenSubject.accept(.mypageActionSheet(logoutAction: {
+            self.handleLogoutInSettingBarButtonItem()
+        }))
     }
 
     func handleLogoutInSettingBarButtonItem() {
@@ -109,12 +116,14 @@ extension MypageViewModel: MypageViewModelable {
         accountExists(userType: .line, userId: lineUser.userId) { [weak self] result in
             switch result {
             case .success(.some(let userEntity)):
-                let user = User(userType: UserType(rawValue: userEntity.userType)!,
-                                token: lineUser.token,
-                                userId: userEntity.userId,
-                                name: userEntity.name,
-                                birthday: userEntity.birthday,
-                                iconImage: userEntity.iconImageData)
+                let user = User(
+                    userType: UserType(rawValue: userEntity.userType)!,
+                    token: lineUser.token,
+                    userId: userEntity.userId,
+                    name: userEntity.name,
+                    birthday: userEntity.birthday,
+                    iconImage: userEntity.iconImageData
+                )
                 UserDefaultsRepository.shared.createUser(user: user)
                 self?.checkUser()
                 self?.completedSubject.accept(true)
@@ -141,19 +150,23 @@ extension MypageViewModel: MypageViewModelable {
             return
         }
         let fullName = appleIDCredential.fullName
-        let appleUser = AppleUser(token: authCode,
-                                  userId: appleIDCredential.user,
-                                  givenName: fullName?.givenName,
-                                  familyName: fullName?.familyName)
+        let appleUser = AppleUser(
+            token: authCode,
+            userId: appleIDCredential.user,
+            givenName: fullName?.givenName,
+            familyName: fullName?.familyName
+        )
         accountExists(userType: .apple, userId: appleUser.userId) { [weak self] result in
             switch result {
             case .success(.some(let userEntity)):
-                let user = User(userType: UserType(rawValue: userEntity.userType)!,
-                                token: appleUser.token,
-                                userId: userEntity.userId,
-                                name: userEntity.name,
-                                birthday: userEntity.birthday,
-                                iconImage: userEntity.iconImageData)
+                let user = User(
+                    userType: UserType(rawValue: userEntity.userType)!,
+                    token: appleUser.token,
+                    userId: userEntity.userId,
+                    name: userEntity.name,
+                    birthday: userEntity.birthday,
+                    iconImage: userEntity.iconImageData
+                )
                 UserDefaultsRepository.shared.createUser(user: user)
                 self?.checkUser()
                 self?.completedSubject.accept(true)

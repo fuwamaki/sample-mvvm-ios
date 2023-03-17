@@ -47,7 +47,9 @@ final class UserRegistrationViewController: UIViewController {
     private let birthdayPickerView = BirthdayPickerView()
 
     static func make(type: UserRegistrationType) -> UserRegistrationViewController {
-        let viewController = R.storyboard.userRegistrationViewController.instantiateInitialViewController()!
+        let viewController = R.storyboard
+            .userRegistrationViewController
+            .instantiateInitialViewController()!
         viewController.viewModel = UserRegistrationViewModel(type: type)
         return viewController
     }
@@ -61,8 +63,18 @@ final class UserRegistrationViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(_:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(_:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
     }
 
     private func setupViews() {
@@ -188,24 +200,30 @@ final class UserRegistrationViewController: UIViewController {
 
 // MARK: UIImagePickerControllerDelegate
 extension UserRegistrationViewController: UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
         viewModel?.imagePicker(picker, info: info)
     }
 }
 
 // MARK: CropViewControllerDelegate
 extension UserRegistrationViewController: CropViewControllerDelegate {
-    func cropViewController(_ cropViewController: CropViewController,
-                            didCropToImage image: UIImage,
-                            withRect cropRect: CGRect,
-                            angle: Int) {
+    func cropViewController(
+        _ cropViewController: CropViewController,
+        didCropToImage image: UIImage,
+        withRect cropRect: CGRect,
+        angle: Int
+    ) {
         viewModel?.cropView(image: image)
         cropViewController.dismiss(animated: true, completion: nil)
     }
 
-    func cropViewController(_ cropViewController: CropViewController,
-                            didFinishCancelled cancelled: Bool) {
+    func cropViewController(
+        _ cropViewController: CropViewController,
+        didFinishCancelled cancelled: Bool
+    ) {
         cropViewController.dismiss(animated: true, completion: nil)
     }
 }
@@ -220,7 +238,7 @@ extension UserRegistrationViewController: TextFieldInputAccessoryViewDelegate {}
 extension UserRegistrationViewController {
     @objc func keyboardWillShow(_ notification: Foundation.Notification) {
         guard let userInfo = notification.userInfo,
-            let value = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+              let value = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
             return
         }
         let keyboardSize = value.cgRectValue.height

@@ -89,9 +89,11 @@ final class ItemRegisterViewModel {
     private func subscribe() {}
 
     private func postItem() -> Completable {
-        guard let name = nameText.value, let category = categoryText.value,
-            let priceStr = priceText.value, let price = Int(priceStr) else {
-                return Completable.empty()
+        guard let name = nameText.value,
+              let category = categoryText.value,
+              let priceStr = priceText.value,
+              let price = Int(priceStr) else {
+            return Completable.empty()
         }
         isLoading.accept(true)
         let item = Item(id: nil, name: name, category: category, price: price)
@@ -100,18 +102,23 @@ final class ItemRegisterViewModel {
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    self?.presentScreenSubject.accept(.errorAlert(message: error.message))
+                    self?.presentScreenSubject
+                        .accept(.errorAlert(message: error.message))
                 },
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
                     self?.completedSubject.accept(true)
-                    self?.dismissSubject.accept(true)})
+                    self?.dismissSubject.accept(true)
+                }
+            )
     }
 
     private func putItem() -> Completable {
-        guard let name = nameText.value, let category = categoryText.value,
-            let priceStr = priceText.value, let price = Int(priceStr) else {
-                return Completable.empty()
+        guard let name = nameText.value,
+              let category = categoryText.value,
+              let priceStr = priceText.value,
+              let price = Int(priceStr) else {
+            return Completable.empty()
         }
         isLoading.accept(true)
         let item = Item(id: nil, name: name, category: category, price: price)
@@ -125,7 +132,9 @@ final class ItemRegisterViewModel {
                 onCompleted: { [weak self] in
                     self?.isLoading.accept(false)
                     self?.completedSubject.accept(true)
-                    self?.dismissSubject.accept(true)})
+                    self?.dismissSubject.accept(true)
+                }
+            )
     }
 }
 

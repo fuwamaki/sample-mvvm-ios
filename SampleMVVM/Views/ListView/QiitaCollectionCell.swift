@@ -17,7 +17,8 @@ final class QiitaCollectionCell: UICollectionViewCell {
         didSet {
             qiitaItemSubject
                 .subscribe(onNext: { [unowned self] qiitaItem in
-                    self.iconImageView?.pin_setImage(from: URL(string: qiitaItem.user.profileImageUrl))
+                    self.iconImageView?
+                        .pin_setImage(from: URL(string: qiitaItem.user.profileImageUrl))
                 })
                 .disposed(by: disposeBag)
         }

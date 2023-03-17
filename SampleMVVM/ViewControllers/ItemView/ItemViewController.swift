@@ -18,6 +18,9 @@ final class ItemViewController: UIViewController {
         didSet {
             tableView.register(R.nib.itemTableCell)
             tableView.registerHeaderFooterView(R.nib.itemTableHeaderView)
+            tableView.tableFooterView = UIView()
+            let headerView = R.nib.itemTableHeaderView(owner: self)
+            tableView.tableHeaderView = headerView
 
             tableView.rx
                 .setDelegate(self)
@@ -27,9 +30,11 @@ final class ItemViewController: UIViewController {
                 .drive(tableView.rx.items) { tableView, index, element in
                     let cell = tableView.dequeueReusableCell(
                         withIdentifier: R.reuseIdentifier.itemTableCell,
-                        for: IndexPath(item: index, section: 0))!
+                        for: IndexPath(item: index, section: 0)
+                    )!
                     cell.render(item: element)
-                    return cell }
+                    return cell
+                }
                 .disposed(by: disposeBag)
 
             tableView.rx.itemSelected
@@ -45,7 +50,7 @@ final class ItemViewController: UIViewController {
                         .subscribe()
                         .disposed(by: self.disposeBag)
                 })
-            .disposed(by: disposeBag)
+                .disposed(by: disposeBag)
         }
     }
 
@@ -69,17 +74,9 @@ final class ItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+        view.addSubview(indicator)
         setupTexts()
         bind()
-    }
-
-    private func setupViews() {
-        view.addSubview(indicator)
-        // Hide blank border of tableview
-        tableView.tableFooterView = UIView()
-        let headerView = R.nib.itemTableHeaderView(owner: self)
-        tableView.tableHeaderView = headerView
     }
 
     private func setupTexts() {
@@ -99,27 +96,14 @@ final class ItemViewController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.presentScreen
-            .drive(onNext: { [unowned self] screen in
-                switch screen {
-                case .errorAlert(let message):
-                    let alert = UIAlertController.singleErrorAlert(message: message)
-                    self.present(alert, animated: true, completion: nil)
-                default: break
-                }
+            .drive(onNext: { [unowned self] in
+                self.presentScreen($0)
             })
             .disposed(by: disposeBag)
 
         viewModel.pushScreen
-            .drive(onNext: { [unowned self] screen in
-                switch screen {
-                case .itemRegister:
-                    let viewController = ItemRegisterViewController.make()
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                case .itemUpdate(let item):
-                    let viewController = ItemRegisterViewController.make(item: item)
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                default: break
-                }
+            .drive(onNext: { [unowned self] in
+                self.navigationController?.pushScreen($0)
             })
             .disposed(by: disposeBag)
 
@@ -133,7 +117,10 @@ final class ItemViewController: UIViewController {
 
 // MARK: UITableViewDelegate
 extension ItemViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(
+        _ tableView: UITableView,
+        heightForRowAt indexPath: IndexPath
+    ) -> CGFloat {
         return ItemTableCell.defaultHeight(tableView)
     }
 }

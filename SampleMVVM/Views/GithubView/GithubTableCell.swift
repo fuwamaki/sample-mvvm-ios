@@ -35,7 +35,7 @@ final class GithubTableCell: UITableViewCell {
                 options: .transitionCrossDissolve,
                 animations: {
                     self.iconImageView?.pin_setImage(from: URL(string: avatarUrl))
-            })
+                })
         }
     }
 }

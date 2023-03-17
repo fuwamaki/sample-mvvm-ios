@@ -32,18 +32,26 @@ final class SampleUserNotificationCenter: NSObject {
 
 // MARK: UNUserNotificationCenterDelegate
 extension SampleUserNotificationCenter: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (_ options: UNNotificationPresentationOptions) -> Void) {
-        // memo: ForeGroundでも通知を受け取れるようにする
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (_ options: UNNotificationPresentationOptions) -> Void
+    ) {
         completionHandler([.alert, .sound])
     }
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
         let userInfo = response.notification.request.content.userInfo
-        // 既にUIViewController表示済みなら、Push通知のハンドリングを実施
+
         if UIApplication.topViewController() != nil {
+            // 画面表示済みなら、Push通知のハンドリングを実施
             handlePushNotificationRoute(userInfo)
         } else {
-            // まだUIViewControllerが表示されていない（まだLaunchScreen）場合、sceneDidBecomeActiveでハンドリングをする
+            // 画面表示前（LaunchScreen状態）なら、Push通知のハンドリングはsceneDidBecomeActiveで
             userInfoForLaunch = userInfo
         }
         completionHandler()
@@ -53,12 +61,11 @@ extension SampleUserNotificationCenter: UNUserNotificationCenterDelegate {
 // MARK: handle user notification action
 extension SampleUserNotificationCenter {
     private func handlePushNotificationRoute(_ userInfo: [AnyHashable: Any]) {
-        if let type = userInfo["type"] as? String {
-            if type == "debug" {
-                let viewController = DebugViewController.make()
-                let navigationController = UINavigationController(rootViewController: viewController)
-                UIApplication.topViewController()?.present(navigationController, animated: true, completion: nil)
-            }
-        }
+        guard let type = userInfo["type"] as? String,
+              type == "debug" else { return }
+        let viewController = DebugViewController.make()
+        let navigationController = UINavigationController(rootViewController: viewController)
+        UIApplication.topViewController()?
+            .present(navigationController, animated: true, completion: nil)
     }
 }

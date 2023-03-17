@@ -14,7 +14,12 @@ struct LineUser {
     let displayName: String?
     let pictureUrl: URL?
 
-    init(token: String, userId: String, displayName: String?, pictureUrl: URL?) {
+    init(
+        token: String,
+        userId: String,
+        displayName: String?,
+        pictureUrl: URL?
+    ) {
         self.token = token
         self.userId = userId
         self.displayName = displayName

@@ -19,7 +19,9 @@ final class GithubViewController: UIViewController {
         didSet {
             searchBar.backgroundImage = UIImage()
             searchBar.searchTextField.delegate = self
-            let view = TextFieldInputAccessoryView(textField: searchBar.searchTextField)
+            let view = TextFieldInputAccessoryView(
+                textField: searchBar.searchTextField
+            )
             searchBar.inputAccessoryView = view
         }
     }
@@ -27,6 +29,7 @@ final class GithubViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.register(R.nib.githubTableCell)
+            tableView.tableFooterView = UIView()
 
             tableView.rx
                 .setDelegate(self)
@@ -36,9 +39,11 @@ final class GithubViewController: UIViewController {
                 .drive(tableView.rx.items) { tableView, index, element in
                     let cell = tableView.dequeueReusableCell(
                         withIdentifier: R.reuseIdentifier.githubTableCell,
-                        for: IndexPath(item: index, section: 0))!
+                        for: IndexPath(item: index, section: 0)
+                    )!
                     cell.render(repository: element)
-                    return cell }
+                    return cell
+                }
                 .disposed(by: disposeBag)
 
             tableView.rx.itemSelected
@@ -59,7 +64,9 @@ final class GithubViewController: UIViewController {
     private var isLoading: Bool = false {
         didSet {
             DispatchQueue.main.async {
-                self.isLoading ? self.indicator.startAnimating() : self.indicator.stopAnimating()
+                self.isLoading
+                ? self.indicator.startAnimating()
+                : self.indicator.stopAnimating()
                 self.indicator.isHidden = !self.isLoading
             }
         }
@@ -74,14 +81,9 @@ final class GithubViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+        view.addSubview(indicator)
         setupTexts()
         bind()
-    }
-
-    private func setupViews() {
-        view.addSubview(indicator)
-        tableView.tableFooterView = UIView()
     }
 
     private func setupTexts() {
@@ -97,16 +99,8 @@ final class GithubViewController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.presentScreen
-            .drive(onNext: { [unowned self] screen in
-                switch screen {
-                case .safari(let url):
-                    let safari = SFSafariViewController(url: url)
-                    self.present(safari, animated: true, completion: nil)
-                case .errorAlert(let message):
-                    let alert = UIAlertController.singleErrorAlert(message: message)
-                    self.present(alert, animated: true, completion: nil)
-                default: break
-                }
+            .drive(onNext: { [unowned self] in
+                self.presentScreen($0)
             })
             .disposed(by: disposeBag)
 
@@ -158,8 +152,10 @@ final class GithubViewController: UIViewController {
 
 // MARK: UITableViewDelegate
 extension GithubViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView,
-                   heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(
+        _ tableView: UITableView,
+        heightForRowAt indexPath: IndexPath
+    ) -> CGFloat {
         return GithubTableCell.defaultHeight(tableView)
     }
 }

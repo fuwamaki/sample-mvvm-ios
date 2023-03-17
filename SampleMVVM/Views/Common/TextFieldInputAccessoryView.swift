@@ -80,10 +80,12 @@ final class TextFieldInputAccessoryView: UIView {
         let nextBarButtonItem = UIBarButtonItem(image: resizeNextIcon, style: .plain, target: self, action: #selector(clickNextButton(_:)))
         nextBarButtonItem.isEnabled = next != nil
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneBarButtonItem = UIBarButtonItem(title: doneButtonTitle,
-                                                style: .done,
-                                                target: self,
-                                                action: #selector(TextFieldInputAccessoryView.clickDoneButton(_:)))
+        let doneBarButtonItem = UIBarButtonItem(
+            title: doneButtonTitle,
+            style: .done,
+            target: self,
+            action: #selector(TextFieldInputAccessoryView.clickDoneButton(_:))
+        )
         let barButtonItems = [previousBarButtonItem, nextBarButtonItem, flexibleSpace, doneBarButtonItem]
         toolBar.items = barButtonItems
         addSubview(toolBar)

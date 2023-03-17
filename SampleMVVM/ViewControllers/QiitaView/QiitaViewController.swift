@@ -19,7 +19,9 @@ final class QiitaViewController: UIViewController {
         didSet {
             searchBar.backgroundImage = UIImage()
             searchBar.searchTextField.delegate = self
-            let view = TextFieldInputAccessoryView(textField: searchBar.searchTextField)
+            let view = TextFieldInputAccessoryView(
+                textField: searchBar.searchTextField
+            )
             searchBar.inputAccessoryView = view
         }
     }
@@ -27,6 +29,7 @@ final class QiitaViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.register(R.nib.qiitaTableCell)
+            tableView.tableFooterView = UIView()
 
             tableView.rx
                 .setDelegate(self)
@@ -58,7 +61,9 @@ final class QiitaViewController: UIViewController {
     private var isLoading: Bool = false {
         didSet {
             DispatchQueue.main.async {
-                self.isLoading ? self.indicator.startAnimating() : self.indicator.stopAnimating()
+                self.isLoading
+                ? self.indicator.startAnimating()
+                : self.indicator.stopAnimating()
                 self.indicator.isHidden = !self.isLoading
             }
         }
@@ -68,18 +73,15 @@ final class QiitaViewController: UIViewController {
     private let viewModel: QiitaViewModelable = QiitaViewModel()
 
     static func make() -> QiitaViewController {
-        return R.storyboard.qiitaViewController.instantiateInitialViewController()!
+        return R.storyboard
+            .qiitaViewController
+            .instantiateInitialViewController()!
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
-        bind()
-    }
-
-    private func setupViews() {
         view.addSubview(indicator)
-        tableView.tableFooterView = UIView()
+        bind()
     }
 
     // swiftlint:disable function_body_length
@@ -91,16 +93,8 @@ final class QiitaViewController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.presentScreen
-            .drive(onNext: { [unowned self] screen in
-                switch screen {
-                case .safari(let url):
-                    let safari = SFSafariViewController(url: url)
-                    self.present(safari, animated: true, completion: nil)
-                case .errorAlert(let message):
-                    let alert = UIAlertController.singleErrorAlert(message: message)
-                    self.present(alert, animated: true, completion: nil)
-                default: break
-                }
+            .drive(onNext: { [unowned self] in
+                self.presentScreen($0)
             })
             .disposed(by: disposeBag)
 
@@ -130,8 +124,8 @@ final class QiitaViewController: UIViewController {
         viewModel.isQueryFavorited
             .subscribe(onNext: { [unowned self] in
                 self.favoriteBarButtonItem.image = $0
-                    ? UIImage(systemName: "checkmark.circle.fill")
-                    : UIImage(systemName: "heart.fill")
+                ? UIImage(systemName: "checkmark.circle.fill")
+                : UIImage(systemName: "heart.fill")
             })
             .disposed(by: disposeBag)
 
@@ -151,8 +145,10 @@ final class QiitaViewController: UIViewController {
 
 // MARK: UITableViewDelegate
 extension QiitaViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView,
-                   heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(
+        _ tableView: UITableView,
+        heightForRowAt indexPath: IndexPath
+    ) -> CGFloat {
         return QiitaTableCell.defaultHeight(tableView)
     }
 }

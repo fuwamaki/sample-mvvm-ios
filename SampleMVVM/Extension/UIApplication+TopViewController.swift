@@ -21,7 +21,9 @@ extension UIApplication {
     }
 
     // to know the most front screen
-    class func keyWindowTopViewController(on controller: UIViewController? = UIApplication.shared.rootViewControllerInKeyWindow) -> UIViewController? {
+    class func keyWindowTopViewController(
+        on controller: UIViewController? = UIApplication.shared.rootViewControllerInKeyWindow
+    ) -> UIViewController? {
         if let navigationController = controller as? UINavigationController {
             return keyWindowTopViewController(on: navigationController.visibleViewController)
         }

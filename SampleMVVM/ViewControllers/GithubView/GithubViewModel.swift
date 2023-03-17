@@ -79,7 +79,8 @@ extension GithubViewModel {
                     UserDefaultsRepository.shared.oneUp(type: .incrementListId)
                     self?.isQueryFavorited.accept(true)
                     self?.completedSubject.accept(true)
-                })
+                }
+            )
     }
 
     // 保存するキーワードが、既にローカルデータに保存済みかどうかを確認
@@ -92,7 +93,8 @@ extension GithubViewModel {
                     },
                     onError: { error in
                         single(.error(error))
-                    })
+                    }
+                )
         }
     }
 
@@ -103,15 +105,17 @@ extension GithubViewModel {
                 onSuccess: { [weak self] repositories in
                     self?.searchedQuery.accept(query)
                     self?.isLoading.accept(false)
-                    self?.repositoriesSubject.accept(repositories)
+                    self?.repositoriesSubject
+                        .accept(repositories)
                 },
                 onError: { [weak self] error in
                     guard let error = error as? APIError else { return }
                     self?.isLoading.accept(false)
-                    self?.presentScreenSubject.accept(.errorAlert(message: error.message))
+                    self?.presentScreenSubject
+                        .accept(.errorAlert(message: error.message))
                 })
-            .map { _ in } // Single<Void>に変換
-            .asCompletable() // Completableに変換
+            .map { _ in }
+            .asCompletable()
     }
 }
 
@@ -144,7 +148,7 @@ extension GithubViewModel: GithubViewModelable {
                     return Completable.empty()
                 }
                 return self.saveGithubItem(keyword: keyword)
-        }
+            }
     }
 
     func showGithubWebView(indexPath: IndexPath) {
