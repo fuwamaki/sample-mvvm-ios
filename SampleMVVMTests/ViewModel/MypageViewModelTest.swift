@@ -22,7 +22,7 @@ class MypageViewModelTest: XCTestCase {
         scheduler.scheduleAt(100) {
             viewModel.presentScreen
                 .drive(onNext: {
-                    XCTAssertTrue($0 == .mypageActionSheet)
+                    XCTAssertTrue($0 == .mypageActionSheet(logoutAction: {}))
                 })
                 .disposed(by: disposeBag)
         }
